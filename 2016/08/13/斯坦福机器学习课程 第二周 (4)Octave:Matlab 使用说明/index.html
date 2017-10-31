@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_08_13/021.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_13/022.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_13/023.png">
-<meta property="og:updated_time" content="2016-08-21T09:56:34.000Z">
+<meta property="og:updated_time" content="2017-10-31T09:18:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第二周 (4)Octave/Matlab 使用说明">
 <meta name="twitter:description" content="你现在已经掌握不少机器学习知识了，在这段视频中我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过或者将要学的机器学习算法。
@@ -168,7 +168,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -182,7 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -570,7 +570,7 @@
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; max(rand(<span class="number">3</span>),rand(<span class="number">3</span>))</div><div class="line">ans =</div><div class="line"></div><div class="line">   <span class="number">0.53967</span>   <span class="number">0.79306</span>   <span class="number">0.62026</span></div><div class="line">   <span class="number">0.90069</span>   <span class="number">0.70636</span>   <span class="number">0.55156</span></div><div class="line">   <span class="number">0.98940</span>   <span class="number">0.68021</span>   <span class="number">0.85094</span></div></pre></td></tr></table></figure>
 <p>获取一个矩阵中每一列最大的元素组成的向量：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; A</div><div class="line">A =</div><div class="line"></div><div class="line">   <span class="number">8</span>   <span class="number">1</span>   <span class="number">6</span></div><div class="line">   <span class="number">3</span>   <span class="number">5</span>   <span class="number">7</span></div><div class="line">   <span class="number">4</span>   <span class="number">9</span>   <span class="number">2</span></div><div class="line"></div><div class="line">&gt;&gt; max(A,[],<span class="number">1</span>)</div><div class="line">ans =</div><div class="line"></div><div class="line">   <span class="number">8</span>   <span class="number">9</span>   <span class="number">7</span></div></pre></td></tr></table></figure>
-<p>获取矩阵每一列的最大值：</p>
+<p>获取矩阵每一行的最大值：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; max(A,[],<span class="number">2</span>)</div><div class="line">ans =</div><div class="line"></div><div class="line">   <span class="number">8</span></div><div class="line">   <span class="number">7</span></div><div class="line">   <span class="number">9</span></div></pre></td></tr></table></figure>
 <p>找出矩阵$A$中最大元素的两种方法：</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; max(<span class="name">max</span>(<span class="name">A</span>))</div><div class="line">ans =  <span class="number">9</span></div><div class="line">&gt;&gt; max(<span class="name">A</span>(:))</div><div class="line">ans =  <span class="number">9</span></div></pre></td></tr></table></figure>
@@ -1314,7 +1314,24 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   
 
