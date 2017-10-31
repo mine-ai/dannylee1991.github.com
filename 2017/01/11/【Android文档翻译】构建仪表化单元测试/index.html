@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="仪表化单元测试是在物理设备和模拟器上运行的测试，它们可以利用Android框架API和support API，例如Android Testing Support Library。如果你的测试需要访问仪表信息(例如目标APP的Context信息)或者如果他们需要真正实现一个Android框架组件(例如一个Parcelable或者SharedPreferences对象)，你应该创建仪表化单元测试。
+使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Android文档翻译】构建仪表化单元测试">
+<meta property="og:url" content="http://studyai.site/2017/01/11/【Android文档翻译】构建仪表化单元测试/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="仪表化单元测试是在物理设备和模拟器上运行的测试，它们可以利用Android框架API和support API，例如Android Testing Support Library。如果你的测试需要访问仪表信息(例如目标APP的Context信息)或者如果他们需要真正实现一个Android框架组件(例如一个Parcelable或者SharedPreferences对象)，你应该创建仪表化单元测试。
+使">
+<meta property="og:image" content="http://studyai.site/img/17_01_11/002.png">
+<meta property="og:image" content="http://studyai.site/img/17_01_11/003.png">
+<meta property="og:updated_time" content="2017-01-13T00:20:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Android文档翻译】构建仪表化单元测试">
+<meta name="twitter:description" content="仪表化单元测试是在物理设备和模拟器上运行的测试，它们可以利用Android框架API和support API，例如Android Testing Support Library。如果你的测试需要访问仪表信息(例如目标APP的Context信息)或者如果他们需要真正实现一个Android框架组件(例如一个Parcelable或者SharedPreferences对象)，你应该创建仪表化单元测试。
+使">
+<meta name="twitter:image" content="http://studyai.site/img/17_01_11/002.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/01/11/【Android文档翻译】构建仪表化单元测试/"/>
+
+
+
+
+
+  <title>【Android文档翻译】构建仪表化单元测试 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/01/11/【Android文档翻译】构建仪表化单元测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Android文档翻译】构建仪表化单元测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-11T23:07:58+08:00">
+                2017-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/01/11/【Android文档翻译】构建仪表化单元测试/" class="leancloud_visitors" data-flag-title="【Android文档翻译】构建仪表化单元测试">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>仪表化单元测试是在物理设备和模拟器上运行的测试，它们可以利用Android框架API和support API，例如Android Testing Support Library。如果你的测试需要访问仪表信息(例如目标APP的Context信息)或者如果他们需要真正实现一个Android框架组件(例如一个Parcelable或者SharedPreferences对象)，你应该创建仪表化单元测试。</p>
+<p>使用仪表化单元测试还有助于减少编写和维护模拟代码所需的工作量。如果你想，你任然可以自由使用模拟框架，模拟任何依赖关系。</p>
+<h2 id="设置您的测试环境">设置您的测试环境</h2><p>在你的Android Studio项目中，你必须将用于测试的源文件存储在<code>module-name/src/androidTest/java/</code>中。在创建新项目，并包含检测测试示例时，此目录已存在。</p>
+<p>在你开始之前，你应该<a href="https://developer.android.google.cn/tools/testing-support-library/index.html#setup" target="_blank" rel="external">下载Android测试支持库设置</a>，它提供的API允许您为您的应用程序快速构建和运行测试代码。这个测试库包含一个JUnit4测试运行器(<a href="https://developer.android.google.cn/tools/testing-support-library/index.html#AndroidJUnitRunner" target="_blank" rel="external">AndroidJUnitRunner</a>)以及针对UI功能性测试的API(<a href="https://developer.android.google.cn/tools/testing-support-library/index.html#Espresso" target="_blank" rel="external">Espresso</a>和<a href="https://developer.android.google.cn/tools/testing-support-library/index.html#UIAutomator" target="_blank" rel="external">UI Automator</a>)。</p>
+<p>您还需要为项目配置Android测试依赖关系，以使用测试支持库提供的测试运行器和规则API。为了简化测试开发，您还应该包含<a href="https://github.com/hamcrest" target="_blank" rel="external">Hamcrest库</a>，它允许您使用Hamcrest匹配器API创建更灵活的断言。</p>
+<p>在应用程序的顶级<code>build.gradle</code>文件中，您需要将这些库指定为依赖关系。</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    <span class="attribute">androidTestCompile 'com.android.support</span>:support-annotations:24.0.0'</div><div class="line">    androidTestCompile 'com<span class="variable">.android</span><span class="variable">.support</span><span class="variable">.test</span>:runner:0.5'</div><div class="line">    androidTestCompile 'com<span class="variable">.android</span><span class="variable">.support</span><span class="variable">.test</span>:rules:0.5'</div><div class="line">    // Optional -- Hamcrest library</div><div class="line">    androidTestCompile 'org<span class="variable">.hamcrest</span>:hamcrest-library:1.3'</div><div class="line">    // Optional -- UI testing with Espresso</div><div class="line">    androidTestCompile 'com<span class="variable">.android</span><span class="variable">.support</span><span class="variable">.test</span><span class="variable">.espresso</span>:espresso-core:2.2.2'</div><div class="line">    // Optional -- UI testing with UI Automator</div><div class="line">    androidTestCompile 'com<span class="variable">.android</span><span class="variable">.support</span><span class="variable">.test</span><span class="variable">.uiautomator</span>:uiautomator-v18:2.1.2'</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>警告：</strong>如果您的构建配置包括<code>support-annotations</code>库的编译依赖项<strong>和</strong><code>espresso-core</code>库的<code>androidTestCompile</code>依赖项，那么您的构建可能会由于依赖冲突而失败。为了解决这个问题，请更新<code>espresso-core</code>的依赖关系，如下所示：</p>
+</blockquote>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">androidTestCompile(<span class="string">'com.android.support.test.espresso:espresso-core:2.2.2'</span>, &#123;</div><div class="line">    <span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'com.android.support'</span>, module: <span class="string">'support-annotations'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>要使用JUnit4测试类，请确保在项目中将<code>AndroidJUnitRunner</code>指定为默认测试工具运行器，方法是在应用程序的模块级<code>build.gradle</code>文件中包含以下设置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="section">android</span> &#123;</div><div class="line">    <span class="section">defaultConfig</span> &#123;</div><div class="line">        <span class="attribute">testInstrumentationRunner</span> <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="创建测试单元测试类">创建测试单元测试类</h2><p>您的检测单元测试类应写为JUnit4测试类。要了解有关创建JUnit 4测试类和使用JUnit 4断言和注释的更多信息，请参阅创<a href="https://developer.android.google.cn/training/testing/unit-testing/local-unit-tests.html#build" target="_blank" rel="external">建本地单元测试类</a>。</p>
+<p>要创建一个检测的JUnit4测试类，请在测试类定义的开头添加<code>@RunWith(AndroidJUnit4.class)</code>注解。您还需要指定Android测试支持库中提供的<a href="https://developer.android.google.cn/reference/android/support/test/runner/AndroidJUnitRunner.html" target="_blank" rel="external">AndroidJUnitRunner</a>类作为默认测试运行器。此步骤在“<a href="/2017/01/11/【Android文档翻译】入门测试/">测试入门</a>”中有更详细的描述。</p>
+<p><a href="https://developer.android.google.cn/training/testing/start/index.html#run-instrumented-tests" target="_blank" rel="external">以下示例显示如何编写检测单元测试</a>，以测试Parcelable接口是否已正确实现LogHistory类：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.os.Parcel;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.support.test.runner.AndroidJUnit4;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.util.Pair;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.Test;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.runner.RunWith;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> java.util.List;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.hamcrest.Matchers.is;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.junit.Assert.assertThat;</span></div><div class="line"></div><div class="line">@RunWith(AndroidJUnit4.class)</div><div class="line">@SmallTest</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogHistoryAndroidUnitTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TEST_STRING = <span class="string">"This is a string"</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> long TEST_LONG = <span class="number">12345678</span>L;</div><div class="line">    <span class="keyword">private</span> LogHistory mLogHistory;</div><div class="line"></div><div class="line">    @Before</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> createLogHistory() &#123;</div><div class="line">        mLogHistory = <span class="keyword">new</span> LogHistory();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> logHistory_ParcelableWriteRead() &#123;</div><div class="line">        <span class="comment">// Set up the Parcelable object to send and receive.</span></div><div class="line">        mLogHistory.addEntry(TEST_STRING, TEST_LONG);</div><div class="line"></div><div class="line">        <span class="comment">// Write the data.</span></div><div class="line">        Parcel parcel = Parcel.obtain();</div><div class="line">        mLogHistory.writeToParcel(parcel, mLogHistory.describeContents());</div><div class="line"></div><div class="line">        <span class="comment">// After you're done with writing, you need to reset the parcel for reading.</span></div><div class="line">        parcel.setDataPosition(<span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="comment">// Read the data.</span></div><div class="line">        LogHistory createdFromParcel = LogHistory.CREATOR.createFromParcel(parcel);</div><div class="line">        List&lt;Pair&lt;String, Long&gt;&gt; createdFromParcelData = createdFromParcel.getData();</div><div class="line"></div><div class="line">        <span class="comment">// Verify that the received data is correct.</span></div><div class="line">        assertThat(createdFromParcelData.size(), <span class="keyword">is</span>(<span class="number">1</span>));</div><div class="line">        assertThat(createdFromParcelData.get(<span class="number">0</span>).first, <span class="keyword">is</span>(TEST_STRING));</div><div class="line">        assertThat(createdFromParcelData.get(<span class="number">0</span>).second, <span class="keyword">is</span>(TEST_LONG));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="创建一个测试套件">创建一个测试套件</h3><p>要组织仪器化单元测试的执行，可以在测试套件类中对一组测试类进行分组，并一起运行这些测试。测试套件可以嵌套;您的测试套件可以将其他测试套件分组并将所有组件测试类一起运行。</p>
+<p>测试套件包含在测试包中，类似于主应用程序包。按照惯例，测试套件包名称通常以<code>.suite</code>后缀结尾（例如，<code>com.example.android.testing.mysample.suite</code>）。</p>
+<p>要为单元测试创​​建测试套件，请导入JUnit RunWith和Suite类。在您的测试套件中，添加<code>@RunWith(Suite.class)</code>和<code>@Suite.SuitClasses()</code>注解，列出单个测试类或测试套件作为参数。</p>
+<p>以下示例显示如何实现名为UnitTestSuite的测试套件，它将<code>CalculatorInstrumentationTest</code>和<code>CalculatorAddParameterizedTest</code>测试类组合并运行。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.mysample</span><span class="selector-class">.CalculatorAddParameterizedTest</span>;</div><div class="line">import com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.mysample</span><span class="selector-class">.CalculatorInstrumentationTest</span>;</div><div class="line">import org<span class="selector-class">.junit</span><span class="selector-class">.runner</span><span class="selector-class">.RunWith</span>;</div><div class="line">import org<span class="selector-class">.junit</span><span class="selector-class">.runners</span><span class="selector-class">.Suite</span>;</div><div class="line"></div><div class="line"><span class="comment">// Runs all unit tests.</span></div><div class="line"><span class="variable">@RunWith</span>(Suite.class)</div><div class="line"><span class="variable">@Suite</span>.SuiteClasses(&#123;CalculatorInstrumentationTest.class,</div><div class="line">        CalculatorAddParameterizedTest.class&#125;)</div><div class="line">public class UnitTestSuite &#123;&#125;</div></pre></td></tr></table></figure>
+<h2 id="运行仪表单元测试">运行仪表单元测试</h2><p>要运行仪表化测试，请按照下列步骤操作：</p>
+<ul>
+<li>1.通过单击工具栏中的同步项目，确保您的项目与Gradle同步。</li>
+<li>2.使用以下方法之一运行测试：<ul>
+<li>要运行单个测试，请打开<strong>Project</strong>窗口，然后右键单击一个测试，然后单击<strong>Run</strong>。</li>
+<li>要测试类中的所有方法，请右键单击测试文件中的类或方法，然后单击<strong>Run</strong>。</li>
+<li>要在目录中运行所有测试，请右键单击目录并选择<strong>Run tests</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://developer.android.google.cn/tools/building/plugin-for-gradle.html" target="_blank" rel="external">Gradle的Android插件</a>编译位于默认目录(<code>src/androidTest/java/</code>)中的测试代码，构建测试APK和生产APK，在连接的设备或模拟器上安装这两个APK，并运行测试。然后，Android Studio将在“运行”窗口中显示已检测的测试执行的结果。</p>
+<blockquote>
+<p><strong>注意：</strong>在运行或调试测试测试时，Android Studio不会注入“<a href="https://developer.android.google.cn/studio/run/index.html#instant-run" target="_blank" rel="external">Instant Run</a>”所需的其他方法，并关闭此功能。</p>
+</blockquote>
+<h3 id="使用Firebase_Test_Lab运行测试">使用Firebase Test Lab运行测试</h3><p>使用<a href="https://firebase.google.cn/docs/test-lab/" target="_blank" rel="external">Firebase Test Lab</a>，您可以在许多流行的Android设备和设备配置(区域设置，方向，屏幕大小和平台版本)上同时测试您的应用程序。这些测试在远程Google数据中心的物理和虚拟设备上运行。您可以直接从Android Studio或从命令行将应用程序部署到测试实验室。测试结果提供测试日志，并包括任何应用程序故障的详细信息。</p>
+<p>在开始使用Firebase Test Lab之前，您需要执行以下操作，除非您已经拥有Google帐户和Firebase项目：</p>
+<ul>
+<li>1.如果您还没有Google帐户，请<a href="https://accounts.google.com/" target="_blank" rel="external">创建一个Google帐户</a>。</li>
+<li>2.在<a href="https://console.firebase.google.com/" target="_blank" rel="external">Firebase控制台</a>中，单击<strong>Create New Project</strong>。 <ul>
+<li>使用测试实验室在Spark计划的免费每日配额内测试您的应用程序是免费的。</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置测试矩阵并运行测试">配置测试矩阵并运行测试</h4><p>Android Studio提供了集成工具，允许您配置如何将测试部署到Firebase测试实验室。使用Blaze计划计费创建Firebase项目后，您可以创建测试配置并运行测试：</p>
+<ul>
+<li>1.在主菜单下点击<strong>Run &gt; Edit Configurations</strong> 。</li>
+<li>2.点击<strong>Add New Configuration + </strong>然后选择<strong>Android Tests</strong>。</li>
+<li>3.在Android测试配置对话框中：<ul>
+<li>a.输入或选择测试的详细信息，例如测试名称，模块类型，测试类型和测试类别。</li>
+<li>b.从“部署目标选项”下的“目标”下拉菜单中，选择“<strong>Firebase Test Lab Device Matrix</strong>”。</li>
+<li>c.如果您尚未登录，请点击连接到Google云端平台，并允许Android Studio访问您的帐户。</li>
+<li>d.在Cloud Project旁边，单击设置按钮并从列表中选择您的Firebase项目。</li>
+</ul>
+</li>
+<li>4.创建和配置测试矩阵。<ul>
+<li>a.在<em>Matrix Configuration</em>下拉列表旁边，单击<strong>Open Dialog</strong>。</li>
+<li>b.点击<strong>Add New Configuration (+)</strong>。</li>
+<li>c.在<strong>Name</strong>字段中，输入新配置的名称。</li>
+<li>d.选择您要测试应用的设备，Android版本，地区和屏幕方向。 Firebase测试实验室将在生成测试结果时根据您的选择的每个组合来测试您的应用程序。</li>
+<li>e.单击<strong>OK</strong>保存配置</li>
+</ul>
+</li>
+<li>5.单击<em>Run/Debug Configurations</em>对话框中的<strong>OK</strong>退出。</li>
+<li>6.通过单击<strong>Run</strong>运行测试。</li>
+</ul>
+<p><img src="/img/17_01_11/002.png" alt=""></p>
+<p><strong>图1.</strong>为Firebase Test Lab创建测试配置。</p>
+<h4 id="分析测试结果">分析测试结果</h4><p>当Firebase Test Lab完成运行测试时，运行窗口将打开以显示结果，如图2所示。您可能需要单击<strong>Show Passd</strong>以查看所有已执行的测试。</p>
+<p><img src="/img/17_01_11/003.png" alt=""></p>
+<p><strong>图2.</strong>使用Firebase Test Lab查看仪表化测试的结果。</p>
+<p>您还可以通过在<em>Run</em>窗口中的测试执行日志开头显示的链接来分析Web上的测试。</p>
+<p>要了解有关解释Web结果的详细信息，请参阅<a href="https://firebase.google.cn/docs/test-lab/analyzing-results" target="_blank" rel="external">分析Android结果的Firebase测试实验室</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/11/【Android文档翻译】构建本地单元测试/" rel="next" title="【Android文档翻译】构建本地单元测试">
+                <i class="fa fa-chevron-left"></i> 【Android文档翻译】构建本地单元测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/11/【Android文档翻译】自动化UI测试/" rel="prev" title="【Android文档翻译】自动化UI测试">
+                【Android文档翻译】自动化UI测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置您的测试环境"><span class="nav-number">1.</span> <span class="nav-text">设置您的测试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建测试单元测试类"><span class="nav-number">2.</span> <span class="nav-text">创建测试单元测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个测试套件"><span class="nav-number">2.1.</span> <span class="nav-text">创建一个测试套件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行仪表单元测试"><span class="nav-number">3.</span> <span class="nav-text">运行仪表单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Firebase_Test_Lab运行测试"><span class="nav-number">3.1.</span> <span class="nav-text">使用Firebase Test Lab运行测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置测试矩阵并运行测试"><span class="nav-number">3.1.1.</span> <span class="nav-text">配置测试矩阵并运行测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析测试结果"><span class="nav-number">3.1.2.</span> <span class="nav-text">分析测试结果</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

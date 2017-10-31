@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,Tensorflow," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="代码：tensorflow/examples/tutorials/mnist/
+这篇教程的目的是为了展示如何使用TensorFlow来训练并评估一个简单的前馈神经网络(feed-forward neural network)用来识别MNIST手写数字数据集。本教程的目标读者是有兴趣使用TensorFlow的有经验的机器学习用户。
+这部分教程不是为了教授普通的机器学习。
+请确保您已按照说明安装了Te">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Tensorflow r1.0 文档翻译】Tensorflow原理导论">
+<meta property="og:url" content="http://studyai.site/2017/03/03/【Tensorflow r1.0 文档翻译】Tensorflow原理导论/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="代码：tensorflow/examples/tutorials/mnist/
+这篇教程的目的是为了展示如何使用TensorFlow来训练并评估一个简单的前馈神经网络(feed-forward neural network)用来识别MNIST手写数字数据集。本教程的目标读者是有兴趣使用TensorFlow的有经验的机器学习用户。
+这部分教程不是为了教授普通的机器学习。
+请确保您已按照说明安装了Te">
+<meta property="og:image" content="http://studyai.site/img/17_03_03/001.png">
+<meta property="og:image" content="http://studyai.site/img/17_03_03/002.png">
+<meta property="og:image" content="http://studyai.site/img/17_03_03/003.png">
+<meta property="og:updated_time" content="2017-03-05T07:09:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Tensorflow r1.0 文档翻译】Tensorflow原理导论">
+<meta name="twitter:description" content="代码：tensorflow/examples/tutorials/mnist/
+这篇教程的目的是为了展示如何使用TensorFlow来训练并评估一个简单的前馈神经网络(feed-forward neural network)用来识别MNIST手写数字数据集。本教程的目标读者是有兴趣使用TensorFlow的有经验的机器学习用户。
+这部分教程不是为了教授普通的机器学习。
+请确保您已按照说明安装了Te">
+<meta name="twitter:image" content="http://studyai.site/img/17_03_03/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/03/03/【Tensorflow r1.0 文档翻译】Tensorflow原理导论/"/>
+
+
+
+
+
+  <title>【Tensorflow r1.0 文档翻译】Tensorflow原理导论 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/03/03/【Tensorflow r1.0 文档翻译】Tensorflow原理导论/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Tensorflow r1.0 文档翻译】Tensorflow原理导论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T21:19:58+08:00">
+                2017-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Tensorflow/" itemprop="url" rel="index">
+                    <span itemprop="name">Tensorflow</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/03/【Tensorflow r1.0 文档翻译】Tensorflow原理导论/" class="leancloud_visitors" data-flag-title="【Tensorflow r1.0 文档翻译】Tensorflow原理导论">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>代码：<a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/" target="_blank" rel="external">tensorflow/examples/tutorials/mnist/</a></p>
+<p>这篇教程的目的是为了展示如何使用TensorFlow来训练并评估一个简单的<strong>前馈神经网络(feed-forward neural network)</strong>用来识别MNIST手写数字数据集。本教程的目标读者是有兴趣使用TensorFlow的有经验的机器学习用户。</p>
+<p>这部分教程不是为了教授普通的机器学习。</p>
+<p>请确保您已按照说明<a href="https://www.tensorflow.org/install/index" target="_blank" rel="external">安装了TensorFlow</a>。</p>
+<h2 id="教程文件">教程文件</h2><p>本教程引用以下文件：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文件</th>
+<th style="text-align:left">目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/mnist.py" target="_blank" rel="external"><code>mnist.py</code></a></td>
+<td style="text-align:left">构建一个完全连接的MNIST模型的代码。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/fully_connected_feed.py" target="_blank" rel="external"><code>fully_connected_feed.py</code></a></td>
+<td style="text-align:left">利用下载的数据集训练构建好的MNIST模型的主要代码，以数据反馈字典（feed dictionary）的形式作为输入模型。</td>
+</tr>
+</tbody>
+</table>
+<p>只需要运行<code>fully_connected_feed.py</code>文件，就可以开启训练：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> fully_connected_feed.<span class="keyword">py</span></div></pre></td></tr></table></figure>
+<h2 id="准备数据">准备数据</h2><p>MNIST是机器学习中的经典问题。这个问题是查看28x28像素的手写数字灰度图像，并确定图像表示的数字，数字范围是0到9。</p>
+<p><img src="/img/17_03_03/001.png" alt=""></p>
+<p>更多的信息，参加<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">Yann LeCun’s MNIST page</a>或者<a href="http://colah.github.io/posts/2014-10-Visualizing-MNIST/" target="_blank" rel="external">Chris Olah’s visualizations of MNIST</a>。</p>
+<h3 id="下载">下载</h3><p>在<code>run_training()</code>方法的开始部分，<code>input_data.read_data_sets()</code>方法会确保你的本地训练文件夹中，已经下载了正确的数据，然后将这些数据解压并返回一个含有<code>DataSet</code>实例的字典。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dat<span class="built_in">a_sets</span> = input_data.read_dat<span class="built_in">a_sets</span>(FLAGS.train_dir, FLAGS.fake_data)</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong><code>fake_data</code>标记是用于单元测试的，读者可以不必理会。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">数据集</th>
+<th style="text-align:left">目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>data_sets.train</code></td>
+<td style="text-align:left">55000图像和标签，用于初级训练。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>data_sets.validation</code></td>
+<td style="text-align:left">5000图像和标签，用于迭代验证训练准确性。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>data_sets.test</code></td>
+<td style="text-align:left">10000图像和标签，用于最终测试训练的准确性。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="输入和占位符">输入和占位符</h3><p><code>placeholder_inputs()</code>方法创建了两个<code>tf.placeholder</code>操作，用于定义输入的形状。形状参数中包含<code>batch_size</code>值，后续还会将实际的训练样本传入图中。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">images_placeholder</span> = tf.placeholder(tf.float32, <span class="attr">shape=(batch_size,</span></div><div class="line">                                                       mnist.IMAGE_PIXELS))</div><div class="line"><span class="attr">labels_placeholder</span> = tf.placeholder(tf.int32, <span class="attr">shape=(batch_size))</span></div></pre></td></tr></table></figure>
+<p>在训练的循环代码的下方，传入的整个图像和标签数据集会被切片，以符合每一个操作所设置的<code>batch_size</code>值，占位符操作将会填补以符合这个<code>batch_size</code>值。然后使用<code>feed_dict</code>参数，将数据传入<code>sess.run()</code>函数。</p>
+<h2 id="构建图">构建图</h2><p>在为数据创建占位符之后，就可以运行<code>mnist.py</code>文件，经过三阶段的模式函数操作：<code>inference()</code>， <code>loss()</code>，和<code>training()</code>。图表就构建完成了。</p>
+<ul>
+<li>1.<code>inference()</code>-尽可能地构建好图表，满足促使神经网络向前反馈并做出预测的要求。</li>
+<li>2.<code>loss()</code>-往inference图表中添加生成损失（loss）所需要的操作（ops）。</li>
+<li>3.<code>training()</code>-往损失图表中添加计算并应用梯度（gradients）所需的操作。</li>
+</ul>
+<p><img src="/img/17_03_03/002.png" alt=""></p>
+<h3 id="推理(Inference)">推理(Inference)</h3><p><code>inference()</code>函数会尽可能地构建图表，做到返回包含了预测结果（output prediction）的Tensor。</p>
+<p>它采用图像占位符作为输入，并在其上借助<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks" target="_blank" rel="external">ReLU</a>)激活函数构建一对完全连接层，以及一个有着十个节点、指明了输出logtis模型的线性层。</p>
+<p>每个图层都在唯一的<a href="https://www.tensorflow.org/api_docs/python/tf/name_scope" target="_blank" rel="external"><code>tf.name_scope</code></a>下创建，创建于该作用域之下的所有元素都将带有其前缀。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'hidden1'</span>):</div></pre></td></tr></table></figure>
+<p>在定义的范围内，由这些层中的每一个使用的权重和偏差被生成为<a href="https://www.tensorflow.org/api_docs/python/tf/Variable" target="_blank" rel="external"><code>tf.Variable</code></a>实例，具有它们期望的形状：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">weights = <span class="keyword">tf</span>.Variable(</div><div class="line">    <span class="keyword">tf</span>.truncated_normal([IMAGE_PIXELS, hidden1_units],</div><div class="line">                        stddev=<span class="number">1.0</span> / math.<span class="built_in">sqrt</span>(float(IMAGE_PIXELS))),</div><div class="line">    name=<span class="string">'weights'</span>)</div><div class="line">biases = <span class="keyword">tf</span>.Variable(<span class="keyword">tf</span>.zeros([hidden1_units]),</div><div class="line">                     name=<span class="string">'biases'</span>)</div></pre></td></tr></table></figure>
+<p>例如，当在<code>hidden1</code>范围下创建这些时，赋予权重变量的唯一名称将是“<code>hidden1 / weights</code>”。</p>
+<p>每个变量在构建时，都会执行初始化操作。</p>
+<p>在大多数情况下，通过<a href="https://www.tensorflow.org/api_docs/python/tf/truncated_normal" target="_blank" rel="external"><code>tf.truncated_normal</code></a>函数初始化权重变量，给赋予的shape则是一个二维tensor，其中第一个维度代表该层中权重变量所连接（connect from）的单元数量，第二个维度代表该层中权重变量所连接到的（connect to）单元数量。第一层，名字为<code>hidden1</code>，它的尺寸是<code>[IMAGE_PIXELS, hidden1_units]</code>，因为权重变量将图像输入连接到了<code>hidden1</code>层。<code>tf.truncated_normal</code>初始函数将根据所得到的均值和标准差，生成一个随机分布。</p>
+<p>然后，通过<a href="https://www.tensorflow.org/api_docs/python/tf/zeros" target="_blank" rel="external"><code>tf.zeros</code></a>函数初始化偏差变量（biases），确保所有偏差的起始值都是0，而它们的形状则是其在该层中所接到的（connect to）单元数量。</p>
+<p>图表的三个主要操作，分别是两个<code>tf.nn.relu</code>操作，它们中嵌入了隐藏层所需的<a href="https://www.tensorflow.org/api_docs/python/tf/matmul" target="_blank" rel="external"><code>tf.matmul</code></a>；以及logits模型所需的另外一个<code>tf.matmul</code>。三者依次生成，各自的<code>tf.Variable</code>实例则与输入占位符或下一层的输出tensor所连接。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hidden1 = tf<span class="selector-class">.nn</span><span class="selector-class">.relu</span>(tf.matmul(images, weights) + biases)</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hidden2 = tf<span class="selector-class">.nn</span><span class="selector-class">.relu</span>(tf.matmul(hidden1, weights) + biases)</div></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">logits</span> = tf.matmul(hidden2, weights) + biases</div></pre></td></tr></table></figure>
+<p>最终，程序会返回包含了输出结果的<code>logits</code>Tensor。</p>
+<h3 id="损失">损失</h3><p><code>loss()</code>函数通过添加所需的损失操作，进一步构建图表。</p>
+<p>首先，来自<code>labels_placeholder</code>的值将转换为64位整数。然后，添加一个<a href="https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits" target="_blank" rel="external">tf.nn.sparse_softmax_cross_entropy_with_logits</a>操作，以从<code>labels_placeholder</code>自动生成1-hot标签，并且与<code>inference()</code>函数的输出logits与那些1-hot标签进行比较。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">labels</span> = tf.to_int64(labels)</div><div class="line"><span class="attr">cross_entropy</span> = tf.nn.sparse_softmax_cross_entropy_with_logits(</div><div class="line">    <span class="attr">labels=labels,</span> <span class="attr">logits=logits,</span> <span class="attr">name='xentropy')</span></div></pre></td></tr></table></figure>
+<p>然后使用<a href="https://www.tensorflow.org/api_docs/python/tf/reduce_mean" target="_blank" rel="external"><code>tf.reduce_mean</code></a>来求在批量维度（第一维度）上的交叉熵的平均值，作为总损失。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">loss</span> = tf.reduce_mean(cross_entropy, name=<span class="string">'xentropy_mean'</span>)</div></pre></td></tr></table></figure>
+<p>然后将包含损失值的张量返回。</p>
+<blockquote>
+<p><strong>注意：</strong>交叉熵是信息论中的一种理论，它用于描述神经网络的预测结果相对于实际所给定的真实结果的偏差程度。更多的信息，请参阅博文<a href="http://colah.github.io/posts/2015-09-Visual-Information/" target="_blank" rel="external">《可视化信息理论》</a>。</p>
+</blockquote>
+<h3 id="训练">训练</h3><p><code>training()</code>方法通过添加<a href="https://en.wikipedia.org/wiki/Gradient_descent" target="_blank" rel="external">梯度下降</a>的操作来最小化损失。</p>
+<p>首先，它通过<code>loss()</code>方法接受损失tensor，然后传递到<a href="https://www.tensorflow.org/api_docs/python/tf/summary/scalar" target="_blank" rel="external"><code>tf.summary.scalar</code></a>，用于在与<code>SummaryWriter</code>（见下文）一起使用时生成事件文件中的摘要值的操作。在这里，它将在每次写出摘要时发出损失的快照值。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">'loss'</span>, loss)</div></pre></td></tr></table></figure>
+<p>接下来，我们实例化一个<a href="https://www.tensorflow.org/api_docs/python/tf/train/GradientDescentOptimizer" target="_blank" rel="external"><code>tf.train.GradientDescentOptimizer</code></a>，负责按照所要求的学习效率（learning rate）应用梯度下降法（gradients）。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">optimizer = tf<span class="selector-class">.train</span><span class="selector-class">.GradientDescentOptimizer</span>(learning_rate)</div></pre></td></tr></table></figure>
+<p>之后，我们生成一个单个的变量用于统计全局训练的次数，<a href="https://www.tensorflow.org/api_docs/python/tf/train/Optimizer#minimize" target="_blank" rel="external"><code>tf.train.Optimizer.minimize</code></a>操作被同时用作在系统中更新可训练的权值，以及增加全局步长（global step）。按照惯例，这个操作被称为<code>train_op</code>，TensorFlow会话必须运行的，以便引入一个完整的训练步骤（见下文）。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">global_step</span> = tf.Variable(<span class="number">0</span>, name=<span class="string">'global_step'</span>, trainable=<span class="literal">False</span>)</div><div class="line"><span class="attr">train_op</span> = optimizer.minimize(loss, global_step=global_step)</div></pre></td></tr></table></figure>
+<h2 id="训练模型">训练模型</h2><p>一旦图被构建，它就可以在由<code>fully_connected_feed.py</code>中的用户代码控制的循环中迭代地训练和求值。</p>
+<h3 id="图">图</h3><p>在<code>run_training()</code>方法的一开始的部分，是一个python的<code>with</code>命令，这表示所有构建的操作将与默认全局<a href="https://www.tensorflow.org/api_docs/python/tf/Graph" target="_blank" rel="external"><code>tf.Graph</code></a>实例相关联。</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">with</span> tf.<span class="keyword">Graph</span>().as_default():</div></pre></td></tr></table></figure>
+<p><code>tf.Graph</code>实例是一系列可以作为整体执行的操作。TensorFlow的大部分场景只需要依赖默认图表一个实例即可。</p>
+<p>利用多个图表的更加复杂的使用场景也是可能的，但是超出了本教程的范围。</p>
+<h3 id="会话">会话</h3><p>完成全部的构建准备、生成全部所需的操作之后，我们就可以创建一个<a href="https://www.tensorflow.org/api_docs/python/tf/Session" target="_blank" rel="external">tf.Session</a>，用于运行图表。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">sess</span> = tf.Session()</div></pre></td></tr></table></figure>
+<p>另外，也可以利用<code>with</code>代码块生成<code>Session</code>，限制作用域：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">with <span class="keyword">tf</span>.Session() <span class="keyword">as</span> ses<span class="variable">s:</span></div></pre></td></tr></table></figure>
+<p><code>Session</code>函数中没有传入参数，表明该代码将会依附于（如果还没有创建会话，则会创建新的会话）默认的本地会话。</p>
+<p>生成会话之后，所有<code>tf.Variable</code>实例都会立即通过调用各自初始化操作中的<a href="https://www.tensorflow.org/api_docs/python/tf/Session#run" target="_blank" rel="external"><code>tf.Session.run</code></a>函数进行初始化。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">init</span> = tf.global_variables_initializer()</div><div class="line">sess.run(<span class="keyword">init</span>)</div></pre></td></tr></table></figure>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Session#run" target="_blank" rel="external"><code>tf.Session.run</code></a>方法将会运行图表中与作为参数传入的操作相对应的完整子集。在初次调用时，<code>init</code>操作只包含了变量初始化程序<a href="https://www.tensorflow.org/api_docs/python/tf/group" target="_blank" rel="external"><code>tf.group</code></a>。图表的其他部分不会在这里，而是在下面的训练循环运行。</p>
+<h3 id="训练循环">训练循环</h3><p>在通过会话来初始化变量后，就可以开始训练了。</p>
+<p>训练的每一步都是通过用户代码控制，而能实现有效训练的最简单循环就是：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="keyword">step</span> <span class="keyword">in</span> xrange(FLAGS.max_steps):</div><div class="line">    sess.<span class="built_in">run</span>(train_op)</div></pre></td></tr></table></figure>
+<p>但是，本教程中的例子要更为复杂一点，原因是我们必须把输入的数据根据每一步的情况进行切分，以匹配之前生成的占位符。</p>
+<h3 id="向图表提供反馈">向图表提供反馈</h3><p>执行每一步时，我们的代码会生成一个反馈字典（feed dictionary），其中包含对应步骤中训练所要使用的样本，这些样本的key就是其所代表的占位符操作。</p>
+<p><code>fill_feed_dict</code>函数会查询给定的<code>DataSet</code>，索要下一批次`batch_size的图像和标签，与占位符相匹配的Tensor则会包含下一批次的图像和标签。</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">images_feed, labels_feed = data_set.next_batch(<span class="keyword">FLAGS</span>.batch_size,</div><div class="line">                                               <span class="keyword">FLAGS</span>.fake_data)</div></pre></td></tr></table></figure>
+<p>然后，以占位符作为键，创建一个Python字典对象，值则是其代表的反馈Tensor。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">feed_dict = &#123;</div><div class="line"><span class="symbol">    images_placeholder:</span> images_feed,</div><div class="line"><span class="symbol">    labels_placeholder:</span> labels_feed,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个字典随后作为<code>feed_dict</code>参数，传入<code>sess.run()</code>函数中，为这一步的训练提供输入样本。</p>
+<h3 id="检查状态">检查状态</h3><p>在运行<code>sess.run</code>时，要在代码中明确其需要获取的两个值：<code>[train_op, loss]</code>。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="keyword">step</span> <span class="keyword">in</span> <span class="built_in">xrange</span>(FLAGS.max_steps):</div><div class="line">    feed_dict = fill_feed_dict(data_sets.train,</div><div class="line">                               images_placeholder,</div><div class="line">                               labels_placeholder)</div><div class="line">    <span class="symbol">_</span>, loss_value = sess.run([train_op, loss],</div><div class="line">                             feed_dict=feed_dict)</div></pre></td></tr></table></figure>
+<p>因为要获取这两个值，<code>sess.run()</code>会返回一个有两个元素的元组。其中每一个<code>Tensor</code>对象，对应了返回的元组中的numpy数组，而这些数组中包含了当前这步训练中对应Tensor的值。由于<code>train_op</code>并不会产生输出，其在返回的元祖中的对应元素就是<code>None</code>，所以会被抛弃。但是，如果模型在训练中出现偏差，<code>loss</code> Tensor的值可能会变成NaN，所以我们要获取它的值，并记录下来。</p>
+<p>假设训练一切正常，没有出现NaN，训练循环会每隔100个训练步骤，就打印一行简单的状态文本，告知用户当前的训练状态。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">if</span> <span class="built_in">step</span> % <span class="number">100</span> == <span class="number">0</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'Step %d: loss = %.2f (%.3f sec)'</span> % (<span class="built_in">step</span>, loss_value, duration)</div></pre></td></tr></table></figure>
+<h3 id="状态可视化">状态可视化</h3><p>为了发出<a href="https://www.tensorflow.org/get_started/summaries_and_tensorboard" target="_blank" rel="external">TensorBoard</a>所使用的事件文件（events file），所有的摘要（在这里只有一个）都要在图构建阶段合并至一个Tensor中。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">summary</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge_all</span>()</div></pre></td></tr></table></figure>
+<p>在创建好会话（session）之后，可以实例化一个<a href="https://www.tensorflow.org/api_docs/python/tf/summary/FileWriter" target="_blank" rel="external"><code>tf.summary.FileWriter</code></a>，用于写入包含了图表本身和即时数据具体值的事件文件。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(FLAGS<span class="selector-class">.train_dir</span>, sess.graph)</div></pre></td></tr></table></figure>
+<p>最后，每次评估<code>summary</code>(摘要)并将输出传递给<code>add_summary()</code>函数时，事件文件将被新的摘要值更新。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">summary_str = sess.<span class="built_in">run</span>(summary, feed_dict=feed_dict)</div><div class="line">summary_writer.add_summary(summary_str, <span class="built_in">step</span>)</div></pre></td></tr></table></figure>
+<p>事件文件写入完毕之后，可以就训练文件夹打开一个TensorBoard，查看即时数据的情况。</p>
+<p><img src="/img/17_03_03/003.png" alt=""></p>
+<blockquote>
+<p><strong>注意：</strong>了解更多如何构建并运行TensorBoard的信息，请查看相关教程<a href="https://www.tensorflow.org/get_started/summaries_and_tensorboard" target="_blank" rel="external">Tensorboard：训练过程可视化</a>。</p>
+</blockquote>
+<h3 id="保存检查点">保存检查点</h3><p>为了得到可以用来后续恢复模型以进一步训练或评估的检查点文件（checkpoint file），我们实例化一个<a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver" target="_blank" rel="external"><code>tf.train.Saver</code></a>。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">saver = tf<span class="selector-class">.train</span><span class="selector-class">.Saver</span>()</div></pre></td></tr></table></figure>
+<p>在训练循环中，将定期调用<a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver#save" target="_blank" rel="external"><code>tf.train.Saver.save</code></a>方法，使用所有可训练变量的当前值将检查点文件写入训练目录。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">saver.<span class="built_in">save</span>(sess, FLAGS.train_dir, global_step=<span class="keyword">step</span>)</div></pre></td></tr></table></figure>
+<p>在将来的某个时间点，可以通过使用<a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver#restore" target="_blank" rel="external"><code>tf.train.Saver.restore</code></a>方法重新加载模型参数来恢复训练。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">saver</span><span class="selector-class">.restore</span>(<span class="selector-tag">sess</span>, <span class="selector-tag">FLAGS</span><span class="selector-class">.train_dir</span>)</div></pre></td></tr></table></figure>
+<h2 id="评估模型">评估模型</h2><p>每隔一千个训练步骤，我们的代码会尝试使用训练数据集与测试数据集，对模型进行评估。<code>do_eval</code>函数会被调用三次，分别使用训练数据集、验证数据集合测试数据集。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'Training Data Eval:'</span></div><div class="line"><span class="keyword">do</span>_<span class="built_in">eval</span>(sess,</div><div class="line">        <span class="built_in">eval</span>_correct,</div><div class="line">        images_placeholder,</div><div class="line">        labels_placeholder,</div><div class="line">        data_sets.train)</div><div class="line"><span class="built_in">print</span> <span class="string">'Validation Data Eval:'</span></div><div class="line"><span class="keyword">do</span>_<span class="built_in">eval</span>(sess,</div><div class="line">        <span class="built_in">eval</span>_correct,</div><div class="line">        images_placeholder,</div><div class="line">        labels_placeholder,</div><div class="line">        data_sets.validation)</div><div class="line"><span class="built_in">print</span> <span class="string">'Test Data Eval:'</span></div><div class="line"><span class="keyword">do</span>_<span class="built_in">eval</span>(sess,</div><div class="line">        <span class="built_in">eval</span>_correct,</div><div class="line">        images_placeholder,</div><div class="line">        labels_placeholder,</div><div class="line">        data_sets.test)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，更复杂的使用场景通常是，先隔绝<code>data_sets.test</code>测试数据集，只有在大量的超参数优化调整（hyperparameter tuning）之后才进行检查。但是，由于MNIST问题比较简单，我们在这里一次性评估所有的数据。</p>
+</blockquote>
+<h3 id="构建评估图(Eval_Graph)">构建评估图(Eval Graph)</h3><p>在打开默认图表（Graph）之前，我们应该先调用get_data(train=False)函数，抓取测试数据集。</p>
+<p>在进入训练循环之前，评估操作应该通过<code>mnist.py</code>中的<code>evaluate()</code>函数来构建。<code>evaluate()</code>传入的<code>logist</code>和标签参数与<code>loss()</code>函数相同。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">eval_correct</span> = mnist.evaluation(logits, labels_placeholder)</div></pre></td></tr></table></figure>
+<p><code>evaluation()</code>函数会生成<a href="https://www.tensorflow.org/api_docs/python/tf/nn/in_top_k" target="_blank" rel="external"><code>tf.nn.in_top_k</code></a>操作，如果在K个最有可能的预测中可以发现真的标签，那么这个操作就会将模型输出标记为正确。在本文中，我们把K的值设置为1，也就是只有在预测是真的标签时，才判定它是正确的。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eval_correct = tf<span class="selector-class">.nn</span><span class="selector-class">.in_top_k</span>(logits, labels, <span class="number">1</span>)</div></pre></td></tr></table></figure>
+<h3 id="评估输出">评估输出</h3><p>之后，我们可以创建一个循环，往其中添加<code>feed_dict</code>，并在调用<code>sess.run()</code>函数时传入<code>eval_correct</code>操作，目的就是用给定的数据集评估模型。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> step <span class="keyword">in</span> xrange(steps_per_epoch):</div><div class="line">    feed_dict = fill_feed_dict(data_<span class="built_in">set</span>,</div><div class="line">                               images_placeholder,</div><div class="line">                               labels_placeholder)</div><div class="line">    <span class="literal">true</span>_count += sess.run(<span class="built_in">eval</span>_correct, feed_dict=feed_dict)</div></pre></td></tr></table></figure>
+<p><code>true_count</code>变量会累加所有<code>in_top_k</code>操作判定为正确的预测之和。接下来，只需要将正确测试的总数，除以例子总数，就可以得出准确率了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">precision = <span class="literal">true</span>_count / num_examples</div><div class="line"><span class="built_in">print</span>(<span class="string">'  Num examples: %d  Num correct: %d  Precision @ 1: %0.04f'</span> %</div><div class="line">      (num_examples, <span class="literal">true</span>_count, precision))</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/26/【Tensorflow r1.0 文档翻译】深入MNIST--专家级/" rel="next" title="【Tensorflow r1.0 文档翻译】深入MNIST--专家级">
+                <i class="fa fa-chevron-left"></i> 【Tensorflow r1.0 文档翻译】深入MNIST--专家级
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/05/【Tensorflow r1.0 文档翻译】【tf.contrib.learn快速入门】/" rel="prev" title="【Tensorflow r1.0 文档翻译】【tf.contrib.learn快速入门】">
+                【Tensorflow r1.0 文档翻译】【tf.contrib.learn快速入门】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#教程文件"><span class="nav-number">1.</span> <span class="nav-text">教程文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备数据"><span class="nav-number">2.</span> <span class="nav-text">准备数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入和占位符"><span class="nav-number">2.2.</span> <span class="nav-text">输入和占位符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建图"><span class="nav-number">3.</span> <span class="nav-text">构建图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#推理(Inference)"><span class="nav-number">3.1.</span> <span class="nav-text">推理(Inference)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#损失"><span class="nav-number">3.2.</span> <span class="nav-text">损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-number">3.3.</span> <span class="nav-text">训练</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练模型"><span class="nav-number">4.</span> <span class="nav-text">训练模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图"><span class="nav-number">4.1.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话"><span class="nav-number">4.2.</span> <span class="nav-text">会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练循环"><span class="nav-number">4.3.</span> <span class="nav-text">训练循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向图表提供反馈"><span class="nav-number">4.4.</span> <span class="nav-text">向图表提供反馈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查状态"><span class="nav-number">4.5.</span> <span class="nav-text">检查状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态可视化"><span class="nav-number">4.6.</span> <span class="nav-text">状态可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存检查点"><span class="nav-number">4.7.</span> <span class="nav-text">保存检查点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估模型"><span class="nav-number">5.</span> <span class="nav-text">评估模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建评估图(Eval_Graph)"><span class="nav-number">5.1.</span> <span class="nav-text">构建评估图(Eval Graph)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评估输出"><span class="nav-number">5.2.</span> <span class="nav-text">评估输出</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

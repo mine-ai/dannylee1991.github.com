@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="多元高斯分布视频地址
+
+接下来我将介绍多元高斯分布 (multivariate Gaussian distribution)。它是我们目前所学的异常检测算法的延伸，它有一些优势也有一些劣势，它能捕捉到一些之前的算法检测不出来的异常。
+
+异常检测算法无法解决的问题还是现以一个例子来解释：
+假设在数据中心监控机器的例子中，我们有如下的内存和CPU使用数据：
+
+其中对于这两个维度的数据，都服从正态分布：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）">
+<meta property="og:url" content="http://studyai.site/2017/05/26/斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="多元高斯分布视频地址
+
+接下来我将介绍多元高斯分布 (multivariate Gaussian distribution)。它是我们目前所学的异常检测算法的延伸，它有一些优势也有一些劣势，它能捕捉到一些之前的算法检测不出来的异常。
+
+异常检测算法无法解决的问题还是现以一个例子来解释：
+假设在数据中心监控机器的例子中，我们有如下的内存和CPU使用数据：
+
+其中对于这两个维度的数据，都服从正态分布：">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/001.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/002.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/003.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/004.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/005.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/006.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/007.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/009.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/011.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/008.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/010.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/012.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/007.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/013.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/015.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/008.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/014.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/016.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/007.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/017.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/019.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/008.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/018.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/020.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/007.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/021.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/023.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/008.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/022.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/024.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/007.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/025.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/027.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/008.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/026.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/028.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/029.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/030.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/031.png">
+<meta property="og:image" content="http://studyai.site/img/17_05_26/032.png">
+<meta property="og:updated_time" content="2017-05-28T00:43:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）">
+<meta name="twitter:description" content="多元高斯分布视频地址
+
+接下来我将介绍多元高斯分布 (multivariate Gaussian distribution)。它是我们目前所学的异常检测算法的延伸，它有一些优势也有一些劣势，它能捕捉到一些之前的算法检测不出来的异常。
+
+异常检测算法无法解决的问题还是现以一个例子来解释：
+假设在数据中心监控机器的例子中，我们有如下的内存和CPU使用数据：
+
+其中对于这两个维度的数据，都服从正态分布：">
+<meta name="twitter:image" content="http://studyai.site/img/17_05_26/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/05/26/斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第九周 (3)多元高斯分布（选学） | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/05/26/斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T21:00:00+08:00">
+                2017-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/26/斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第九周 (3)多元高斯分布（选学）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="多元高斯分布">多元高斯分布</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Cf8DF/multivariate-gaussian-distribution" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>接下来我将介绍<strong>多元高斯分布 (multivariate Gaussian distribution)</strong>。它是我们目前所学的异常检测算法的延伸，它有一些优势也有一些劣势，它能捕捉到一些之前的算法检测不出来的异常。</p>
+</blockquote>
+<h3 id="异常检测算法无法解决的问题">异常检测算法无法解决的问题</h3><p>还是现以一个例子来解释：</p>
+<p>假设在数据中心监控机器的例子中，我们有如下的内存和CPU使用数据：</p>
+<p><img src="/img/17_05_26/001.png" alt=""></p>
+<p>其中对于这两个维度的数据，都服从正态分布：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_1$</th>
+<th style="text-align:center">$x_2$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/002.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/003.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>如果现在在我们的测试集中，有一个异常数据点出现在下图的位置中：</p>
+<p><img src="/img/17_05_26/004.png" alt=""></p>
+<p>那么在这种情况下我们会发现，这一点对应的两个维度下的概率其实都不低，从$p(x)$的结果上，我们无法准确预测这个样本是否属于异常。</p>
+<p>产生这个问题的实际原因其实是这样的，从$x_1$和$x_2$这两个维度来看，我们的正常数据及时大多数集中分布在这样一个范围内：</p>
+<p><img src="/img/17_05_26/005.png" alt=""></p>
+<p>但我们使用之前的异常检测算法，其实是以中心区域向外以正圆的形式扩散的。也就是说距离中心区域距离相等的点，对应的$p(x)$都是一样的，所以我们可能无法检测到这一个异常样本，因为它也处在一个$p(x)$比较大的范围内：</p>
+<p><img src="/img/17_05_26/006.png" alt=""></p>
+<p>所以，为了解决异常检测算法的这一问题，接下来我解释改良版的异常检测算法，要用到叫做<strong>多元高斯分布（多元正态分布）</strong>的东西。</p>
+<h3 id="通过多元高斯分布改良异常检测算法">通过多元高斯分布改良异常检测算法</h3><p>在多元高斯分布中，对于n维特征$x \in R^n$，不要把模型$p(x_1)$,$p(x_2)$,…,$p(x_n)$分开，而要建立$p(x)$整体的模型。</p>
+<p>多元高斯分布的参数包括向量$µ$和一个$n×n$的矩阵$Σ$。</p>
+<p>$$<br>µ \in R^n  \\<br>Σ \in R^{n×n}<br>$$</p>
+<p>$Σ$被称为<strong>协方差矩阵</strong>，它类似于我们之前学习PCA的时候所见到的协方差矩阵。</p>
+<p>带入之后计算$p(x)$：</p>
+<p>$$<br>p(x;µ,Σ)=<br>\frac{1}{(2π)^{\frac{n}{2}}|Σ|^{\frac{1}{2}}}<br>exp(-\frac{1}{2}(x-µ)^TΣ^{-1}(x-µ))<br>$$</p>
+<blockquote>
+<p>这个公式不用背，用的时候再去查。</p>
+</blockquote>
+<p>注意，公式中的$|Σ|$这一项，代表矩阵$Σ$的<strong>行列式</strong>。在Octave中可以用下面的代码来计算：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">det</span><span class="params">(Sigma)</span></span></div></pre></td></tr></table></figure>
+<p>其实这个公式是什么样并不重要，更重要的是$p(x)$到底是什么样。</p>
+<h3 id="多元高斯分布的样子">多元高斯分布的样子</h3><p>我们来对比一下不同的$µ$和不同的$Σ$组合后，对应的$p(x)$的形状。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}0.6&amp;0\\0&amp;0.6\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}2&amp;0\\0&amp;2\end{matrix}\right]\end{equation}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/007.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/009.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/011.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/008.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/010.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/012.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>表格从上到下依次是三种情况对应的参数、三维图像以及俯视图。</p>
+<p>$µ$作为均值，象征着中心区域对应的坐标点。$Σ$是协方差矩阵，它衡量的是特征$x_1$和$x_2$的方差。</p>
+<p>从图中可以看出来，当缩小协方差$Σ$时，中心区域的凸起就会变得更细长；当扩大协方差$Σ$时，中心区域的凸起就会变得更扁平。因为概率分布的积分必须等于1，所以如果你缩小方差，就会变得细长，反之就会变得扁平。</p>
+<p>接下来我们尝试对协方差中使用不同的数值，来观测$p(x)$形状的变化：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}0.6&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}2&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/007.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/013.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/015.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/008.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/014.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/016.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>在协方差$Σ$中，左上角元素对应的是$x_1$特征，右下角元素对应的是$x_2$特征。</p>
+<p>在第二组图中，我们可以看到，当我们缩小$x_1$到原先的0.6倍而$x_2$保持原先的大小时，由于相当于是对特征$x_1$的方差进行了缩小，所以图像在$x_1$的方向上，会显得更细长。</p>
+<p>在第三组图中，我们可以看到，当我们放大$x_1$到原先的2倍而$x_2$保持原先的大小时，由于相当于是对特征$x_1$的方差进行了放大，所以图像在$x_1$的方向上，会显得更扁平。</p>
+<p>对于多元高斯分布来说，一个很棒的事情就是我们可以用它来<strong>对数据的相关性建模</strong>。也就是说，我们可以用它来给$x_1$和$x_2$高度相关的情况建立模型。具体来说，我们可以通过改变协方差$Σ$非对角线上的元素来得到不同的高斯分布：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0.5\\0.5&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0.8\\0.8&amp;1\end{matrix}\right]\end{equation}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/007.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/017.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/019.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/008.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/018.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/020.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>可以看出来，当我改变了非对角线上元素的值时，$p(x)$的图像也变得倾斜了；当我增大了这些元素时，这个倾斜的分布图像变得更细长了。</p>
+<p>上面是我们把这些非对角线上元素设置为正数时的样子，那么如果我们把它们设置为负数时，会是什么样呢？</p>
+<p>它们的倾斜方向会发生改变：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;-0.5\\-0.5&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;-0.8\\-0.8&amp;1\end{matrix}\right]\end{equation}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/007.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/021.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/023.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/008.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/022.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/024.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>如果我们改变$µ$，会对图像$p(x)$产生什么影响呢？</p>
+<p>它们会发生平移：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}0\\0.5\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+<th style="text-align:center">$\begin{equation}µ=\left[\begin{matrix}1.5\\-0.5\end{matrix}\right]Σ=\left[\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right]\end{equation}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/007.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/025.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/027.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="/img/17_05_26/008.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/026.png" alt=""></td>
+<td style="text-align:center"><img src="/img/17_05_26/028.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>$µ$有两个元素，第一个元素对应的是图像在$x_1$方向上的位移，第二个元素对应的是图像在$x_2$方向上的位移。当为正数时，是沿着增大的方向平移，反之是沿着缩小的方向平移。</p>
+<h3 id="总结">总结</h3><p>不同的图片，能够帮助你了解<strong>多元高斯分布</strong>所能描述的概率分布是什么样。它最重要的优势就是能够描述当两个特征变量之间可能存在正相关或者是负相关关系的情况。</p>
+<h2 id="通过多元高斯分布来处理异常检测问题">通过多元高斯分布来处理异常检测问题</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/DnNr9/anomaly-detection-using-the-multivariate-gaussian-distribution" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>在上一节中，我们谈到了多元高斯分布，而且也看到了一些例子通过改变参数$µ$和$Σ$来给不同的概率分布建模。</p>
+<p>在这节中，我们使用它们来开发另一种异常检测算法。</p>
+</blockquote>
+<h3 id="知识回顾">知识回顾</h3><p>再回顾一下<strong>多元高斯分布（或者叫多元正态分布）</strong>：</p>
+<p>有两个参数：$µ$和$Σ$。</p>
+<p>$µ$是一个n维向量，协方差矩阵$Σ$是一个$n×n$的矩阵。</p>
+<p>其对应的概率分布公式如下：</p>
+<p>$$<br>p(x;µ,Σ)=<br>\frac{1}{(2π)^{\frac{n}{2}}|Σ|^{\frac{1}{2}}}<br>exp(-\frac{1}{2}(x-µ)^TΣ^{-1}(x-µ))<br>$$</p>
+<p>随着你改变$µ$和$Σ$，你可以得到一系列不同的概率分布：</p>
+<p><img src="/img/17_05_26/029.png" alt=""></p>
+<h4 id="参数拟合">参数拟合</h4><p>接下来让我们谈一下<strong>参数拟合问题（参数估计问题）</strong>。</p>
+<p>如果我有一组符合高斯分布的样本：</p>
+<p>$$<br>｛x^{(1)},x^{(2)},…,x^{(m)}｝<br>$$</p>
+<p>我们可以通过公式来得到参数$µ$和$Σ$：</p>
+<p>$$<br>µ=\frac{1}{m}\sum^m_{i=1}x^{(i)}<br>$$</p>
+<p>$$<br>Σ=\frac{1}{m}\sum^m_{i=1}(x^{(i)}-µ)(x^{(i)}-µ)^T<br>$$</p>
+<h4 id="具体应用步骤">具体应用步骤</h4><p>有了这两个参数值，我们就可以把他们应用到具体的异常检测算法中了。具体步骤是这样的：</p>
+<p>假设我们有如下的训练样本：</p>
+<p><img src="/img/17_05_26/030.png" alt=""></p>
+<ul>
+<li>首先，用我们的训练集来拟合模型$p(x)$，得到参数$µ$和$Σ$：</li>
+</ul>
+<p>$$<br>µ=\frac{1}{m}\sum^m_{i=1}x^{(i)}<br>$$</p>
+<p>$$<br>Σ=\frac{1}{m}\sum^m_{i=1}(x^{(i)}-µ)(x^{(i)}-µ)^T<br>$$</p>
+<ul>
+<li>然后，当你得到一个新的测试样本时，我们用下面的公式来计算其$p(x)$：</li>
+</ul>
+<p>$$<br>p(x;µ,Σ)=<br>\frac{1}{(2π)^{\frac{n}{2}}|Σ|^{\frac{1}{2}}}<br>exp(-\frac{1}{2}(x-µ)^TΣ^{-1}(x-µ))<br>$$</p>
+<ul>
+<li>最后，如果$p(x)&lt;ε$时，就把它标记为是一个异常样本，反之，如果$p(x)&gt;=ε$则不标记为异常样本。</li>
+</ul>
+<p>所以，如果使用多元高斯分布来解决异常检测问题，你可能会得到这样一个高斯分布的概率模型：</p>
+<p><img src="/img/17_05_26/031.png" alt=""></p>
+<p>所以，他可以正常的识别出之前用普通的异常检测算法无法正确检测的那个异常样本。</p>
+<h3 id="多元高斯模型和原始模型的关系">多元高斯模型和原始模型的关系</h3><p>最后说一下<strong>多元高斯分布模型</strong>和原来的模型它们之间的关系。</p>
+<p>原先的模型是这样的：</p>
+<p>$$<br>p(x)=p(x_1;µ_1,σ_1^2)×p(x_2;µ_2,σ_2^2)×…×p(x_n;µ_n,σ_n^2)<br>$$</p>
+<p>事实上，你可以证明我们原先的这种模型，是多元高斯模型的一种。它其实是一种等高线都沿着坐标轴方向的多元高斯分布，但这里我不给出证明过程：</p>
+<p><img src="/img/17_05_26/032.png" alt=""></p>
+<p>所以这三个图像，全都是你可以用原来的模型来拟合的高斯分布的例子。</p>
+<p>其实这个模型对应于一种多元高斯分布的特例，具体来说这个特例被定义为约束$p(x)$的分布(也就是多元高斯分布$p(x)$)，使得它的概率密度函数的等高线是沿着轴向的。也就是要求<strong>协方差矩阵$Σ$的非对角线元素都为0</strong>。</p>
+<p>所以你可以得到多元高斯分布$p(x)$看起来是上图中这三种样式的。你会发现，在这3个例子中，它们的轴都是沿着$x_1$，$x_2$的轴的。</p>
+<p>因此，在<strong>协方差矩阵$Σ$的非对角线元素都为0</strong>的情况下，这两者是相同的：</p>
+<p>$$<br>p(x)=p(x_1;µ_1,σ_1^2)×p(x_2;µ_2,σ_2^2)×…×p(x_n;µ_n,σ_n^2)<br>$$</p>
+<p>$$<br>p(x;µ,Σ)=<br>\frac{1}{(2π)^{\frac{n}{2}}|Σ|^{\frac{1}{2}}}<br>exp(-\frac{1}{2}(x-µ)^TΣ^{-1}(x-µ))<br>$$</p>
+<h3 id="何时使用多元高斯模型？何时使用原始模型？">何时使用多元高斯模型？何时使用原始模型？</h3><p>既然我们知道了原始的模型是多元高斯模型的一个特例，那么应该在什么时候用哪个模型呢？</p>
+<p>事实情况是，原始模型比较常用，而多元高斯模型比较少用。</p>
+<p>假设在你的样本中，$x_1$和$x_2$是线性相关的特征组合，下面是这两种算法在处理不正常的特征组合时的具体方式对比：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">原始模型</th>
+<th style="text-align:center">多元高斯模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">捕捉到这两个特征，建立一个新的特征$x_3$(比如$x_3=\frac{x_1}{x_2}$)，去尝试手工组合并改变这个新的特征变量，从而使得算法能很好的工作。</td>
+<td style="text-align:center">自动捕捉不同特征变量之间的相关性。</td>
+</tr>
+<tr>
+<td style="text-align:center">运算量小(更适用于特征变量个数$n$很大的情况)</td>
+<td style="text-align:center">计算更复杂（Σ是$n×n$的矩阵，这里会涉及两个$n×n$的矩阵相乘的逻辑，计算量很大）</td>
+</tr>
+<tr>
+<td style="text-align:center">即使训练样本数$m$很小的情况下，也能工作的很好</td>
+<td style="text-align:center">必须满足$m&gt;n$，或者$Σ$不可逆（奇异矩阵）。这种情况下，还可以帮助你省去为了捕捉特征值组合而手动建立额外特征变量所花费的时间。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="一种异常情况的应对">一种异常情况的应对</h4><p>当你在拟合多元高斯模型时，如果你发现协方差矩阵$Σ$是<strong>奇异的（不可逆的）</strong>，一般只有两种情况：</p>
+<ul>
+<li>第一种是它没有满足$m&gt;n$的条件</li>
+<li>第二种情况是，你有冗余特征变量 <ul>
+<li>冗余特征变量的意思是出现了以下两种情况的任意一种：<ul>
+<li>出现了两个完全一样的特征变量（你可能不小心把同一个特征变量复制了两份）</li>
+<li>如果你有$x_3=x_4+x_5$，这里$x_3$其实并没有包含额外的信息，相对于$x_4$和$x_5$来说，它就是冗余特征变量。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>这是你调试算法时的一个小知识，可能很少会遇到，但是一旦你发现$Σ$不可逆，那么首先需要从这两个方面来考虑解决方案。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/25/斯坦福机器学习课程 第九周 (2)构建一个异常检测系统/" rel="next" title="斯坦福机器学习课程 第九周 (2)构建一个异常检测系统">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第九周 (2)构建一个异常检测系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/28/斯坦福机器学习课程 第九周 (4)预测电影评分/" rel="prev" title="斯坦福机器学习课程 第九周 (4)预测电影评分">
+                斯坦福机器学习课程 第九周 (4)预测电影评分 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多元高斯分布"><span class="nav-number">1.</span> <span class="nav-text">多元高斯分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法无法解决的问题"><span class="nav-number">1.1.</span> <span class="nav-text">异常检测算法无法解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过多元高斯分布改良异常检测算法"><span class="nav-number">1.2.</span> <span class="nav-text">通过多元高斯分布改良异常检测算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多元高斯分布的样子"><span class="nav-number">1.3.</span> <span class="nav-text">多元高斯分布的样子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过多元高斯分布来处理异常检测问题"><span class="nav-number">2.</span> <span class="nav-text">通过多元高斯分布来处理异常检测问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识回顾"><span class="nav-number">2.1.</span> <span class="nav-text">知识回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数拟合"><span class="nav-number">2.1.1.</span> <span class="nav-text">参数拟合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体应用步骤"><span class="nav-number">2.1.2.</span> <span class="nav-text">具体应用步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多元高斯模型和原始模型的关系"><span class="nav-number">2.2.</span> <span class="nav-text">多元高斯模型和原始模型的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时使用多元高斯模型？何时使用原始模型？"><span class="nav-number">2.3.</span> <span class="nav-text">何时使用多元高斯模型？何时使用原始模型？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一种异常情况的应对"><span class="nav-number">2.3.1.</span> <span class="nav-text">一种异常情况的应对</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

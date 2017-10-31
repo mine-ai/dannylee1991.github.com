@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="k-近邻算法概述简单的说，k-近邻算法采用测量不同特征值之间的距离方法进行分类。
+kNN的工作原理是：
+在一个样本数据集中（又称作训练样本集），每个样本都存在有标签，即我们知道样本数据集中每个数据所属分类的对应关系。输入没有标签的新数据时，将新数据的每个特征与样本集中数据的对应特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习(01)kNN算法">
+<meta property="og:url" content="http://studyai.site/2015/12/06/机器学习(01) kNN算法/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="k-近邻算法概述简单的说，k-近邻算法采用测量不同特征值之间的距离方法进行分类。
+kNN的工作原理是：
+在一个样本数据集中（又称作训练样本集），每个样本都存在有标签，即我们知道样本数据集中每个数据所属分类的对应关系。输入没有标签的新数据时，将新数据的每个特征与样本集中数据的对应特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，">
+<meta property="og:image" content="http://studyai.site/img/ml_01_01.png">
+<meta property="og:image" content="http://studyai.site/img/ml_01_02.png">
+<meta property="og:image" content="http://studyai.site/img/ml_01_03.png">
+<meta property="og:image" content="http://studyai.site/img/ml_01_04.png">
+<meta property="og:image" content="http://studyai.site/img/ml_01_05.png">
+<meta property="og:updated_time" content="2015-12-06T16:11:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习(01)kNN算法">
+<meta name="twitter:description" content="k-近邻算法概述简单的说，k-近邻算法采用测量不同特征值之间的距离方法进行分类。
+kNN的工作原理是：
+在一个样本数据集中（又称作训练样本集），每个样本都存在有标签，即我们知道样本数据集中每个数据所属分类的对应关系。输入没有标签的新数据时，将新数据的每个特征与样本集中数据的对应特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，">
+<meta name="twitter:image" content="http://studyai.site/img/ml_01_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2015/12/06/机器学习(01) kNN算法/"/>
+
+
+
+
+
+  <title>机器学习(01)kNN算法 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2015/12/06/机器学习(01) kNN算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习(01)kNN算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-06T21:39:55+08:00">
+                2015-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/12/06/机器学习(01) kNN算法/" class="leancloud_visitors" data-flag-title="机器学习(01)kNN算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="k-近邻算法概述">k-近邻算法概述</h2><p>简单的说，k-近邻算法采用<strong>测量不同特征值之间的距离方法进行分类</strong>。</p>
+<h3 id="kNN的工作原理是：">kNN的工作原理是：</h3><blockquote>
+<p>在一个样本数据集中（又称作训练样本集），每个样本都存在有<strong>标签</strong>，即我们知道样本数据集中每个数据所属分类的对应关系。输入<strong>没有标签</strong>的新数据时，将新数据的每个特征与样本集中数据的对应特征进行比较，然后算法<strong>提取样本集中特征最相似数据</strong>（最近邻）的分类标签。一般来说，我们只选择样本数据集中<strong>前k个</strong>最相似的数据，这就是k-近邻算法中k的出处，通常<strong>k是不大于20</strong>的整数。最后，选择k个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
+</blockquote>
+<h3 id="k-近邻算法的优缺点">k-近邻算法的优缺点</h3><p>优点：精度高、对异常值不敏感、无数据输入假定。<br>缺点：计算复杂度高、空间复杂度高。<br>试用数据范围：数值型和标称型。</p>
+<h3 id="k-近邻算法的一般流程">k-近邻算法的一般流程</h3><p>[1] 收集数据：可以使用任何方法。<br>[2] 准备数据：距离计算需要的数值，最好是结构化的数据格式。<br>[3] 分析数据：可以使用任何方法。<br>[4] 训练算法：此步骤不适用于k-近邻算法。<br>[5] 测试算法：计算错误率。<br>[6] 使用算法：首先需要输入样本数据和结构化的输出结果，然后运行k-近邻算法判定输入数据分别属于哪个分类，最后应用对计算出的分类执行后续的处理。</p>
+<h2 id="举例：">举例：</h2><h3 id="使用k-近邻算法分类爱情片和动作片">使用k-近邻算法分类爱情片和动作片</h3><p>有人曾经统计过很多电影的打斗镜头和接吻镜头，下图显示了6部电影的打斗和接吻镜头数。假如有一部未看过的电影，如何确定它是爱情片还是动作片呢？</p>
+<p><img src="/img/ml_01_01.png" alt="使用打斗和接吻镜头数分类电影"></p>
+<p>首先我们需要知道这个未知电影存在多少个打斗镜头和接吻镜头。上图对应的数据如下：</p>
+<p>每部电影的打斗镜头数、接吻镜头数以及电影评估类型：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">电影名称</th>
+<th style="text-align:right">打斗镜头</th>
+<th style="text-align:center">接吻镜头</th>
+<th style="text-align:center">电影类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">California Man</td>
+<td style="text-align:right">3</td>
+<td style="text-align:center">104</td>
+<td style="text-align:center">爱情片</td>
+</tr>
+<tr>
+<td style="text-align:left">He’s Not Really into Dudes</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">爱情片</td>
+</tr>
+<tr>
+<td style="text-align:left">Beautiful Woman</td>
+<td style="text-align:right">1</td>
+<td style="text-align:center">81</td>
+<td style="text-align:center">爱情片</td>
+</tr>
+<tr>
+<td style="text-align:left">Kevin Longblade</td>
+<td style="text-align:right">101</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">动作片</td>
+</tr>
+<tr>
+<td style="text-align:left">Robo Slayer 3000</td>
+<td style="text-align:right">99</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">动作片</td>
+</tr>
+<tr>
+<td style="text-align:left">Amped II</td>
+<td style="text-align:right">98</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">动作片</td>
+</tr>
+<tr>
+<td style="text-align:left">?</td>
+<td style="text-align:right">18</td>
+<td style="text-align:center">90</td>
+<td style="text-align:center">未知</td>
+</tr>
+</tbody>
+</table>
+<p>即使不知道未知电影属于哪种类型，我们也可以通过某种方法计算出来。首先<strong>计算未知电影与样本集中其他电影的距离</strong>，如下表所示（暂时不要关心距离是如何计算的）：</p>
+<p>已知电影与未知电影的距离</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">电影名称</th>
+<th style="text-align:center">与未知电影的距离</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">California Man</td>
+<td style="text-align:center">20.5</td>
+</tr>
+<tr>
+<td style="text-align:left">He’s Not Really into Dudes</td>
+<td style="text-align:center">18.7</td>
+</tr>
+<tr>
+<td style="text-align:left">Beautiful Woman</td>
+<td style="text-align:center">19.2</td>
+</tr>
+<tr>
+<td style="text-align:left">Kevin Longblade</td>
+<td style="text-align:center">115.3</td>
+</tr>
+<tr>
+<td style="text-align:left">Robo Slayer 3000</td>
+<td style="text-align:center">117.4</td>
+</tr>
+<tr>
+<td style="text-align:left">Amped II</td>
+<td style="text-align:center">118.9</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们得到了样本集中所有电影与未知电影的距离，按照距离递增排序，可以找到k个距离最近的电影。假定k=3，则三个最靠近的电影依次是<em>He’s Not Really into Dudes</em>、<em>Beautiful Woman</em>和<em>California Man</em>。k-近邻算法按照距离最近的三部电影的类型，决定未知电影的类型，而这三部电影全是爱情片，因此我们判定未知电影是爱情片。</p>
+<h2 id="代码实现kNN">代码实现kNN</h2><h3 id="创建样本数据集：">创建样本数据集：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> operator</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span><span class="params">()</span>:</span></div><div class="line">	group = array([<span class="number">1.0</span>,<span class="number">1.1</span>],[<span class="number">1.0</span>,<span class="number">1.0</span>],[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0.1</span>])</div><div class="line">	labels = [<span class="string">'A'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'B'</span>]</div><div class="line">	<span class="keyword">return</span> group,labels</div></pre></td></tr></table></figure>
+<p>命令行执行后得到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>group,labels = kNN.createDataSet()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>group</div><div class="line">array([[<span class="number">1.0</span>, <span class="number">1.1</span>],</div><div class="line">	[<span class="number">1.0</span>, <span class="number">1.0</span>],</div><div class="line">	[<span class="number">0.0</span>, <span class="number">0.0</span>],</div><div class="line">	[<span class="number">0.0</span>, <span class="number">0.1</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>labels</div><div class="line">[<span class="string">'A'</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'B'</span>]</div></pre></td></tr></table></figure>
+<p>向量label包含了每个数据点的标签信息，label包含的元素个数等于group矩阵行数。这里，我们将数据点（1.0，1.1）定义为类A，数据点(0,0.1)定义为类B。</p>
+<p>下图是四个点在坐标系中的表示：</p>
+<p><img src="/img/ml_01_02.png" alt="k-近邻算法：带有4个数据点的简单例子"></p>
+<h3 id="从文本文件中解析数据">从文本文件中解析数据</h3><p>将每组数据划分到某个类中，伪代码如下：</p>
+<p><code>对未知类别属性的数据集中的每个点依次执行以下操作：</code></p>
+<ul>
+<li>(1) 计算已知类别数据集中的点与当前点之间的距离；</li>
+<li>(2) 按照距离递增次序排序；</li>
+<li>(3) 选取与当前点距离最小的k个点；</li>
+<li>(4) 确定前k个点所在类别的出现频率；</li>
+<li>(5) 返回前k个点出现频率最高的类别作为当前点的预测分类。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># inX:用于分类的输入向量  </span></div><div class="line"><span class="comment"># dataSet:输入的训练样本集</span></div><div class="line"><span class="comment"># labels:标签向量</span></div><div class="line"><span class="comment"># k:用于选择最近邻的数量</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></div><div class="line">	<span class="comment"># 距离计算</span></div><div class="line">	dataSetSize = dataSet.shape[<span class="number">0</span>] <span class="comment"># 数据的条目数</span></div><div class="line">	diffMat = tile(inX, (dataSetSize,<span class="number">1</span>)) - dataSet</div><div class="line">	sqDiffMat = diffMat**<span class="number">2</span></div><div class="line">	sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>)</div><div class="line">	distances = sqDistances**<span class="number">0.5</span></div><div class="line">	</div><div class="line">	<span class="comment"># 将距离值按照从小到大排序</span></div><div class="line">	sortedDistIndicies = distances.argsort()</div><div class="line">	classCount=&#123;&#125;</div><div class="line">	</div><div class="line">	<span class="comment"># 取出前k个元素</span></div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> rangs(k):</div><div class="line">		<span class="comment"># 取出对应的label</span></div><div class="line">		voteIlabel = labels[sortedDistIndicies[i]]</div><div class="line">		<span class="comment"># 计算当前取出的label的数量</span></div><div class="line">		classCount[voteIlabel] = classCount.get(voteIlabel,<span class="number">0</span>) + <span class="number">1</span></div><div class="line">	</div><div class="line">	<span class="comment"># 逆序排列label对应总数的列表 返回对应的label</span></div><div class="line">	sortedClassCount = sorted(classCount.iteritems(),key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="keyword">True</span>)</div><div class="line">	<span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<p><code>关于距离计算的部分</code></p>
+<p>参考欧式距离公式：<br><img src="/img/ml_01_03.png" alt="欧式距离公式"></p>
+<p>例如，计算点(0,0)到(1,2)之间的距离为：<br><img src="/img/ml_01_04.png" alt="距离计算例子1"></p>
+<p>计算点(1,0,0,1)与(7,6,9,4)之间的距离为：<br><img src="/img/ml_01_05.png" alt="距离计算例子2"></p>
+<p>为了预测数据所在的分类，在Python提示符中输入下列命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>kNN.classify0([<span class="number">0</span>,<span class="number">0</span>], group, labels, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>输出的结果应该是B。</p>
+<h3 id="测试分类器">测试分类器</h3><p>分类器并不会得到百分之百的正确的结果，为了测试分类器的效果，我们可以使用已知晓答案的数据，当然答案不能告诉分类器，检验分类器给出的结果是否符合预期结果。</p>
+<p>通过大量的测试数据，我们可以得到分类器的错误率–分类器给出错误结果的词数 除以 测试执行的总数。</p>
+<p>错误率是常用的评估方法，主要用于评估分类器在某个数据集上的执行效果。完美分类器的错误率为0，最差分类器的错误率是1.0，在这种情况下，分类器根本就无法找到一个正确答案。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/05/线性代数06-向量简介/" rel="next" title="线性代数06-向量简介">
+                <i class="fa fa-chevron-left"></i> 线性代数06-向量简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/13/机器学习(02)决策树/" rel="prev" title="机器学习(02)决策树">
+                机器学习(02)决策树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#k-近邻算法概述"><span class="nav-number">1.</span> <span class="nav-text">k-近邻算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kNN的工作原理是："><span class="nav-number">1.1.</span> <span class="nav-text">kNN的工作原理是：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法的优缺点"><span class="nav-number">1.2.</span> <span class="nav-text">k-近邻算法的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法的一般流程"><span class="nav-number">1.3.</span> <span class="nav-text">k-近邻算法的一般流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例："><span class="nav-number">2.</span> <span class="nav-text">举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用k-近邻算法分类爱情片和动作片"><span class="nav-number">2.1.</span> <span class="nav-text">使用k-近邻算法分类爱情片和动作片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现kNN"><span class="nav-number">3.</span> <span class="nav-text">代码实现kNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建样本数据集："><span class="nav-number">3.1.</span> <span class="nav-text">创建样本数据集：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从文本文件中解析数据"><span class="nav-number">3.2.</span> <span class="nav-text">从文本文件中解析数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试分类器"><span class="nav-number">3.3.</span> <span class="nav-text">测试分类器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

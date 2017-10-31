@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数据的可视化经过前两部的处理：
+房价预测（1）-搜房网数据爬取
+房价预测（2）-数据清洗与持久化
+我们已经能够爬取fang.com上的数据并持久化到本地的MongoDB中，这一节主要介绍如何将数据进行可视化的展示。
+R语言引入数据可视化的处理方式有很多种，可以用js，python。你可以选择任何你喜欢的支持可视化的库来进行操作，这里我选择R语言。
+
+R是用于统计分析、绘图的语言和操作环境。R是属于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="房价预测（3）-数据可视化">
+<meta property="og:url" content="http://studyai.site/2016/12/15/房价预测（3）-数据可视化/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="数据的可视化经过前两部的处理：
+房价预测（1）-搜房网数据爬取
+房价预测（2）-数据清洗与持久化
+我们已经能够爬取fang.com上的数据并持久化到本地的MongoDB中，这一节主要介绍如何将数据进行可视化的展示。
+R语言引入数据可视化的处理方式有很多种，可以用js，python。你可以选择任何你喜欢的支持可视化的库来进行操作，这里我选择R语言。
+
+R是用于统计分析、绘图的语言和操作环境。R是属于">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/001.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/002.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/003.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/004.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/007.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/005.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/006.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/008.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/009.png">
+<meta property="og:image" content="http://studyai.site/img/16_12_14/010.png">
+<meta property="og:updated_time" content="2016-12-15T00:38:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="房价预测（3）-数据可视化">
+<meta name="twitter:description" content="数据的可视化经过前两部的处理：
+房价预测（1）-搜房网数据爬取
+房价预测（2）-数据清洗与持久化
+我们已经能够爬取fang.com上的数据并持久化到本地的MongoDB中，这一节主要介绍如何将数据进行可视化的展示。
+R语言引入数据可视化的处理方式有很多种，可以用js，python。你可以选择任何你喜欢的支持可视化的库来进行操作，这里我选择R语言。
+
+R是用于统计分析、绘图的语言和操作环境。R是属于">
+<meta name="twitter:image" content="http://studyai.site/img/16_12_14/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/12/15/房价预测（3）-数据可视化/"/>
+
+
+
+
+
+  <title>房价预测（3）-数据可视化 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/12/15/房价预测（3）-数据可视化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">房价预测（3）-数据可视化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-15T22:05:58+08:00">
+                2016-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/12/15/房价预测（3）-数据可视化/" class="leancloud_visitors" data-flag-title="房价预测（3）-数据可视化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据的可视化">数据的可视化</h2><p>经过前两部的处理：</p>
+<p><a href="/2016/11/30/房价预测（1）-搜房网数据爬取/">房价预测（1）-搜房网数据爬取</a></p>
+<p><a href="/2016/12/08/房价预测（2）-数据清洗与持久化/">房价预测（2）-数据清洗与持久化</a></p>
+<p>我们已经能够爬取fang.com上的数据并持久化到本地的<strong>MongoDB</strong>中，这一节主要介绍如何将数据进行可视化的展示。</p>
+<h3 id="R语言引入">R语言引入</h3><p>数据可视化的处理方式有很多种，可以用js，python。你可以选择任何你喜欢的支持可视化的库来进行操作，这里我选择<strong>R语言</strong>。</p>
+<blockquote>
+<p>R是用于统计分析、绘图的语言和操作环境。R是属于GNU系统的一个自由、免费、源代码开放的软件，它是一个用于统计计算和统计制图的优秀工具。</p>
+<p>R是一套完整的数据处理、计算和制图软件系统。其功能包括：数据存储和处理系统；数组运算工具（其向量、矩阵运算方面功能尤其强大）；完整连贯的统计分析工具；优秀的统计制图功能；简便而强大的编程语言；可操纵数据的输入和输出，可实现分支、循环，用户可自定义功能。</p>
+<p>R是一个免费的自由软件，它有UNIX、MacOS和Windows版本，都是可以免费下载和使用的。在R的安装程序中只包含了8个基础模块，其他外在模块可以通过CRAN获得。</p>
+<p>官方网站：<a href="http://www.r-project.org" target="_blank" rel="external">http://www.r-project.org</a></p>
+</blockquote>
+<p>有关<strong>R</strong>的介绍以及入门使用方式，之前整理过两篇文章：</p>
+<p><a href="/2016/02/29/R语言（01）－R快速入门/">R语言（01）－R快速入门</a></p>
+<p><a href="/2016/03/06/R语言（02）绘图/">R语言（02）－R绘图</a></p>
+<p>不熟悉R的同学可以先行了解一下~</p>
+<h3 id="RStudio">RStudio</h3><p>这里再推荐一个比较好用的R语言集成环境:</p>
+<p><strong>RStudio</strong></p>
+<p><img src="/img/16_12_14/001.png" alt=""></p>
+<h3 id="数据导入到R">数据导入到R</h3><p>安装好R的开发环境之后，如果想要导入mongo的数据，需要安装<code>mongolite</code>。</p>
+<p>打开RStudio，点击<code>Tools-&gt;Install Packages...</code>，搜索<code>mongolite</code>，点击确认安装即可。</p>
+<p>安装成功后，在R的命令行下引入<code>mongolite</code>:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; library(<span class="name">mongolite</span>)</div></pre></td></tr></table></figure>
+<p>导入mongo数据：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">con</span> &lt;- mongo(<span class="string">"soufang"</span>, url = <span class="string">"mongodb://localhost:27017/soufang"</span>)</div><div class="line">mydata &lt;- <span class="keyword">con</span>$<span class="keyword">find</span>()</div></pre></td></tr></table></figure>
+<p>这样就把我们爬取到的所有数据都导入到了R中的mydata变量中。这里我暂时爬取了13198条数据：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Imported <span class="number">13198</span> <span class="keyword">records</span>. Simplifying <span class="keyword">into</span> dataframe<span class="attr">...</span></div></pre></td></tr></table></figure>
+<h3 id="基本图形绘制">基本图形绘制</h3><p>接下来我们就可以绘制一些图表了：</p>
+<p>比如说:</p>
+<p>我们可以绘制出<strong>价格-数量</strong>关系的柱状图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; barplot(<span class="name">table</span>(<span class="name">x&lt;-as</span>.numeric(<span class="name">mydata</span>$total_price)))</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/002.png" alt=""></p>
+<p>可以看到，价格区间在260万到450万之间是一个数量比较高房价范围。</p>
+<hr>
+<p><strong>面积-总价</strong>关系的散点图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; plot(<span class="name">x&lt;-as</span>.numeric(<span class="name">mydata</span>$house_build_area),x&lt;-as.numeric(<span class="name">mydata</span>$total_price),xlab = <span class="string">"面积"</span>,ylab = <span class="string">"总价"</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/003.png" alt=""></p>
+<blockquote>
+<p>这里可能你会遇到中文无法显示的问题，如果你遇到了，需要安装以下三个包：</p>
+<ul>
+<li>showtext</li>
+<li>showtextdb</li>
+<li>sysfonts</li>
+</ul>
+<p>如果遇到无法下载，请尝试命令行输入：</p>
+<p>install.packages(‘package_name’, dependencies=TRUE, repos=’<a href="http://cran.rstudio.com/" target="_blank" rel="external">http://cran.rstudio.com/</a>‘)</p>
+<p>下载成功之后，执行以下操作即可：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="quote">&gt; &gt; library(sysfonts)</span></div><div class="line"><span class="quote">&gt; &gt; library(showtext)</span></div><div class="line"><span class="quote">&gt; &gt; dev.new() #如果已打开图形设备，本句可以不用</span></div><div class="line"><span class="quote">&gt; &gt; showtext.begin()</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p><strong>户型分布</strong>的饼图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; pie(<span class="name">table</span>(<span class="name">mydata</span>$house_type))</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/004.png" alt=""></p>
+<p>可以看到在售的二手房中，最多的户型是<code>2室2厅1厨1卫</code>，其次<code>2室1厅1厨1卫</code>和<code>3室2厅1厨2卫</code>的户型数量相当，在其次是<code>1室1厅1厨1卫</code>。</p>
+<hr>
+<p><strong>区域分布</strong>的饼图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; pie(<span class="name">table</span>(<span class="name">mydata</span>$bread_area))</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/007.png" alt=""></p>
+<p>可以看出来，在售的二手房中，浦东区的数量是最多的。</p>
+<hr>
+<p><strong>发布时间</strong>的柱状图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; barplot(<span class="name">table</span>(<span class="name">mydata</span>$publish_time))</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/005.png" alt=""></p>
+<p>可以看出来，我们通过这个接口爬取数据的话，爬取到的数据几乎都是靠近当前日期的。</p>
+<hr>
+<p><strong>每平米价格</strong>的箱图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; boxplot(<span class="name">as</span>.numeric(<span class="name">mydata</span>$total_price)/as.numeric(<span class="name">mydata</span>$house_build_area),ylim=c(<span class="number">0</span>,<span class="number">15</span>))</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/006.png" alt=""></p>
+<p>可以看出来，上海二手房的均价目前基本维持在5万元左右。</p>
+<hr>
+<p><strong>浦东区的每平米价格</strong>的箱图：</p>
+<p>首先导入浦东区的数据：<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; pudongData &lt;- con<span class="built_in">$find</span>('&#123;<span class="string">"bread_area"</span>:<span class="string">"浦东"</span>&#125;')</div></pre></td></tr></table></figure></p>
+<p>绘制箱图：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; boxplot(<span class="name">as</span>.numeric(<span class="name">pudongData</span>$total_price)/as.numeric(<span class="name">pudongData</span>$house_build_area),ylim=c(<span class="number">0</span>,<span class="number">15</span>))</div></pre></td></tr></table></figure>
+<p><img src="/img/16_12_14/008.png" alt=""></p>
+<p>也许是由于浦东在售房数量占总体数量较多，且浦东房价与上海平均房价接近，所以浦东区的房价也是在5万出头的样子。</p>
+<p>同样的方式我们可以看看松江区：</p>
+<p><img src="/img/16_12_14/009.png" alt=""></p>
+<p>可以看出，松江区大概在4万以下的。</p>
+<hr>
+<h3 id="查询房价走势">查询房价走势</h3><p>最后我们来查一下每平米房价随发布时间的柱状图。</p>
+<p>首先，我们需要对房价数据按照发布日期进行<strong>分组（group by）</strong>操作。</p>
+<p>有两种方式：</p>
+<ul>
+<li>1.在R中进行分组处理</li>
+<li>2.在mongo中分组处理</li>
+</ul>
+<p>显然第二种方式的效率是高于第一种的，并且操作上也更方便一些。</p>
+<p>那么我们就先通过mongo的<code>group</code>操作来查询出每个发布日期的每平米均价：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">db.soufang.group(</div><div class="line">   &#123;</div><div class="line">     key: &#123; publish_time: <span class="number">1</span>&#125;,</div><div class="line">     reduce: function ( curr, <span class="literal">result</span> ) &#123; </div><div class="line">     	avg_prace = curr.total_price / curr.house_build_area </div><div class="line"></div><div class="line">     	<span class="literal">result</span>.total += avg_prace;</div><div class="line">        <span class="literal">result</span>.<span class="built_in">count</span>++;</div><div class="line">     &#125;,</div><div class="line">     finalize: function(<span class="literal">result</span>) &#123;</div><div class="line">          <span class="literal">result</span>.avg = <span class="literal">result</span>.total / <span class="literal">result</span>.<span class="built_in">count</span>;</div><div class="line">      &#125;,</div><div class="line">     initial: &#123; total : <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">0</span> &#125;,</div><div class="line">   &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>由于坑爹的<code>mongolite</code>没有提供<code>group()</code>函数，我们可以在mongo中把group出的结果导入到一个新的表中，然后再导入R中。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">db.soufang_gb_publish_time.insert( db.soufang.group(</div><div class="line">   &#123;</div><div class="line">     key: &#123; publish_time: <span class="number">1</span>&#125;,</div><div class="line">     reduce: function ( curr, <span class="literal">result</span> ) &#123; </div><div class="line">     	avg_prace = curr.total_price / curr.house_build_area </div><div class="line"></div><div class="line">     	<span class="literal">result</span>.total += avg_prace;</div><div class="line">        <span class="literal">result</span>.<span class="built_in">count</span>++;</div><div class="line">     &#125;,</div><div class="line">     finalize: function(<span class="literal">result</span>) &#123;</div><div class="line">          <span class="literal">result</span>.avg = <span class="literal">result</span>.total / <span class="literal">result</span>.<span class="built_in">count</span>;</div><div class="line">      &#125;,</div><div class="line">     initial: &#123; total : <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">0</span> &#125;,</div><div class="line">   &#125;</div><div class="line">))</div></pre></td></tr></table></figure>
+<p>导入成功后，我们可以通过执行</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db<span class="selector-class">.soufang_gb_publish_time</span><span class="selector-class">.find</span>()</div></pre></td></tr></table></figure>
+<p>来验证一下数据是否导入成功。</p>
+<p>我这里导入之后有61天的数据。</p>
+<p>再回到R中，将数据导入：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; con_gb_publis_time &lt;- mongo(<span class="string">"soufang_gb_publish_time"</span>, url = <span class="string">"mongodb://localhost:27017/soufang"</span>)</div><div class="line">&gt; myGbData &lt;- con_gb_publis_time$find(sort='&#123;<span class="string">"publish_time"</span>:<span class="number">1</span>&#125;')</div></pre></td></tr></table></figure>
+<p>我们可以通过find来验证一下是否导入成功：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; myGbData</div><div class="line">   publish_time      total count      avg</div><div class="line"><span class="number">1</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-14</span>  <span class="number">199.98178</span>    <span class="number">34</span> <span class="number">5.881817</span></div><div class="line"><span class="number">2</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-15</span>  <span class="number">127.66077</span>    <span class="number">24</span> <span class="number">5.319199</span></div><div class="line"><span class="number">3</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-16</span>   <span class="number">53.00914</span>    <span class="number">13</span> <span class="number">4.077626</span></div><div class="line"><span class="number">4</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-17</span>   <span class="number">74.76187</span>    <span class="number">11</span> <span class="number">6.796534</span></div><div class="line"><span class="number">5</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-18</span>  <span class="number">172.64432</span>    <span class="number">34</span> <span class="number">5.077774</span></div><div class="line"><span class="number">6</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-19</span>  <span class="number">232.46693</span>    <span class="number">47</span> <span class="number">4.946105</span></div><div class="line"><span class="number">7</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-20</span>  <span class="number">274.33694</span>    <span class="number">50</span> <span class="number">5.486739</span></div><div class="line"><span class="number">8</span>    <span class="number">2016</span><span class="number">-10</span><span class="number">-21</span>  <span class="number">205.77986</span>    <span class="number">40</span> <span class="number">5.144496</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>看到这样的结果，说明我们导入成功了。</p>
+<p>接下来的操作就比较easy了，我们来绘制出这个数据的柱状图即可：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">barplot(<span class="name">height=as</span>.numeric(<span class="name">myGbData</span>$avg),table(<span class="name">myGbData</span>$publish_time))</div></pre></td></tr></table></figure>
+<p>横坐标为日期，纵坐标为均价：</p>
+<p><img src="/img/16_12_14/010.png" alt=""></p>
+<p>可以看出，由于我们远离当前日期越远的日期，数据量越少，所以会导致数据波动比较大。所以后半部分的数据比前半部分的相对准确一些。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/08/房价预测（2）-数据清洗与持久化/" rel="next" title="房价预测（2）-数据清洗与持久化">
+                <i class="fa fa-chevron-left"></i> 房价预测（2）-数据清洗与持久化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/18/斯坦福机器学习课程 第六周 (3)机器学习系统设计/" rel="prev" title="斯坦福机器学习课程 第六周 (3)机器学习系统设计-[构建垃圾邮件分类器][误差分析]">
+                斯坦福机器学习课程 第六周 (3)机器学习系统设计-[构建垃圾邮件分类器][误差分析] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的可视化"><span class="nav-number">1.</span> <span class="nav-text">数据的可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R语言引入"><span class="nav-number">1.1.</span> <span class="nav-text">R语言引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RStudio"><span class="nav-number">1.2.</span> <span class="nav-text">RStudio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据导入到R"><span class="nav-number">1.3.</span> <span class="nav-text">数据导入到R</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本图形绘制"><span class="nav-number">1.4.</span> <span class="nav-text">基本图形绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询房价走势"><span class="nav-number">1.5.</span> <span class="nav-text">查询房价走势</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

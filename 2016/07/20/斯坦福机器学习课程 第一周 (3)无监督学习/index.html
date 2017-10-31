@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="无监督学习视频地址
+在这段视频中我们要讲第二种主要的机器学习问题，叫做无监督学习.
+在上一节视频中，我们已经讲过了监督学习。回想起上次的数据集，每个样本，都已经被标明为正样本或者负样本，即良性或恶性肿瘤。
+
+因此，对于监督学习中的每一个样本，我们已经被清楚地告知了什么是所谓的正确答案，即它们是良性还是恶性。在无监督学习中，我们用的数据会和监督学习里的看起来有些不一样。在无监督学习中，没有属性或标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第一周 (3)无监督学习">
+<meta property="og:url" content="http://studyai.site/2016/07/20/斯坦福机器学习课程 第一周 (3)无监督学习/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="无监督学习视频地址
+在这段视频中我们要讲第二种主要的机器学习问题，叫做无监督学习.
+在上一节视频中，我们已经讲过了监督学习。回想起上次的数据集，每个样本，都已经被标明为正样本或者负样本，即良性或恶性肿瘤。
+
+因此，对于监督学习中的每一个样本，我们已经被清楚地告知了什么是所谓的正确答案，即它们是良性还是恶性。在无监督学习中，我们用的数据会和监督学习里的看起来有些不一样。在无监督学习中，没有属性或标签">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/001.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/002.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/003.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/004.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/005.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/006.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/007.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/008.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/009.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/010.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/011.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/012.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/013.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/014.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/015.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/016.png">
+<meta property="og:image" content="http://studyai.site/img/16_07_20/017.png">
+<meta property="og:updated_time" content="2016-07-25T00:52:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第一周 (3)无监督学习">
+<meta name="twitter:description" content="无监督学习视频地址
+在这段视频中我们要讲第二种主要的机器学习问题，叫做无监督学习.
+在上一节视频中，我们已经讲过了监督学习。回想起上次的数据集，每个样本，都已经被标明为正样本或者负样本，即良性或恶性肿瘤。
+
+因此，对于监督学习中的每一个样本，我们已经被清楚地告知了什么是所谓的正确答案，即它们是良性还是恶性。在无监督学习中，我们用的数据会和监督学习里的看起来有些不一样。在无监督学习中，没有属性或标签">
+<meta name="twitter:image" content="http://studyai.site/img/16_07_20/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/07/20/斯坦福机器学习课程 第一周 (3)无监督学习/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第一周 (3)无监督学习 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/07/20/斯坦福机器学习课程 第一周 (3)无监督学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第一周 (3)无监督学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-20T12:22:00+08:00">
+                2016-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/07/20/斯坦福机器学习课程 第一周 (3)无监督学习/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第一周 (3)无监督学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="无监督学习">无监督学习</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/olRZo/unsupervised-learning" target="_blank" rel="external">视频地址</a></p>
+<p>在这段视频中我们要讲第二种主要的机器学习问题，叫做无监督学习.</p>
+<p>在上一节视频中，我们已经讲过了监督学习。回想起上次的数据集，每个样本，都已经被标明为正样本或者负样本，即良性或恶性肿瘤。</p>
+<p><img src="/img/16_07_20/001.png" alt=""></p>
+<p>因此，对于监督学习中的每一个样本，我们已经被清楚地告知了什么是所谓的正确答案，即它们是良性还是恶性。在无监督学习中，我们用的数据会和监督学习里的看起来有些不一样。在无监督学习中，没有属性或标签这一概念，也就是说所有的数据都是一样的，没有区别。</p>
+<p><img src="/img/16_07_20/002.png" alt=""></p>
+<p>所以在无监督学习中我们只有一个数据集，没人告诉我们该怎么做，我们也不知道，每个数据点究竟是什么意思。相反，它只告诉我们现在有一个数据集，你能在其中找到某种结构吗？对于给定的数据集，无监督学习算法可能判定该数据集包含两个不同的聚类。</p>
+<p>你看，这是第一个聚类。</p>
+<p><img src="/img/16_07_20/003.png" alt=""></p>
+<p>然后这是另一个聚类。</p>
+<p><img src="/img/16_07_20/004.png" alt=""></p>
+<p>你猜对了，无监督学习算法会把这些数据分成两个不同的聚类。</p>
+<p>所以这就是所谓的聚类算法，实际上它被用在许多地方。</p>
+<p>我们来举一个聚类算法的栗子。Google新闻的例子，如果你还没见过这个页面的话，你可以到这个URL <a href="http://news.google.com" target="_blank" rel="external">news.google.com</a>去看看。谷歌新闻每天都在干什么呢？他们每天会去收集成千上万的网络上的新闻，然后将他们分组，组成一个个新闻专题。</p>
+<p><img src="/img/16_07_20/005.png" alt=""></p>
+<p>比如让我们来看看这里：</p>
+<p><img src="/img/16_07_20/006.png" alt=""></p>
+<p>这里的URL链接连接着不同的有关BP油井事故的报道。所以让我们点击这些URL中的一个，然后我们会来到这样一个网页。</p>
+<p><img src="/img/16_07_20/007.png" alt=""></p>
+<p>这是一篇来自华尔街日报的，有关BP油井泄漏事故的报道，标题为《BP杀死了Macondo》。Macondo是个地名，就是那个漏油事故的地方。如果你从这个组里点击一个不同的URL，那么你可能会得到不同的新闻：这里是一则CNN的新闻，是一个有关BP石油泄漏的视频。</p>
+<p><img src="/img/16_07_20/008.png" alt=""></p>
+<p>如果你再点击第三个链接，又会出现不同的新闻。这边是英国卫报的报道，也是关于BP石油泄漏。</p>
+<p><img src="/img/16_07_20/009.png" alt=""></p>
+<p>所以，谷歌新闻所做的就是，去搜索成千上万条新闻，然后自动的将他们聚合在一起。因此，有关同一主题的新闻被显示在一起。</p>
+<p>实际上聚类算法和无监督学习算法也可以被用于许多其他的问题。这里我们举个它在基因组学中的应用。</p>
+<p>下面是一个关于基因芯片的例子，基本的思想是：给定一组不同的个体 对于每个个体，检测它们是否拥有某个特定的基因。也就是说，你要去分析有多少基因显现出来了。因此，这些颜色：红、绿、灰等等，它们 展示了这些不同的个体是否拥有一个特定基因的不同程度。</p>
+<p><img src="/img/16_07_20/010.png" alt=""></p>
+<p>然后你能做的就是，运行一个聚类算法，把不同的个体归入不同的类或归为不同类型的人。</p>
+<p><img src="/img/16_07_20/011.png" alt=""></p>
+<p>这就是无监督学习。我们没有提前告知这个算法：这些是第一类的人，这些是第二类的人，这些是第三类的人等等。相反我们只是告诉算法：你看！这儿有一堆数据，我不知道这个数据是什么东东，我不知道里面都有些什么类型，叫什么名字，我甚至不知道都有哪些类型。但是，请问你可以自动的找到这些数据中的类型吗？然后自动的按得到的类型把这些个体分类。虽然事先我并不知道哪些类型。因为对于这些数据样本来说，我们没有给算法一个正确答案，所以，这就是无监督学习。</p>
+<p>无监督学习或聚类算法在其他领域也有着大量的应用，它被用来组织大型的计算机集群。</p>
+<p>我有一些朋友在管理大型数据中心，也就是大型计算机集群，并试图找出哪些机器趋向于协同工作，如果你把这些机器放在一起，你就可以让你的数据中心更高效地工作。</p>
+<p><img src="/img/16_07_20/012.png" alt=""></p>
+<p>第二种应用是用于社交网络的分析 </p>
+<p>如果可以得知哪些朋友你用email联系的最多，或者知道你的Facebook好友或者你Google+里的朋友，知道了这些之后，我们是否可以自动识别哪些是很要好的朋友组，哪些仅仅是互相认识的朋友组。</p>
+<p><img src="/img/16_07_20/013.png" alt=""></p>
+<p>还有在市场分割中的应用中，许多公司拥有庞大的客户信息数据库。那么，给你一个客户数据集，你能否自动找出不同的市场分割，并自动将你的客户分到不同的细分市场中，从而有助于我在不同的细分市场中进行更有效的销售。</p>
+<p><img src="/img/16_07_20/014.png" alt=""></p>
+<p>这也是无监督学习。我们现在有这些客户数据，但我们预先并不知道 有哪些细分市场。而且，对于我们数据集的某个客户，我们也不能预先知道谁属于细分市场一、谁又属于细分市场二等等。但我们必须让这个算法自己去从数据中发现这一切。</p>
+<p>最后，事实上无监督学习也被用于天文数据分析。通过这些聚类算法我们发现了许多惊人的、有趣的，以及实用的，关于星系是如何诞生的理论。</p>
+<p><img src="/img/16_07_20/015.png" alt=""></p>
+<p>所有这些都是聚类算法的例子。而聚类只是无监督学习的一种，现在让我来告诉你另一种，我先来介绍一下鸡尾酒宴问题：</p>
+<p>恩，我想你参加过鸡尾酒会的，是吧？嗯，想象一下，有一个宴会，有一屋子的人，大家都坐在一起，而且在同时说话，有许多声音混杂在一起。因为每个人都是在同一时间说话的，在这种情况下你很难听清楚你面前的人说的话。</p>
+<p>因此，比如有这样一个场景：宴会上只有两个人，两个人同时说话。恩，这是个很小的鸡尾酒宴会，我们准备好了两个麦克风，把它们放在房间里，然后，因为这两个麦克风距离这两个人的距离是不同的，每个麦克风都记录下了来自两个人的声音的不同组合。也许A的声音在第一个麦克风里的声音会响一点，也许B的声音在第二个麦克风里会比较响一些。因为两个麦克风的位置相对于两个说话者的位置是不同的，但每个麦克风都会录到来自两个说话者的重叠部分的声音。</p>
+<p><img src="/img/16_07_20/016.png" alt=""></p>
+<p>这里有一个来自一个研究员录下的两个说话者的声音，让我先放给你听。第一个这是第一个麦克风录到的录音： </p>
+<p><a href="/audio/16_07_20/001.mp3">Microphone #1</a><br>一 (UNO) 二 (DOS) 三 (TRES) 四 (CUATRO) 五 (CINCO) 六 (SEIS) 七 (SIETE) 八 (ocho) 九 (NUEVE) 十 (Y DIEZ) </p>
+<p>好吧 这大概不是什么有趣的酒会…… ……在这个酒会上，有两个人，各自从1数到10。但用的是两种不同语言。你刚才听到的是第一个麦克风的录音，这里是第二个的： </p>
+<p><a href="/audio/16_07_20/001.mp3">Microphone #2</a></p>
+<p>一 (UNO) 二 (DOS) 三 (TRES) 四 (CUATRO) 五 (CINCO) 六 (SEIS) 七 (SIETE) 八 (ocho) 九 (NUEVE) 十 (Y DIEZ) </p>
+<p>所以，我们能做的就是把这两个录音输入一种无监督学习算法中，称为“鸡尾酒会算法”，让这个算法帮你找出其中蕴含的分类，然后这个算法就会去听这些录音，并且你知道这听起​​来像两个音频录音被叠加在一起，所以我们才能听到这样的效果。此外这个算法还会分离出这两个被 叠加到一起的音频源。事实上，这是我们的鸡尾酒会算法的第一个输出：</p>
+<p><a href="/audio/16_07_20/003.mp3">Output #1</a> </p>
+<p>一 二 三 四 五 六 七 八 九 十 </p>
+<p>所以我在一个录音中分离出了英文声音。这是第二个输出：</p>
+<p><a href="/audio/16_07_20/002.mp3">Output #2</a></p>
+<p>Uno dos tres quatro cinco seis siete ocho nueve y diez </p>
+<p>听起来不错嘛。再举一个例子，这是另一个录音，也是在一个类似的场景下，这是第一个麦克风的录音：</p>
+<p><a href="/audio/16_07_20/004.mp3">Microphone #1</a></p>
+<p> 一 二 三 四 五 六 七 八 九 十 </p>
+<p>OK，这个可怜的家伙从鸡尾酒会回家了，他现在独自一人坐在屋里对着录音机自言自语，这是第二个麦克风的录音：</p>
+<p><a href="/audio/16_07_20/005.mp3">Microphone #2</a></p>
+<p>一 二 三 四 五 六 七 八 九 十 </p>
+<p>当你把这两个麦克风录音送给与刚刚相同的算法处理，它所做的还是 告诉你这听起来有两种音频源，并且算法说，这里是我找到的第一个音频源：</p>
+<p><a href="/audio/16_07_20/006.mp3">Output #1</a></p>
+<p>一 二 三 四 五 六 七 八 九 十 </p>
+<p>恩，不是太完美，提取到了人声，但还有一点音乐没有剔除掉。这是算法的第二个输出：</p>
+<p><a href="/audio/16_07_20/007.mp3">Output #2</a></p>
+<p>还好，在第二个输出中，它设法剔除掉了整个人声，只是清理了下音乐剔除了从一到十的计数。</p>
+<p>所以，你可以看到，像这样的无监督学习算法，也许你想问，要实现这样的算法很复杂吧？ 看起来为了构建这个应用程序做这个音频处理似乎需要写好多代码啊，或者需要链接到一堆处理音频的Java库，貌似需要一个非常复杂的程序分离出音频等。</p>
+<p>实际上，要实现你刚刚听到的效果，只需要一行代码就可以了。写在这里呢。</p>
+<p><img src="/img/16_07_20/017.png" alt=""></p>
+<p>当然，研究人员花了很长时间才想出这行代码的^-^，我不是说这是一个简单的问题，但事实上，如果你使用正确的编程环境，许多学习算法是用很短的代码写出来的。所以这也是为什么在这门课中我们要使用Octave的编程环境。</p>
+<p>Octave是一个免费的、开放源码的软件。使用Octave或Matlab这类的工具，许多学习算法都可以用几行代码就可以实现。在后续课程中，我会教你如何使用Octave。你会学到如何在Octave中实现这些算法，或者如果你有Matlab，你可以用它。</p>
+<p>事实上，在硅谷，很多的机器学习算法，我们都是先用Octave写一个程序原型。因为在Octave中实现这些学习算法的速度快得让你无法想象。</p>
+<p>在这里每一个函数，例如：SVD意思是奇异值分解，但这其实是解线性方程的一个惯例，它被内置在Octave软件中了。</p>
+<p>如果你试图在C++或Java中做这个，将需要写N多代码，并且还要连接复杂的C++或Java库。所以，你可以在C++或Java或Python中实现这个算法，只是会更加复杂而已。</p>
+<p>在教授机器学习将近10年后，我得出的一个经验就是，如果你使用Octave的话，会学的更快。并且如果你用Octave作为你的学习工具 和开发原型的工具，你的学习和开发过程会变得更快。而事实上在硅谷 很多人会这样做。他们会先用Octave来实现这样一个学习算法原型，只有在确定这个算法可以工作后，才开始迁移到C++、Java或其它编译环境。事实证明，这样做实现的算法，比你一开始就用C++实现的算法要快多了。</p>
+<p>所以我知道，作为一个老师，我不能老是念叨：“在这个问题上相信我“ 但对于那些从来没有用过这种类似Octave的编程环境的童鞋，我还是要请你相信我这一次，我认为你的时间，研发时间，是你最宝贵的资源之一。</p>
+<p>当见过很多的人这样做以后，我觉得如果你也这样做，作为一个机器学习的研究者和开发者，你会更有效率。如果你学会先用Octave开发原型，而不是先用其他的编程语言来开发。</p>
+<p>最后，总结一下。这里有一个问题需要你来解答：</p>
+<p>我们谈到了无监督学习，它是一种学习机制，你给算法大量的数据，要求它找出数据中蕴含的类型结构，以下的四个例子中，哪一个您认为是 无监督学习算法，而不是监督学习问题？</p>
+<ul>
+<li>通过标记邮件是否为垃圾邮件来实现的垃圾邮件过滤器。</li>
+<li>从网络中爬取一些新闻，按照相同的类别进行自动分组。</li>
+<li>通过一个市场数据库，来自动的发现市场细分类别。</li>
+<li>通过一系列糖尿病患者的数据信息来学习，达到能分辨一个新的患者是否得了糖尿病。</li>
+</ul>
+<p>恩，没忘记垃圾邮件文件夹问题吧？如果你已经标记过数据，那么就有垃圾邮件和非垃圾邮件的区别，我们会将此视为一个监督学习问题。</p>
+<p>新闻故事的例子正是我们在本课中讲到的谷歌新闻的例子。我们介绍了你可以如何使用聚类算法这些文章聚合在一起，所以这是无监督学习问题。</p>
+<p>市场细分的例子，我之前有说过这也是一个无监督学习问题。因为我是要拿到数据，然后要求它自动发现细分市场。</p>
+<p>最后一个例子，糖尿病。这实际上就像我们上节课讲到的乳腺癌的例子 只不过这里不是好的或坏的癌细胞，良性或恶性肿瘤。我们现在是有糖尿病或没有糖尿病。所以这是有监督的学习问题，像处理那个乳腺癌的问题一样。我们会把它作为一个有监督的学习问题来处理。</p>
+<p>好了，关于无监督学习问题就讲这么多了，下一节课中我们会涉及到更具体的学习算法，并开始讨论这些算法是如何工作的，以及我们如何来实现它们。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/19/斯坦福机器学习课程 第一周 (2)监督学习/" rel="next" title="斯坦福机器学习课程 第一周 (2)监督学习">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第一周 (2)监督学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/22/斯坦福机器学习课程 第一周 (4)一元线性回归/" rel="prev" title="斯坦福机器学习课程 第一周 (4)一元线性回归">
+                斯坦福机器学习课程 第一周 (4)一元线性回归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无监督学习"><span class="nav-number">1.</span> <span class="nav-text">无监督学习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

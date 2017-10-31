@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="机器学习的数据视频地址
+
+在之前的视频中，我们讨论了评价指标。在本节课的视频中，我们来讨论一下机器学习系统设计中另一个重要的方面，这往往涉及到用来训练的数据有多少。
+在之前的一些视频中，我曾告诫大家不要一开始就盲目地花大量的时间来收集大量的数据，因为这种做法只在某些情况下能起到实际的作用。但事实证明，在一定条件下，得到大量的数据，并在某种类型的学习算法中进行训练，却是一种有效的获得一个具有良好性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第六周 (5)使用大数据集">
+<meta property="og:url" content="http://studyai.site/2017/02/04/斯坦福机器学习课程 第六周 (5)使用大数据集/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="机器学习的数据视频地址
+
+在之前的视频中，我们讨论了评价指标。在本节课的视频中，我们来讨论一下机器学习系统设计中另一个重要的方面，这往往涉及到用来训练的数据有多少。
+在之前的一些视频中，我曾告诫大家不要一开始就盲目地花大量的时间来收集大量的数据，因为这种做法只在某些情况下能起到实际的作用。但事实证明，在一定条件下，得到大量的数据，并在某种类型的学习算法中进行训练，却是一种有效的获得一个具有良好性能">
+<meta property="og:image" content="http://studyai.site/img/17_02_04/001.png">
+<meta property="og:updated_time" content="2017-02-05T16:39:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第六周 (5)使用大数据集">
+<meta name="twitter:description" content="机器学习的数据视频地址
+
+在之前的视频中，我们讨论了评价指标。在本节课的视频中，我们来讨论一下机器学习系统设计中另一个重要的方面，这往往涉及到用来训练的数据有多少。
+在之前的一些视频中，我曾告诫大家不要一开始就盲目地花大量的时间来收集大量的数据，因为这种做法只在某些情况下能起到实际的作用。但事实证明，在一定条件下，得到大量的数据，并在某种类型的学习算法中进行训练，却是一种有效的获得一个具有良好性能">
+<meta name="twitter:image" content="http://studyai.site/img/17_02_04/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/02/04/斯坦福机器学习课程 第六周 (5)使用大数据集/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第六周 (5)使用大数据集 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/02/04/斯坦福机器学习课程 第六周 (5)使用大数据集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第六周 (5)使用大数据集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-04T00:55:58+08:00">
+                2017-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/04/斯坦福机器学习课程 第六周 (5)使用大数据集/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第六周 (5)使用大数据集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="机器学习的数据">机器学习的数据</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/XcNcz/data-for-machine-learning" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>在之前的视频中，我们讨论了评价指标。在本节课的视频中，我们来讨论一下机器学习系统设计中另一个重要的方面，这往往涉及到用来训练的数据有多少。</p>
+<p>在之前的一些视频中，我曾告诫大家不要一开始就盲目地花大量的时间来收集大量的数据，因为这种做法只在某些情况下能起到实际的作用。但事实证明，在一定条件下，得到大量的数据，并在某种类型的学习算法中进行训练，却是一种有效的获得一个具有良好性能的学习算法的方法。而这种情况往往出现在这些条件对于你的问题都成立，并且你能够得到大量数据的情况下。这是一个很好的获得非常高性能的学习算法的方式。</p>
+</blockquote>
+<p>我先讲一个故事。很多很多年前，我认识的两位研究人员 Michele Banko 和 Eric Brill，他们进行了一项有趣的研究：研究在不同的数据集上使用不同的学习算法的效果。他们当时考虑的问题是混淆词分类问题，例如，下面这个句子：</p>
+<ul>
+<li><strong>For breakfast I ate __ eggs.</strong></li>
+</ul>
+<p>在这个句子中，空白处的可选词是：</p>
+<ul>
+<li><strong>to</strong></li>
+<li><strong>two</strong></li>
+<li><strong>too</strong></li>
+</ul>
+<p>在这个例子中应该填入<strong>two</strong>。</p>
+<p>于是他们把诸如这样的机器学习问题当做一类监督学习问题，并尝试将其分类：什么样的词在一个英文句子特定的位置才是合适的。</p>
+<p>他们用了下面几种不同的学习算法，这些算法在他们2001年进行研究的时候都已经 被公认是比较领先的学习算法：</p>
+<ul>
+<li><strong>感知器(Perceptron) (逻辑回归)</strong></li>
+<li><strong>Winnow(类似于回归问题，但不完全相同。过去常用，但现在很少用到)</strong></li>
+<li><strong>基于内存的学习方法(Memory-based)</strong></li>
+<li><strong>朴素贝叶斯</strong></li>
+</ul>
+<p>这些算法的具体细节不重要，总之他们使用了这几种算法。他们所做的就是改变了训练数据集的大小，并尝试将这些学习算法用于不同大小的训练数据集中。这就是他们得到的结果：</p>
+<p><img src="/img/17_02_04/001.png" width="300" height="200" align="center"></p>
+<p>横轴代表以百万为单位的数据集大小，即从0.1百万到1000百万（10亿）规模的数据集；纵轴代表精确度，范围是0到1。</p>
+<p>从图中可以看出趋势非常明显。首先大部分算法都具有相似的性能，其次随着训练数据集的增大，这些算法的准确性也都对应的增强了。事实上，如果你选择任意一个算法，例如选择了一个”劣等的”算法，如果你给这个劣等算法更多的数据，那么从这些列子中看起来，它很有可能会其他算法更好，甚至会比”优等算法”更好。</p>
+<p>由于这项原始的研究非常具有影响力，已经有一系列不同的研究显示了类似的结果。这些结果表明，许多不同的学习算法有时倾向于表现出非常相似的效果，虽然这些效果的表现还取决于一些细节，但是真正能提高算法性能(准确度)的，就是你能够给到一个算法的大量的训练数据。类似这样的结论引起了一种在机器学习中的普遍共识：</p>
+<ul>
+<li><p><strong>It`s not who has the best algrithm that wins.It`s who has the most data.</strong></p>
+</li>
+<li><p><strong>取得成功的人不是因为拥有最好算法，而是因为拥有最多数据。</strong></p>
+</li>
+</ul>
+<p>那么这种说法在什么时候是靠谱的，什么时候是不靠谱的呢？因为如果上面的说法在所有情况下都是对的话，那么我们保证我们得到一个高性能的学习算法的最佳方式应该是获取大量的数据，而不是考虑该使用什么学习算法。</p>
+<p>其实，在下面这种情况下，获取大量的数据是提高算法性能的好方法：</p>
+<p><strong>在特征值x包含足够多的用来准确预测y的信息时，获取大量的数据是提高算法性能的好方法。</strong></p>
+<p>例如在上面介绍的混淆词的例子中：</p>
+<ul>
+<li><strong>For breakfast I ate __ eggs.</strong></li>
+</ul>
+<p>空白词附近的词就是我们需要捕捉的特征<strong>x</strong>，这些词中包含了大量的信息来告诉我空白处应该填写<strong>two</strong>而不是<strong>to</strong>或者<strong>too</strong>。实际上对于特征捕捉，哪怕是周围词语中的一个词，就能够给我足够的信息来确定出标签<strong>y</strong>是什么了。</p>
+<p>这就是通过一个有充足的信息的特征值<strong>x</strong>的来确定<strong>y</strong>的例子。举一个反例：</p>
+<p>设想在房屋价格预测问题中，我们获取的房屋信息中只有房屋面积信息，没有其他的特征值，那么如果我告诉你这个房子有500平方英尺，但是我没有告诉你其他的特征信息，我也不告诉你这个房子位于这个城市房价比较昂贵的区域还是便宜的区域，也不告诉你这所房子的房间数量，它里面陈设了多漂亮的家具，以及这个房子是新的还是旧的。我不告诉你除了这个房子有500平方英尺以外的其他任何信息，然而除此之外还有许多其他因素会影响房子的价格，不仅仅是房子的大小。但如果你仅仅知道房屋的尺寸，那么事实上是很难准确预测它的价格的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/19/斯坦福机器学习课程 第六周 (4)操作偏斜数据/" rel="next" title="斯坦福机器学习课程 第六周 (4)操作偏斜数据">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第六周 (4)操作偏斜数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/04/【Python3教程 第3章】方法和模块/" rel="prev" title="【Python3教程 第3章】方法和模块">
+                【Python3教程 第3章】方法和模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习的数据"><span class="nav-number">1.</span> <span class="nav-text">机器学习的数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

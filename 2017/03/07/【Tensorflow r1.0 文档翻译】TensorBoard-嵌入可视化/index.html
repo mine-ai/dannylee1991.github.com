@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,Tensorflow," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="嵌入在机器学习中无处不在，出现在推荐系统，NLP和许多其他应用程序中。事实上，在TensorFlow的上下文中，将tensor（或tensor切片）视为空间中的点是自然的，因此几乎任何TensorFlow系统将自然地产生各种嵌入。
+要了解有关嵌入和如何训练它们的更多信息，请参阅单词向量表示教程。如果你对图像的嵌入感兴趣，请查看这篇文章，了解MNIST图像的有趣的可视化。另一方面，如果你对单词嵌入感">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Tensorflow r1.0 文档翻译】TensorBoard:嵌入可视化">
+<meta property="og:url" content="http://studyai.site/2017/03/07/【Tensorflow r1.0 文档翻译】TensorBoard-嵌入可视化/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="嵌入在机器学习中无处不在，出现在推荐系统，NLP和许多其他应用程序中。事实上，在TensorFlow的上下文中，将tensor（或tensor切片）视为空间中的点是自然的，因此几乎任何TensorFlow系统将自然地产生各种嵌入。
+要了解有关嵌入和如何训练它们的更多信息，请参阅单词向量表示教程。如果你对图像的嵌入感兴趣，请查看这篇文章，了解MNIST图像的有趣的可视化。另一方面，如果你对单词嵌入感">
+<meta property="og:image" content="http://studyai.site/img/17_03_07/003.png">
+<meta property="og:image" content="http://studyai.site/img/17_03_07/006.png">
+<meta property="og:image" content="http://studyai.site/img/17_03_07/004.png">
+<meta property="og:image" content="http://studyai.site/img/17_03_07/005.png">
+<meta property="og:updated_time" content="2017-03-08T14:08:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Tensorflow r1.0 文档翻译】TensorBoard:嵌入可视化">
+<meta name="twitter:description" content="嵌入在机器学习中无处不在，出现在推荐系统，NLP和许多其他应用程序中。事实上，在TensorFlow的上下文中，将tensor（或tensor切片）视为空间中的点是自然的，因此几乎任何TensorFlow系统将自然地产生各种嵌入。
+要了解有关嵌入和如何训练它们的更多信息，请参阅单词向量表示教程。如果你对图像的嵌入感兴趣，请查看这篇文章，了解MNIST图像的有趣的可视化。另一方面，如果你对单词嵌入感">
+<meta name="twitter:image" content="http://studyai.site/img/17_03_07/003.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/03/07/【Tensorflow r1.0 文档翻译】TensorBoard-嵌入可视化/"/>
+
+
+
+
+
+  <title>【Tensorflow r1.0 文档翻译】TensorBoard:嵌入可视化 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/03/07/【Tensorflow r1.0 文档翻译】TensorBoard-嵌入可视化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Tensorflow r1.0 文档翻译】TensorBoard:嵌入可视化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T21:07:58+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Tensorflow/" itemprop="url" rel="index">
+                    <span itemprop="name">Tensorflow</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/07/【Tensorflow r1.0 文档翻译】TensorBoard-嵌入可视化/" class="leancloud_visitors" data-flag-title="【Tensorflow r1.0 文档翻译】TensorBoard:嵌入可视化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>嵌入在机器学习中无处不在，出现在推荐系统，NLP和许多其他应用程序中。事实上，在TensorFlow的上下文中，将tensor（或tensor切片）视为空间中的点是自然的，因此几乎任何TensorFlow系统将自然地产生各种嵌入。</p>
+<p>要了解有关嵌入和如何训练它们的更多信息，请参阅<a href="https://www.tensorflow.org/tutorials/word2vec" target="_blank" rel="external">单词向量表示教程</a>。如果你对图像的嵌入感兴趣，请查看<a href="http://colah.github.io/posts/2014-10-Visualizing-MNIST/" target="_blank" rel="external">这篇文章</a>，了解MNIST图像的有趣的可视化。另一方面，如果你对单词嵌入感兴趣，那么<a href="http://colah.github.io/posts/2014-10-Visualizing-MNIST/" target="_blank" rel="external">这篇文章</a>会给你一个很好的介绍。</p>
+<p>TensorBoard有一个内置的可视化工具，称为嵌入投影仪，用于交互式可视化和分析高维数据，例如嵌入。这意味着对开发人员和研究人员同样有用。它从保存tensorflow变量的检查点文件读取。虽然它对嵌入最有用，它将加载任何2D tensor，可能包括您的训练权重。</p>
+<video height="363" width="710" id="video" controls preload="none" poster="/img/17_03_07/002.png"><br>    <source id="mp4" src="/img/17_03_07/001.mp4" type="video/mp4"><br>    <p>Your user agent does not support the HTML5 Video element.</p><br></video>
+
+<p>默认情况下，嵌入投影仪执行三维<a href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank" rel="external">主成分分析</a>，这意味着它接受你的高维数据，并试图找到一个结构保留投影到三维空间。基本上，它通过旋转你的数据，使前三个维度显示尽可能多的数据方差。<a href="http://setosa.io/ev/principal-component-analysis/" target="_blank" rel="external">这里</a>有一个很好的视觉解释。另一个非常有用的投影是<a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding" target="_blank" rel="external">t-SNE</a>。我们稍后在教程中讨论更多的t-SNE。</p>
+<p>如果您使用嵌入，您可能需要将标签/图像附加到数据点，以告诉可视化器每个数据点对应的标签/图像。您可以通过生成元数据文件，使用我们的Python API将其附加到tensor，或将其上传到已经运行的TensorBoard来完成。</p>
+<h2 id="构建">构建</h2><p>有关如何运行TensorBoard并确保您记录所有必要的信息，请参阅<a href="/2017/03/07/【Tensorflow%20r1.0%20文档翻译】TensorBoard-可视化学习/">TensorBoard-可视化学习/</a>。</p>
+<p>要可视化您的嵌入，您需要做3件事：</p>
+<p>1）设置一个二维tensor变量来保存你的嵌入。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">embedding_var</span> = tf.Variable(....)</div></pre></td></tr></table></figure>
+<p>2）定期将您的嵌入保存在<code>LOG_DIR</code>中。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">saver = tf<span class="selector-class">.train</span><span class="selector-class">.Saver</span>()</div><div class="line">saver.save(session, os<span class="selector-class">.path</span><span class="selector-class">.join</span>(LOG_DIR, <span class="string">"model.ckpt"</span>), step)</div></pre></td></tr></table></figure>
+<p>以下步骤不是必要的，但是如果您有与嵌入相关联的任何元数据（标签，图像），则需要将它们链接到tensor上，以便TensorBoard知道它。</p>
+<p>3）将元数据与嵌入关联。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from tensorflow.contrib.tensorboard.plugins <span class="built_in">import</span> projector</div><div class="line"><span class="comment"># Use the same LOG_DIR where you stored your checkpoint.</span></div><div class="line"><span class="attr">summary_writer</span> = tf.train.SummaryWriter(LOG_DIR)</div><div class="line"></div><div class="line"><span class="comment"># Format: tensorflow/contrib/tensorboard/plugins/projector/projector_config.proto</span></div><div class="line"><span class="attr">config</span> = projector.ProjectorConfig()</div><div class="line"></div><div class="line"><span class="comment"># You can add multiple embeddings. Here we add only one.</span></div><div class="line"><span class="attr">embedding</span> = config.embeddings.add()</div><div class="line">embedding.<span class="attr">tensor_name</span> = embedding_var.name</div><div class="line"><span class="comment"># Link this tensor to its metadata file (e.g. labels).</span></div><div class="line">embedding.<span class="attr">metadata_path</span> = os.path.join(LOG_DIR, 'metadata.tsv')</div><div class="line"></div><div class="line"><span class="comment"># Saves a configuration file that TensorBoard will read during startup.</span></div><div class="line">projector.visualize_embeddings(summary_writer, config)</div></pre></td></tr></table></figure>
+<p>运行模型并训练嵌入后，运行TensorBoard并将其指向job的<code>LOG_DIR</code>。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tensorboard <span class="comment">--logdir=LOG_DIR</span></div></pre></td></tr></table></figure>
+<p>然后单击顶部窗格上的<em>Embeddings</em>选项卡，并选择适当的运行（如果有多个运行）。</p>
+<h2 id="元数据（可选）">元数据（可选）</h2><p>通常嵌入具有与其相关联的元数据（例如，标签，图像）。元数据应存储在模型检查点之外的单独文件中，因为元数据不是模型的可训练参数。格式应为TSV文件，第一行包含列标题，后续行包含元数据值。这里有一个例子：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Name<span class="symbol">\t</span>Type<span class="symbol">\n</span></div><div class="line">Caterpie<span class="symbol">\t</span>Bug<span class="symbol">\n</span></div><div class="line">Charmeleon<span class="symbol">\t</span>Fire<span class="symbol">\n</span></div><div class="line">…</div></pre></td></tr></table></figure>
+<p>没有与主数据文件共享的显式键;相反，假设元数据文件中的顺序与嵌入tensor中的顺序匹配。换句话说，第一行是头信息，元数据文件中的第(i+1)行对应于存储在检查点中的嵌入tensor的第i行。</p>
+<blockquote>
+<p><strong>注意：</strong>如果TSV元数据文件只有一个列，那么我们不需要一个标题行，并且假设每一行都是嵌入的标签。我们包含此异常，因为它匹配常用的“词汇文件”格式。</p>
+</blockquote>
+<h3 id="图">图</h3><p>如果您有与嵌入关联的图像，则需要生成包含每个数据点的小缩略图的单个图像。这被称为<a href="https://www.google.com/webhp#q=what+is+a+sprite+image" target="_blank" rel="external">精灵图像（sprite image）</a>。精灵应具有相同数目的行和列，缩略图按行首先顺序存储：第一个数据点放置在左上角，最后一个数据点在右下角：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+</tr>
+</tbody>
+</table>
+<p>请注意，在上面的示例中，最后一行不必填写。对于精灵的一个具体示例，请看这个<a href="https://www.tensorflow.org/images/mnist_10k_sprite.png" target="_blank" rel="external">精灵图像</a>的10,000 MNIST数字（100x100）。</p>
+<blockquote>
+<p><strong>注意：</strong>我们目前支持高达8192px X 8192px.的精灵。</p>
+</blockquote>
+<p>构造精灵后，您需要告诉嵌入投影机在哪里可以找到它：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">embedding.sprite.image_path = PATH_TO_SPRITE_IMAGE</div><div class="line"><span class="comment"># Specify the width and height of a single thumbnail.</span></div><div class="line">embedding.sprite.single_image_dim.<span class="keyword">extend</span>([w, h])</div></pre></td></tr></table></figure>
+<h2 id="相互作用">相互作用</h2><p>嵌入式投影机有三个面板</p>
+<ul>
+<li>1.位于左上方的数据面板，你可以选择你指定的运行、嵌入tensor和数据列来着色和标记点。</li>
+<li>2.位于左下方的预测面板，用于选择投影类型（例如PCA，t-SNE）。</li>
+<li>3.位于右侧的监视面板，在那里你可以搜索特定的点，并查看最近的邻居列表。</li>
+</ul>
+<h3 id="预测">预测</h3><p>嵌入投影仪具有减少数据集的维度的三种方法：两个线性的和一个非线性的。每个方法可用于创建二维或三维视图。</p>
+<p><strong>主成分分析（Principal Component Analysis）</strong>减少维度的主要技术是主成分分析（PCA）。嵌入投影仪计算前10个主要元素。该菜单允许您将这些元素投影到两个或三个任意组合。PCA是一个线性投影，通常用于检查全局几何。</p>
+<p><strong>t-SNE</strong>一种流行的非线性降维技术是T-SNE。嵌入投影机提供二维和三维t-SNE视图。布局是在客户端对算法的每一步执行动画。因为t-SNE经常保留一些局部结构，所以它对于探索局部邻域和找到簇是有用的。虽然对于可视化高维数据非常有用，但t-SNE图有时可能会产生迷惑或者误导的作用。想要了解如何有效地使用t-SNE，可以看看这篇<a href="http://distill.pub/2016/misread-tsne/" target="_blank" rel="external">很棒的文章</a>。</p>
+<p><strong>自定义（Custom）</strong>您还可以基于文本搜索来构造专门的线性投影，以在空间中找到有意义的方向。要定义投影轴，请输入两个搜索字符串或正则表达式。程序计算出其标签与这些搜索匹配的点集合的质心，并使用质心之间的差向量作为投影轴。</p>
+<h3 id="导航">导航</h3><p>要探索数据集，您可以在2D或3D模式中浏览视图，使用自然的点击和拖动手势进行缩放，旋转和平移。单击一个点会使右窗格显示最近邻居的显式文本列表，以及到当前点的距离。最近邻点本身在投影上突出显示。</p>
+<p>放大集群会提供一些信息，但有时更有帮助的是将视图限制为点的子集，并仅对这些点执行投影。为此，您可以通过多种方式选择点：</p>
+<ul>
+<li>1.点击一个点后，也选择其最近的邻居。</li>
+<li>2.搜索后，选择与查询匹配的点。</li>
+<li>3.启用选择，单击点并拖动定义选择球体。</li>
+</ul>
+<p>选择一组点后，您可以使用右侧“检查器”窗格中的“隔离点”按钮单独隔离这些点以进行进一步分析。</p>
+<p><img src="/img/17_03_07/003.png" alt=""></p>
+<p><em>在词嵌入数据集中选择“重要”的最近邻。</em></p>
+<p>过滤与自定义投影的组合的功能是非常强大的。下面，我们过滤了“politics”的100个最接近的邻居，并将它们投影到“best” - “worst”向量作为x轴。 y轴是随机的。</p>
+<p>你可以看到，在右边我们有“ideas”，“science”，“perspective”，“journalism”，而在左边我们有“crisis”，“violence”和“conflict”。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><img src="/img/17_03_07/006.png" alt=""></th>
+<th style="text-align:left"><img src="/img/17_03_07/004.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">自定义投影控件。</td>
+<td style="text-align:left">将“politics”的邻居定义为“best” - “worst”向量。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="共同特征">共同特征</h3><p>如果你想要分享您的发现，您可以使用右下角的书签面板，并将当前状态（包括任何投影的计算坐标）保存为小文件。投影仪可以同时打开并展示一个或多个这些小文件。这样一来，其他用户就可以浏览这些书签了。</p>
+<p><img src="/img/17_03_07/005.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/07/【Tensorflow r1.0 文档翻译】TensorBoard-可视化学习/" rel="next" title="【Tensorflow r1.0 文档翻译】TensorBoard:可视化学习">
+                <i class="fa fa-chevron-left"></i> 【Tensorflow r1.0 文档翻译】TensorBoard:可视化学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/07/【Tensorflow r1.0 文档翻译】TensorBoard-图的可视化/" rel="prev" title="【Tensorflow r1.0 文档翻译】TensorBoard:图的可视化">
+                【Tensorflow r1.0 文档翻译】TensorBoard:图的可视化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元数据（可选）"><span class="nav-number">2.</span> <span class="nav-text">元数据（可选）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图"><span class="nav-number">2.1.</span> <span class="nav-text">图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相互作用"><span class="nav-number">3.</span> <span class="nav-text">相互作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预测"><span class="nav-number">3.1.</span> <span class="nav-text">预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导航"><span class="nav-number">3.2.</span> <span class="nav-text">导航</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共同特征"><span class="nav-number">3.3.</span> <span class="nav-text">共同特征</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

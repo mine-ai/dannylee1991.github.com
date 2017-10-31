@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程,神经网络," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="神经网络的表示I视频地址
+这节课介绍神经网络如何表示我们的假设。
+神经网络起源神经网络是在模拟大脑中的神经元时发明的，因此，要解释如何表示模型假设，我们先来看看神经元在大脑中是什么样的。我们的大脑中充满了这样的神经元：
+
+神经元是大脑中的细胞，其中有两点值得我们注意，一是神经元有一个细胞主体(Cell body)，二是神经元有一定数量的输入神经，这些输入神经叫做树突(Dendrite)。可以把它们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第四周 (2)神经网络">
+<meta property="og:url" content="http://studyai.site/2016/09/07/斯坦福机器学习课程 第四周 (2)神经网络/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="神经网络的表示I视频地址
+这节课介绍神经网络如何表示我们的假设。
+神经网络起源神经网络是在模拟大脑中的神经元时发明的，因此，要解释如何表示模型假设，我们先来看看神经元在大脑中是什么样的。我们的大脑中充满了这样的神经元：
+
+神经元是大脑中的细胞，其中有两点值得我们注意，一是神经元有一个细胞主体(Cell body)，二是神经元有一定数量的输入神经，这些输入神经叫做树突(Dendrite)。可以把它们">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/001.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/002.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/003.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/004.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/005.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/005.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/006.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/007.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/008.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/009.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/010.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_07/011.png">
+<meta property="og:updated_time" content="2016-10-15T17:44:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第四周 (2)神经网络">
+<meta name="twitter:description" content="神经网络的表示I视频地址
+这节课介绍神经网络如何表示我们的假设。
+神经网络起源神经网络是在模拟大脑中的神经元时发明的，因此，要解释如何表示模型假设，我们先来看看神经元在大脑中是什么样的。我们的大脑中充满了这样的神经元：
+
+神经元是大脑中的细胞，其中有两点值得我们注意，一是神经元有一个细胞主体(Cell body)，二是神经元有一定数量的输入神经，这些输入神经叫做树突(Dendrite)。可以把它们">
+<meta name="twitter:image" content="http://studyai.site/img/16_09_07/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/09/07/斯坦福机器学习课程 第四周 (2)神经网络/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第四周 (2)神经网络 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/09/07/斯坦福机器学习课程 第四周 (2)神经网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第四周 (2)神经网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-07T23:42:00+08:00">
+                2016-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/09/07/斯坦福机器学习课程 第四周 (2)神经网络/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第四周 (2)神经网络">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="神经网络的表示I">神经网络的表示I</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/ka3jK/model-representation-i" target="_blank" rel="external">视频地址</a></p>
+<p>这节课介绍神经网络如何表示我们的假设。</p>
+<h3 id="神经网络起源">神经网络起源</h3><p>神经网络是在模拟大脑中的神经元时发明的，因此，要解释如何表示模型假设，我们先来看看神经元在大脑中是什么样的。我们的大脑中充满了这样的神经元：</p>
+<p><img src="/img/16_09_07/001.png" alt=""></p>
+<p>神经元是大脑中的细胞，其中有两点值得我们注意，一是神经元有一个细胞主体(Cell body)，二是神经元有一定数量的输入神经，这些输入神经叫做<strong>树突(Dendrite)</strong>。可以把它们想象成输入电线，它们接收来自其他神经元的信息。神经元的输出神经叫做<strong>轴突(Axon)</strong>，这些输出神经是用来给其他神经元传递信号或者传送信息的。</p>
+<p>简而言之，神经元是一个计算单元，它从<strong>输入神经</strong>接受一定数目的信息，并做一些计算，然后将结果通过它的<strong>轴突</strong>传送到大脑中的其他神经元。</p>
+<p>下面是一组神经元的示意图：</p>
+<p><img src="/img/16_09_07/002.png" alt=""></p>
+<p>神经元利用微弱的电流进行沟通，这些弱电流也称作<strong>动作电位</strong>(其实就是一些微弱的电流)。</p>
+<p>所以如果神经元想要传递一个消息，它就会通过它的轴突发送一段微弱的电流，给其他神经元。这就是<strong>轴突</strong>连接到输入神经元(另一个神经元的<strong>树突</strong>)。接下来这个神经元接收这条消息，做一些计算，它有可能会反过来将在轴突上的自己的消息传给其他神经元。这就是所有人类思考的模型：我们的神经元把自己收到的消息进行计算，并向其他神经元传递消息。</p>
+<blockquote>
+<p>顺便说一下，这也是我们感觉和肌肉运转的原理。如果你想要活动一块肌肉，就会触发一个神经元给你的肌肉，发送脉冲，并引起你的肌肉收缩。如果一些感官，比如说眼睛，想要向大脑传递一个消息，那么它就是像这样发送电脉冲给大脑的。</p>
+</blockquote>
+<h3 id="神经网络逻辑单元">神经网络逻辑单元</h3><p>在一个计算机的神经网络里，我们将使用一个非常简单的模型来模拟神经元的工作：</p>
+<p><img src="/img/16_09_07/003.png" alt=""></p>
+<p>我们将神经元模拟成一个逻辑单元。上图中，黄色的圆圈，你可以理解为类似神经元的东西，然后我们通过它的树突(或者说是它的输入神经)传递给它一些信息。然后神经元做一些计算，并通过它的输出神经(即它的轴突)输出计算结果。</p>
+<p>这里的$h_{\theta}(x)$通常值的是：</p>
+<p>$$<br>\begin{align*}<br>h_{\theta}(x)<br>= \frac{1}{1+e^{-\theta^{T}x}}<br>\end{align*}<br>$$</p>
+<p>其中$x$和$\theta$指的是我们的参数向量：</p>
+<p><img src="/img/16_09_07/004.png" alt=""></p>
+<p>这就是一个简单的模拟神经元的模型。</p>
+<hr>
+<p>当我绘制一个神经网络时，有时会额外增加一个$x_{0}$的输入节点，这个$x_{0}$节点有时也被称作<strong>偏置单位(或偏置神经元)</strong>。但由于$x_{0}=1$，有时我是不会画出它的，这取决于它是否对例子有利。</p>
+<h3 id="激励函数">激励函数</h3><p>在神经网络中，有时我们会听到“一个有Sigmoid函数或者Logistic函数作为<strong>激励函数(activation function)</strong>的人工神经元”这样的话。其实这里所指的<strong>激励函数(activation function)</strong>只是对类似非线性函数$g(z)$的另一个术语称呼：</p>
+<p>$$<br>\begin{align*}<br>g(z)<br>= \frac{1}{1+e^{-z}}<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>z<br>= \theta^{T}x<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>在之前我们一值称$\theta$为模型的参数，但在神经网络的文献里，有时你可能会看到人们谈论一个模型的<strong>权重(weight)</strong>，这个<strong>权重(weight)</strong>其实和模型的参数$\theta$是一个东西。</p>
+</blockquote>
+<hr>
+<h3 id="解读神经网络">解读神经网络</h3><h4 id="输入层，输出层，隐藏层">输入层，输出层，隐藏层</h4><p>神经网络其实就是这些不同的神经元组合在一起的集合：</p>
+<p><img src="/img/16_09_07/005.png" alt=""></p>
+<p>具体来说：</p>
+<ul>
+<li><p>上图中有三个输入单元：$x_{1}$,$x_{2}$和$x_{3}$，当然我们也可以加入值为1的$x_{0}$。</p>
+</li>
+<li><p>中间有三个神经元：$a_{1}^{(2)}$，$a_{2}^{(2)}$和$a_{3}^{(2)}$，同理，你可以可以加上值永远为1的偏置单元$a_{0}^{(2)}$。</p>
+</li>
+<li><p>然后，我们在最右侧有第三层，第三层的这个节点输出了假设函数$h(x)$的计算结果$h_{Θ}(x)$。</p>
+</li>
+</ul>
+<p>用神经网络的术语来说，第一层也被称为<strong>输入层</strong>，因为我们在这一层输入我们的特征项$x_{1}$，$x_{2}$和$x_{3}$。</p>
+<p>最后一层，也被称为<strong>输出层</strong>，因为这一层的神经元会输出假设函数的最终计算结果$h_{Θ}(x)$。</p>
+<p>中间层，也被称为<strong>隐藏层</strong>，在监督学习中，你能看到输入，也能看到输出，而隐藏层的值在你的训练过程中是看不到的，它的值不是$x$也不是$y$，所以我们叫它隐藏层。神经网络可以有不止一个的隐藏层。<strong>在神经网络中，任何一个非输入层且非输出层，就被称为隐藏层</strong>。</p>
+<h4 id="神经网络运行原理">神经网络运行原理</h4><p><img src="/img/16_09_07/005.png" alt=""></p>
+<p>接下来，让我们来逐步分析，上图所呈现的神经网络的计算步骤。</p>
+<p>首先需要说明以下两个符号的含义：</p>
+<ul>
+<li>$a_{i}^{(j)}$ 表示第j层的第i个神经元。</li>
+</ul>
+<blockquote>
+<p>具体来说$a_{1}^{2}$表示的是第2层的第1个激励，即隐藏层的第一个激励。</p>
+<p>所谓<strong>激励(activation)</strong>是指由一个具体神经元读入计算并输出的值。</p>
+</blockquote>
+<ul>
+<li>$Θ^{(j)}$ 表示层与层之间权重的<strong>参数矩阵</strong>(或者叫<strong>权重矩阵</strong>)(比如说从第一层到第二层、或者从第二层到第三层的作用)。</li>
+</ul>
+<p>具体来说，$a_{1}^{(2)}$的值的计算是这样的：</p>
+<p>$$<br>a_{1}^{(2)} = g(Θ_{10}^{(1)}x_{0} +<br>Θ_{11}^{(1)}x_{1} +<br>Θ_{12}^{(1)}x_{2} +<br>Θ_{13}^{(1)}x_{3}<br>)<br>$$</p>
+<blockquote>
+<p>不要忘记这里的$g$函数是S型函数(或者说是S激励函数，也叫作逻辑激励函数)。</p>
+</blockquote>
+<p>我们可以把隐藏层的三个神经元的计算结果都写出来：</p>
+<p>$$<br>a_{1}^{(2)} = g(Θ_{10}^{(1)}x_{0} +<br>Θ_{11}^{(1)}x_{1} +<br>Θ_{12}^{(1)}x_{2} +<br>Θ_{13}^{(1)}x_{3}<br>)<br>$$</p>
+<p>$$<br>a_{2}^{(2)} = g(Θ_{20}^{(1)}x_{0} +<br>Θ_{21}^{(1)}x_{1} +<br>Θ_{22}^{(1)}x_{2} +<br>Θ_{23}^{(1)}x_{3}<br>)<br>$$</p>
+<p>$$<br>a_{3}^{(2)} = g(Θ_{30}^{(1)}x_{0} +<br>Θ_{31}^{(1)}x_{1} +<br>Θ_{32}^{(1)}x_{2} +<br>Θ_{33}^{(1)}x_{3}<br>)<br>$$</p>
+<p>这里我们有三个输入单元和三个隐藏单元，这样一来，参数矩阵$Θ^{(1)}$控制了我们来自三个输入单元到三个隐藏单元的映射。因此$Θ^{(1)}$的维数是$R^{3×4}$的(考虑$x_{0}$的情况下)矩阵。</p>
+<p>更一般的，如果一个神经网络在第$j$层有$s_{j}$个单元，在$j+1$层有$s_{j+1}$个单元，那么第$j$层的参数矩阵$Θ^{(j)}$的维度就是$s_{j+1}×(s_{j} + 1)$</p>
+<p>以上我们讨论了三个隐藏单位是怎么计算它们的值的，最后，在输出层，我们还有一个单元，它用来计算$h_{Θ}(x)$：</p>
+<p>$$<br>h_{Θ}(x) = a_{1}^{(3)}=g(<br>Θ_{10}^{(2)}a_{0}^{(2)} +<br>Θ_{11}^{(2)}a_{1}^{(2)} +<br>Θ_{12}^{(2)}a_{2}^{(2)} +<br>Θ_{13}^{(2)}a_{3}^{(2)}<br>)<br>$$</p>
+<p>以上就是从数学上对一个人工神经网络的定义。</p>
+<h2 id="神经网络的表示II">神经网络的表示II</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Hw3VK/model-representation-ii" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>这节课，将介绍如何高效地进行计算，并展示一个向量化的实现方法。更重要的是让你们明白神经网络的好处所在，并且介绍它是如何帮助我们学习复杂的非线性假设的。</p>
+</blockquote>
+<h3 id="前向传播(forward_propagation)的向量化实现">前向传播(forward propagation)的向量化实现</h3><p>以这个神经网络为例：</p>
+<p><img src="/img/16_09_07/006.png" alt=""></p>
+<p>上一节我们介绍过假设函数的计算方式，以及上面这些方程的含义。接下来，我要定义一些额外的项，来简化上面的式子的表示，比如我要把上面第一行(用来表示第一个隐藏层输出的值)：</p>
+<p>$$<br>a_{1}^{(2)} = g(Θ_{10}^{(1)}x_{0} +<br>Θ_{11}^{(1)}x_{1} +<br>Θ_{12}^{(1)}x_{2} +<br>Θ_{13}^{(1)}x_{3}<br>)<br>$$</p>
+<p>改写为：</p>
+<p>$$<br>a_{1}^{(2)} = g(z^{(2)}_{1})<br>$$</p>
+<p>可见：</p>
+<p>$$<br>z^{(2)}_{1} = Θ_{10}^{(1)}x_{0} +<br>Θ_{11}^{(1)}x_{1} +<br>Θ_{12}^{(1)}x_{2} +<br>Θ_{13}^{(1)}x_{3}<br>$$</p>
+<p>其中$z^{(2)}_{1}$的上标$^{(2)}$表示<strong>神经网络的第二层(即这里的隐藏层)</strong>，下标$_{1}$表示<strong>当前层的第一个元素</strong>。</p>
+<p>我们通过同样的方式定义$a_{2}^{(2)}$和$a_{3}^{(2)}$。</p>
+<p>$$<br>a_{2}^{(2)} = g(z^{(2)}_{2})<br>$$</p>
+<p>$$<br>a_{3}^{(2)} = g(z^{(2)}_{3})<br>$$</p>
+<p>因此，这些$z$值都是$x_{0}$、$x_{1}$、$x_{2}$和$x_{3}$的加权线性组合，然后带入一个特定的神经元，</p>
+<p>如果你仔细观察表达式中红色方框内的区域：</p>
+<p><img src="/img/16_09_07/007.png" alt=""></p>
+<p>你会发现，这里其实是一个矩阵的乘法运算：</p>
+<p>$$<br>Θ^{(1)}x<br>$$</p>
+<p>这样一来，我们就能将神经网络的计算，向量化了。</p>
+<p>具体而言，我们定义特征向量$x$：</p>
+<p>$$<br>x=<br>\begin{bmatrix}<br>x_{0} \\<br>x_{1} \\<br>x_{2} \\<br>x_{3}<br>\end{bmatrix}<br>$$</p>
+<blockquote>
+<p>其中$x_{0}=1$</p>
+</blockquote>
+<p>并定义$z^{(2)}$：</p>
+<p>$$<br>z^{(2)}=<br>\begin{bmatrix}<br>z^{(2)}_{1} \\<br>z^{(2)}_{2} \\<br>z^{(2)}_{3}<br>\end{bmatrix}<br>$$</p>
+<blockquote>
+<p>注意，这里的$z^{(2)}$是一个三维向量。</p>
+</blockquote>
+<p>我们只需要两个步骤，就可以计算出$a^{(2)}$向量了：</p>
+<p>$$<br>z^{(2)}=Θ^{(1)}x<br>$$</p>
+<p>$$<br>a^{(2)}=g(z^{(2)})<br>$$</p>
+<blockquote>
+<p>注意，这里的$a^{(2)}$也是一个三维向量，这里的激励函数$g()$将对$z^{(2)}$中的每个元素进行计算。<br>说明一下，在输入层虽然我们有$x$输入，但我们可以把这些输入想象成是第一层的激励。所以可以定义$a^{(1)}=x$，这样就有了向量$a^{(1)}$。</p>
+</blockquote>
+<p>将向量$x$替换为向量$a^{(1)}$:</p>
+<p>$$<br>z^{(2)}=Θ^{(1)}a^{(1)}<br>$$</p>
+<hr>
+<p>现在，就我目前所写的，我得到了$a^{(2)}_{1}$、$a^{(2)}_{2}$和$a^{(2)}_{3}$的值，但是我同样还需要隐藏层的偏置单元$a^{(2)}_{0}$，这个额外的偏执单元值为1：</p>
+<p>$$<br>a^{(2)}_{0}=1<br>$$</p>
+<p>加上偏置单元后，向量$a^{(2)}$的长度变成了4：</p>
+<p>$$<br>a^{(2)}\in \mathbb{R}^{4}<br>$$</p>
+<p>最后，为了计算实际输出值：</p>
+<p>$$<br>h_{Θ}(x) = a_{1}^{(3)}=g(<br>Θ_{10}^{(2)}a_{0}^{(2)} +<br>Θ_{11}^{(2)}a_{1}^{(2)} +<br>Θ_{12}^{(2)}a_{2}^{(2)} +<br>Θ_{13}^{(2)}a_{3}^{(2)}<br>)<br>$$</p>
+<p>我们计算出代表$Θ_{10}^{(2)}a_{0}^{(2)} +Θ_{11}^{(2)}a_{1}^{(2)} + Θ_{12}^{(2)}a_{2}^{(2)} + Θ_{13}^{(2)}a_{3}^{(2)}$的$z^{(3)}$，并将其带入激励函数，最后就能得出$h(x)$的值了：</p>
+<p>$$<br>z^{(3)}=Θ^{(2)}a^{(2)}<br>$$</p>
+<p>$$<br>h_{Θ}(x)=a^{(3)}=g(z^{(3)})<br>$$</p>
+<p>这就是计算$h_{Θ}(x)$的过程，也称为<strong>前向传播(forward propagation)</strong>。</p>
+<blockquote>
+<p>这样的命名是因为我们从输入层的激励开始，然后进行前向传播给隐藏层，并计算隐藏层的激励，然后我们继续向前传播，并计算出层的激励，这个从输入层，到隐藏层，再到输出层，依次计算激励的过程，叫<strong>前向传播</strong>。</p>
+</blockquote>
+<h3 id="神经网络与逻辑回归的对比，以及学习非线性假设的原理">神经网络与逻辑回归的对比，以及学习非线性假设的原理</h3><p>这种前向传播也可以帮助我们了解神经网络的原理，以及解释为什么神经网络可以帮助我们学习非线性假设。</p>
+<p>例如下面这个神经网络：</p>
+<p><img src="/img/16_09_07/008.png" alt=""></p>
+<p>我们暂时盖住左边部分，看右侧这一部分：</p>
+<p><img src="/img/16_09_07/009.png" alt=""></p>
+<p>这看起来很像逻辑回归，在逻辑回归中，我们就用这一个逻辑回归单元来预测$h(x)$的值。具体来说：</p>
+<p>$$<br>h_{Θ}(x)=g(Θ_{10}^{(2)}a_{0}^{(2)} + Θ_{11}^{(2)}a_{1}^{(2)} + Θ_{12}^{(2)}a_{2}^{(2)} + Θ_{13}^{(2)}a_{3}^{(2)})<br>$$</p>
+<p>这很像一个很标准的逻辑回归模型，不同之处在于这里使用的是大写的$Θ$而不是小写的$\theta$，神经网络的输入特征值是通过隐藏层计算的。即，神经网络所做的工作看起来就像是逻辑回归，但是它不是使用$x_{1}$、$x_{2}$、$x_{3}$作为输入特征，而是使用$a_{1}^{(2)}$、$a_{2}^{(2)}$、$a_{3}^{(2)}$。</p>
+<hr>
+<p><img src="/img/16_09_07/010.png" alt=""></p>
+<p>然而有趣的是，特征项$a_{1}^{(2)}$、$a_{2}^{(2)}$、$a_{3}^{(2)}$是通过输入的函数来学习的。具体来说，就是从第一层(Layer1)映射到第二层(Layer2)的函数。这个函数由其他一组参数$Θ^{(1)}$决定。所以，在神经网络中，它没有用输入特征$x_{1}$、$x_{2}$、$x_{3}$来训练逻辑回归，而是训练逻辑回归的输入:$a_{1}^{(2)}$、$a_{2}^{(2)}$、$a_{3}^{(2)}$。</p>
+<p>可以想象，如果在$Θ^{(1)}$中选择不同的参数有时可以学习到一些很有趣的，和很复杂的特征，就可以得到一个比使用原始输入$x_{1}$、$x_{2}$、$x_{3}$时得到的假设更好的假设。</p>
+<p>你也可以使用多项式作为输入，例如：$x_{1}x_{2}$、$x_{2}x_{3}$等作为输入项。这个算法都可以灵活的快速学习任意的特征项，并把最后的结果通过最后一个单元的逻辑回归输出出来。</p>
+<h3 id="神经网络的架构">神经网络的架构</h3><p>你还可以用其他类型的图来表示神经网络。神经网络中神经元相连接的方式，称为<strong>神经网络的架构(Architecture)</strong>。</p>
+<p>下面是另外一个神经网络架构的例子：</p>
+<p><img src="/img/16_09_07/011.png" alt=""></p>
+<p>在这个神经网络中，第一层被称为输入层，第四层任然是我们的输出层。其中，第二层和第三层都是隐藏层。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/05/斯坦福机器学习课程 第四周 (1)神经网络引入/" rel="next" title="斯坦福机器学习课程 第四周 (1)神经网络引入">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第四周 (1)神经网络引入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/11/斯坦福机器学习课程 第四周 (3)神经网络应用实例/" rel="prev" title="斯坦福机器学习课程 第四周 (3)神经网络应用实例">
+                斯坦福机器学习课程 第四周 (3)神经网络应用实例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的表示I"><span class="nav-number">1.</span> <span class="nav-text">神经网络的表示I</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络起源"><span class="nav-number">1.1.</span> <span class="nav-text">神经网络起源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络逻辑单元"><span class="nav-number">1.2.</span> <span class="nav-text">神经网络逻辑单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激励函数"><span class="nav-number">1.3.</span> <span class="nav-text">激励函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解读神经网络"><span class="nav-number">1.4.</span> <span class="nav-text">解读神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入层，输出层，隐藏层"><span class="nav-number">1.4.1.</span> <span class="nav-text">输入层，输出层，隐藏层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#神经网络运行原理"><span class="nav-number">1.4.2.</span> <span class="nav-text">神经网络运行原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的表示II"><span class="nav-number">2.</span> <span class="nav-text">神经网络的表示II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前向传播(forward_propagation)的向量化实现"><span class="nav-number">2.1.</span> <span class="nav-text">前向传播(forward propagation)的向量化实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络与逻辑回归的对比，以及学习非线性假设的原理"><span class="nav-number">2.2.</span> <span class="nav-text">神经网络与逻辑回归的对比，以及学习非线性假设的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络的架构"><span class="nav-number">2.3.</span> <span class="nav-text">神经网络的架构</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

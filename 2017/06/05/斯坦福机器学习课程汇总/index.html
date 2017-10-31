@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言首先感谢吴恩达建立Coursera这样一个优秀的在线学习平台，以及他发布在这个平台上的机器学习课程。
+这门课程将整个机器学习领域的基础知识，用浅显易懂的方式，深入浅出的进行了介绍。使得一个拥有高中数学知识的学生也能听得明白。
+如果你想要涉足机器学习、人工智能领域，或者对这一领域有浓厚的兴趣想要深入了解，那么你会发现很多机器学习入门课程推荐的资料中，都有吴恩达老师的这一系列课程。甚至在大多数资料">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程汇总">
+<meta property="og:url" content="http://studyai.site/2017/06/05/斯坦福机器学习课程汇总/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="前言首先感谢吴恩达建立Coursera这样一个优秀的在线学习平台，以及他发布在这个平台上的机器学习课程。
+这门课程将整个机器学习领域的基础知识，用浅显易懂的方式，深入浅出的进行了介绍。使得一个拥有高中数学知识的学生也能听得明白。
+如果你想要涉足机器学习、人工智能领域，或者对这一领域有浓厚的兴趣想要深入了解，那么你会发现很多机器学习入门课程推荐的资料中，都有吴恩达老师的这一系列课程。甚至在大多数资料">
+<meta property="og:updated_time" content="2017-06-05T16:58:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程汇总">
+<meta name="twitter:description" content="前言首先感谢吴恩达建立Coursera这样一个优秀的在线学习平台，以及他发布在这个平台上的机器学习课程。
+这门课程将整个机器学习领域的基础知识，用浅显易懂的方式，深入浅出的进行了介绍。使得一个拥有高中数学知识的学生也能听得明白。
+如果你想要涉足机器学习、人工智能领域，或者对这一领域有浓厚的兴趣想要深入了解，那么你会发现很多机器学习入门课程推荐的资料中，都有吴恩达老师的这一系列课程。甚至在大多数资料">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/06/05/斯坦福机器学习课程汇总/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程汇总 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/06/05/斯坦福机器学习课程汇总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程汇总</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T23:37:00+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/05/斯坦福机器学习课程汇总/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程汇总">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言">前言</h2><p>首先感谢<strong>吴恩达</strong>建立<a href="https://www.coursera.org" target="_blank" rel="external">Coursera</a>这样一个优秀的在线学习平台，以及他发布在这个平台上的<a href="https://www.coursera.org/learn/machine-learning/" target="_blank" rel="external">机器学习</a>课程。</p>
+<p>这门课程将整个机器学习领域的基础知识，用浅显易懂的方式，深入浅出的进行了介绍。使得一个拥有高中数学知识的学生也能听得明白。</p>
+<p>如果你想要涉足机器学习、人工智能领域，或者对这一领域有浓厚的兴趣想要深入了解，那么你会发现很多机器学习入门课程推荐的资料中，都有吴恩达老师的这一系列课程。甚至在大多数资料中，都把这门课放在了首选的位置上。</p>
+<p>因此，我把吴恩达老师的课程整理成了MarkDown的格式，方便查阅学习。以下是具体章节的目录，其中每篇文章都有对应的视频连接地址：</p>
+<h2 id="目录">目录</h2><ul>
+<li>第一周<ul>
+<li><a href="http://t.cn/RSC1bwH" target="_blank" rel="external">欢迎来到机器学习</a></li>
+<li><a href="http://t.cn/RSC1Ju5" target="_blank" rel="external">监督学习</a></li>
+<li><a href="http://t.cn/RSC1XxR" target="_blank" rel="external">无监督学习</a></li>
+<li><a href="http://t.cn/RSC1onR" target="_blank" rel="external">一元线性回归</a></li>
+<li><a href="http://t.cn/RSC1N6G" target="_blank" rel="external">参数学习-梯度下降算法</a></li>
+<li><a href="http://t.cn/RSC1WEE" target="_blank" rel="external">线性代数复习</a></li>
+</ul>
+</li>
+<li>第二周<ul>
+<li><a href="http://t.cn/RSC1T2O" target="_blank" rel="external">编程环境设置-Octave:MATLAB</a></li>
+<li><a href="http://t.cn/RSC1RnN" target="_blank" rel="external">多元线性回归分析</a></li>
+<li><a href="http://t.cn/RSC1nj4" target="_blank" rel="external">参数的计算分析</a></li>
+<li><a href="http://t.cn/RSC1BP3" target="_blank" rel="external">Octave/Matlab 使用说明</a></li>
+</ul>
+</li>
+<li>第三周<ul>
+<li><a href="http://t.cn/RSC1epl" target="_blank" rel="external">分类和表达式</a><ul>
+<li><a href="http://t.cn/RSCBwf7" target="_blank" rel="external">分类</a></li>
+<li><a href="http://t.cn/RSCB4bV" target="_blank" rel="external">假设函数表达式</a></li>
+<li><a href="http://t.cn/RSCBhNP" target="_blank" rel="external">决策边界</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCBccU" target="_blank" rel="external">Logistic回归模型</a><ul>
+<li><a href="http://t.cn/RSCBMeK" target="_blank" rel="external">逻辑回归的代价函数</a></li>
+<li><a href="http://t.cn/RSCBogn" target="_blank" rel="external">简化代价函数以及梯度下降</a></li>
+<li><a href="http://t.cn/RSCBpkr" target="_blank" rel="external">高级优化</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCBWU1" target="_blank" rel="external">多类别分类问题：一对多</a></li>
+<li><a href="http://t.cn/RSCBjW6" target="_blank" rel="external">正则化：解决过拟合问题</a><ul>
+<li><a href="http://t.cn/RSCBT6v" target="_blank" rel="external">解决过拟合问题</a></li>
+<li><a href="http://t.cn/RSCB8Vt" target="_blank" rel="external">代价函数</a></li>
+<li><a href="http://t.cn/RSCBELF" target="_blank" rel="external">正则化线性回归</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第四周<ul>
+<li><a href="http://t.cn/RSCBBZe" target="_blank" rel="external">神经网络引入</a><ul>
+<li><a href="http://t.cn/RSCBDHu" target="_blank" rel="external">非线性假设</a></li>
+<li><a href="http://t.cn/RSCBsN4" target="_blank" rel="external">神经网络和大脑</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCrZ1M" target="_blank" rel="external">神经网络</a></li>
+<li><a href="http://t.cn/RSCrUfK" target="_blank" rel="external">神经网络应用实例</a></li>
+</ul>
+</li>
+<li>第五周<ul>
+<li><a href="http://t.cn/RSCr5m2" target="_blank" rel="external">训练神经网络</a><ul>
+<li><a href="http://t.cn/RSCrf4H" target="_blank" rel="external">代价函数</a></li>
+<li><a href="http://t.cn/RSCriIb" target="_blank" rel="external">反向传播(B-P)</a></li>
+<li><a href="http://t.cn/RSCr9Rc" target="_blank" rel="external">反向传播算法的直观介绍</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCr0yH" target="_blank" rel="external">BP算法</a></li>
+<li><a href="http://t.cn/RSCrHqO" target="_blank" rel="external">神经网络实现自动驾驶</a></li>
+</ul>
+</li>
+<li>第六周<ul>
+<li><a href="http://t.cn/RSCruh7" target="_blank" rel="external">评价一个学习算法</a><ul>
+<li><a href="http://t.cn/RSCr1gH" target="_blank" rel="external">如何少走弯路？</a></li>
+<li><a href="http://t.cn/RSCrd7a" target="_blank" rel="external">评估假设函数</a></li>
+<li><a href="http://t.cn/RSCruh7" target="_blank" rel="external">多项式模型的选择以及训练集/验证集/测试集的划分</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCdL5Q" target="_blank" rel="external">偏差VS方差</a><ul>
+<li><a href="http://t.cn/RSCdL5Q" target="_blank" rel="external">偏差VS方差</a></li>
+<li><a href="http://t.cn/RSCd6C0" target="_blank" rel="external">正则化和偏差/方差</a></li>
+<li><a href="http://t.cn/RSCdo2l" target="_blank" rel="external">学习曲线(Learning Curves)</a></li>
+<li><a href="http://t.cn/RSCdCvC" target="_blank" rel="external">重新审视决定下一步做什么</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCd0fl" target="_blank" rel="external">机器学习系统设计</a><ul>
+<li><a href="http://t.cn/RSCd0fl" target="_blank" rel="external">构建垃圾邮件分类器</a></li>
+<li><a href="http://t.cn/RSCdH6b" target="_blank" rel="external">误差分析</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSh83NE" target="_blank" rel="external">操作偏斜数据</a><ul>
+<li><a href="http://t.cn/RSCdBSe" target="_blank" rel="external">偏移类的错误度量</a></li>
+<li><a href="http://sina.lt/eXAz" target="_blank" rel="external">查准率和召回率练习</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCgyhD" target="_blank" rel="external">使用大数据集</a></li>
+</ul>
+</li>
+<li>第七周<ul>
+<li><a href="http://t.cn/RSCg4WP" target="_blank" rel="external">大间距分类 SVM</a><ul>
+<li><a href="http://t.cn/RSCg4WP#优化目标" target="_blank" rel="external">优化目标</a></li>
+<li><a href="http://t.cn/RSCg4WP#大间距的直觉" target="_blank" rel="external">大间距的直觉</a></li>
+<li><a href="http://t.cn/RSCg4WP#大间距分类器背后的数学原理(选学" target="_blank" rel="external">大间距分类器背后的数学原理(选学)</a>)</li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCgJw1" target="_blank" rel="external">核函数</a></li>
+<li><a href="http://t.cn/RSCgXmt" target="_blank" rel="external">使用SVM</a></li>
+</ul>
+</li>
+<li>第八周<ul>
+<li><a href="http://t.cn/RSCgKuS" target="_blank" rel="external">聚类</a><ul>
+<li><a href="http://t.cn/RSCgKuS#" target="_blank" rel="external">无监督学习介绍</a></li>
+<li><a href="http://t.cn/RSCgKuS#K-Means算法" target="_blank" rel="external">K-Means算法</a></li>
+<li><a href="http://t.cn/RSCgKuS#优化目标" target="_blank" rel="external">优化目标</a></li>
+<li><a href="http://t.cn/RSCgKuS#随机初始化" target="_blank" rel="external">随机初始化</a></li>
+<li><a href="http://t.cn/RSCgKuS#选择簇的数量" target="_blank" rel="external">选择簇的数量</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCg8PK" target="_blank" rel="external">PCA 降维</a></li>
+</ul>
+</li>
+<li>第九周<ul>
+<li><a href="http://t.cn/RSCgubu" target="_blank" rel="external">密度估计&amp;异常检测</a></li>
+<li><a href="http://t.cn/RSCgBQV" target="_blank" rel="external">构建一个异常检测系统</a></li>
+<li><a href="http://t.cn/RSCgDCU" target="_blank" rel="external">多元高斯分布（选学）</a></li>
+<li><a href="http://t.cn/RSCevr6" target="_blank" rel="external">预测电影评分</a><ul>
+<li><a href="http://t.cn/RSCevr6#预测电影评分" target="_blank" rel="external">预测电影评分</a></li>
+<li><a href="http://t.cn/RSCevr6#协同过滤" target="_blank" rel="external">协同过滤</a></li>
+<li><a href="http://t.cn/RSCevr6#低秩矩阵分解" target="_blank" rel="external">低秩矩阵分解</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第十周<ul>
+<li><a href="http://t.cn/RSCeLpk" target="_blank" rel="external">大数据集梯度下降</a><ul>
+<li><a href="http://t.cn/RSCeLpk#处理大数据的学习算法" target="_blank" rel="external">处理大数据的学习算法</a></li>
+<li><a href="http://t.cn/RSCeLpk#随机梯度下降" target="_blank" rel="external">随机梯度下降</a></li>
+<li><a href="http://t.cn/RSCeLpk#小批量梯度下降" target="_blank" rel="external">小批量梯度下降</a></li>
+<li><a href="http://t.cn/RSCeLpk#随机梯度下降的收敛" target="_blank" rel="external">随机梯度下降的收敛</a></li>
+</ul>
+</li>
+<li><a href="http://t.cn/RSCeii5" target="_blank" rel="external">高级主题</a><ul>
+<li><a href="http://t.cn/RSCeii5#在线学习" target="_blank" rel="external">在线学习</a></li>
+<li><a href="http://t.cn/RSCeii5#MapReduce和数据并行" target="_blank" rel="external">Map Reduce 和数据并行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第十一周<ul>
+<li><a href="http://t.cn/RSCe9Bv" target="_blank" rel="external">照片OCR</a><ul>
+<li><a href="http://t.cn/RSCe9Bv#问题描述和流水线（Pipeline）" target="_blank" rel="external">问题描述和流水线（Pipeline）</a></li>
+<li><a href="http://t.cn/RSCe9Bv#滑动窗体" target="_blank" rel="external">滑动窗体</a></li>
+<li><a href="http://t.cn/RSCe9Bv#获取大量数据和人工数据" target="_blank" rel="external">获取大量数据和人工数据</a></li>
+<li><a href="http://t.cn/RSCe9Bv#上限分析：流水线上的下一步工作是什么" target="_blank" rel="external">上限分析：流水线上的下一步工作是什么</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/04/斯坦福机器学习课程 第十一周 (1)照片OCR/" rel="next" title="斯坦福机器学习课程 第十一周 (1)照片OCR">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第十一周 (1)照片OCR
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/【翻译】视觉信息论/" rel="prev" title="【翻译】图解信息论">
+                【翻译】图解信息论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

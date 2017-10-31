@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,Tensorflow," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="TensorFlow入门这是一个TensorFlow的入门指南。在你使用这份指南之前，请先安装TensorFlow。在充分的使用本指南之前，您应该了解以下内容：
+
+如何使用Python进行编程。
+至少对矩阵有一些了解
+最好是对机器学习有一点了解。但即使你对机器学习有一点了解、或者甚至完全不了解，那么你很有必要读一读这一篇指南了。
+
+TensorFlow提供了多种API。即使是最低版本的Tensor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Tensorflow r1.0 文档翻译】TensorFlow入门">
+<meta property="og:url" content="http://studyai.site/2017/02/20/【Tensorflow r1.0 文档翻译】TensorFlow入门/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="TensorFlow入门这是一个TensorFlow的入门指南。在你使用这份指南之前，请先安装TensorFlow。在充分的使用本指南之前，您应该了解以下内容：
+
+如何使用Python进行编程。
+至少对矩阵有一些了解
+最好是对机器学习有一点了解。但即使你对机器学习有一点了解、或者甚至完全不了解，那么你很有必要读一读这一篇指南了。
+
+TensorFlow提供了多种API。即使是最低版本的Tensor">
+<meta property="og:image" content="http://studyai.site/img/17_02_20/001.png">
+<meta property="og:image" content="http://studyai.site/img/17_02_20/002.png">
+<meta property="og:image" content="http://studyai.site/img/17_02_20/003.png">
+<meta property="og:image" content="http://studyai.site/img/17_02_20/004.png">
+<meta property="og:updated_time" content="2017-02-26T06:41:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Tensorflow r1.0 文档翻译】TensorFlow入门">
+<meta name="twitter:description" content="TensorFlow入门这是一个TensorFlow的入门指南。在你使用这份指南之前，请先安装TensorFlow。在充分的使用本指南之前，您应该了解以下内容：
+
+如何使用Python进行编程。
+至少对矩阵有一些了解
+最好是对机器学习有一点了解。但即使你对机器学习有一点了解、或者甚至完全不了解，那么你很有必要读一读这一篇指南了。
+
+TensorFlow提供了多种API。即使是最低版本的Tensor">
+<meta name="twitter:image" content="http://studyai.site/img/17_02_20/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/02/20/【Tensorflow r1.0 文档翻译】TensorFlow入门/"/>
+
+
+
+
+
+  <title>【Tensorflow r1.0 文档翻译】TensorFlow入门 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/02/20/【Tensorflow r1.0 文档翻译】TensorFlow入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Tensorflow r1.0 文档翻译】TensorFlow入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-20T21:42:58+08:00">
+                2017-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Tensorflow/" itemprop="url" rel="index">
+                    <span itemprop="name">Tensorflow</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/20/【Tensorflow r1.0 文档翻译】TensorFlow入门/" class="leancloud_visitors" data-flag-title="【Tensorflow r1.0 文档翻译】TensorFlow入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="TensorFlow入门">TensorFlow入门</h2><p>这是一个TensorFlow的入门指南。在你使用这份指南之前，请先<a href="https://www.tensorflow.org/install/" target="_blank" rel="external">安装TensorFlow</a>。在充分的使用本指南之前，您应该了解以下内容：</p>
+<ul>
+<li>如何使用Python进行编程。</li>
+<li>至少对矩阵有一些了解</li>
+<li>最好是对<strong>机器学习</strong>有一点了解。但即使你对<strong>机器学习</strong>有一点了解、或者甚至完全不了解，那么你很有必要读一读这一篇指南了。</li>
+</ul>
+<p>TensorFlow提供了多种API。即使是最低版本的TensorFlow 核心 API，也为您提供了完整的编程控制。如果您是机器学习研究人员，或需要对模型进行精细控制的人，那么我们建议你使用TensorFlow 核心代码，否则我们建议您使用TensorFlow Core API。这些更高级的API通常比TensorFlow 核心代码更容易学习和使用。此外，较高级别的API使重复性任务更容易上手，并且在不同用户之间更一致。高级API（如<strong>tf.contrib.learn</strong>）可帮助您管理数据集、估计量、训练和推断。注意，在一些高级TensorFlow API 中，方法名称包含<code>contrib</code>的API表示仍在开发中。一些<code>contrib</code>方法可能会在随后的TensorFlow版本中发生改变或过时。</p>
+<p>本指南从TensorFlow 核心教程开始。稍后，我们将演示如何在<code>tf.contrib.learn</code>中实现相同的模型。了解TensorFlow核心原则将会给你提供一个很棒的心理模型，这个模型是用于说明当您使用更紧凑的更高级别的API时，内部是如何工作的。</p>
+<h2 id="Tensors（张量）">Tensors（张量）</h2><p>TensorFlow中的数据的中心单元是<strong>Tensors(张量)</strong>。tensor是由一组原始数据组成，这些原始数据是由一组任意数量维度的数组形成。一个tensor的<strong>rank</strong>是表示它尺寸的一个数值。下面是几个tensor的例子：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">3</span> # a rank <span class="number">0</span> tensor; this is a scalar with shape []</div><div class="line">[<span class="number">1.</span> ,<span class="number">2.</span>, <span class="number">3.</span>] # a rank <span class="number">1</span> tensor; this is a <span class="type">vector</span> with shape [<span class="number">3</span>]</div><div class="line">[[<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>], [<span class="number">4.</span>, <span class="number">5.</span>, <span class="number">6.</span>]] # a rank <span class="number">2</span> tensor; a matrix with shape [<span class="number">2</span>, <span class="number">3</span>]</div><div class="line">[[[<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>]], [[<span class="number">7.</span>, <span class="number">8.</span>, <span class="number">9.</span>]]] # a rank <span class="number">3</span> tensor with shape [<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+<h2 id="TensorFlow核心教程">TensorFlow核心教程</h2><h3 id="导入TensorFlow">导入TensorFlow</h3><p>TensorFlow程序的标准导入语句如下：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div></pre></td></tr></table></figure>
+<p>这样做可以使得Python能够正常访问TensorFlow的所有类、方法和符号。我们的大多数文档都假设你已经这样做了。</p>
+<h3 id="用于计算的Graph（图）">用于计算的Graph（图）</h3><p>也许你会认为TensorFlow Core的程序包含下面两部分组成：</p>
+<ul>
+<li>1.构建<strong>computational graph（用于计算的图）</strong></li>
+<li>2.运行<strong>computational graph（用于计算的图）</strong></li>
+</ul>
+<p>一个<strong>computational graph（用于计算的图）</strong>是一系列排列在graph的节点上的TensorFlow操作单元。让我们来构建一个简单的<strong>computational graph</strong>。每个节点接受0个或多个tensor作为输入，并且产生一个tensor作为输出。<strong>常量类型</strong>是节点的一种类型。正如所有的TensorFlow常量一样，它是不接收输入的，并且输出一个它内部存储的值。我们可以按照下面的方式来创建两个浮点Tensor节点<code>node1</code>和<code>node2</code>：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">node1 = <span class="keyword">tf</span>.constant(<span class="number">3.0</span>, <span class="keyword">tf</span>.float32)</div><div class="line">node2 = <span class="keyword">tf</span>.constant(<span class="number">4.0</span>) # also <span class="keyword">tf</span>.float32 implicitly</div><div class="line"><span class="keyword">print</span>(node1, node2)</div></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Tensor(<span class="string">"Const:0"</span>, shape=(), dtype=float32) Tensor(<span class="string">"Const_1:0"</span>, shape=(), dtype=float32)</div></pre></td></tr></table></figure>
+<p>你会注意到，打印节点并不会如你所想的输出<code>3.0</code>和<code>4.0</code>。相反，这些节点会在计算时分别产生<code>3.0</code>和<code>4.0</code>。为了实际评估这些节点，我们必须以一个 <strong>session（会话）</strong> 来运行 <strong>computational graph</strong>。<strong>session（会话）</strong> 封装了TensorFlow运行时的控件和状态。</p>
+<p>下面的代码创建了一个<code>Session</code>对象，并且执行了它的<code>run</code>方法来运行包含了<code>node1</code>和<code>node2</code>的<strong>computational graph</strong>的计算结果。通过在<strong>session</strong>中运行<strong>computational graph</strong>的代码如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sess = tf.Session()</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(sess.run([node1, node2])</span></span>)</div></pre></td></tr></table></figure>
+<p>我们看到了我们期望看到的<code>3.0</code>和<code>4.0</code>的输出:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="number">3.0</span>, <span class="number">4.0</span>]</div></pre></td></tr></table></figure>
+<p>我们可以通过将<code>Tensor</code>节点与操作节点（操作也是一种节点）组合起来的方式来构建更复杂的计算。例如，我们可以将两个常量节点执行加法操作，并且产生一个新的graph，代码如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">node3 = tf.add(node1, node2)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"node3: "</span>, node3)</span></span></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"sess.run(node3): "</span>,sess.run(node3)</span></span>)</div></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node3:  Tensor(<span class="string">"Add_2:0"</span>, shape=(), dtype=float32)</div><div class="line">sess.run(node3):  7.0</div></pre></td></tr></table></figure>
+<p>TensorFlow提供了一个叫做<strong>TensorBoard</strong>的很实用的程序，它可以将computational graph可视化的展示出来。下面是通过TensorBoard来可视化一个graph的效果：</p>
+<p><img src="/img/17_02_20/001.png" alt=""></p>
+<p>由于我们用到的是常量，因此这个图看起来并不是特别有趣，因为它总是产生一个恒定的结果。graph可以被参数化，并且通过<strong>placeholders（占位符）</strong>来接受外部的输入。<strong>placeholders（占位符）</strong>表示对稍后所提供的值的一个承诺。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">a</span> = tf.placeholder(tf.float32)</div><div class="line"><span class="attr">b</span> = tf.placeholder(tf.float32)</div><div class="line"><span class="attr">adder_node</span> = a + b  # + 是tf.add(a, b)的缩写形式</div></pre></td></tr></table></figure>
+<p>上面三行的表达形式看起来有点像一个方法，或lambda表达式：其中我们定义两个输入参数（<code>a</code>和<code>b</code>），然后对它们执行一个操作。我们可以通过多个输入来计算这个graph的执行结果，其中我们的输入是通过<code>feed_dict</code>参数来指定对这些<strong>placeholders（占位符）</strong>提供具体值的<code>Tensors</code>的输入的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">print</span>(<span class="selector-tag">sess</span><span class="selector-class">.run</span>(<span class="selector-tag">adder_node</span>, &#123;<span class="attribute">a</span>: <span class="number">3</span>, b:<span class="number">4.5</span>&#125;))</div><div class="line"><span class="selector-tag">print</span>(<span class="selector-tag">sess</span><span class="selector-class">.run</span>(<span class="selector-tag">adder_node</span>, &#123;<span class="attribute">a</span>: [<span class="number">1</span>,<span class="number">3</span>], b: [<span class="number">2</span>, <span class="number">4</span>]&#125;))</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">7.5</span></div><div class="line">[ <span class="number">3.</span>  <span class="number">7.</span>]</div></pre></td></tr></table></figure>
+<p>在TensorBoard中，graph看起来是这个样子：</p>
+<p><img src="/img/17_02_20/002.png" alt=""></p>
+<p>我们可以通过添加其他操作，来让我们的<strong>computational graph</strong>看起来更复杂。例如：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">add_and_triple </span>= <span class="keyword">adder_node </span>* <span class="number">3</span>.</div><div class="line"><span class="symbol">print</span>(sess.run(<span class="keyword">add_and_triple, </span>&#123;a: <span class="number">3</span>, <span class="keyword">b:4.5&#125;))</span></div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">22<span class="selector-class">.5</span></div></pre></td></tr></table></figure>
+<p>上面的computational graph在TensorBoard中看起来是这样的：</p>
+<p><img src="/img/17_02_20/003.png" alt=""></p>
+<p>在机器学习中，我们通常需要一个可以接受任意输入的模型，例如上面的模型。为了使模型可训练，我们需要能够修改<code>graph</code>以获得具有相同输入的新输出。<strong>Variables（变量）</strong>允许我们向graph中添加可训练的参数。它们由一个类型和初始值组成：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">W</span> = tf.Variable([.<span class="number">3</span>], tf.float32)</div><div class="line"><span class="attr">b</span> = tf.Variable([-.<span class="number">3</span>], tf.float32)</div><div class="line"><span class="attr">x</span> = tf.placeholder(tf.float32)</div><div class="line"><span class="attr">linear_model</span> = W * x + b</div></pre></td></tr></table></figure>
+<p>当调用<code>tf.constant</code>时，常量被初始化，它们的值永远不会改变。相比之下，变量<code>tf.Variable</code>在调用时不会被初始化。要初始化TensorFlow程序中的所有变量，必须显式调用特殊的初始化操作，如下所示：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">init</span> = tf.global_variables_initializer()</div><div class="line">sess.run(<span class="keyword">init</span>)</div></pre></td></tr></table></figure>
+<p><code>init</code>是TensorFlow的sub-graph的一个重要的操作，它用于初始化所有的全局变量。在这里直到我们调用<code>sess.run</code>之前，变量是未初始化的。</p>
+<p>由于<code>x</code>是一个占位符，因此我们可以同时计算<code>linear_model</code>几个值，如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">print</span>(<span class="selector-tag">sess</span><span class="selector-class">.run</span>(<span class="selector-tag">linear_model</span>, &#123;<span class="attribute">x</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]&#125;))</div></pre></td></tr></table></figure>
+<p>产生如下输出：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ <span class="number">0.</span>          <span class="number">0.30000001</span>  <span class="number">0.60000002</span>  <span class="number">0.90000004</span>]</div></pre></td></tr></table></figure>
+<p>我们创建了一个模型，但目前我们还不知道它是好是坏。为了评估训练数据的模型，我们需要一个<strong>loss function（损失函数）</strong>，我们可以用一个<code>y</code>占位符来提供所需的值。</p>
+<p>损失函数会计算出当前训练出的模型和所提供的数据之间的距离。我们将使用用于线性回归的标准损失模型，其原理是将当前模型和提供的数据之间的增量的平方求和。<code>linear_model - y</code>创建一个向量，其中每个元素是相应的样本的误差增量。我们称之为<code>tf.square</code>平方误差。然后，我们使用<code>tf.reduce_sum</code>将所有平方误差求和，以创建一个单一的标量，用于提取出表示所有样本的总误差值：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">y</span> = <span class="keyword">tf</span>.placeholder(<span class="keyword">tf</span>.float32)</div><div class="line">squared_deltas = <span class="keyword">tf</span>.square(linear_model - <span class="keyword">y</span>)</div><div class="line">loss = <span class="keyword">tf</span>.reduce_sum(squared_deltas)</div><div class="line"><span class="keyword">print</span>(sess.run(loss, &#123;<span class="keyword">x</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], <span class="keyword">y</span>:[<span class="number">0</span>,-<span class="number">1</span>,-<span class="number">2</span>,-<span class="number">3</span>]&#125;))</div></pre></td></tr></table></figure>
+<p>输出损失值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">23<span class="selector-class">.66</span></div></pre></td></tr></table></figure>
+<p>我们可以通过手动的将<code>W</code>和<code>b</code>的值重新赋值为<code>-1</code>和<code>1</code>的方式来提高我们的算法的效果。变量可以初始化后将数据提供给<code>tf.Variable</code>对象，也可以使用像<code>tf.assign</code>这样的操作来更改。例如，<code>W=-1</code>和<code>b=1</code>是我们的模型中的最佳参数。因此我们可以更改<code>W</code>和<code>b</code>的值：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fixW = tf.assign(W, <span class="string">[-1.]</span>)</div><div class="line">fixb = tf.assign(b, <span class="string">[1.]</span>)</div><div class="line">sess.run(<span class="string">[fixW, fixb]</span>)</div><div class="line">print(sess.run(loss, &#123;x:<span class="string">[1,2,3,4]</span>, y:<span class="string">[0,-1,-2,-3]</span>&#125;))</div></pre></td></tr></table></figure>
+<p>最终输出结果的损失是0：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0<span class="selector-class">.0</span></div></pre></td></tr></table></figure>
+<p>我们猜到了“最完美”的参数<code>W</code>和<code>b</code>的值，但机器学习的目标是<strong>自动</strong>找到正确的模型参数。我们将在下一节中说明如何完成这一任务。</p>
+<h2 id="tf-train_API">tf.train API</h2><p>机器学习的完整讨论超出了本教程的范围。然而，TensorFlow提供了缓慢地改变每个变量以便<strong>最小化损失函数</strong>的<strong>optimizers（优化器）</strong>。其中最简单的优化器是<strong>gradient descent（梯度下降）</strong>。其原理是根据相对于该变量的损失导数的大小修改每个变量的值。一般来说，人工计算导数是繁琐的并且容易出错。因此，TensorFlow可以使用<code>tf.gradients</code>函数，来自动的产生当前所给模型描述的导数。为了简化操作，优化器通常会自动地为您执行此操作。例如：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">optimizer</span> = tf.train.GradientDescentOptimizer(<span class="number">0.01</span>)</div><div class="line"><span class="attr">train</span> = optimizer.minimize(loss)</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">sess</span><span class="selector-class">.run</span>(<span class="selector-tag">init</span>) # 将值重置为不正确的默认值</div><div class="line"><span class="selector-tag">for</span> <span class="selector-tag">i</span> <span class="selector-tag">in</span> <span class="selector-tag">range</span>(1000):</div><div class="line">  <span class="selector-tag">sess</span><span class="selector-class">.run</span>(<span class="selector-tag">train</span>, &#123;<span class="attribute">x</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], y:[<span class="number">0</span>,-<span class="number">1</span>,-<span class="number">2</span>,-<span class="number">3</span>]&#125;)</div><div class="line"></div><div class="line"><span class="selector-tag">print</span>(<span class="selector-tag">sess</span><span class="selector-class">.run</span>(<span class="selector-attr">[W, b]</span>))</div></pre></td></tr></table></figure>
+<p>最终训练得出的模型参数：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[array([<span class="number">-0.9999969</span>], dtype=float32), array([ <span class="number">0.99999082</span>],</div><div class="line"> dtype=float32)]</div></pre></td></tr></table></figure>
+<p>现在我们已经完成了实际的机器学习！完成这个简单的线性回归不需要太多的TensorFlow核心代码，但是更复杂的学习模型和方法通常需要更多的代码。因此，TensorFlow为通用模式、结构和功能提供了一套更高级别的抽象实现。我们将在下一节中学习如何使用这些抽象实现。</p>
+<h3 id="完整的程序">完整的程序</h3><p>完成的可训练线性回归模型程序如下所示：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">import</span> numpy as np</div><div class="line"><span class="built_in">import</span> tensorflow as tf</div><div class="line"></div><div class="line"><span class="comment"># Model parameters</span></div><div class="line"><span class="attr">W</span> = tf.Variable([.<span class="number">3</span>], tf.float32)</div><div class="line"><span class="attr">b</span> = tf.Variable([-.<span class="number">3</span>], tf.float32)</div><div class="line"><span class="comment"># Model input and output</span></div><div class="line"><span class="attr">x</span> = tf.placeholder(tf.float32)</div><div class="line"><span class="attr">linear_model</span> = W * x + b</div><div class="line"><span class="attr">y</span> = tf.placeholder(tf.float32)</div><div class="line"><span class="comment"># loss</span></div><div class="line"><span class="attr">loss</span> = tf.reduce_sum(tf.square(linear_model - y)) <span class="comment"># sum of the squares</span></div><div class="line"><span class="comment"># optimizer</span></div><div class="line"><span class="attr">optimizer</span> = tf.train.GradientDescentOptimizer(<span class="number">0.01</span>)</div><div class="line"><span class="attr">train</span> = optimizer.minimize(loss)</div><div class="line"><span class="comment"># training data</span></div><div class="line"><span class="attr">x_train</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="attr">y_train</span> = [<span class="number">0</span>,-<span class="number">1</span>,-<span class="number">2</span>,-<span class="number">3</span>]</div><div class="line"><span class="comment"># training loop</span></div><div class="line"><span class="attr">init</span> = tf.global_variables_initializer()</div><div class="line"><span class="attr">sess</span> = tf.Session()</div><div class="line">sess.run(init) <span class="comment"># reset values to wrong</span></div><div class="line">for i <span class="keyword">in</span> range(<span class="number">1000</span>):</div><div class="line">  sess.run(train, &#123;x:x_train, y:y_train&#125;)</div><div class="line"></div><div class="line"><span class="comment"># evaluate training accuracy</span></div><div class="line">curr_W, curr_b, <span class="attr">curr_loss</span>  = sess.run([W, b, loss], &#123;x:x_train, y:y_train&#125;)</div><div class="line">print(<span class="string">"W: %s b: %s loss: %s"</span>%(curr_W, curr_b, curr_loss))</div></pre></td></tr></table></figure>
+<p>当执行它时，会产生如下结果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">W</span>: <span class="selector-attr">[-0.9999969]</span> <span class="selector-tag">b</span>: <span class="selector-attr">[ 0.99999082]</span> <span class="selector-tag">loss</span>: 5<span class="selector-class">.69997e-11</span></div></pre></td></tr></table></figure>
+<p>这个更复杂的程序也可以在TensorBoard中可视化：</p>
+<p><img src="/img/17_02_20/004.png" alt=""></p>
+<h2 id="tf-contrib-learn">tf.contrib.learn</h2><p><code>tf.contrib.learn</code>是一个高级别的TensorFlow库，它简化了机器学习的机制，包括：</p>
+<ul>
+<li>运行训练循环</li>
+<li>运行评估循环</li>
+<li>管理数据集</li>
+<li>管理数据导入</li>
+</ul>
+<p><code>tf.contrib.learn</code>定义了许多常见的模型。</p>
+<h3 id="基本用法">基本用法</h3><p>请注意，线性回归在使用<code>tf.contrib.learn</code>的情况下变得更简单了：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">import</span> tensorflow as tf</div><div class="line"><span class="comment"># NumPy is often used to load, manipulate and preprocess data.</span></div><div class="line"><span class="built_in">import</span> numpy as np</div><div class="line"></div><div class="line"><span class="comment"># Declare list of features. We only have one real-valued feature. There are many</span></div><div class="line"><span class="comment"># other types of columns that are more complicated and useful.</span></div><div class="line"><span class="attr">features</span> = [tf.contrib.layers.real_valued_column(<span class="string">"x"</span>, <span class="attr">dimension=1)]</span></div><div class="line"></div><div class="line"><span class="comment"># An estimator is the front end to invoke training (fitting) and evaluation</span></div><div class="line"><span class="comment"># (inference). There are many predefined types like linear regression,</span></div><div class="line"><span class="comment"># logistic regression, linear classification, logistic classification, and</span></div><div class="line"><span class="comment"># many neural network classifiers and regressors. The following code</span></div><div class="line"><span class="comment"># provides an estimator that does linear regression.</span></div><div class="line"><span class="attr">estimator</span> = tf.contrib.learn.LinearRegressor(<span class="attr">feature_columns=features)</span></div><div class="line"></div><div class="line"><span class="comment"># TensorFlow provides many helper methods to read and set up data sets.</span></div><div class="line"><span class="comment"># Here we use `numpy_input_fn`. We have to tell the function how many batches</span></div><div class="line"><span class="comment"># of data (num_epochs) we want and how big each batch should be.</span></div><div class="line"><span class="attr">x</span> = np.array([<span class="number">1</span>., <span class="number">2</span>., <span class="number">3</span>., <span class="number">4</span>.])</div><div class="line"><span class="attr">y</span> = np.array([<span class="number">0</span>., -<span class="number">1</span>., -<span class="number">2</span>., -<span class="number">3</span>.])</div><div class="line"><span class="attr">input_fn</span> = tf.contrib.learn.io.numpy_input_fn(&#123;<span class="string">"x"</span>:x&#125;, y, <span class="attr">batch_size=4,</span></div><div class="line">                                              <span class="attr">num_epochs=1000)</span></div><div class="line"></div><div class="line"><span class="comment"># We can invoke 1000 training steps by invoking the `fit` method and passing the</span></div><div class="line"><span class="comment"># training data set.</span></div><div class="line">estimator.fit(<span class="attr">input_fn=input_fn,</span> <span class="attr">steps=1000)</span></div><div class="line"></div><div class="line"><span class="comment"># Here we evaluate how well our model did. In a real example, we would want</span></div><div class="line"><span class="comment"># to use a separate validation and testing data set to avoid overfitting.</span></div><div class="line">estimator.evaluate(<span class="attr">input_fn=input_fn)</span></div></pre></td></tr></table></figure>
+<p>当执行它时，会产生如下结果：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="string">'global_step'</span>: <span class="number">1000</span>, <span class="string">'loss'</span>: <span class="number">1.9650059</span>e-<span class="number">11</span>&#125;</div></pre></td></tr></table></figure>
+<h3 id="定制模型">定制模型</h3><p><code>tf.contrib.learn</code>不会将你锁定在预定义模型中。假设我们想创建一个未内置到TensorFlow中的自定义模型。我们仍然可以保留<code>tf.contrib.learn</code>的数据集、馈送、训练等的高级抽象。为了说明，我们将演示如何使用我们的较低级别TensorFlow API的知识来实现​​我们自己的等效模型到<code>LinearRegressor</code>。</p>
+<p>要定义与<code>tf.contrib.learn</code>一起使用的自定义模型，我们需要使用<code>tf.contrib.learn.Estimator</code>。 <code>tf.contrib.learn.LinearRegressor</code>实际上是<code>tf.contrib.learn.Estimator</code>的子类。替代子类<code>Estimator</code>，我们只是提供<code>Estimator</code>一个<code>model_fn</code>函数，用于告诉<code>tf.contrib.learn</code>如何评估预测、训练步骤和损失。代码如下：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">import</span> numpy as np</div><div class="line"><span class="built_in">import</span> tensorflow as tf</div><div class="line"><span class="comment"># Declare list of features, we only have one real-valued feature</span></div><div class="line">def model(features, labels, mode):</div><div class="line">  <span class="comment"># Build a linear model and predict values</span></div><div class="line">  <span class="attr">W</span> = tf.get_variable(<span class="string">"W"</span>, [<span class="number">1</span>], <span class="attr">dtype=tf.float64)</span></div><div class="line">  <span class="attr">b</span> = tf.get_variable(<span class="string">"b"</span>, [<span class="number">1</span>], <span class="attr">dtype=tf.float64)</span></div><div class="line">  <span class="attr">y</span> = W*features['x'] + b</div><div class="line">  <span class="comment"># Loss sub-graph</span></div><div class="line">  <span class="attr">loss</span> = tf.reduce_sum(tf.square(y - labels))</div><div class="line">  <span class="comment"># Training sub-graph</span></div><div class="line">  <span class="attr">global_step</span> = tf.train.get_global_step()</div><div class="line">  <span class="attr">optimizer</span> = tf.train.GradientDescentOptimizer(<span class="number">0.01</span>)</div><div class="line">  <span class="attr">train</span> = tf.group(optimizer.minimize(loss),</div><div class="line">                   tf.assign_add(global_step, <span class="number">1</span>))</div><div class="line">  <span class="comment"># ModelFnOps connects subgraphs we built to the</span></div><div class="line">  <span class="comment"># appropriate functionality.</span></div><div class="line">  return tf.contrib.learn.ModelFnOps(</div><div class="line">      <span class="attr">mode=mode,</span> <span class="attr">predictions=y,</span></div><div class="line">      <span class="attr">loss=</span> loss,</div><div class="line">      <span class="attr">train_op=train)</span></div><div class="line"></div><div class="line"><span class="attr">estimator</span> = tf.contrib.learn.Estimator(<span class="attr">model_fn=model)</span></div><div class="line"><span class="comment"># define our data set</span></div><div class="line"><span class="attr">x=np.array([1.,</span> <span class="number">2</span>., <span class="number">3</span>., <span class="number">4</span>.])</div><div class="line"><span class="attr">y=np.array([0.,</span> -<span class="number">1</span>., -<span class="number">2</span>., -<span class="number">3</span>.])</div><div class="line"><span class="attr">input_fn</span> = tf.contrib.learn.io.numpy_input_fn(&#123;<span class="string">"x"</span>: x&#125;, y, <span class="number">4</span>, <span class="attr">num_epochs=1000)</span></div><div class="line"></div><div class="line"><span class="comment"># train</span></div><div class="line">estimator.fit(<span class="attr">input_fn=input_fn,</span> <span class="attr">steps=1000)</span></div><div class="line"><span class="comment"># evaluate our model</span></div><div class="line">print(estimator.evaluate(<span class="attr">input_fn=input_fn,</span> <span class="attr">steps=10))</span></div></pre></td></tr></table></figure>
+<p>当执行它时，会产生如下结果：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="string">'loss'</span>: <span class="number">5.9819476</span>e-<span class="number">11</span>, <span class="string">'global_step'</span>: <span class="number">1000</span>&#125;</div></pre></td></tr></table></figure>
+<p>注意，自定义<code>model()</code>函数的内容与低版本API的手册中的模型训练循环非常相似。</p>
+<h2 id="下一步">下一步</h2><p>现在你了解到了TensorFlow的基本运作的知识。我们还有几个教程，您可以查看以了解更多。如果你是机器学习的初学者，请参阅<a href="/2017/02/22/【Tensorflow%20r1.0%20文档翻译】机器学习的HelloWorld%20--%20MNIST手写数字识别/">【深度学习的HelloWorld – MNIST手写数字识别】</a>，否则请参阅<a href="/2017/02/26/【Tensorflow%20r1.0%20文档翻译】深入MNIST--专家级/">【深入MNIST – 专家级】</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/20/【Tensorflow r1.0 文档翻译】入门教程/" rel="next" title="【Tensorflow r1.0 文档翻译】入门教程">
+                <i class="fa fa-chevron-left"></i> 【Tensorflow r1.0 文档翻译】入门教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/22/【Tensorflow r1.0 文档翻译】机器学习的HelloWorld -- MNIST手写数字识别/" rel="prev" title="【Tensorflow r1.0 文档翻译】机器学习的HelloWorld -- MNIST手写数字识别">
+                【Tensorflow r1.0 文档翻译】机器学习的HelloWorld -- MNIST手写数字识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow入门"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensors（张量）"><span class="nav-number">2.</span> <span class="nav-text">Tensors（张量）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow核心教程"><span class="nav-number">3.</span> <span class="nav-text">TensorFlow核心教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入TensorFlow"><span class="nav-number">3.1.</span> <span class="nav-text">导入TensorFlow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于计算的Graph（图）"><span class="nav-number">3.2.</span> <span class="nav-text">用于计算的Graph（图）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-train_API"><span class="nav-number">4.</span> <span class="nav-text">tf.train API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的程序"><span class="nav-number">4.1.</span> <span class="nav-text">完整的程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-contrib-learn"><span class="nav-number">5.</span> <span class="nav-text">tf.contrib.learn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">5.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制模型"><span class="nav-number">5.2.</span> <span class="nav-text">定制模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下一步"><span class="nav-number">6.</span> <span class="nav-text">下一步</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

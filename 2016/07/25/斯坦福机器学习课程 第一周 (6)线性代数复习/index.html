@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="线性代数复习
+这个可选模块提供了线性代数概念的复习。在接下来的课程中，对线性代数的基本理解是必要的，特别是当我们开始涵盖多个变量的模型时。
+
+矩阵和向量视频地址
+我们先复习一下线性代数的知识。在这段视频中，我会向大家介绍矩阵和向量的概念。
+矩阵
+Matrix:Rectangular array of numbers.
+矩阵是指由数字组成的矩形阵列并写在方括号中间。
+
+例如下面就是一个矩阵：
+$$\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第一周 (6)线性代数复习">
+<meta property="og:url" content="http://studyai.site/2016/07/25/斯坦福机器学习课程 第一周 (6)线性代数复习/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="线性代数复习
+这个可选模块提供了线性代数概念的复习。在接下来的课程中，对线性代数的基本理解是必要的，特别是当我们开始涵盖多个变量的模型时。
+
+矩阵和向量视频地址
+我们先复习一下线性代数的知识。在这段视频中，我会向大家介绍矩阵和向量的概念。
+矩阵
+Matrix:Rectangular array of numbers.
+矩阵是指由数字组成的矩形阵列并写在方括号中间。
+
+例如下面就是一个矩阵：
+$$\">
+<meta property="og:image" content="http://studyai.site/img/16_07_25/001.png">
+<meta property="og:updated_time" content="2016-07-25T16:15:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第一周 (6)线性代数复习">
+<meta name="twitter:description" content="线性代数复习
+这个可选模块提供了线性代数概念的复习。在接下来的课程中，对线性代数的基本理解是必要的，特别是当我们开始涵盖多个变量的模型时。
+
+矩阵和向量视频地址
+我们先复习一下线性代数的知识。在这段视频中，我会向大家介绍矩阵和向量的概念。
+矩阵
+Matrix:Rectangular array of numbers.
+矩阵是指由数字组成的矩形阵列并写在方括号中间。
+
+例如下面就是一个矩阵：
+$$\">
+<meta name="twitter:image" content="http://studyai.site/img/16_07_25/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/07/25/斯坦福机器学习课程 第一周 (6)线性代数复习/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第一周 (6)线性代数复习 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/07/25/斯坦福机器学习课程 第一周 (6)线性代数复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第一周 (6)线性代数复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-25T01:51:00+08:00">
+                2016-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/07/25/斯坦福机器学习课程 第一周 (6)线性代数复习/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第一周 (6)线性代数复习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="线性代数复习">线性代数复习</h2><blockquote>
+<p>这个可选模块提供了线性代数概念的复习。在接下来的课程中，对线性代数的基本理解是必要的，特别是当我们开始涵盖多个变量的模型时。</p>
+</blockquote>
+<h3 id="矩阵和向量">矩阵和向量</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/38jIT/matrices-and-vectors" target="_blank" rel="external">视频地址</a></p>
+<p>我们先复习一下线性代数的知识。在这段视频中，我会向大家介绍<strong>矩阵</strong>和<strong>向量</strong>的概念。</p>
+<h4 id="矩阵">矩阵</h4><blockquote>
+<p><strong>Matrix</strong>:Rectangular array of numbers.</p>
+<p><strong>矩阵</strong>是指由数字组成的矩形阵列并写在方括号中间。</p>
+</blockquote>
+<p>例如下面就是一个矩阵：</p>
+<p>$$<br>\begin{bmatrix}<br>1902 &amp; 191 \\<br>1371 &amp; 821 \\<br>949 &amp; 1437 \\<br>147 &amp; 1448<br>\end{bmatrix}<br>$$</p>
+<p>这些数字可能是机器学习问题的特征值，也可能表示其他意思。</p>
+<p>接下来看一下其他矩阵的例子：</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 3 \\<br>4 &amp; 5 &amp; 6<br>\end{bmatrix}<br>$$</p>
+<p>这里我们还需要知道的是，矩阵的维度应该写作：矩阵的行数乘以列数。具体到第一个例子是一个$4 × 2$的矩阵(即行数乘以列数)。第二个例子中的矩阵是一个$2 × 3$的矩阵。所以我们说这个矩阵的维度是$2 × 3$维。</p>
+<p>有时候大家会发现会使用字母$\Re$来表示一个矩阵的维度。例如第一个例子中可以写作一个$\Re^{4 × 2}$的矩阵，第二个例子中可以说是一个$\Re^{2 × 3}$的矩阵。</p>
+<p>接下来让我们来谈谈如何表达矩阵的某个特定元素。这里我说矩阵元素(这里指矩阵内部的某个数)。</p>
+<p>我们通常使用矩阵名加下标的方式来表达矩阵中的某个元素。例如:</p>
+<p>$$<br>A_{ij}<br>$$</p>
+<p>表达的是矩阵A中第$i$行，第$j$列的元素。</p>
+<p>在第一个例子的矩阵中，$A_{11}$就等于1402，$A_{11}$就等于191。</p>
+<p>如果你写出了$A_{43}$，这应该表示的是第四行第三列。而你知道 这个矩阵没有第三列。因此这是未定义的。或者你可以认为这是一个错误。</p>
+<p>因此，矩阵提供了一种很好的方式，让你快速整理索引和访问大量数据。所以，这就是矩阵的定义。</p>
+<h4 id="向量">向量</h4><p>接下来让我们来谈谈什么是向量。</p>
+<blockquote>
+<p><strong>Vector</strong>:An n × 1 matrix.<br><strong>向量</strong>是只有一列的矩阵。</p>
+</blockquote>
+<p>例如下面就是一个向量：</p>
+<p>$$<br>y =<br>\begin{bmatrix}<br>460 \\<br>232 \\<br>315 \\<br>178<br>\end{bmatrix}<br>$$</p>
+<p>另一个术语是:这是一个四维的向量。也就意味着这是一个含有4个元素的向量。而且前面我们讲矩阵的时候提到过，这个符号$\Re^{3 × 2}$表示的是一个3行2列的矩阵，而对于这个向量，我们也同样可以表示为集合$\Re^{4}$。</p>
+<p>我们将使用符号$y_{i}$来代表向量$y$的第$i$个元素。例如这里$y_{1}$表示第一个元素460，$y_{2}$表示第二个元素232。只有$y_{1}$至$y_{4}$是有意义的，因为这定义的是一个四维向量。</p>
+<p>此外事实上有两种方法来表达某个向量中某个索引：</p>
+<p><img src="/img/16_07_25/001.png" alt=""></p>
+<p>左边是<strong>1-索引向量</strong>，它的元素写作$y_{1}$，$y_{2}$，$y_{3}$，$y_{4}$。而右边的是<strong>0-索引向量</strong>，它的元素写作，$y_{0}$，$y_{1}$，$y_{2}$，$y_{3}$。这有点像一些初级语言中的数组。</p>
+<p>事实上在数学中，1-索引的情况比较多。而对于很多机器学习的应用问题来说0-索引向量为我们提供了一个更方便的符号表达。</p>
+<p>所以你应该默认我们使用的是1-索引法表示向量。在本课程的后面所有 关于线性代数的视频中，我都将使用1-索引法表示向量。</p>
+<p>但你要明白，当我们谈论到机器学习的应用问题时，如果我们需要使用0-索引向量的话，我会明确地告诉你</p>
+<p>最后，按照惯例，通常在书写矩阵和向量时大多数人会使用大写字母来表示矩阵。因此，我们要使用大写字母，如$A$、$B$、$C$、$X$来表示矩阵。而通常我们会使用小写字母，像$a$、$b$、$x$、$y$来表示数字或是原始的数字或标量或向量。这是实际的使用习惯，我们也经常看到使用小写字母$y$来表示向量，但我们平时是用大写字母来表示矩阵 。</p>
+<h3 id="加减法与数乘运算">加减法与数乘运算</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/R4hiJ/addition-and-scalar-multiplication" target="_blank" rel="external">视频地址</a></p>
+<p>在这段视频中，我们将要介绍矩阵的加减法以及数乘运算。</p>
+<h4 id="矩阵的加减法运算">矩阵的加减法运算</h4><p>让我们从下面这个例子开始：</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 0 \\<br>2 &amp; 5 \\<br>3 &amp; 1<br>\end{bmatrix}<br>+<br>\begin{bmatrix}<br>4 &amp; 0.5 \\<br>2 &amp; 5 \\<br>0 &amp; 1<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>5 &amp; 0.5 \\<br>4 &amp; 10 \\<br>3 &amp; 2<br>\end{bmatrix}<br>$$</p>
+<p>假设有这样两个矩阵，如果想对它们做求和运算，应该怎么做呢？答案是：如果你想将两个矩阵相加，你只需要将这两个矩阵的每一个元素都逐个相加即可。</p>
+<p>这里大家不难发现，<strong>只有相同维度的两个矩阵才能相加</strong>。对于这个例子而言，是两个3行2列的矩阵相加，这是一个3行2列的矩阵，因此这两个矩阵相加的结果也是一个3行2列的矩阵。所以你只能将相同维度的矩阵，进行相加运算，同时所得到的结果将会是一个新的矩阵，这个矩阵与相加的两个矩阵维度相同。</p>
+<p>反过来，如果你想将下面这样两个维度不相同的矩阵相加，就会出现错误了。所以我们不能将它们相加，这两个矩阵的和是没有意义的。</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 0 \\<br>2 &amp; 5 \\<br>3 &amp; 1<br>\end{bmatrix}<br>+<br>\begin{bmatrix}<br>4 &amp; 0.5 \\<br>2 &amp; 5<br>\end{bmatrix}<br>=<br>error<br>$$</p>
+<p>这就是矩阵的加法运算。</p>
+<h4 id="矩阵的数乘运算">矩阵的数乘运算</h4><p>矩阵的数乘运算指的是用标量去乘以矩阵中的每个元素，最终得到的结果就是数乘运算的结果矩阵。这里的标量指的是实数。</p>
+<p>例如下面两个例子：</p>
+<p>$$<br>3 ×<br>\begin{bmatrix}<br>1 &amp; 0 \\<br>2 &amp; 5 \\<br>3 &amp; 1<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>3 &amp; 0 \\<br>6 &amp; 15 \\<br>9 &amp; 3<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{bmatrix}<br>4 &amp; 0 \\<br>6 &amp; 3<br>\end{bmatrix}<br>/ 4<br>=<br>1/4<br>\begin{bmatrix}<br>4 &amp; 0 \\<br>6 &amp; 3<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>1 &amp; 0 \\<br>3/2 &amp; 3/4<br>\end{bmatrix}<br>$$</p>
+<h3 id="矩阵乘法">矩阵乘法</h3><p>见<a href="/2015/11/29/线性代数01-矩阵乘法/">矩阵乘法</a></p>
+<h3 id="矩阵乘法性质">矩阵乘法性质</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/W1LNU/matrix-multiplication-properties" target="_blank" rel="external">视频地址</a></p>
+<p>本节主要介绍矩阵乘法的性质。</p>
+<h4 id="矩阵乘法不满足交换律">矩阵乘法不满足交换律</h4><blockquote>
+<p>Let A and B be matrices.Then in general, A × B ≠ B × A.(not commutative.)<br>如果A和B是矩阵，那么一般情况下，A × B ≠ B × A (不满足交换律)。</p>
+</blockquote>
+<p>例如：</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 1 \\<br>0 &amp; 0<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 0 \\<br>2 &amp; 0<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>2 &amp; 0 \\<br>0 &amp; 0<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{bmatrix}<br>0 &amp; 0 \\<br>2 &amp; 0<br>\end{bmatrix}<br>\begin{bmatrix}<br>1 &amp; 1 \\<br>0 &amp; 0<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>0 &amp; 0 \\<br>2 &amp; 2<br>\end{bmatrix}<br>$$</p>
+<h4 id="矩阵乘法满足结合律">矩阵乘法满足结合律</h4><p>$$<br>A × B × C = (A × B) × C = A × (B × C)<br>$$</p>
+<h4 id="单位矩阵">单位矩阵</h4><p>定义单位矩阵为$I$(或者$I_{n×n}$)。单位矩阵满足:</p>
+<p>$$<br>I × Z = Z × I = Z<br>$$</p>
+<p>其中$Z$是任意矩阵。</p>
+<p>实际上单位矩阵就是对角线上元素为1，其他元素为0的方阵。例如下面几个都是单位矩阵：</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 0 \\<br>0 &amp; 1<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 0 &amp; 0\\<br>0 &amp; 1 &amp; 0\\<br>0 &amp; 0 &amp; 1<br>\end{bmatrix}<br>$$</p>
+<h3 id="矩阵的逆和矩阵的转置">矩阵的逆和矩阵的转置</h3><h4 id="矩阵的逆">矩阵的逆</h4><p>矩阵的逆以及求解逆的方式，见<a href="/2015/11/29/线性代数02-矩阵的逆/">矩阵的逆</a></p>
+<p>奇异矩阵的介绍，见<a href="/2015/11/30/线性代数04-奇异矩阵/">奇异矩阵</a></p>
+<h4 id="矩阵的转置">矩阵的转置</h4><p>如果用$A$表示一个矩阵，那么矩阵A的转置就是$A^{T}$。矩阵的转置就相当于将这个矩阵按照45度角求镜像，矩阵的行变为矩阵的列，矩阵的列变为矩阵的行。</p>
+<blockquote>
+<p>Let A be an $m × n$ matrix, and let $B = A^{T}$.Then $B$ is an $n × m$ matrix, and $B_{ij} = A_{ji}$.<br>如果A是一个$m × n$的矩阵，并且矩阵B是A的转置，那么B是一个$n × m$的矩阵，并且$B_{ij} = A_{ji}$。</p>
+</blockquote>
+<p>举个例子：</p>
+<p>$$<br>A =<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 0\\<br>3 &amp; 5 &amp; 9<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>A^{T} =<br>\begin{bmatrix}<br>1 &amp; 3\\<br>2 &amp; 5\\<br>0 &amp; 9<br>\end{bmatrix}<br>$$</p>
+<p>矩阵的转置就是第一个矩阵的第一行转变为转置的第一列，第二行转变为第二列。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/24/斯坦福机器学习课程 第一周 (5)参数学习/" rel="next" title="斯坦福机器学习课程 第一周 (5)参数学习-梯度下降算法">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第一周 (5)参数学习-梯度下降算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/26/斯坦福机器学习课程 第二周 (1)编程环境设置-Octave:MATLAB/" rel="prev" title="斯坦福机器学习课程 第二周 (1)编程环境设置-Octave/MATLAB">
+                斯坦福机器学习课程 第二周 (1)编程环境设置-Octave/MATLAB <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性代数复习"><span class="nav-number">1.</span> <span class="nav-text">线性代数复习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵和向量"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵和向量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵"><span class="nav-number">1.1.1.</span> <span class="nav-text">矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向量"><span class="nav-number">1.1.2.</span> <span class="nav-text">向量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加减法与数乘运算"><span class="nav-number">1.2.</span> <span class="nav-text">加减法与数乘运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵的加减法运算"><span class="nav-number">1.2.1.</span> <span class="nav-text">矩阵的加减法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵的数乘运算"><span class="nav-number">1.2.2.</span> <span class="nav-text">矩阵的数乘运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵乘法性质"><span class="nav-number">1.4.</span> <span class="nav-text">矩阵乘法性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵乘法不满足交换律"><span class="nav-number">1.4.1.</span> <span class="nav-text">矩阵乘法不满足交换律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵乘法满足结合律"><span class="nav-number">1.4.2.</span> <span class="nav-text">矩阵乘法满足结合律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单位矩阵"><span class="nav-number">1.4.3.</span> <span class="nav-text">单位矩阵</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵的逆和矩阵的转置"><span class="nav-number">1.5.</span> <span class="nav-text">矩阵的逆和矩阵的转置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵的逆"><span class="nav-number">1.5.1.</span> <span class="nav-text">矩阵的逆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵的转置"><span class="nav-number">1.5.2.</span> <span class="nav-text">矩阵的转置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

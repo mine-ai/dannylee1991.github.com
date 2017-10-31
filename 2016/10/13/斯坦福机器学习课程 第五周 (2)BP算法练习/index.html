@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程,神经网络," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="将参数从矩阵展开成向量视频地址
+
+在这一节中，我想快速地向你介绍一个细节的实现过程，怎样把你的参数从矩阵展开成向量，以便我们在高级最优化步骤中的使用需要。
+
+123function [jVal, gradient] = costFunction(theta)	...optTheta = fminunc(@costFunction, initialTheta, options)
+具体来讲，对代价函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第五周 (2)BP算法练习">
+<meta property="og:url" content="http://studyai.site/2016/10/13/斯坦福机器学习课程 第五周 (2)BP算法练习/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="将参数从矩阵展开成向量视频地址
+
+在这一节中，我想快速地向你介绍一个细节的实现过程，怎样把你的参数从矩阵展开成向量，以便我们在高级最优化步骤中的使用需要。
+
+123function [jVal, gradient] = costFunction(theta)	...optTheta = fminunc(@costFunction, initialTheta, options)
+具体来讲，对代价函数">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/001.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/003.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/002.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/005.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/004.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/006.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/007.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/008.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/009.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/010.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/011.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/012.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/013.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/014.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/015.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/016.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/017.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/018.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/019.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/020.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/021.png">
+<meta property="og:image" content="http://studyai.site/img/16_10_13/022.png">
+<meta property="og:updated_time" content="2016-10-16T10:57:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第五周 (2)BP算法练习">
+<meta name="twitter:description" content="将参数从矩阵展开成向量视频地址
+
+在这一节中，我想快速地向你介绍一个细节的实现过程，怎样把你的参数从矩阵展开成向量，以便我们在高级最优化步骤中的使用需要。
+
+123function [jVal, gradient] = costFunction(theta)	...optTheta = fminunc(@costFunction, initialTheta, options)
+具体来讲，对代价函数">
+<meta name="twitter:image" content="http://studyai.site/img/16_10_13/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/10/13/斯坦福机器学习课程 第五周 (2)BP算法练习/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第五周 (2)BP算法练习 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/10/13/斯坦福机器学习课程 第五周 (2)BP算法练习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第五周 (2)BP算法练习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T00:08:00+08:00">
+                2016-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/10/13/斯坦福机器学习课程 第五周 (2)BP算法练习/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第五周 (2)BP算法练习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="将参数从矩阵展开成向量">将参数从矩阵展开成向量</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/60Uxp/implementation-note-unrolling-parameters" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>在这一节中，我想快速地向你介绍一个细节的实现过程，怎样把你的参数从矩阵展开成向量，以便我们在高级最优化步骤中的使用需要。</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[jVal, gradient]</span> = <span class="title">costFunction</span><span class="params">(theta)</span></span></div><div class="line">	...</div><div class="line">optTheta = fminunc(@costFunction, initialTheta, options)</div></pre></td></tr></table></figure>
+<p>具体来讲，对代价函数<code>costFunction(theta)</code>传入参数<code>theta</code>，函数返回值是代价函数<code>jVal</code>以及导数值<code>gradient</code>，然后你可以将返回值传递给高级最优化算法<code>fminunc</code>。</p>
+<blockquote>
+<p>顺便提一下，<code>fminunc</code>并不是唯一的算法，你也可以使用别的优化算法，</p>
+</blockquote>
+<p>其中<code>costFunction</code>中的参数、返回值<code>gradient</code>以及<code>fiminunc</code>的参数<code>initialTheta</code>都是一个$R^{n+1}$阶的向量。</p>
+<p><img src="/img/16_10_13/001.png" alt=""></p>
+<p>这部分在我们使用逻辑回归的时候运行顺利，但现在对于神经网络，我们的参数将不再是向量，而是矩阵了。</p>
+<p>以一个拥有4层的完整的神经网络为例：</p>
+<p>其参数<code>theta</code>所代表的参数矩阵为矩阵为$Θ^{(1)}$,$Θ^{(2)}$,$Θ^{(3)}$，在Octave中，我们可以设为<code>Theta1</code>,<code>Theta2</code>,<code>Theta3</code>。</p>
+<p><img src="/img/16_10_13/003.png" alt=""></p>
+<p><img src="/img/16_10_13/002.png" alt=""></p>
+<p>类似的，这些梯度项<code>gradient</code>也是<code>costFunction</code>的返回值之一，在之前的视频中我们演示了如何计算这些梯度矩阵，它们的计算结果是$D^{(1)}$,$D^{(2)}$,$D^{(3)}$，在Octave中用<code>D1</code>,<code>D2</code>,<code>D3</code>来表示。</p>
+<p><img src="/img/16_10_13/005.png" alt=""></p>
+<p><img src="/img/16_10_13/004.png" alt=""></p>
+<p>在这一节中，我想很快地向你介绍怎样取出这些矩阵，并将他们展开成向量，以便它们最终成为恰当的格式，能够传入这里的<code>initialTheta</code>:</p>
+<p><img src="/img/16_10_13/006.png" alt=""></p>
+<p>并且得到正确的梯度返回值<code>gradient</code>。</p>
+<hr>
+<p>具体来说，假设我们有这样一个神经网络：</p>
+<p><img src="/img/16_10_13/007.png" alt=""></p>
+<p>其输入层有10个输入单元($s_{1}=10$)，隐藏层有10个单元($s_{2}=10$)，最后的输出层只有一个输出单元($s_{3}=1$)。</p>
+<p>在这种情况下矩阵$Θ$的维度，和矩阵$D$的维度将有这个神经网络的结构所决定，比如$Θ^{(1)}$是一个$10 × 11$的矩阵。</p>
+<p>因此，在Octave中，如果你想讲这些矩阵向量化，那么你要做的是取出你的$Θ^{(1)}$、$Θ^{(2)}$、$Θ^{(3)}$，然后使用下面这段代码，这段代码将取出三个$Θ$矩阵中的所有元素，然后把他们全部展开，成为一个很长的向量，也就是<code>thetaVec</code>。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">thetaVec = [Theta1<span class="comment">(:);Theta2(:)</span>;Theta3<span class="comment">(:)];</span></div></pre></td></tr></table></figure>
+<p>同样的，下面这段代码将取出$D$矩阵的所有元素，然后展开成一个长向量<code>DVec</code>：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DVec = [D1<span class="comment">(:);D2(:)</span>;D3<span class="comment">(:)];</span></div></pre></td></tr></table></figure>
+<p>最后，如果你想要从向量表达式返回到矩阵表达式的话，你要做的就是使用<code>reshape</code>函数，传入向量的区间以及矩阵的行数和列数，即可得到对应的矩阵：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Theta1 = reshape(<span class="name">thetaVec</span>(<span class="number">1</span>:<span class="number">110</span>),<span class="number">10</span>,<span class="number">11</span>)<span class="comment">;</span></div><div class="line">Theta2 = reshape(<span class="name">thetaVec</span>(<span class="number">111</span>:<span class="number">220</span>),<span class="number">10</span>,<span class="number">11</span>)<span class="comment">;</span></div><div class="line">Theta3 = reshape(<span class="name">thetaVec</span>(<span class="number">221</span>:<span class="number">231</span>),<span class="number">10</span>,<span class="number">11</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<hr>
+<p>下面用一个Octave例子来展示上面的计算过程：</p>
+<p>首先，让我们假设<code>Theta1</code>是一个10行11列的单位矩阵：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Theta1 = ones(<span class="number">10</span>,<span class="number">11</span>);</div><div class="line">&gt;&gt; Theta1</div><div class="line">Theta1 =</div><div class="line"></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div><div class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span>   <span class="number">1</span></div></pre></td></tr></table></figure>
+<p><code>Theta2</code>是一个元素都为2的10行11列的矩阵：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Theta2 = <span class="number">2</span>*ones(<span class="number">10</span>,<span class="number">11</span>);</div><div class="line">&gt;&gt; Theta2</div><div class="line">Theta2 =</div><div class="line"></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div><div class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span>   <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>然后假设<code>Theta3</code>是一个<code>1×11</code>的元素均为3的矩阵：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Theta3 = <span class="number">3</span>*ones(<span class="number">1</span>,<span class="number">11</span>);</div><div class="line">&gt;&gt; Theta3</div><div class="line">Theta3 =</div><div class="line"></div><div class="line">   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">3</span></div></pre></td></tr></table></figure>
+<p>现在，我们想把这些所有的矩阵变成一个向量<code>thetaVec</code> ：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; thetaVec = [ Theta1<span class="comment">(:); Theta2(:)</span>; Theta3<span class="comment">(:)];</span></div><div class="line">&gt;&gt; thetaVec</div><div class="line"></div><div class="line">thetaVec =</div><div class="line"></div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   1</div><div class="line">   ...</div></pre></td></tr></table></figure>
+<p>我们可以看到<code>thetaVec</code>是一个$231×1$的向量，这里包含了所有矩阵的元素：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span> size(thetaVec)</div><div class="line">ans =</div><div class="line"></div><div class="line">   <span class="number">231</span>     <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>如果我想重新得到我最初的三个矩阵，我可以对<code>thetaVec</code>使用<code>reshape</code>命令。</p>
+<p>比如，我们可以抽出前110个元素，来重组一个$10×11$的矩阵，即<code>Theta1</code>：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; reshape(thetaVec(1:110),10,11)</div><div class="line">ans =</div><div class="line"></div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div><div class="line">  <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span> <span class="number"> 1 </span>  1</div></pre></td></tr></table></figure>
+<p>我们也可以用同样的方式来取接下来的110个元素，来重组<code>Theta2</code>：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; reshape(thetaVec(111:220),10,11)</div><div class="line">ans =</div><div class="line"></div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div><div class="line">  <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span> <span class="number"> 2 </span>  2</div></pre></td></tr></table></figure>
+<p>最后再抽出221到231的元素，重组<code>Theta3</code>：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; reshape(thetaVec(221:231),1,11)</div><div class="line">ans =</div><div class="line"></div><div class="line">  <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span> <span class="number"> 3 </span>  3</div></pre></td></tr></table></figure>
+<hr>
+<p>为了使这个过程更形象，下面我们来看怎样将这一方法应用于我们的学习算法：</p>
+<p>假设你有一些初始参数值:$Θ^{(1)}$，$Θ^{(2)}$，$Θ^{(3)}$。</p>
+<p>我们要做的是取出这些参数，并且将它们展开为一个长向量作为<code>initialTheta</code>，带入<code>fminunc</code>函数：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">fminunc</span><span class="params">(@costFunction, initialTheta, options)</span></span></div></pre></td></tr></table></figure>
+<p>我们要做的另一件事是执行代价函数<code>@costFunction</code>，实现算法如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[jval, gradientVec]</span> = <span class="title">costFunction</span><span class="params">(thetaVec)</span></span></div></pre></td></tr></table></figure>
+<p>代价函数<code>costFunction</code>传入参数<code>thetaVec</code>，这也是我所有参数的向量，是将所有的参数展开成一个向量的形式。</p>
+<p>因此，我要做的第一件事就是通过向量<code>thetaVec</code>使用重组函数<code>reshape</code>来得到$Θ^{(1)}$,$Θ^{(2)}$,$Θ^{(3)}$。</p>
+<p>这样我就能执行<strong>向前传播</strong>和<strong>反向传播</strong>来计算出导数$D^{(1)}$,$D^{(2)}$,$D^{(3)}$和代价函数$J(Θ)$。</p>
+<p>最后，我可以取出这些导数值，然后让它们保存和我展开的$Θ$值相同的顺序来展开它们(按照$D^{(1)}$,$D^{(2)}$,$D^{(3)}$的顺序)，得到<code>gradientVec</code>，这个值由我的代价函数返回，它可以以一个向量的形式返回这些导数值。</p>
+<blockquote>
+<p>现在，你应该对怎样进行参数的矩阵表达式和向量表达式之间的转换，有了一个更清晰的认识。</p>
+<p>使用矩阵表达式的好处是：当你的参数以矩阵的形式存储时，你在进行正向传播和反向传播时，你会觉得更加方便。当你将参数存储为矩阵时，一个大好处是充分利用了向量化的实现过程。</p>
+<p>相反地，向量表达式的优点是如果你有像thetaVec或者DVec这样的矩阵，当你使用一些高级的优化算法时，这些算法通常要求你所有的参数都展开成一个长向量的形式。</p>
+</blockquote>
+<h2 id="梯度检验（Gradient_Checking）">梯度检验（Gradient Checking）</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Y3s6r/gradient-checking" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>在之前的视频中，我们讨论了如何使用向前传播和反向传播计算神经网络中的导数，但反向传播作为一个有很多细节的算法，在实现的时候会有点复杂，而且有一个不好的方面是在实现反向传播时，会遇到很多细小的错误。所以如果你把它和梯度下降算法或者其他优化算法一起运行时，可能看起来它运行正常，并且你的代价函数$J(Θ)$最后可能在每次梯度下降法迭代时，都会减小，即使在实现反向传播时有一些小错误，可能也会检查不出来。</p>
+<p>所以它看起来是$J(Θ)$在减小，但是可能你最后得到的神经网络误差比没有错误的要高，而且你很可能就不知道你的这些结果是这些小错误导致的。那你应该怎么办呢？</p>
+<p>有一个想法叫做<strong>梯度检验(Gradient Checking)</strong>可以解决基本所有的问题。我现在每次实现神经网络的反向传播或者类似的梯度下降算法或者其他比较复杂的模型，我都会使用梯度检验，如果你这么做，它会帮你确定并且能很确信你实现的向前传播和反向传播或者其他的什么算法是100%正确的。</p>
+<p>在之前的视频中，我一般是让你相信我给出的那些计算就是代价函数的梯度，但一旦你们实现数值梯度检验，也就是这节视频的主题，你就能自己验证你写的代码确实是在计算代价函数$J(Θ)$了。</p>
+</blockquote>
+<h3 id="梯度检验原理">梯度检验原理</h3><p>看下面这样的例子：</p>
+<p><img src="/img/16_10_13/008.png" alt=""></p>
+<p>加入我有一个代价函数$J(\theta)$，并且我有一个实数值$\theta$：</p>
+<p><img src="/img/16_10_13/009.png" alt=""></p>
+<p>假如说我想估计这个函数在这一点的导数，这个导数就等于这样一条直线的斜率：</p>
+<p><img src="/img/16_10_13/010.png" alt=""></p>
+<p>下面我要用数值计算的方法来计算近似的导数，这个是用数值方法计算近似导数的过程：</p>
+<p>我要找到$\theta+ε$和$\theta-ε$这两个点，然后用一条直线把这两点连起来：</p>
+<p><img src="/img/16_10_13/011.png" alt=""></p>
+<p>然后用这条红线的斜率来作为导数的近似值。在数学上，这条红线的斜率等于两点之间垂直方向的差值除以水平方向的差值：</p>
+<p><img src="/img/16_10_13/012.png" alt=""></p>
+<p>所以垂直方向上的差值为：</p>
+<p>$$<br>J(\theta+ε) - J(\theta-ε)<br>$$</p>
+<p>水平方向的差值为：</p>
+<p>$$<br>2ε<br>$$</p>
+<p>那么我们的近似是这样的：</p>
+<p>$$<br>\frac{\partial}{\partial \theta}J(\theta)≈<br>\frac{J(\theta+ε) - J(\theta-ε)}{2ε}<br>$$</p>
+<blockquote>
+<p>通常，我给$ε$取很小的值，比如可能取$ε=10^{-4}$，$ε$的取值在一个很大的范围内都是可行的，实际上，如果你让$ε$非常小，那么数学上上面的式子实际上就是导数。只是我们不用想非常非常小的$ε$，因为可能会产生数值问题，所以我通常让$ε$取$ε=10^{-4}$。</p>
+<p>顺便说一下，可能你们见过这种估计导数的公式：$\frac{J(\theta+ε) - J(\theta)}{ε}$，这种方式称为<strong>单侧差分</strong>，而上面的那种方式叫做<strong>双侧差分</strong>。双侧差分给我们了一个稍微精确些的估计，所以，我通常用双侧差分，而不用单侧差分估计。</p>
+</blockquote>
+<h3 id="Octave中实现梯度检验">Octave中实现梯度检验</h3><p>具体地说，你在Octave中实现时，要使用下面这个代码：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gradApprox = (<span class="name">J</span>(<span class="name">theta</span> + EPSILON) - J(<span class="name">theta</span> - EPSILON))/(<span class="number">2</span>*EPSILON)</div></pre></td></tr></table></figure>
+<p>你的程序要调用<code>gradApprox</code>来计算这个函数。这个函数会通过这个公式：$\frac{J(\theta+ε) - J(\theta-ε)}{2ε}$，它会给出这点导数的数值估计。</p>
+<h3 id="当$\theta$是向量时">当$\theta$是向量时</h3><p>在之前的例子中，$\theta$是一个实数，接下来让我们来讨论更普遍的一种情况：当$\theta$是一个向量参数的情况。</p>
+<p>假如说$\theta$是一个$n$维向量（它可能是我们的神经网络参数$Θ^{1}$，$Θ^{2}$，$Θ^{3}$的展开形式）</p>
+<p>所以$\theta$是一个有n个元素的向量。</p>
+<p>$$<br>\theta = [\theta_{1},\theta_{2},\theta_{3},…,\theta_{n}]<br>$$</p>
+<hr>
+<p>我们可以用类似的想法来估计所有的偏导数项：</p>
+<p>$$<br>\frac{\partial}{\partial \theta_{1}}J(\theta)<br>≈<br>\frac{<br>J(\theta_{1} + ε,\theta_{2},\theta_{3},…,\theta_{n})<br>-<br>J(\theta_{1} - ε,\theta_{2},\theta_{3},…,\theta_{n})<br>}<br>{2ε}<br>$$</p>
+<p>$$<br>\frac{\partial}{\partial \theta_{2}}J(\theta)<br>≈<br>\frac{<br>J(\theta_{1},\theta_{2} + ε,\theta_{3},…,\theta_{n})<br>-<br>J(\theta_{1},\theta_{2} - ε,\theta_{3},…,\theta_{n})<br>}<br>{2ε}<br>$$</p>
+<p>$$…$$</p>
+<p>$$<br>\frac{\partial}{\partial \theta_{n}}J(\theta)<br>≈<br>\frac{<br>J(\theta_{1},\theta_{2},\theta_{3},…,\theta_{n} + ε)<br>-<br>J(\theta_{1},\theta_{2},\theta_{3},…,\theta_{n} - ε)<br>}<br>{2ε}<br>$$</p>
+<p>分别对$\theta$向量的每个元素使用<strong>双侧差分</strong>来计算导数。</p>
+<p>上面的这些公式给出了一个队任意参数求近似偏导数的方法。具体地说，你要实现的是下面这个程序：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n,</div><div class="line">	thetaPlus = theta;</div><div class="line">	thetaPlus(<span class="built_in">i</span>) = thetaPlus(<span class="built_in">i</span>) + EPSILON;</div><div class="line">	thetaMinus = theta;</div><div class="line">	thetaMinus(<span class="built_in">i</span>) = thetaMinus(<span class="built_in">i</span>) - EPSILON;</div><div class="line">	gradApprox(<span class="built_in">i</span>) = (J(thetaPlus) - J(thetaMinus))/(<span class="number">2</span>*EPSILON);</div><div class="line"><span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+<p>我们把这个用在Octave里，来计算数值导数。</p>
+<p>我们实现神经网络时，我们用<code>for</code>循环来计算代价函数对每个网络中的参数的偏导数<code>gradApprox</code>，然后和我们从反向传播得到的导数<code>DVec</code>进行对比，看是否相等或近似于<code>DVec</code>。</p>
+<p>$$<br>Check\ that\ gradApprox≈DVec<br>$$</p>
+<p>如果这两种计算导数的方法给了你相同的结果，或者非常接近的结果，那么我就非常确信我实现的反向传播是正确的。然后我把这些<code>DVec</code>向量用在梯度下降法，或者其他高级优化算法里。</p>
+<h3 id="总结">总结</h3><p>最后，我想把所有的东西放在一起，然后告诉你怎样实现这个数值梯度检验。</p>
+<p><strong>实现步骤:</strong></p>
+<ul>
+<li>实现反向传播来计算<code>DVec</code>($D^{(1)}$，$D^{(2)}$，$D^{(3)}$)。</li>
+<li>用<code>gradApprox</code>实现数值梯度检验</li>
+<li>然后确定<code>DVec</code>和<code>gradApprox</code>给出的结果非常相近</li>
+<li>在使用你的代码去学习训练你的网络之前，重要的是要关掉梯度检验，不在使用<code>gradApprox</code>这个数值导数公式（这么做的原因是，这个梯度检验的计算量非常大，它是一个非常慢的计算近似导数的方法。而相对的反向传播算法是一个在计算导数上效率更高的方法。）</li>
+</ul>
+<p>再次重申一下，在为了训练分类器运行你的算法，做很多次梯度下降或高级优化算法的迭代之前，要确定你不再使用梯度检验的程序，具体来说，如果你在每次的梯度下降法迭代时，都运行数值梯度检验，你的程序会变得非常慢，因为数值检验程序比反向传播算法要慢得多。</p>
+<h2 id="随机初始化$Θ$">随机初始化$Θ$</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/ND5G5/random-initialization" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>这一节将介绍神经网络训练中的最后一个知识点：<strong>随机初始化$Θ$</strong></p>
+</blockquote>
+<p>当你运行一个算法（例如梯度下降算法，或者其他高级优化算法）时，我们需要给变量$\theta$一些初始值。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">optTheta</span> = fminunc(@costFunction, initialTheta, options)</div></pre></td></tr></table></figure>
+<p>现在考虑一下梯度下降算法，同样我们需给定$\theta$一些初始值，接下来使用梯度下降方法慢慢地执行这些步骤使其下降，使$J(\theta)$下降到最小。</p>
+<p>那么$\theta$的初始值该设置为多少呢？是否可以设置为一个0向量呢？</p>
+<p>$$<br>Set\ \ initialTheta = zeros(n,1)\ ?<br>$$</p>
+<p>虽然说在逻辑回归时，初始化所有变量为0是可行的，但在训练神经网络时，这样做是不可行的。</p>
+<p>以训练下面这个神经网络为例：</p>
+<p><img src="/img/16_10_13/013.png" alt=""></p>
+<p>照之前所说，将所有变量初始化为0：</p>
+<p>$$<br>Θ_{ij}^{(l)}=0 \ \ for\ all\ i,j,l.<br>$$</p>
+<p>如果是这样的话，当初始化下面这些颜色两两相同的权重时，这些权重都被赋予相同的初始值0：</p>
+<p><img src="/img/16_10_13/014.png" alt=""></p>
+<p>那么这就意味着经过计算后，这两个隐藏单元$a_{1}$，$a_{2}$的值是相同的：</p>
+<p>$$<br>a_{1}^{(2)}=a_{2}^{(2)}<br>$$</p>
+<p>同样的原因，由于权重相同，也可以证明：</p>
+<p>$$<br>δ_{1}^{(2)}=δ_{2}^{(2)}<br>$$</p>
+<p>同时，如果你更深入地挖掘一下，你不难得出这些变量对参数的偏导数满足以下条件：</p>
+<p>以这两条红色的权重为例：</p>
+<p><img src="/img/16_10_13/015.png" alt=""></p>
+<p>即代价函数的关于这两个权重的偏导数是相等的：</p>
+<p>$$<br>\frac{\partial}{\partial Θ_{01}^{(1)}}J(Θ)<br>=<br>\frac{\partial}{\partial Θ_{02}^{(1)}}J(Θ)<br>$$</p>
+<p>这也意味着，一旦更新梯度下降方法，第一个红色权重也会更新，等于学习率乘以这个式子:$\frac{\partial}{\partial Θ_{01}^{(1)}}J(Θ)$</p>
+<p>第二条红色权重更新为学习率乘以这个式子：$\frac{\partial}{\partial Θ_{02}^{(1)}}J(Θ)$。</p>
+<p>这也就意味着，一旦更新梯度下降，这两条红色权重的值，在最后将互为相等：</p>
+<p>$$<br>Θ_{01}^{(1)}=Θ_{02}^{(1)}<br>$$</p>
+<p>因此，即使权重现在不都为0，但参数的值最后也互为相等。</p>
+<p>同样地，即使更新一个梯度下降，下面这两条红色的权重也会互为相等：</p>
+<p><img src="/img/16_10_13/016.png" alt=""></p>
+<p>同理，最下面的两个权重也会互为相等。</p>
+<p>所以每次更新后，两个隐藏单元的输入的对应的参数将是相同的。这就意味着即使经过一次梯度下降的循环后，你会发现两个隐藏单元任然是两个完全相同的输入函数：</p>
+<p>$$<br>a_{1}^{(2)}=a_{2}^{(2)}<br>$$</p>
+<p>这也意味着，这个神经网络并不能计算出什么更有价值的东西。</p>
+<p>想象一下，不止有两个隐藏单元，而是有很多的隐藏单元，这就是会导致所有的隐藏单元都在计算相同的特征，这是完全多余的表达，因为这意味着最后的逻辑回归单元只会得到一种特征。这样便阻止了神经网络学习出更有价值的信息。</p>
+<h3 id="随机初始化$Θ$引入">随机初始化$Θ$引入</h3><p>为了解决这个神经网络变量初始化的问题，我们采用<strong>随机初始化</strong>的方法。</p>
+<p>具体的说，上面我们说到的所有权重相同的问题，有时被我们也称为<strong>对称权重</strong>。所以随机初始化解决的就是如何<strong>打破这种对称性(Symmetry breaking)</strong>。</p>
+<p>所以我们需要做的是对$Θ_{ij}^{(l)}$的每个值进行初始化，范围在$[-ε,ε]$之间（$-ε\le Θ_{ij}^{(l)} \le ε$）。</p>
+<p>在Octave中初始化$Θ$：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Theta1 = rand(<span class="number">10</span>,<span class="number">11</span>)*(<span class="number">2</span>*INIT_EPSILON) - INIT_EPSILON;</div><div class="line">Theta2 = rand(<span class="number">1</span>,<span class="number">11</span>)*(<span class="number">2</span>*INIT_EPSILON) - INIT_EPSILON;</div></pre></td></tr></table></figure>
+<p>其中<code>rand(10,11)</code>代表一个$10×11$的随机矩阵，这个<code>rand()</code>函数就是用来得到一个任意的随机矩阵的方法，并且所有的值都是介于0到1之间的实数。</p>
+<p>因此，如果取0到1之间的一个数和$2ε$相乘再减去$ε$，然后得到的结果就是一个在$[-ε,ε]$之间的数。</p>
+<blockquote>
+<p>顺便说一句，这里的这个$ε$和在进行梯度检查中用的那个$ε$不是一回事，这也是为什么上面这段代码要使用<code>INIT_EPSILON</code>而不是<code>EPSILON</code>的原因。(在梯度检查中用到的是<code>EPSILON</code>)</p>
+</blockquote>
+<h3 id="总结-1">总结</h3><p>总的来说，为了训练神经网络，应该对权重进行随机初始化为$[-ε,ε]$之间的值。$ε$是接近于0的小数，然后进行反向传播，执行梯度检查，使用梯度下降或者高级的优化算法，试着使代价函数$J(Θ)$达到最小，从某个随机选取的参数$Θ$开始。通过打破对称性的过程，我们希望梯度下降或者其他高级优化算法可以找到$Θ$的最优值。</p>
+<h2 id="神经网络总体回顾：所有算法合体吧！">神经网络总体回顾：所有算法合体吧！</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Wh6s3/putting-it-together" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>这一节中，我们将对神经网络的所有内容进行一个整体回顾，看看这些零散的内容相互之间有怎样的联系，以及神经网络学习算法的总体实现过程。</p>
+</blockquote>
+<h3 id="第一步，选择一个合适的神经网络结构">第一步，选择一个合适的神经网络结构</h3><p>当我们在训练一个神经网络的时候，我们要做的第一件事就是搭建网络的大体框架，这里我说的框架意思是神经元之间的链接模式。我们可能会从以下几种结构中选择：</p>
+<p><img src="/img/16_10_13/017.png" alt=""></p>
+<ul>
+<li>第一种网络结构包含三个输入单元、五个隐藏单元、和四个输出单元。</li>
+<li>第二种包含三个输入单元，两组五个隐藏单元作为隐藏层，四个输出单元。</li>
+<li>第三种组合是三个输入单元，三组五个隐藏单元作为隐藏层，四个输出单元。</li>
+</ul>
+<p>这些就是可能选择的结构，每一层可以选择多少个隐藏单元，以及可以选择多少个隐藏层。这些都是你构建时的选择，那么我们该如何做出选择呢？</p>
+<p>首先，我们知道我们已经定义了输入单元的数量，一旦你确定了特征集$x^{(i)}$对应的输入单元数目，也就确定了特征$x^{(i)}$的维度，输入单元的数目将会由此确定。</p>
+<p>其次如果你正在进行多类别分类，那么输出层的单元数目将会由你分类问题中所要区分的类别个数确定。</p>
+<blockquote>
+<p>值得一提的是，在多类别分类问题中，若$y$的取值范围是在${1,2,3,..,10}$之间，那么你就有10个可能的分类，别忘了把你的y重新写成向量的形式，例如：</p>
+</blockquote>
+<p>$$<br>y=<br>\begin{bmatrix}<br>   1 \\<br>   0 \\<br>   0 \\<br>   … \\<br>   0<br>  \end{bmatrix}<br>$$</p>
+<blockquote>
+<p>假设现在要表示第5个分类，也就是说$y=5$，那么在你的神经网络中，就不能直接使用数值5来表达，因为这种情况下，神经网络将有10个输出单元，你应该用一个向量来表示：</p>
+</blockquote>
+<p>$$<br>y=<br>\begin{bmatrix}<br>      0 \\<br>    0 \\<br>    0 \\<br>    0 \\<br>       1 \\<br>       0 \\<br>       0 \\<br>    0 \\<br>    0 \\<br>       0<br>  \end{bmatrix}<br>$$</p>
+<p>所以对于输入和输出单元的数目的选择，是比较容易理解的。而对于隐藏层单元的个数，以及隐藏层的数目，我们有一个默认的规则，那就是<strong>只使用单个隐藏层</strong>，所以第一种类型的神经网络架构是最常见的：</p>
+<p><img src="/img/16_10_13/018.png" alt=""></p>
+<p>或者如果你使用超过一层的隐藏层的话，同样我们也有一个默认规则，那就是<strong>每一个隐藏层通常都应该拥有相同的单元数</strong>。所以后面的两种神经网络结构的隐藏层都拥有相同的单元数：</p>
+<p><img src="/img/16_10_13/019.png" alt=""></p>
+<p>但实际上通常来说，只使用一层隐藏层的结构是较为合理的默认结构。</p>
+<p>而对于隐藏单元的个数，通常情况下<strong>隐藏单元越多越好</strong>，不过我们需要注意的是，如果有大量的隐藏单元，计算量一般会比较大。并且，一般来说，每个隐藏层所包含的单元数量还应该和输入$x$的维度相匹配，也要和特征的数目相匹配。可能隐藏单元的数目和输入特征的数量相同，或者是它的二倍或者三倍、四倍。因此，隐藏单元的数目需要和其他参数相匹配。</p>
+<p>一般来说隐藏单元的数目取稍大于输入特征数目都是可以接受的。</p>
+<h3 id="训练神经网络的步骤">训练神经网络的步骤</h3><p>接下来，我们就来具体介绍如何实现神经网络的训练过程，下面是训练神经网络的六个步骤：</p>
+<ul>
+<li>1.构建一个神经网络并且随机初始化权值（<strong>Randomly initialize Weight</strong>）</li>
+</ul>
+<blockquote>
+<p>我们通常把权值初始化为很小的值，接近于0</p>
+</blockquote>
+<ul>
+<li>2.执行向前传播算法，也就是对于神经网络的任意一个输入$x^{(i)}$计算出对应的$h_{Θ}(x^{(i)})$。</li>
+<li>3.通过代码计算出代价函数$J(Θ)$</li>
+<li>4.执行反向传播算法(<strong>Backprop</strong>)来算出这些偏导数：$\frac{\partial}{\partial Θ_{jk}^{(l)}}J(Θ)$</li>
+</ul>
+<blockquote>
+<p>具体来说，我们要对所有训练集数据使用一个<code>for</code>循环进行遍历没一个样本（实际上有更复杂的方式来替代<code>for</code>循环来实现，但对于第一次实现神经网络的训练过程，我非常不建议使用<code>for</code>循环以为的方式，因为这种方式更有助于第一次使用时的理解）：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> = <span class="number">1</span>:m</div></pre></td></tr></table></figure>
+<p>注意：下面这部分是在for循环内，但markdown的代码片段不支持显示Letex所以写在了外部：</p>
+<p>—for循环内部开始—</p>
+<p>对样本$(x^{(i)},y^{(i)})$使用向前传播和反向传播算法<br>     (具体来说，就是把输入项带入后，得出每个节点的激励值$a^{(l)}$和delta项$δ^{(l)}$)<br>$$<br>△^{(l)} := △^{(l)} + δ^{(l+1)}(a^{(l)})^{T}<br>$$</p>
+<p>—for循环内部结束—</p>
+<p>计算出这些$△$的累加值之后，我们将用别的程序来计算出偏导数项：<br>$$<br>\frac{\partial}{\partial Θ_{jk}^{(l)}}J(Θ)<br>$$</p>
+</blockquote>
+<ul>
+<li>5.使用梯度检查来校验结果。用梯度检查来比较这些已经用反向传播算法得到的偏导数值$\frac{\partial}{\partial Θ_{jk}^{(l)}}J(Θ)$与用数值方法得到的估计值进行比较，来检查，确保这两种方法得到值是基本相近的。</li>
+</ul>
+<blockquote>
+<p>通过梯度检查，我们能确保我们的反向传播算法得到的结果是正确的，但必须要说明的一点是，检查结束后我们需要去掉梯度检查的代码，因为梯度检查计算非常慢。</p>
+</blockquote>
+<ul>
+<li>6.使用一个最优化算法（比如说梯度下降算法或者其他更加高级的优化方法，比如说BFGS算法，共轭梯度法，或者其他一些已经内置到<code>fminunc</code>函数中的方法），将所有这些优化方法和反向传播算法相结合，这样我们就能计算出这些偏导数项的值$\frac{\partial}{\partial Θ_{jk}^{(l)}}J(Θ)$。</li>
+</ul>
+<blockquote>
+<p>到现在，我们已经知道了如何计算代价函数$J(Θ)$，我们知道了如何使用反向传播算法来计算偏导数$\frac{\partial}{\partial Θ_{jk}^{(l)}}J(Θ)$，那么我们就能使用某个最优化方法来最小化$J(Θ)$关于$Θ$的函数值。</p>
+</blockquote>
+<p>顺便提一下，对于神经网络代价函数$J(Θ)$是一个非凸函数，因此理论上是能够停留在局部最小值的位置。实际上，梯度下降算法和其他一些高级优化方法理论上都能收敛于局部最小值，但一般来讲这个问题其实并不是什么要紧的事，尽管我们不能保证这些优化算法一定会得到全局最优值，但通常来讲，像梯度下降这类的算法在最小化代价函数$J(Θ)$的过程中，还是表现的很不错的，通常能够得到一个很小的局部最小值，尽管这可能不一定是全局最优值。</p>
+<h3 id="梯度下降法在神经网络中的直观理解">梯度下降法在神经网络中的直观理解</h3><p>最后，梯度下降算法，似乎对于神经网络来说还是比较神秘的，希望下面这幅图能让你对梯度下降法在神经网络中的应用产生一个更直观的理解：</p>
+<p><img src="/img/16_10_13/020.png" alt=""></p>
+<p>这实际上有点类似我们早先时候解释梯度下降时的思路：我们有一个代价函数$J(Θ)$，并且在我们的神经网络中有一系列参数值，这里我之写下了两个参数值$Θ_{12}^{(1)}$,$Θ_{11}^{(1)}$，当然实际上在神经网络里，我们可以有很多很多的参数值：$Θ^{(1)}$,$Θ^{(2)}$…。因此我们参数的维度就会很高了，也无法绘制成直观的图像。所以这里我们假设这个神经网络中只有两个参数值：$Θ_{12}^{(1)}$,$Θ_{11}^{(1)}$。</p>
+<p>那么代价函数$J(Θ)$度量的就是这个神经网络对训练数据的拟合情况。</p>
+<p>所以，如果你取某个参数，比如说在这样一个局部最优值：</p>
+<p><img src="/img/16_10_13/021.png" alt=""></p>
+<p>这一点的位置所对应的参数$Θ$的情况是对于大部分的训练数据，我的假设函数的输出会非常接近于$y^{(i)}$:</p>
+<p>$$<br>h_{Θ}(x^{(i)})≈y^{(i)}<br>$$</p>
+<p>那么如果是这样的话，那么我们的代价函数$J(Θ)$值就会很小。</p>
+<p>而反过来，如果我们取这个值：</p>
+<p><img src="/img/16_10_13/022.png" alt=""></p>
+<p>我们的代价函数$J(Θ)$值就会很大。</p>
+<p>因此<strong>梯度下降的原理是我们从某个随机的初始点开始，它将会不停的下降，那么反向传播算法的目的就是算出梯度下降的方向，而梯度下降的过程就是沿着这个方向一点点的下降，一直到我们希望得到的点，这一点就是我们希望找到的局部最优点</strong>。</p>
+<p>所以，当你在执行反向传播算法并使用梯度下降或者更高级的优化方法时，上面的图片很好地帮你解释了基本的原理，也就是视图找到某个最优的参数值。这个值使得我们的神经网络的输出值与$y^{(i)}$的实际值（也就是训练集的输出观测值）尽可能的接近</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/14/斯坦福机器学习课程 第五周 (1)训练神经网络/" rel="next" title="斯坦福机器学习课程 第五周 (1)训练神经网络">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第五周 (1)训练神经网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/16/斯坦福机器学习课程 第五周 (4)神经网络实现自动驾驶/" rel="prev" title="斯坦福机器学习课程 第五周 (4)神经网络实现自动驾驶">
+                斯坦福机器学习课程 第五周 (4)神经网络实现自动驾驶 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#将参数从矩阵展开成向量"><span class="nav-number">1.</span> <span class="nav-text">将参数从矩阵展开成向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度检验（Gradient_Checking）"><span class="nav-number">2.</span> <span class="nav-text">梯度检验（Gradient Checking）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度检验原理"><span class="nav-number">2.1.</span> <span class="nav-text">梯度检验原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Octave中实现梯度检验"><span class="nav-number">2.2.</span> <span class="nav-text">Octave中实现梯度检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当$\theta$是向量时"><span class="nav-number">2.3.</span> <span class="nav-text">当$\theta$是向量时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机初始化$Θ$"><span class="nav-number">3.</span> <span class="nav-text">随机初始化$Θ$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机初始化$Θ$引入"><span class="nav-number">3.1.</span> <span class="nav-text">随机初始化$Θ$引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络总体回顾：所有算法合体吧！"><span class="nav-number">4.</span> <span class="nav-text">神经网络总体回顾：所有算法合体吧！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步，选择一个合适的神经网络结构"><span class="nav-number">4.1.</span> <span class="nav-text">第一步，选择一个合适的神经网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练神经网络的步骤"><span class="nav-number">4.2.</span> <span class="nav-text">训练神经网络的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降法在神经网络中的直观理解"><span class="nav-number">4.3.</span> <span class="nav-text">梯度下降法在神经网络中的直观理解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

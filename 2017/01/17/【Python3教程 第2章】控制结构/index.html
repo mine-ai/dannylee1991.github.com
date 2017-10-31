@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="布尔与比较布尔Python中的另一种类型是布尔类型(Boolean)。布尔类型有两种值：True和False。它们可以通过比较值来创建，例如通过等号操作符==。
+12345678&amp;gt;&amp;gt;&amp;gt; my_boolean = True&amp;gt;&amp;gt;&amp;gt; my_booleanTrue&amp;gt;&amp;gt;&amp;gt; 2 == 3False&amp;gt;&amp;gt;&amp;gt; &quot;hello&quot; == &quot;hello">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python3教程 第2章】控制结构">
+<meta property="og:url" content="http://studyai.site/2017/01/17/【Python3教程 第2章】控制结构/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="布尔与比较布尔Python中的另一种类型是布尔类型(Boolean)。布尔类型有两种值：True和False。它们可以通过比较值来创建，例如通过等号操作符==。
+12345678&amp;gt;&amp;gt;&amp;gt; my_boolean = True&amp;gt;&amp;gt;&amp;gt; my_booleanTrue&amp;gt;&amp;gt;&amp;gt; 2 == 3False&amp;gt;&amp;gt;&amp;gt; &quot;hello&quot; == &quot;hello">
+<meta property="og:updated_time" content="2017-02-04T09:16:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Python3教程 第2章】控制结构">
+<meta name="twitter:description" content="布尔与比较布尔Python中的另一种类型是布尔类型(Boolean)。布尔类型有两种值：True和False。它们可以通过比较值来创建，例如通过等号操作符==。
+12345678&amp;gt;&amp;gt;&amp;gt; my_boolean = True&amp;gt;&amp;gt;&amp;gt; my_booleanTrue&amp;gt;&amp;gt;&amp;gt; 2 == 3False&amp;gt;&amp;gt;&amp;gt; &quot;hello&quot; == &quot;hello">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/01/17/【Python3教程 第2章】控制结构/"/>
+
+
+
+
+
+  <title>【Python3教程 第2章】控制结构 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/01/17/【Python3教程 第2章】控制结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Python3教程 第2章】控制结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-17T00:28:58+08:00">
+                2017-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/01/17/【Python3教程 第2章】控制结构/" class="leancloud_visitors" data-flag-title="【Python3教程 第2章】控制结构">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="布尔与比较">布尔与比较</h2><h3 id="布尔">布尔</h3><p>Python中的另一种类型是布尔类型(Boolean)。布尔类型有两种值：<strong>True</strong>和<strong>False</strong>。它们可以通过比较值来创建，例如通过等号操作符<code>==</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>my_boolean = <span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>my_boolean</div><div class="line"><span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span> == <span class="number">3</span></div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"hello"</span> == <span class="string">"hello"</span></div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意不要混淆<strong>赋值</strong>（一个等号）和<strong>比较</strong>（两个等号）操作符。</p>
+</blockquote>
+<h3 id="比较">比较</h3><p>另外一个比较操作符是不等于(<strong>!=</strong>)，如果两者相比不相等，则结果为<strong>False</strong>否则为<strong>True</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> != <span class="number">1</span></div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"eleven"</span> != <span class="string">"seven"</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span> != <span class="number">10</span></div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<p>Python也有比较两个数值（浮点数或整数）是否大于或小于另一个数值的运算。操作符分别是<code>&gt;</code>和<code>&lt;</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">7</span> &gt; <span class="number">5</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> &lt; <span class="number">10</span></div><div class="line"><span class="keyword">False</span></div></pre></td></tr></table></figure>
+<p>大于或等于的运算符是<code>&gt;=</code>，小于或等于的运算符是<code>&lt;=</code>。</p>
+<p>与大于小于操作符类似，除了当两者相等的时候也返回<strong>True</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">7</span> &lt;= <span class="number">8</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">9</span> &gt;= <span class="number">9.0</span></div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>大于等于和小于等于操作符也可以用于按字典排序模式比较字符串操作（字的字母顺序是基于它们的组成字母的字母顺序排序的）。</p>
+</blockquote>
+<h2 id="if语句">if语句</h2><p>你可以使用<strong>if</strong>语句来运行满足某个条件的语句。</p>
+<p>如果表达式的结果是<strong>True</strong>，某些语句会执行。否则，它们不会被执行。</p>
+<p>一个if语句看起来像是这样的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> expression:</div><div class="line">   statements</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Python使用缩进(在行首的空白)的方式来限制代码块。其他语言，例如C语言，使用花括号来表示代码块，但在Python中缩进是强制性的，程序没有缩进就不会正常工作。正如你看到的<strong>if</strong>里的语句应该被缩进。</p>
+</blockquote>
+<p>下面是一个<strong>if</strong>语句的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="number">10</span> &gt; <span class="number">5</span>:</div><div class="line">   print(<span class="string">"10 greater than 5"</span>)</div><div class="line"></div><div class="line">print(<span class="string">"Program ended"</span>)</div></pre></td></tr></table></figure>
+<p>判断表达式10是否大于5，如果是，则执行缩进的语句，输出<code>10 greater than 5</code>，然后执行后面没有缩进的语句。</p>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">10</span> greater than <span class="number">5</span></div><div class="line">Program ended</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>注意<strong>冒号</strong>在<strong>if</strong>语句的末尾处。</p>
+<blockquote>
+<p>由于程序包含多行代码，因此应将其创建为单独的代码文件来运行。</p>
+</blockquote>
+<h3 id="if的嵌套">if的嵌套</h3><p>为了执行更严格的条件检查，<strong>if</strong>语句可以嵌套使用，嵌套在另一个if语句中。这意味着内部的<strong>if</strong>语句是外部的<strong>if</strong>语句的一部分，这是一种查看是否满足多个条件的方法。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">num = <span class="number">12</span></div><div class="line"><span class="keyword">if</span> num &gt; <span class="number">5</span>:</div><div class="line">   print(<span class="string">"Bigger than 5"</span>)</div><div class="line">   <span class="keyword">if</span> num &lt;=<span class="number">47</span>:</div><div class="line">      print(<span class="string">"Between 5 and 47"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">Bigger than <span class="number">5</span></div><div class="line">Between <span class="number">5</span> <span class="keyword">and</span> <span class="number">47</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="else语句">else语句</h2><p>一个<strong>else</strong>语句跟在一个<strong>if</strong>语句后面，并且包含当<strong>if</strong>条件语句执行结果为<strong>False</strong>时执行的代码。</p>
+<p>与<strong>if</strong>语句一样，内部的代码块也应该缩进。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">4</span></div><div class="line"><span class="keyword">if</span> x == <span class="number">5</span>:</div><div class="line">   print(<span class="string">"Yes"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">   print(<span class="string">"No"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; </div><div class="line">No</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="if和else嵌套使用">if和else嵌套使用</h3><p>你可以将<strong>if</strong>和<strong>else</strong>连接起来，来判断一系列的对错情况，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">num = <span class="number">7</span></div><div class="line"><span class="keyword">if</span> num == <span class="number">5</span>:</div><div class="line">  print(<span class="string">"Number is 5"</span>)</div><div class="line"><span class="keyword">else</span>: </div><div class="line">  <span class="keyword">if</span> num == <span class="number">11</span>:</div><div class="line">    print(<span class="string">"Number is 11"</span>)</div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    <span class="keyword">if</span> num == <span class="number">7</span>:</div><div class="line">      print(<span class="string">"Number is 7"</span>)</div><div class="line">    <span class="keyword">else</span>: </div><div class="line">      print(<span class="string">"Number isn't 5, 11 or 7"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">Number <span class="keyword">is</span> <span class="number">7</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="elif语句">elif语句</h3><p><strong>elif</strong>(<code>else if</code>的缩写)语句是<code>if</code>和<code>else</code>连起来使用的一个缩写形式。一系列的<strong>elif</strong>判断需要用一个<strong>else</strong>来收尾，用于判断<strong>if</strong>或<strong>elif</strong>以外的情况。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">num = <span class="number">7</span></div><div class="line"><span class="keyword">if</span> num == <span class="number">5</span>:</div><div class="line">   print(<span class="string">"Number is 5"</span>)</div><div class="line"><span class="keyword">elif</span> num == <span class="number">11</span>:</div><div class="line">   print(<span class="string">"Number is 11"</span>)</div><div class="line"><span class="keyword">elif</span> num == <span class="number">7</span>:</div><div class="line">   print(<span class="string">"Number is 7"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">   print(<span class="string">"Number isn't 5, 11 or 7"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">Number <span class="keyword">is</span> <span class="number">7</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在其他的编程语言中，<strong>elif</strong>语句有多种名称，包括<strong>else if</strong>,<strong>elseif</strong>或者<strong>elsif</strong>。</p>
+</blockquote>
+<h2 id="布尔逻辑">布尔逻辑</h2><p>当<strong>if</strong>语句依赖多个条件时，使用<strong>布尔(Boolean)逻辑</strong>可以用来生成更复杂的条件。</p>
+<p>Python的布尔操作符是<strong>and</strong>，<strong>or</strong>和<strong>not</strong>。</p>
+<h3 id="布尔逻辑_and">布尔逻辑 and</h3><p><strong>and</strong>操作符接受两个参数，并且当且仅当两个参数都为<strong>True</strong>时，计算结果才为<strong>True</strong>。否则，计算结果是<strong>False</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> == <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span> == <span class="number">2</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> == <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span> == <span class="number">3</span></div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> != <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span> == <span class="number">2</span></div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span> &lt; <span class="number">1</span> <span class="keyword">and</span> <span class="number">3</span> &gt;  <span class="number">6</span></div><div class="line"><span class="keyword">False</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Python用直白的单词来表示布尔逻辑，而其他大多数编程语言使用<code>&amp;&amp;</code>、<code>||</code>、<code>!</code>这些符号来表示。</p>
+</blockquote>
+<h3 id="布尔逻辑_or">布尔逻辑 or</h3><p><strong>or</strong>操作符也接受两个参数，当两个参数至少有一个为<strong>True</strong>时，计算结果就为<strong>True</strong>；否则，当两个参数都为<strong>False</strong>时，计算结果为<strong>False</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> == <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span> == <span class="number">2</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> == <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span> == <span class="number">3</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> != <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span> == <span class="number">2</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span> &lt; <span class="number">1</span> <span class="keyword">or</span> <span class="number">3</span> &gt;  <span class="number">6</span></div><div class="line"><span class="keyword">False</span></div></pre></td></tr></table></figure>
+<h3 id="布尔逻辑_not">布尔逻辑 not</h3><p>不像其他我们已经看到的操作符那样，<strong>not</strong>操作符只接受一个参数，并且计算结果是取反。<strong>True</strong>的<strong>not</strong>结果是<strong>False</strong>，而且<strong>not False</strong>的计算结果是<strong>True</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">not</span> <span class="number">1</span> == <span class="number">1</span></div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">not</span> <span class="number">1</span> &gt; <span class="number">7</span></div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过布尔逻辑，你可以在if的条件语句中连接多个条件。</p>
+</blockquote>
+<h2 id="运算符优先级">运算符优先级</h2><p><strong>运算符优先级</strong>是编程中非常重要的概念。这个概念是数学中运算顺序的一种延伸（例如前面提到的乘法操作），用于包含多个其他的操作符，例如布尔逻辑。</p>
+<p>下面的代码展示了<code>==</code>运算符拥有比<code>or</code>更高的优先级：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">False</span> == <span class="keyword">False</span> <span class="keyword">or</span> <span class="keyword">True</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">False</span> == (<span class="keyword">False</span> <span class="keyword">or</span> <span class="keyword">True</span>)</div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="keyword">False</span> == <span class="keyword">False</span>) <span class="keyword">or</span> <span class="keyword">True</span></div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Python的运算符顺序与数学中的运算顺序是一致的：括号优先，然后是幂运算，然后是乘/除法运算，然后是加/减法运算。</p>
+</blockquote>
+<p>下面的表按照优先级从高到低展示了Python中所有的运算符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>**</code></td>
+<td style="text-align:left">指数 (最高优先级)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>~</code> <code>+</code> <code>-</code></td>
+<td style="text-align:left">按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>*</code> <code>/</code> <code>%</code> <code>//</code></td>
+<td style="text-align:left">乘，除，取模和取整除</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>+</code> <code>-</code></td>
+<td style="text-align:left">加法减法</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&gt;&gt;</code> <code>&lt;&lt;</code></td>
+<td style="text-align:left">右移，左移运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&amp;</code></td>
+<td style="text-align:left">位 ‘AND’</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>^</code> &#124;</td>
+<td style="text-align:left">位运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;=</code> <code>&lt;</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td style="text-align:left">比较运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;&gt;</code> <code>==</code> <code>!=</code></td>
+<td style="text-align:left">等于运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>=</code> <code>%=</code> <code>/=</code> <code>//=</code> <code>-=</code> <code>+=</code> <code>*=</code> <code>**=</code></td>
+<td style="text-align:left">赋值运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>is</code> <code>is not</code></td>
+<td style="text-align:left">身份运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>in</code> <code>not in</code></td>
+<td style="text-align:left">成员运算符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>not</code> <code>or</code> <code>and</code></td>
+<td style="text-align:left">逻辑运算符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="while循环">while循环</h2><p>一个<strong>if</strong>语句在条件为<strong>True</strong>时会执行一次，如果为<strong>False</strong>则不执行。<strong>while</strong>语句会在条件满足时执行多次。只要条件为<strong>True</strong>，while内部的语句就会重复的执行下去。一旦条件为<strong>False</strong>，就会跳出循环，继续执行后面的代码。</p>
+<p>下面是一个<strong>while</strong>循环，包含一个从1到5自增长用来计数的变量，直到i的值达到了循环的终点就会跳出循环。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">i = <span class="number">1</span></div><div class="line"><span class="keyword">while</span> i &lt;=<span class="number">5</span>:</div><div class="line">   print(i)</div><div class="line">   i = i + <span class="number">1</span></div><div class="line"></div><div class="line">print(<span class="string">"Finished!"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line">Finished!</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>while</strong>内部循环执行的的代码被称为<strong>迭代(iteration)</strong>。</p>
+</blockquote>
+<h3 id="无限循环">无限循环</h3><p><strong>无限循环</strong>是一种特殊的while循环；它永远都不会停止运行。它的判断条件一直是<strong>True</strong>    。</p>
+<p>下面是一个无限循环的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> <span class="number">1</span>==<span class="number">1</span>:</div><div class="line">  print(<span class="string">"In the loop"</span>)</div></pre></td></tr></table></figure>
+<p>这个程序会无限的打印<code>In the loop</code>。</p>
+<blockquote>
+<p>你可以通过按下快捷键<strong>Ctrl-C</strong>来终止程序的执行，从而中断这个无限循环。</p>
+</blockquote>
+<h3 id="break">break</h3><p>通过使用<strong>break</strong>语句，可以提前跳出<strong>while</strong>循环的执行。<strong>break</strong>可以立刻中断<strong>while</strong>内部的循环。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">i = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> <span class="number">1</span>==<span class="number">1</span>:</div><div class="line">  print(i)</div><div class="line">  i = i + <span class="number">1</span></div><div class="line">  <span class="keyword">if</span> i &gt;= <span class="number">5</span>:</div><div class="line">    print(<span class="string">"Breaking"</span>)</div><div class="line">    <span class="keyword">break</span></div><div class="line"></div><div class="line">print(<span class="string">"Finished"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">0</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line">Breaking</div><div class="line">Finished</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在循环外使用<strong>break</strong>会产生错误。</p>
+</blockquote>
+<h3 id="continue">continue</h3><p>另一个可以用在循环内的语句是<strong>continue</strong>。</p>
+<p>不同于<strong>break</strong>，<strong>continue</strong>会跳回到循环的顶部而不是停止循环的执行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">i = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">   i = i +<span class="number">1</span></div><div class="line">   <span class="keyword">if</span> i == <span class="number">2</span>:</div><div class="line">      print(<span class="string">"Skipping 2"</span>)</div><div class="line">      <span class="keyword">continue</span></div><div class="line">   <span class="keyword">if</span> i == <span class="number">5</span>:</div><div class="line">      print(<span class="string">"Breaking"</span>)</div><div class="line">      <span class="keyword">break</span></div><div class="line">   print(i)</div><div class="line"></div><div class="line">print(<span class="string">"Finished"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">1</span></div><div class="line">Skipping <span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line">Breaking</div><div class="line">Finished</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><strong>continue</strong>语句会停止当前这一次的迭代项，并且继续执行下一次项。</p>
+<blockquote>
+<p>在循环外使用<strong>continue</strong>会产生错误。</p>
+</blockquote>
+<h2 id="列表(List)">列表(List)</h2><p><strong>列表(List)</strong>是另一个Python对象，它可以用于存储条目的索引列表。<br>列表可以通过一个<strong>方括号(<code>[]</code>)</strong>来构建，内部的条目用<strong>逗号(<code>,</code>)</strong>隔开。</p>
+<p>可以通过使用其在方括号中的索引来访问列表中的特定项。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">"Hello"</span>, <span class="string">"world"</span>, <span class="string">"!"</span>]</div><div class="line">print(words[<span class="number">0</span>])</div><div class="line">print(words[<span class="number">1</span>])</div><div class="line">print(words[<span class="number">2</span>])</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt;python</div><div class="line">Hello</div><div class="line">world</div><div class="line">!</div><div class="line"><span class="meta">&gt;&gt;</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>第一个列表项的索引值是<strong>0</strong>，而不是<strong>1</strong>。</p>
+</blockquote>
+<p>一个空的列表可以通过一对方括号来实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">empty_list = []</div><div class="line">print(empty_list)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>大多数情况下，列表的最后一个条目后是不用添加逗号的。但是如果你添加了逗号，那就表明在最后占了一个位置，在某些情况下这种做法也是被推荐的。</p>
+</blockquote>
+<p>列表通常包含着同一种类型的数据，但你也完全可以添加不同类型的数据到列表中。列表本身也可以嵌套在其他列表中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">number = <span class="number">3</span></div><div class="line">things = [<span class="string">"string"</span>, <span class="number">0</span>, [<span class="number">1</span>, <span class="number">2</span>, number], <span class="number">4.56</span>]</div><div class="line">print(things[<span class="number">1</span>])</div><div class="line">print(things[<span class="number">2</span>])</div><div class="line">print(things[<span class="number">2</span>][<span class="number">2</span>])</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">0</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="number">3</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列表嵌套列表是通常用于表示二维网格，Python缺少像其他语言中的<strong>多维数组</strong>的结构，可以通过嵌套列表来实现。</p>
+</blockquote>
+<p>索引超出列表长度的边界会导致<strong>IndexError</strong>。</p>
+<p>有些类型，如<strong>字符串(strings)</strong>，可以像<strong>列表(List)</strong>一样被索引。索引字符串的行为就好像你在索引一个包含了每个字符的列表所组成的字符串。</p>
+<p>对于其他类型，例如<strong>整数(integers)</strong>，它们是不可以被索引的，如果对它使用索引会导致TypeError。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">"Hello world!"</span></div><div class="line">print(str[<span class="number">6</span>])</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">w</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="列表操作(List_Operations)">列表操作(List Operations)</h2><p>列表中的某个位置的条目可以重新赋值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>]</div><div class="line">nums[<span class="number">2</span>] = <span class="number">5</span></div><div class="line">print(nums)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="number">7</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">7</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>列表可以像字符串一样执行<strong>加法</strong>和<strong>乘法</strong>操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">print(nums + [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line">print(nums * <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列表和字符串在很多情况下是相似的，字符串可以想象成是字符组成的不可变列表。</p>
+</blockquote>
+<hr>
+<p>可以通过<strong>in</strong>操作符来检测某个条目是否存在于某个列表中。如果当前条目在列表中存在一份或多份时，返回<strong>True</strong>，否则返回<strong>False</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">"spam"</span>, <span class="string">"egg"</span>, <span class="string">"spam"</span>, <span class="string">"sausage"</span>]</div><div class="line">print(<span class="string">"spam"</span> <span class="keyword">in</span> words)</div><div class="line">print(<span class="string">"egg"</span> <span class="keyword">in</span> words)</div><div class="line">print(<span class="string">"tomato"</span> <span class="keyword">in</span> words)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>in</strong>操作符也可以用来判断某个字符串是否是另一个字符串的子字符串。</p>
+</blockquote>
+<hr>
+<p>可以通过<strong>not</strong>操作符来判断某个条目是否不在列表中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">print(<span class="keyword">not</span> <span class="number">4</span> <span class="keyword">in</span> nums)</div><div class="line">print(<span class="number">4</span> <span class="keyword">not</span> <span class="keyword">in</span> nums)</div><div class="line">print(<span class="keyword">not</span> <span class="number">3</span> <span class="keyword">in</span> nums)</div><div class="line">print(<span class="number">3</span> <span class="keyword">not</span> <span class="keyword">in</span> nums)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="列表方法(List_Functions)">列表方法(List Functions)</h2><p>另外一种改变列表的方式是通过<strong>append</strong>函数。这个函数会添加一个元素到列表的末尾。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">nums.append(<span class="number">4</span>)</div><div class="line">print(nums)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>可以通过<strong>len</strong>函数来获取列表中元素的个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>]</div><div class="line">print(len(nums))</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">5</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>insert</strong>方法和<strong>append</strong>类似，不同的是，它可以在列表的任何位置插入指定的元素，而不是仅仅跟在列表最后。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">"Python"</span>, <span class="string">"fun"</span>]</div><div class="line">index = <span class="number">1</span></div><div class="line">words.insert(index, <span class="string">"is"</span>)</div><div class="line">print(words)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="string">'Python'</span>, <span class="string">'is'</span>, <span class="string">'fun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>index</strong>方法会找到元素第一次出现的所在位置索引值，如果元素不在列表中，会抛出一个ValueError。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">letters = [<span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'s'</span>, <span class="string">'p'</span>, <span class="string">'u'</span>]</div><div class="line">print(letters.index(<span class="string">'r'</span>))</div><div class="line">print(letters.index(<span class="string">'p'</span>))</div><div class="line">print(letters.index(<span class="string">'z'</span>))</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">0</span></div><div class="line">ValueError: <span class="string">'z'</span> <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">in</span> list</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>下面有几个列表的更有用的方法：</p>
+<ul>
+<li><strong>max</strong>(list): 返回列表中最大的元素。</li>
+<li><strong>min</strong>(list): 返回列表中最小的元素。</li>
+<li>list.<strong>count</strong>(obj): 返回列表中指定元素的出现次数。</li>
+<li>list.<strong>remove</strong>(obj): 移除列表中的一个指定元素。</li>
+<li>list.<strong>reverse</strong>(): 将列表中的元素顺序翻转。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="Range">Range</h2><p><strong>range</strong>方法会创建一个包含数字序列的列表。下面的代码会生成一组0到10之间(包含0不包含10)的整数的序列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">numbers = list(range(<span class="number">10</span>))</div><div class="line">print(numbers)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>如果<strong>range</strong>方法传入一个参数，那么它将产生一组包含0到那个参数的数字序列。</p>
+<p>如果包含两个参数，那么它将产生第一个参数到第二个参数之间的数字序列。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">numbers = list(range(<span class="number">3</span>, <span class="number">8</span>))</div><div class="line">print(numbers)</div><div class="line"></div><div class="line">print(range(<span class="number">20</span>) == range(<span class="number">0</span>, <span class="number">20</span>))</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</div><div class="line"></div><div class="line"><span class="keyword">True</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>range</strong>可以拥有第三个用来决定步数的参数。这个参数必须是一个<strong>整形(integer)</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">numbers = list(range(<span class="number">5</span>, <span class="number">20</span>, <span class="number">2</span>))</div><div class="line">print(numbers)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">[<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>, <span class="number">17</span>, <span class="number">19</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="for循环">for循环</h2><h3 id="循环">循环</h3><p>有时，你需要对列表中的元素依次执行运算，这种操作叫做<strong>迭代(iteration)</strong>。迭代可以通过<strong>while</strong>循环以及一个条件变量来实现。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"spam"</span>, <span class="string">"eggs"</span>]</div><div class="line">counter = <span class="number">0</span></div><div class="line">max_index = len(words) - <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> counter &lt;= max_index:</div><div class="line">   word = words[counter]</div><div class="line">   print(word + <span class="string">"!"</span>)</div><div class="line">   counter = counter + <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">hello!</div><div class="line">world!</div><div class="line">spam!</div><div class="line">eggs!</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="for循环-1">for循环</h3><p>使用<strong>while</strong>来对列表进行迭代操作需要写的代码有点多，所以Python提供了一种<strong>for</strong>循环的方式来更简便的实现这一操作。</p>
+<p>同样的代码用<strong>for</strong>循环来实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"spam"</span>, <span class="string">"eggs"</span>]</div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">  print(word + <span class="string">"!"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">hello!</div><div class="line">world!</div><div class="line">spam!</div><div class="line">eggs!</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Python中的<strong>for</strong>循环，就像其他语言中的<strong>foreach</strong>循环一样。</p>
+</blockquote>
+<hr>
+<p><strong>for</strong>循环通常用于重复某一代码执行一定次数。这种操作可以通过与<strong>range</strong>对象结合使用来完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">  print(<span class="string">"hello!"</span>)</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">hello!</div><div class="line">hello!</div><div class="line">hello!</div><div class="line">hello!</div><div class="line">hello!</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="一个简单的计算器">一个简单的计算器</h2><h3 id="创建一个计算器">创建一个计算器</h3><p>这节课介绍一个Python程序的示例：一个简单的计算器。</p>
+<p>第一部分是整体菜单部分。它将持续接受用户的输入，直到用户输入了“quit”为止，因此用到了一个<strong>while</strong>循环。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">   print(<span class="string">"Options:"</span>)</div><div class="line">   print(<span class="string">"Enter 'add' to add two numbers"</span>)</div><div class="line">   print(<span class="string">"Enter 'subtract' to subtract two numbers"</span>)</div><div class="line">   print(<span class="string">"Enter 'multiply' to multiply two numbers"</span>)</div><div class="line">   print(<span class="string">"Enter 'divide' to divide two numbers"</span>)</div><div class="line">   print(<span class="string">"Enter 'quit' to end the program"</span>)</div><div class="line">   user_input = input(<span class="string">": "</span>)</div><div class="line"></div><div class="line">   <span class="keyword">if</span> user_input == <span class="string">"quit"</span>:</div><div class="line">      <span class="keyword">break</span></div><div class="line">   <span class="keyword">elif</span> user_input == <span class="string">"add"</span>:</div><div class="line">      ...</div><div class="line">   <span class="keyword">elif</span> user_input == <span class="string">"subtract"</span>:</div><div class="line">      ...</div><div class="line">   <span class="keyword">elif</span> user_input == <span class="string">"multiply"</span>:</div><div class="line">      ...</div><div class="line">   <span class="keyword">elif</span> user_input == <span class="string">"divide"</span>:</div><div class="line">      ...</div><div class="line">   <span class="keyword">else</span>:</div><div class="line">      print(<span class="string">"Unknown input"</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这部分代码是程序的开始部分。它将接受用户的输入，并且比较<strong>if/elif</strong>的条件语句。</p>
+<p>当用户输入了“quit”时，<strong>break</strong>语句用来终止while循环的执行。</p>
+</blockquote>
+<hr>
+<p>接下来一部分的代码是获取用户输入的数字。下面的代码展示了加法部分的逻辑。其他操作的代码也与此类似。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">elif</span> user_input == <span class="string">"add"</span>:</div><div class="line">  num1 = float(input(<span class="string">"Enter a number: "</span>))</div><div class="line">  num2 = float(input(<span class="string">"Enter another number: "</span>))</div></pre></td></tr></table></figure>
+<p>现在，当用户输入了“add”时，程序提示输入两个数字，并且存储到相应的变量中。</p>
+<blockquote>
+<p>当提示输入数字时，如果用户输入了一个非数字的字符，那么会产生一个崩溃。我们会在后面的章节来修复这个类似的问题。</p>
+</blockquote>
+<hr>
+<p>最后一部分是处理用户输入，并且展示结果。</p>
+<p>加法部分的逻辑如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">elif</span> user_input == <span class="string">"add"</span>:</div><div class="line">  num1 = float(input(<span class="string">"Enter a number: "</span>))</div><div class="line">  num2 = float(input(<span class="string">"Enter another number: "</span>))</div><div class="line">  result = str(num1 + num2)</div><div class="line">  print(<span class="string">"The answer is "</span> + result)</div></pre></td></tr></table></figure>
+<p>我们现在有了一个可以正常工作程序：提示用户输入，然后计算和打印输入的和。</p>
+<blockquote>
+<p>其他分支(减法，乘法，除法)的代码结构类似，可以自行补全。</p>
+<p>输出行可以放在<strong>if</strong>语句之外，以省略重复的代码。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/16/【Python3教程 第1章】基本概念/" rel="next" title="【Python3教程 第1章】基本概念">
+                <i class="fa fa-chevron-left"></i> 【Python3教程 第1章】基本概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/19/斯坦福机器学习课程 第六周 (4)操作偏斜数据/" rel="prev" title="斯坦福机器学习课程 第六周 (4)操作偏斜数据">
+                斯坦福机器学习课程 第六周 (4)操作偏斜数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔与比较"><span class="nav-number">1.</span> <span class="nav-text">布尔与比较</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔"><span class="nav-number">1.1.</span> <span class="nav-text">布尔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">1.2.</span> <span class="nav-text">比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if语句"><span class="nav-number">2.</span> <span class="nav-text">if语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if的嵌套"><span class="nav-number">2.1.</span> <span class="nav-text">if的嵌套</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#else语句"><span class="nav-number">3.</span> <span class="nav-text">else语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if和else嵌套使用"><span class="nav-number">3.1.</span> <span class="nav-text">if和else嵌套使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#elif语句"><span class="nav-number">3.2.</span> <span class="nav-text">elif语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔逻辑"><span class="nav-number">4.</span> <span class="nav-text">布尔逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔逻辑_and"><span class="nav-number">4.1.</span> <span class="nav-text">布尔逻辑 and</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔逻辑_or"><span class="nav-number">4.2.</span> <span class="nav-text">布尔逻辑 or</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔逻辑_not"><span class="nav-number">4.3.</span> <span class="nav-text">布尔逻辑 not</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符优先级"><span class="nav-number">5.</span> <span class="nav-text">运算符优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while循环"><span class="nav-number">6.</span> <span class="nav-text">while循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无限循环"><span class="nav-number">6.1.</span> <span class="nav-text">无限循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break"><span class="nav-number">6.2.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#continue"><span class="nav-number">6.3.</span> <span class="nav-text">continue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表(List)"><span class="nav-number">7.</span> <span class="nav-text">列表(List)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表操作(List_Operations)"><span class="nav-number">8.</span> <span class="nav-text">列表操作(List Operations)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表方法(List_Functions)"><span class="nav-number">9.</span> <span class="nav-text">列表方法(List Functions)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Range"><span class="nav-number">10.</span> <span class="nav-text">Range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for循环"><span class="nav-number">11.</span> <span class="nav-text">for循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环"><span class="nav-number">11.1.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环-1"><span class="nav-number">11.2.</span> <span class="nav-text">for循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的计算器"><span class="nav-number">12.</span> <span class="nav-text">一个简单的计算器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个计算器"><span class="nav-number">12.1.</span> <span class="nav-text">创建一个计算器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

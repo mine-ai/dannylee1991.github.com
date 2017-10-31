@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="环境变量环境变量的声明变量是不用声明直接使用即可创建，创建一个指定类型的变量时，可以使用declare来声明变量：
+123declare tmptmp=dennylee1991echo $tmp
+环境变量的原理及作用域shell的环境变量作用于自身和它的子进程。在unix和类unix系统当中，每个子进程都有其各自的环境变量设置，且默认情况下，当一个进程被创建时，处理创建过程中明确指定的话，它将继承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习笔记（3）环境变量与文件查找">
+<meta property="og:url" content="http://studyai.site/2016/05/09/Linux学习笔记（3）环境变量与文件查找/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="环境变量环境变量的声明变量是不用声明直接使用即可创建，创建一个指定类型的变量时，可以使用declare来声明变量：
+123declare tmptmp=dennylee1991echo $tmp
+环境变量的原理及作用域shell的环境变量作用于自身和它的子进程。在unix和类unix系统当中，每个子进程都有其各自的环境变量设置，且默认情况下，当一个进程被创建时，处理创建过程中明确指定的话，它将继承">
+<meta property="og:updated_time" content="2016-05-09T15:32:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux学习笔记（3）环境变量与文件查找">
+<meta name="twitter:description" content="环境变量环境变量的声明变量是不用声明直接使用即可创建，创建一个指定类型的变量时，可以使用declare来声明变量：
+123declare tmptmp=dennylee1991echo $tmp
+环境变量的原理及作用域shell的环境变量作用于自身和它的子进程。在unix和类unix系统当中，每个子进程都有其各自的环境变量设置，且默认情况下，当一个进程被创建时，处理创建过程中明确指定的话，它将继承">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/05/09/Linux学习笔记（3）环境变量与文件查找/"/>
+
+
+
+
+
+  <title>Linux学习笔记（3）环境变量与文件查找 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/05/09/Linux学习笔记（3）环境变量与文件查找/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux学习笔记（3）环境变量与文件查找</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-09T19:06:55+08:00">
+                2016-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/05/09/Linux学习笔记（3）环境变量与文件查找/" class="leancloud_visitors" data-flag-title="Linux学习笔记（3）环境变量与文件查找">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="环境变量">环境变量</h2><h3 id="环境变量的声明">环境变量的声明</h3><p>变量是不用声明直接使用即可创建，创建一个指定类型的变量时，可以使用<code>declare</code>来声明变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">declare</span> tmp</div><div class="line">tmp=dennylee1991</div><div class="line"><span class="built_in">echo</span> <span class="variable">$tmp</span></div></pre></td></tr></table></figure>
+<h3 id="环境变量的原理及作用域">环境变量的原理及作用域</h3><p>shell的环境变量作用于自身和它的子进程。在unix和类unix系统当中，每个子进程都有其各自的环境变量设置，且默认情况下，<br>当一个进程被创建时，处理创建过程中明确指定的话，它将继承其父进程的绝大部分环境设置。</p>
+<p>shell程序也作为一个进程运行在操作系统之上，而我们在shell中运行的大部分命令都将以shell的子进程的方式运行。</p>
+<p>以下三个命令用于打印相关环境变量，区别在于涉及的是不同范围的环境变量</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">set</td>
+<td style="text-align:left">显示当前shell所有环境变量，包括其内建环境变量，用户自定义变量，以及导出的环境变量</td>
+</tr>
+<tr>
+<td style="text-align:left">env</td>
+<td style="text-align:left">显示与当前用户相关的环境变量，还可以让命令在指定环境中运行</td>
+</tr>
+<tr>
+<td style="text-align:left">export</td>
+<td style="text-align:left">显示从shell中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量</td>
+</tr>
+</tbody>
+</table>
+<p>简单的说 set 包涵 env 包涵 export</p>
+<p>更直观的，可以使用<code>vimdiff</code>工具比较三者值的不同：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">temp=dannylee</div><div class="line"><span class="keyword">export</span> temp_env=dannylee</div><div class="line">env|sort&gt;env.txt</div><div class="line"><span class="keyword">export</span>|sort&gt;<span class="keyword">export</span>.txt</div><div class="line"><span class="built_in">set</span>|sort&gt;<span class="built_in">set</span>.txt</div></pre></td></tr></table></figure>
+<p>上述操作将命令输出通过管道<code>|</code>使用<code>sort</code>命令排序，再重定向到对应文本文件中。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vimdiff env<span class="selector-class">.txt</span> export<span class="selector-class">.txt</span> set.txt</div></pre></td></tr></table></figure>
+<p>使用<code>vimdiff</code>工具比较导出的几个文件的内容。</p>
+<h3 id="将自己的脚本添加到环境变量－命令的查找路径与顺序">将自己的脚本添加到环境变量－命令的查找路径与顺序</h3><p><code>shell</code>中之所以能执行命令，是通过环境变量<code>PATH</code>来进行搜索的。</p>
+<p>当我们在<code>shell</code>中执行一个命令时，系统就会按照<code>PATH</code>中设定的路径按照顺序依次到目录中去查找，如果存在同名的命令，则执行先找到的那个。</p>
+<p>接下来创建一个<code>shell</code>脚本以及<code>c</code>程序，并配置到环境变量中。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">vim</span> hello_shell.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/zsh</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>((i=0; i&lt;10; i++));<span class="keyword">do</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">"hello shell"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
+<p>为文件添加可执行权限:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>chmod <span class="number">755</span> hello_shell.sh</div></pre></td></tr></table></figure>
+<p>创建一个c程序</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>vim hello_world.c</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"hello world!\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用<code>gcc</code>编译生成可执行文件：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>gcc -o hello_world hello_world.c</div></pre></td></tr></table></figure>
+<p><code>gcc</code>生成二进制文件默认具有可执行权限，不需要更改权限。</p>
+<p>在<code>home</code>目录下创建一个<code>mybin</code>目录，并且将上面两个可执行文件放入<code>mybin</code>中</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>mkdir mybin</div><div class="line"><span class="variable">$ </span>mv hello_shell.sh hello_world mybin/</div></pre></td></tr></table></figure>
+<p>将可执行文件添加到环境变量中：</p>
+<h4 id="方式1:">方式1:</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>PATH=<span class="variable">$PATH</span><span class="symbol">:/home/lijianan/mybin</span></div></pre></td></tr></table></figure>
+<p>记得这里要写绝对路径。但是这种写法只在当前shell有效，一旦退出终端，就会失效。</p>
+<h4 id="方式2:">方式2:</h4><p>每个用户的<code>home</code>目录中有一个<code>Shell</code>每次启动时会默认执行一个配置脚本，以初始化环境，包括添加一些用户自定义环境变量等待。<br><code>zsh</code>的配置文件是<code>.zshrc</code>,相应<code>bash</code>的配置文件为<code>.bashrc</code>。它们在<code>etc</code>下还都有一个或多个全局的配置文件，不过我们一般只修改用户目录下的配置文件。</p>
+<p>我们可以简单的使用下面的命令直接添加内容到<code>.zshrc</code>中：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ echo <span class="string">"PATH=$PATH:/home/lijianan/mybin"</span> <span class="meta">&gt;&gt; </span>.zshrc</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：上述命令中<code>&gt;&gt;</code>表示将标准输出以<strong>追加到</strong>的方式重定向到一个文件中，注意前面用到的<code>&gt;</code>是以<strong>覆盖到</strong>方式重定向到一个文件中，使用时要注意辨别。</p>
+<h3 id="删除环境变量">删除环境变量</h3><p>删除变量可以使用<code>unset</code>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">unset</span> temp</div></pre></td></tr></table></figure>
+<h3 id="让环境变量立刻生效">让环境变量立刻生效</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> .zshrc</div></pre></td></tr></table></figure>
+<h2 id="搜索文件">搜索文件</h2><p>四个常用指令:</p>
+<p>whereis, locate, which, find.</p>
+<h3 id="wiereis">wiereis</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>whereis who</div></pre></td></tr></table></figure>
+<p><code>whereis</code>只能搜索二进制文件<code>(-b)</code>，<code>man</code>帮助文件<code>(-m)</code>和源代码文件<code>(-s)</code>，如果想获得更全面的结果，需要使用<code>locate</code>命令</p>
+<h3 id="locate">locate</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ locate <span class="meta-keyword">/etc/</span>sh</div></pre></td></tr></table></figure>
+<p><code>locate</code>用来查找指定目录下的不同文件类型，如上所示查找<code>/etc</code>下所有以<code>sh</code>开头的文件<strong>（它不仅仅是在<code>etc</code>目录下查找，而且会递归子目录进行查找）</strong></p>
+<p>查找<code>/usr/share/</code>下所有<code>jpg</code>文件：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ locate <span class="regexp">/usr/share/</span><span class="string">\*.jpg</span></div></pre></td></tr></table></figure>
+<h3 id="which">which</h3><p><code>which</code>只从<code>PATH</code>环境变量指定的路径中去搜索命令，是<code>shell</code>内建的一个命令。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">which</span> <span class="keyword">man</span></div></pre></td></tr></table></figure>
+<h3 id="find">find</h3><p><code>find</code>是最强大的了，不仅可以通过文件类型、文件名查找，而且可以根据文件的属性（如文件的时间戳，文件的权限等）进行搜索。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">find</span> ~ -mtime <span class="number">0</span>	#列出用户<span class="built_in">home</span>目录中，当天（<span class="number">24</span>小时之内）有改动的文件</div><div class="line">$ <span class="built_in">find</span> ~ -newer /<span class="built_in">home</span>/shiyanlou/Code 	#列出用户<span class="built_in">home</span>目录下比Code文件夹新的文件</div></pre></td></tr></table></figure>
+<h2 id="其他">其他</h2><p>运行“数字雨”</p>
+<p><code>ubuntu</code>安装<code>cmatrix</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get <span class="keyword">update</span>;sudo aptget <span class="keyword">install</span> cmatrix</div></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cmatrix</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/08/Linux学习笔记（2）用户管理，文件操作，权限管理/" rel="next" title="Linux学习笔记（2）用户管理，文件操作，权限管理">
+                <i class="fa fa-chevron-left"></i> Linux学习笔记（2）用户管理，文件操作，权限管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/09/Linux学习笔记（4）文件打包与压缩/" rel="prev" title="Linux学习笔记（4）文件打包与压缩">
+                Linux学习笔记（4）文件打包与压缩 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-number">1.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量的声明"><span class="nav-number">1.1.</span> <span class="nav-text">环境变量的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量的原理及作用域"><span class="nav-number">1.2.</span> <span class="nav-text">环境变量的原理及作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将自己的脚本添加到环境变量－命令的查找路径与顺序"><span class="nav-number">1.3.</span> <span class="nav-text">将自己的脚本添加到环境变量－命令的查找路径与顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式1:"><span class="nav-number">1.3.1.</span> <span class="nav-text">方式1:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式2:"><span class="nav-number">1.3.2.</span> <span class="nav-text">方式2:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除环境变量"><span class="nav-number">1.4.</span> <span class="nav-text">删除环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让环境变量立刻生效"><span class="nav-number">1.5.</span> <span class="nav-text">让环境变量立刻生效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索文件"><span class="nav-number">2.</span> <span class="nav-text">搜索文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiereis"><span class="nav-number">2.1.</span> <span class="nav-text">wiereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">2.2.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.3.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.4.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

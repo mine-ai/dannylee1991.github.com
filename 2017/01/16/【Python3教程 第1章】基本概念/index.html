@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="什么是Python？欢迎来到Python!Python是一个应用于很多领域（包括web编程，脚本，科学计算，以及人工智能）的高级编程语言。
+同时它也非常流行，在Google、NASA、CIA以及Disney等这些机构都在使用。
+
+Python在运行时被解释器(interpreter)处理。在你的程序执行之前，不需要被编译。
+
+Python有三个主要的版本，分别是1.x,2.x和3.x。进一步细分为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python3教程 第1章】基本概念">
+<meta property="og:url" content="http://studyai.site/2017/01/16/【Python3教程 第1章】基本概念/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="什么是Python？欢迎来到Python!Python是一个应用于很多领域（包括web编程，脚本，科学计算，以及人工智能）的高级编程语言。
+同时它也非常流行，在Google、NASA、CIA以及Disney等这些机构都在使用。
+
+Python在运行时被解释器(interpreter)处理。在你的程序执行之前，不需要被编译。
+
+Python有三个主要的版本，分别是1.x,2.x和3.x。进一步细分为">
+<meta property="og:image" content="http://studyai.site/img/17_01_16/001.png">
+<meta property="og:updated_time" content="2017-01-16T16:28:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Python3教程 第1章】基本概念">
+<meta name="twitter:description" content="什么是Python？欢迎来到Python!Python是一个应用于很多领域（包括web编程，脚本，科学计算，以及人工智能）的高级编程语言。
+同时它也非常流行，在Google、NASA、CIA以及Disney等这些机构都在使用。
+
+Python在运行时被解释器(interpreter)处理。在你的程序执行之前，不需要被编译。
+
+Python有三个主要的版本，分别是1.x,2.x和3.x。进一步细分为">
+<meta name="twitter:image" content="http://studyai.site/img/17_01_16/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/01/16/【Python3教程 第1章】基本概念/"/>
+
+
+
+
+
+  <title>【Python3教程 第1章】基本概念 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/01/16/【Python3教程 第1章】基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Python3教程 第1章】基本概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-16T00:31:58+08:00">
+                2017-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/01/16/【Python3教程 第1章】基本概念/" class="leancloud_visitors" data-flag-title="【Python3教程 第1章】基本概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是Python？">什么是Python？</h2><h3 id="欢迎来到Python!">欢迎来到Python!</h3><p><strong>Python</strong>是一个应用于很多领域（包括web编程，脚本，科学计算，以及人工智能）的高级编程语言。</p>
+<p>同时它也非常流行，在Google、NASA、CIA以及Disney等这些机构都在使用。</p>
+<blockquote>
+<p>Python在运行时被解释器(interpreter)处理。在你的程序执行之前，不需要被编译。</p>
+</blockquote>
+<p>Python有三个主要的版本，分别是1.x,2.x和3.x。进一步细分为一些主要的版本，例如2.7和3.3。</p>
+<p>由Python3.x版本写的代码保证能够在未来的所有版本中运行。</p>
+<p>有两个版本的Python分别是2.x和3.x版本现在还在被使用到。这套课程主要涵盖的是Python 3.x版本的内容，但切换到另一个版本其实并不困难。</p>
+<p>Python有一些由其他语言写成的不同的实现。这套课程中用到的，<strong>CPython</strong>是目前最流行的。</p>
+<blockquote>
+<p><strong>解释器</strong>是运行以解释性语言（例如Python）编写的脚本的程序。</p>
+</blockquote>
+<h2 id="Python控制台">Python控制台</h2><h3 id="你的第一个程序">你的第一个程序</h3><p>这节课，我们将通过Python控制台来开始使用Python。第一步是从<strong><a href="www.python.org">www.python.org</a></strong>下载Python。</p>
+<p>你应该下载与你系统兼容的Python 3.x的版本。一旦安装完毕，Python控制台就可以使用以下的几种方式之一来访问了：</p>
+<ul>
+<li>使用命令行</li>
+<li>直接运行Python解释器</li>
+<li>运行一个图形化的Python IDLE(集成化的Python开发环境)程序</li>
+</ul>
+<p>运行IDLE之后，你将看到一个三个箭头的提示。输入<code>print(&#39;Hello world!&#39;)</code>然后按下回车。你会看到以下结果：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt;print(<span class="string">'Hello world!'</span>)</div><div class="line">Hello world!</div></pre></td></tr></table></figure>
+<p>恭喜！你已经写完了你的第一个程序。</p>
+<blockquote>
+<p>这个展示”Hello world!”的小程序在其他任何语言中像是一个传统一样，都是作为第一个程序存在的。</p>
+</blockquote>
+<h3 id="Python控制台-1">Python控制台</h3><p>Python控制台是一个允许你输入一行Python代码，重复执行那一行代码，并输出结果的程序。这被称为<strong>REPL</strong> – 一个“读取-计算-打印输出”的循环。</p>
+<p>在<code>print(&#39;Hello world!&#39;)</code>行的输出已经显示之后，您可以重新输入代码，并且您将再次获得相同的输出。尝试输入相同的代码，但使用不同的文本：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="string">'Hello world!'</span>)</div><div class="line">Hello world!</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="string">'Hello world!'</span>)</div><div class="line">Hello world!</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="string">'Spam and eggs...'</span>)</div><div class="line">Spam <span class="keyword">and</span> eggs...</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Python代码通常包含对喜剧组<strong>Monty Python</strong>的引用。这就是为什么“垃圾邮件”和“鸡蛋”这些词经常在Python中用作占位符变量，其中“foo”和“bar”将用于其他编程语言。</p>
+</blockquote>
+<p>结束Python控制台的使用后，您需要关闭它。您可以以关闭操作系统上其他程序的相同方式关闭IDLE，但其他类型的控制台必须通过不同的方法关闭。要关闭控制台，请键入“<strong>quit()</strong>”或“<strong>exit()</strong>”，然后按Enter键。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; quit()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>一些Python控制台也可以通过按<strong>Ctrl-Z</strong>关闭，这是一个控制代码，发送退出信号到控制台程序。另一个控制代码，<strong>Ctrl-C</strong>，停止正在运行的程序，如果你不小心创建了一个死循环的程序时，可以用这个指令来终止它。</p>
+</blockquote>
+<h2 id="简单操作">简单操作</h2><h3 id="加减法操作">加减法操作</h3><p>Python有计算能力。直接在Python控制台中输入计算，它将输出答案。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">2</span> + <span class="number">2</span></div><div class="line"><span class="number">4</span></div><div class="line">&gt;&gt;&gt; <span class="number">5</span> + <span class="number">4</span> - <span class="number">3</span></div><div class="line"><span class="number">6</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在这里的加号和减号周围的空格是<strong>可选的</strong>（代码的执行对它们是无效的），但这些空格使代码更容易阅读。</p>
+</blockquote>
+<h3 id="乘除法操作">乘除法操作</h3><p>Python还可以执行乘法和除法，使用星号(*)表示乘法和正斜杠(/)表示除法。</p>
+<p>使用括号确定优先执行的操作。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">2</span> * (<span class="number">3</span> + <span class="number">4</span>)</div><div class="line"><span class="number">14</span></div><div class="line">&gt;&gt;&gt; <span class="number">10</span> / <span class="number">2</span></div><div class="line"><span class="number">5.0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用单斜杠来分割数字会产生一个小数（或<strong>浮点数</strong>）。我们将在后面的课程中更多地了解<strong>浮点数</strong>。</p>
+</blockquote>
+<h3 id="负数运算">负数运算</h3><p>减号与数字组合会得到一个<strong>负数</strong>。在负数上的操作运算和在正数上的操作运算是一样的。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">-7</span></div><div class="line"><span class="number">-7</span></div><div class="line">&gt;&gt;&gt; (<span class="number">-7</span> + <span class="number">2</span>) * (<span class="number">-4</span>)</div><div class="line"><span class="number">20</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>加号也可以跟在数字的前面，但它其实没有什么效果。其实它通常是用来强调数字是正数，目的是为了增强代码的可读性。</p>
+</blockquote>
+<h3 id="除以0">除以0</h3><p>在Python中被0除会产生一个<strong>错误(error)</strong>，因为没有答案能被算出。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="number">11</span> / <span class="number">0</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span></div><div class="line"><span class="symbol">ZeroDivisionError:</span> division by zero</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在Python中，最后一行的错误信息展示了错误类型。仔细读错误信息，因为它通常会告诉你如何修改程序！</p>
+</blockquote>
+<h2 id="浮点数(Float)">浮点数(Float)</h2><p><strong>Float</strong>在Python中用于表示不是整数的数字。以浮点数表示的实例如：<code>0.5</code>和<code>-7.8237591</code>。它们可以通过输入带小数点的数字直接创建，也可以使用整数除法等操作来得到。在数字末尾的多余的0会被忽略。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">3</span>/<span class="number">4</span> </div><div class="line"><span class="number">0.75</span> </div><div class="line">&gt;&gt;&gt; <span class="number">9.8765000</span> </div><div class="line"><span class="number">9.8765</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>事实上，电脑无法精确的计算浮点数，同样，我们无法写出浮点数<code>1/3</code>的完整的十进制形式(<code>0.3333333333333333...</code>)。记住这一条，因为这里总是会导致一些令人生气的bug！</p>
+</blockquote>
+<p>正如你上面看到的，两个整数相除可以得到一个<strong>float</strong>。</p>
+<p>一个浮点数也可以由两个浮点数之间的运算得出，或者一个整数一个浮点数的运算也可以得出。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">8</span> / <span class="number">2</span></div><div class="line"><span class="number">4.0</span></div><div class="line">&gt;&gt;&gt; <span class="number">6</span> * <span class="number">7.0</span></div><div class="line"><span class="number">42.0</span></div><div class="line">&gt;&gt;&gt; <span class="number">4</span> + <span class="number">1.65</span></div><div class="line"><span class="number">5.65</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>一个浮点数可以和一个整数相加，因为Python会自动将整数转变为浮点数。然而，这种隐式转型在Python中是一种例外情况，通常情况下，在Python中，如果你想要进行类型转换，都需要手动处理。</p>
+</blockquote>
+<h2 id="其他数值运算">其他数值运算</h2><h3 id="乘方运算">乘方运算</h3><p>除了加，减，乘，除，Python也支持乘方操作。乘方操作是使用两个星号执行的。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">2</span> ** <span class="number">5</span> </div><div class="line"><span class="number">32</span> </div><div class="line">&gt;&gt;&gt; <span class="number">9</span> **（<span class="number">1</span>/<span class="number">2</span>）</div><div class="line"><span class="number">3.0</span></div></pre></td></tr></table></figure>
+<h3 id="商和余">商和余</h3><p>要确定一个除法运算的商和余数，可以分别使用<strong>floor division</strong>和<strong>取模</strong>运算。</p>
+<p>Floor division使用两个下划线构成。取模运算由百分号(%)组成。</p>
+<p>这些操作都可以用在浮点数和整数上。</p>
+<p>下面的代码展示了20可以被6除三次，以及1.25除以0.5之后余0.25：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="number">20</span> <span class="comment">// 6</span></div><div class="line"><span class="number">3</span></div><div class="line">&gt;&gt;&gt; <span class="number">1.25</span> % <span class="number">0.5</span></div><div class="line"><span class="number">0.25</span></div></pre></td></tr></table></figure>
+<h2 id="字符串">字符串</h2><p>如果你想在Python中使用一个text，你必须用到字符串。</p>
+<p>一个字符串是由<strong>单引号</strong>或<strong>双引号</strong>以及之间的文本构成的。</p>
+<p>当Python控制台显示一个字符串时，它通常是由单引号括起来的。用于字符串上的分隔符不会影响到字符串的行为。</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="string">"Python is fun!"</span></div><div class="line"><span class="symbol">'Python</span> <span class="keyword">is</span> fun!'</div><div class="line">&gt;&gt;&gt; <span class="symbol">'Always</span> look <span class="keyword">on</span> the bright side <span class="keyword">of</span> life'</div><div class="line"><span class="symbol">'Always</span> look <span class="keyword">on</span> the bright side <span class="keyword">of</span> life'</div></pre></td></tr></table></figure>
+<h3 id="转义字符">转义字符</h3><p>某些字符串无法直接包含在一个字符串内。例如，双引号不能直接包含双引号的字符串，这将导致字符串提前结束。</p>
+<p>想这些字符必须通过一个用于转义的反斜杠()在他们前面，才能满足我们的要求。</p>
+<p>必须转义的其他常见字符还有<strong>换行符</strong>和<strong>反斜杠</strong>。</p>
+<p>双引号只需要在双引号字符串中转义，对于单引号字符串也是如此。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="symbol">'Brian</span>\<span class="symbol">'s</span> mother: He\<span class="symbol">'s</span> <span class="keyword">not</span> the Messiah. He\<span class="symbol">'s</span> a very naughty boy!'</div><div class="line"><span class="symbol">'Brian</span><span class="symbol">'s</span> mother: He<span class="symbol">'s</span> <span class="keyword">not</span> the Messiah. He<span class="symbol">'s</span> a very naughty boy!'</div></pre></td></tr></table></figure>
+<p><strong>\n</strong>代表新的一行。</p>
+<blockquote>
+<p>反斜杠也可用于转义标签、任意Unicode字符 以及许多其他并不能被打印的东西。这些字符称为转义字符。</p>
+</blockquote>
+<h3 id="换行">换行</h3><p>Python提供了一种简单的方式来避免手工编写”\n”来进行字符串的换行转义。创建一个<strong>三引号</strong>包裹的字符串，回车键将自动处理为转义换行符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"""Customer: Good morning.</span></div><div class="line">Owner: Good morning, Sir. Welcome to the National Cheese Emporium."""</div><div class="line"></div><div class="line"><span class="string">'Customer: Good morning.\nOwner: Good morning, Sir. Welcome to the National Cheese Emporium.'</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>正如你看到的那样，当我们按下回车键时，<strong>\n</strong>会自动地添加到输出中去。</p>
+</blockquote>
+<h2 id="简单的输入与输出">简单的输入与输出</h2><h3 id="输出">输出</h3><p>通常情况下，程序接受<strong>输入</strong>然后处理之后产生<strong>输出</strong>。</p>
+<p>在Python中，你可以使用<strong>print</strong>方法来生成输出。它将在屏幕上输出某些东西的文本表示形式。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="number">1</span> + <span class="number">1</span>)</div><div class="line"><span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="string">"Hello\nWorld!"</span>)</div><div class="line">Hello</div><div class="line">World!</div></pre></td></tr></table></figure>
+<blockquote>
+<p>当一个字符串被打印时，两边的括号是不被展示的。</p>
+</blockquote>
+<h3 id="输入">输入</h3><p>在Python中，你可以使用<strong>input</strong>方法来获取用户的输入。这个方法会提示用户输入，并且返回用户按下回车时输入的字符串（内容自动转义）。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; input(<span class="string">"Enter something please: "</span>)</div><div class="line">Enter something please: This is what\nthe <span class="keyword">user</span> <span class="title">enters</span>!</div><div class="line"></div><div class="line">'This is what\\nthe <span class="keyword">user</span> <span class="title">enters</span>!'</div></pre></td></tr></table></figure>
+<blockquote>
+<p>能够自动的执行输入和输出的<strong>输入</strong>和<strong>输出</strong>方法在Python的控制台中并不是很有用。然而，在实际的程序中，它很有用。</p>
+</blockquote>
+<h2 id="字符串操作">字符串操作</h2><h3 id="级联">级联</h3><p>与整数浮点数相同，字符串在Python中也可以使用加法运算，这种可以在任意两个字符串之间完成的操作被称为<strong>级联</strong>。</p>
+<p>执行级联操作时，不管字符串是由单引号创建的还是双引号创建的，都可以正常执行。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="string">"Spam"</span> + <span class="string">'eggs'</span></div><div class="line"><span class="string">'Spameggs'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="string">"First string"</span> + <span class="string">", "</span> + <span class="string">"second string"</span>)</div><div class="line">First string, second string</div></pre></td></tr></table></figure>
+<p>即使你的字符串中包含数字，它们在进行相加操作时，依然是以字符串的形式进行运算，而不是整数。将一个字符串与一个数字相加会产生错误，即使它们看起来很相似，但它们任然是两种不同的实体。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="string">"2"</span> + <span class="string">"2"</span></div><div class="line"><span class="string">'22'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="number">1</span> + <span class="string">'2'</span> + <span class="number">3</span> + <span class="string">'4'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span></div><div class="line"><span class="symbol">TypeError:</span> unsupported operand type(s) <span class="keyword">for</span> +: <span class="string">'int'</span> <span class="keyword">and</span> <span class="string">'str'</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在后面的课程中，错误信息只显示最后一行，因为它是唯一提供当前发生的错误的详细信息的消息。</p>
+</blockquote>
+<h3 id="字符串操作-1">字符串操作</h3><p>字符串也可以和整数<strong>相乘</strong>。这种操作会生成由原始字符串重复出现组成的字符串。字符串和整数的顺序并不重要，但通常情况下，字符串是放在最前面的。</p>
+<p>字符串不能被其他字符串相乘。字符串也不能被浮点数相乘，即使浮点数是整数。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(<span class="string">"spam"</span> * <span class="number">3</span>)</div><div class="line">spamspamspam</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="number">4</span> * <span class="string">'2'</span></div><div class="line"><span class="string">'2222'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="string">'17'</span> * <span class="string">'87'</span></div><div class="line"><span class="symbol">TypeError:</span> can<span class="string">'t multiply sequence by non-int of type '</span>str<span class="string">'</span></div><div class="line"></div><div class="line">&gt;&gt;&gt; 'pythonisfun<span class="string">' * 7.0</span></div><div class="line">TypeError: can't multiply sequence by non-int of type <span class="string">'float'</span></div></pre></td></tr></table></figure>
+<h2 id="类型转换">类型转换</h2><p>在Python中，由于类型所以有些操作不能完成。例如，你不能把字符串“2”和字符串“3”相加得到字符串“5”，由于这种加法操作是在字符串上进行的，得到的结果是“23”。</p>
+<p>解决这个问题的方式是<strong>类型转换</strong>。</p>
+<p>在这个例子中，你可以使用<strong>int</strong>函数。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="string">"2"</span> + <span class="string">"3"</span></div><div class="line"><span class="string">'23'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; int(<span class="string">"2"</span>) + int(<span class="string">"3"</span>)</div><div class="line"><span class="number">5</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在Python中，我们使用的类型是<strong>整数</strong>，<strong>浮点数</strong>和<strong>字符串</strong>。用于转换为这些的函数分别是<strong>int</strong>，<strong>float</strong>和<strong>str</strong>。</p>
+</blockquote>
+<p>另一个类型转换的例子是转换用户的输入(是一个<strong>string</strong>)成为一个数字(<strong>integers</strong>或者<strong>floats</strong>)，以至于可以进行计算。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="keyword">float</span>(input(<span class="string">"Enter a number: "</span>)) + <span class="keyword">float</span>(input(<span class="string">"Enter another number: "</span>))</div><div class="line">Enter a <span class="string">number:</span> <span class="number">40</span></div><div class="line">Enter another <span class="string">number:</span> <span class="number">2</span></div><div class="line"><span class="number">42.0</span></div></pre></td></tr></table></figure>
+<h2 id="变量">变量</h2><p>变量在大多数编程语言中都起到了重要的作用，Python也不例外。一个变量通过赋予一个名字，然后可以存储一个值，在其后面的程序中进行调用。</p>
+<p>通过<strong>一个等号</strong>来定义一个变量。不同于到目前我们看到的大部分代码，它不会在控制台产生任何输出信息。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; x = <span class="number">7</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line"><span class="number">7</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x + <span class="number">3</span>)</div><div class="line"><span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line"><span class="number">7</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>您可以使用变量执行相应的操作，就像使用数字和字符串一样。正如你所看到的，这个变量在整个程序中都保存着它的值。</p>
+</blockquote>
+<p>变量可以多次的重新赋值。在Python中，变量没有被指定类型，因此你可以赋值一个string到一个变量上，然后你也可以赋值一个integer型的数据到同一个变量上。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; x = <span class="number">123.456</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line"><span class="number">123.456</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; x = <span class="string">"This is a string"</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x + <span class="string">"!"</span>)</div><div class="line">This is a string!</div></pre></td></tr></table></figure>
+<h3 id="变量名">变量名</h3><p>在Python中，对于变量名有一些限制，在变量名中只可以使用字母、数字和下划线。另外，不能以数字开头。</p>
+<p>如果不遵循这些规则，则会产生错误。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; this_is_a_normal_name = <span class="number">7</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="number">123</span>abc = <span class="number">7</span></div><div class="line"><span class="symbol">SyntaxError:</span> invalid syntax</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; spaces are not allowed</div><div class="line"><span class="symbol">SyntaxError:</span> invalid syntax</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Python是一种大小写敏感的编程语言。因此，<strong>Lastname</strong>和<strong>lastname</strong>在Python中是两个不同的变量名。</p>
+</blockquote>
+<p>如果使用了一个没有被赋值的变量，将产生一个<strong>错误</strong>。</p>
+<p>你可以使用<strong>del</strong>语句来删除一个变量，这意味着这个变量从名称到值的引用都会被删除，并且尝试使用被删除的变量会导致错误。被删除的变量可以正常的重新被赋值。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; foo = <span class="string">"a string"</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; foo</div><div class="line"><span class="string">'a string'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; bar</div><div class="line"><span class="symbol">NameError:</span> name <span class="string">'bar'</span> is <span class="keyword">not</span> <span class="keyword">defined</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; del foo</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; foo</div><div class="line"><span class="symbol">NameError:</span> name <span class="string">'foo'</span> is <span class="keyword">not</span> <span class="keyword">defined</span></div></pre></td></tr></table></figure>
+<p>你也可以接受用户的输入作为变量的值:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; foo = input(<span class="string">"Enter a number: "</span>)</div><div class="line">Enter a <span class="symbol">number:</span> <span class="number">7</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(foo)</div><div class="line"><span class="number">7</span></div></pre></td></tr></table></figure>
+<h2 id="赋值运算符">赋值运算符</h2><p>赋值运算符允许你将像<code>x = x + 3</code>这样的代码写的更简洁，像这样<code>x += 3</code>。</p>
+<p>同样的操作也适用于其他操作例如<code>-</code>,<code>*</code>,<code>/</code>和<code>%</code>。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; x = <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line"><span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; x += <span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line"><span class="number">5</span></div></pre></td></tr></table></figure>
+<p>这些运算符也可以用于数字以外的类型，例如<strong>字符串</strong>。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; x = <span class="string">"spam"</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line">spam</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; x += <span class="string">"eggs"</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(x)</div><div class="line">spameggs</div></pre></td></tr></table></figure>
+<blockquote>
+<p>许多其他的语言有像<code>++</code>这样的对于<code>x += 1</code>的简写的写法。Python中<strong>不支持</strong>这样做。</p>
+</blockquote>
+<h2 id="使用编辑器">使用编辑器</h2><p>到目前为止，我们仅仅通过Python控制台来写Python。这样我们每次仅能同时输入并允许一行代码。</p>
+<p>在实际的开发中其实并不是这样的，我们会将多行代码写入一个文件中，并通过Python解释器来运行它。</p>
+<p>在<strong>IDLE</strong>中，这种操作是通过创建一个文件，输入一些代码，保存文件，然后运行它来执行。这些操作可以通过点击菜单来完成或者通过键盘快捷键’Ctrl-N’,’Ctrl-S’和‘F5’来完成。</p>
+<p>文件中的每行代码都被解释为在控制台中一次输入的一行代码。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">7</span></div><div class="line">x = x + <span class="number">2</span></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(x)</span></span></div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<p><img src="/img/17_01_16/001.png" alt=""></p>
+<blockquote>
+<p>Python源代码有一个<strong>.py</strong>的扩展名。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/15/【Codelab】自动性能测试/" rel="next" title="【Codelab】自动性能测试">
+                <i class="fa fa-chevron-left"></i> 【Codelab】自动性能测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/17/【Python3教程 第2章】控制结构/" rel="prev" title="【Python3教程 第2章】控制结构">
+                【Python3教程 第2章】控制结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Python？"><span class="nav-number">1.</span> <span class="nav-text">什么是Python？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#欢迎来到Python!"><span class="nav-number">1.1.</span> <span class="nav-text">欢迎来到Python!</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python控制台"><span class="nav-number">2.</span> <span class="nav-text">Python控制台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#你的第一个程序"><span class="nav-number">2.1.</span> <span class="nav-text">你的第一个程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python控制台-1"><span class="nav-number">2.2.</span> <span class="nav-text">Python控制台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单操作"><span class="nav-number">3.</span> <span class="nav-text">简单操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加减法操作"><span class="nav-number">3.1.</span> <span class="nav-text">加减法操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乘除法操作"><span class="nav-number">3.2.</span> <span class="nav-text">乘除法操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负数运算"><span class="nav-number">3.3.</span> <span class="nav-text">负数运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除以0"><span class="nav-number">3.4.</span> <span class="nav-text">除以0</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数(Float)"><span class="nav-number">4.</span> <span class="nav-text">浮点数(Float)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他数值运算"><span class="nav-number">5.</span> <span class="nav-text">其他数值运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#乘方运算"><span class="nav-number">5.1.</span> <span class="nav-text">乘方运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#商和余"><span class="nav-number">5.2.</span> <span class="nav-text">商和余</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">6.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转义字符"><span class="nav-number">6.1.</span> <span class="nav-text">转义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换行"><span class="nav-number">6.2.</span> <span class="nav-text">换行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的输入与输出"><span class="nav-number">7.</span> <span class="nav-text">简单的输入与输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">7.1.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">7.2.</span> <span class="nav-text">输入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串操作"><span class="nav-number">8.</span> <span class="nav-text">字符串操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#级联"><span class="nav-number">8.1.</span> <span class="nav-text">级联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串操作-1"><span class="nav-number">8.2.</span> <span class="nav-text">字符串操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换"><span class="nav-number">9.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">10.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量名"><span class="nav-number">10.1.</span> <span class="nav-text">变量名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值运算符"><span class="nav-number">11.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用编辑器"><span class="nav-number">12.</span> <span class="nav-text">使用编辑器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

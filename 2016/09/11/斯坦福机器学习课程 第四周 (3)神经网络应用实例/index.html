@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,斯坦福课程,神经网络," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="神经网络应用实例视频地址 part1
+视频地址 part2
+
+接下来将通过一个具体的例子来解释神经网络是如何计算关于输入的复杂的非线性函数的。
+
+问题引入考虑下面的问题：
+我们有二进制的输入特征$x_{1}$和$x_{2}$，它们的取值要么是0，要么是1。这个例子中，我画出了两个正样本和两个负样本。
+
+但你可以认为这是更复杂的学习问题的简化版本。在这个复杂问题中，我们可能在右上角有一堆正样本，在右">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯坦福机器学习课程 第四周 (3)神经网络应用实例">
+<meta property="og:url" content="http://studyai.site/2016/09/11/斯坦福机器学习课程 第四周 (3)神经网络应用实例/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="神经网络应用实例视频地址 part1
+视频地址 part2
+
+接下来将通过一个具体的例子来解释神经网络是如何计算关于输入的复杂的非线性函数的。
+
+问题引入考虑下面的问题：
+我们有二进制的输入特征$x_{1}$和$x_{2}$，它们的取值要么是0，要么是1。这个例子中，我画出了两个正样本和两个负样本。
+
+但你可以认为这是更复杂的学习问题的简化版本。在这个复杂问题中，我们可能在右上角有一堆正样本，在右">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/001.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/002.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/003.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/004.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/005.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/006.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/007.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/008.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/009.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/010.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/011.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/001.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/012.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/012.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/014.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/015.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/016.png">
+<meta property="og:image" content="http://studyai.site/img/16_09_11/017.png">
+<meta property="og:updated_time" content="2016-10-15T17:44:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="斯坦福机器学习课程 第四周 (3)神经网络应用实例">
+<meta name="twitter:description" content="神经网络应用实例视频地址 part1
+视频地址 part2
+
+接下来将通过一个具体的例子来解释神经网络是如何计算关于输入的复杂的非线性函数的。
+
+问题引入考虑下面的问题：
+我们有二进制的输入特征$x_{1}$和$x_{2}$，它们的取值要么是0，要么是1。这个例子中，我画出了两个正样本和两个负样本。
+
+但你可以认为这是更复杂的学习问题的简化版本。在这个复杂问题中，我们可能在右上角有一堆正样本，在右">
+<meta name="twitter:image" content="http://studyai.site/img/16_09_11/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/09/11/斯坦福机器学习课程 第四周 (3)神经网络应用实例/"/>
+
+
+
+
+
+  <title>斯坦福机器学习课程 第四周 (3)神经网络应用实例 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/09/11/斯坦福机器学习课程 第四周 (3)神经网络应用实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">斯坦福机器学习课程 第四周 (3)神经网络应用实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-11T19:22:00+08:00">
+                2016-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/09/11/斯坦福机器学习课程 第四周 (3)神经网络应用实例/" class="leancloud_visitors" data-flag-title="斯坦福机器学习课程 第四周 (3)神经网络应用实例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="神经网络应用实例">神经网络应用实例</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/rBZmG/examples-and-intuitions-i" target="_blank" rel="external">视频地址 part1</a></p>
+<p><a href="https://www.coursera.org/learn/machine-learning/lecture/solUx/examples-and-intuitions-ii" target="_blank" rel="external">视频地址 part2</a></p>
+<blockquote>
+<p>接下来将通过一个具体的例子来解释神经网络是如何计算关于输入的复杂的非线性函数的。</p>
+</blockquote>
+<h3 id="问题引入">问题引入</h3><p>考虑下面的问题：</p>
+<p>我们有二进制的输入特征$x_{1}$和$x_{2}$，它们的取值要么是0，要么是1。这个例子中，我画出了两个正样本和两个负样本。</p>
+<p><img src="/img/16_09_11/001.png" alt=""></p>
+<p>但你可以认为这是更复杂的学习问题的简化版本。在这个复杂问题中，我们可能在右上角有一堆正样本，在右下方有一堆用圆圈来表示的负样本。</p>
+<p><img src="/img/16_09_11/002.png" alt=""></p>
+<p>我们想要做到的就是有一个非线性的决策边界来区分正负样本：</p>
+<p><img src="/img/16_09_11/003.png" alt=""></p>
+<p>那么，神经网络是如何做到的呢？为了描述方便，我继续使用上面二进制输入特征的例子。</p>
+<p>具体来讲，我们要计算的目标函数:</p>
+<p>$$y=x_{1} XNOR x_{2}$$</p>
+<blockquote>
+<p>求同或(都为真或都为假时，结果为真，否则结果为假)</p>
+</blockquote>
+<p>或者也可以写作：</p>
+<p>$$NOT(y=x_{1} XOR x_{2})$$</p>
+<blockquote>
+<p>求异或(都为真或都为假时，结果为假，否则结果为真)再取反</p>
+</blockquote>
+<h3 id="AND、OR、NOT的实现">AND、OR、NOT的实现</h3><h4 id="AND">AND</h4><p>为了解释神经网络模型如何来拟合这种训练集。我们先讲解一个稍微简单一些的神经网络，它拟合了<strong>“且运算”(AND)</strong>：</p>
+<p><img src="/img/16_09_11/004.png" alt=""></p>
+<p>假设我们有二进制输入$x_{1}$和$x_{2}$，目标函数是$y=x_{1}ANDx_{2}$，那么我们怎样得到一个具有单个神经元的神经网络来计算这个<strong>逻辑与</strong>呢？为了做到这一点，我们也需要画出偏置单元（即下图中+1的单元）：</p>
+<p><img src="/img/16_09_11/005.png" alt=""></p>
+<p>接下来让我给这个网络分配一些权重(参数)：</p>
+<p><img src="/img/16_09_11/006.png" alt=""></p>
+<p>所以我的假设函数是：</p>
+<p>$$<br>h_{Θ}(x)=g(-30 + 20x_{1} + 20x_{2})<br>$$</p>
+<p>这里$Θ^{(1)}_{10}$就是$-30$、$Θ^{(2)}_{11}$就是$20$、$Θ^{(3)}_{12}$就是$20$。</p>
+<p>接下来介绍一下这个小神经元是怎样计算的。</p>
+<p>回忆一下激励函数$g(z)$看起来是这样的：</p>
+<p><img src="/img/16_09_11/007.png" alt=""></p>
+<p>再来看看我们的假设在各种情况下的输出：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_{1}$</th>
+<th style="text-align:center">$x_{2}$</th>
+<th style="text-align:center">$h_{Θ}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(-30)\approx0$</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(-10)\approx0$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(-10)\approx0$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(10)\approx1$</td>
+</tr>
+</tbody>
+</table>
+<p>这就是逻辑“与”的计算结果。</p>
+<hr>
+<h4 id="OR">OR</h4><p>下面的神经网络使用同样的原理实现了“或”的功能：</p>
+<p><img src="/img/16_09_11/008.png" alt=""></p>
+<p>假设函数为：</p>
+<p>$$<br>h_{Θ}(x)=g(-10 + 20x_{1} + 20x_{2})<br>$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_{1}$</th>
+<th style="text-align:center">$x_{2}$</th>
+<th style="text-align:center">$h_{Θ}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(-10)\approx0$</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(10)\approx1$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(10)\approx1$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(30)\approx1$</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="NOT">NOT</h4><p>下面的神经网络使用同样的原理实现了“非”的功能：</p>
+<p><img src="/img/16_09_11/009.png" alt=""></p>
+<p>假设函数为：</p>
+<p>$$<br>h_{Θ}(x)=g(10 - 20x_{1})<br>$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_{1}$</th>
+<th style="text-align:center">$h_{Θ}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(10)\approx1$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(-10)\approx0$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一个更复杂的例子">一个更复杂的例子</h3><p>下面的神经网络使用同样的原理实现了“$(NOTx_{1})AND(NOTx_{2})$”的功能：</p>
+<p><img src="/img/16_09_11/010.png" alt=""></p>
+<p>假设函数为：</p>
+<p>$$<br>h_{Θ}(x)=g(10 - 20x_{1} - 20x_{2})<br>$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_{1}$</th>
+<th style="text-align:center">$x_{2}$</th>
+<th style="text-align:center">$h_{Θ}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(10)\approx1$</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(-10)\approx0$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$g(-10)\approx0$</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$g(-30)\approx0$</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="求解_XNOR">求解    XNOR</h3><p>接下来我们使用上面求解的以下三个神经网络，就可以来运算$x_{1}XNORx_{2}$了：</p>
+<p><img src="/img/16_09_11/011.png" alt=""></p>
+<p>为了拟合$x_{1}XNORx_{2}$的非线性的样本分布：</p>
+<p><img src="/img/16_09_11/001.png" alt=""></p>
+<p>我们可以构建以下神经网络的隐藏层：</p>
+<p><img src="/img/16_09_11/012.png" alt=""></p>
+<p>对应的真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_{1}$</th>
+<th style="text-align:center">$x_{2}$</th>
+<th style="text-align:center">$a_{1}^{(2)}$</th>
+<th style="text-align:center">$a_{2}^{(2)}$</th>
+<th style="text-align:center">$h_{Θ}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>有了$a_{1}^{(2)}$、$a_{2}^{(2)}$后，我们加入偏置单元，然后就可以得到输出层了：</p>
+<p><img src="/img/16_09_11/012.png" alt=""></p>
+<p>最终的真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_{1}$</th>
+<th style="text-align:center">$x_{2}$</th>
+<th style="text-align:center">$a_{1}^{(2)}$</th>
+<th style="text-align:center">$a_{2}^{(2)}$</th>
+<th style="text-align:center">$h_{Θ}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>通过一个含有输入层、隐藏层、输出层的神经网络，我们最终拟合了$x_{1}XNORx_{2}$。</p>
+<blockquote>
+<p>更一般的理解是：在输入层中，我们有原始输入值，然后我们建立了一个隐藏层，用来计算稍微复杂一些的输入量的函数，然后通过添加另一个层我们得到了一个更复杂一点的函数，这就是神经网络可以计算较复杂函数的某种直观解释。</p>
+<p>我们知道，当层数很多的时候，你有一个相对简单的输入量的函数作为第二层，而第三层可以建立在此基础上来计算更加复杂一些的函数，然后再下一层，又可以计算再复杂一些的函数：</p>
+</blockquote>
+<p><img src="/img/16_09_11/014.png" alt=""></p>
+<h3 id="手写识别的展示">手写识别的展示</h3><p>接下来，将展示一段视频，来源于<strong>阳乐昆(Yann LeCun)</strong>，他是一名教授，供职于纽约大学，也是神经网络研究早期的奠基者之一，也是这一领域 大牛。他的很多理论和想法现在都已经被应用于各种各样的产品和应用中，遍布全世界。所以我想向大家展示一段他早期工作中的视频，这段视频中，他使用神经网络算法进行手写数字的识别。你也许记得，这门课刚开始的时候，我说过关于神经网络的一个早期成就，就是应用神经网络读取邮政编码，以帮助我们进行邮递。那么这便是其中的一项尝试。</p>
+<p>视频说明：</p>
+<p><img src="/img/16_09_11/015.png" alt=""></p>
+<p>视频如下：</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yxuRnBEczUU" frameborder="0" allowfullscreen></iframe>
+
+<h2 id="神经网络的多类别分类">神经网络的多类别分类</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/gFpiW/multiclass-classification" target="_blank" rel="external">视频地址</a></p>
+<blockquote>
+<p>这一节将介绍<strong>如何使用神经网络做多类别分类</strong>。</p>
+<p>在多类别分类中，通常有不止一个类别需要我们去区分，在上一节最后的视频中，我们提到了有关手写数字识别的问题，这实际上正是一个多类别分类的问题。因为识别数字从0到9，正好是10个类别。</p>
+</blockquote>
+<p>我们处理多类别分类的方法实际上是基于一个<strong>多神经网络算法</strong>而延伸出来的。</p>
+<p>让我们来看看下面这个例子：</p>
+<p>还是一个有关计算机视觉识别的例子，就像我之前介绍过的识别汽车的例子一样，但与之不同的是现在我们希望处理的是四个类别的分类问题，四个类别分别是行人、轿车、摩托车、卡车：</p>
+<p><img src="/img/16_09_11/016.png" alt=""></p>
+<p>任意给出一副图片，我们需要知道图片上是这四个类别中的哪一个。</p>
+<p>对于这样的一个问题，我们的做法是，<strong>建立一个具有四个输出单元的神经网络</strong>：</p>
+<p><img src="/img/16_09_11/017.png" alt=""></p>
+<p>也就是说，此时神经网络的输出是一个思维向量。因此现在的输出需要用一个向量来表示，这个向量中有四个元素，而我们要做的是对第一个输出元素进行分辨图片上是不是一个行人(Pedestrian)，然后对第二个元素分辨它是不是一辆轿车(Car)，对第三个元素分辨它是不是摩托车(Motorcycle)，对第四个元素分辨它是不是一辆卡车(Truck)。</p>
+<p>因此，如果图上是行人的话，我希望输出结果是：</p>
+<p>$$<br>h_{Θ}(x)\approx<br>\begin{bmatrix}<br>1 \\<br>0 \\<br>0 \\<br>0<br>\end{bmatrix}<br>$$</p>
+<p>如果图上是轿车的话，我希望输出结果是：</p>
+<p>$$<br>h_{Θ}(x)\approx<br>\begin{bmatrix}<br>0 \\<br>1 \\<br>0 \\<br>0<br>\end{bmatrix}<br>$$</p>
+<p>如果图上是摩托车的话，我希望输出结果是：</p>
+<p>$$<br>h_{Θ}(x)\approx<br>\begin{bmatrix}<br>0 \\<br>0 \\<br>1 \\<br>0<br>\end{bmatrix}<br>$$</p>
+<p>如果图上是卡车的话，我希望输出结果是：</p>
+<p>$$<br>h_{Θ}(x)\approx<br>\begin{bmatrix}<br>0 \\<br>0 \\<br>0 \\<br>1<br>\end{bmatrix}<br>$$</p>
+<p>所以，这和我们介绍逻辑回归时讨论过的一对多方法其实是一样的，只不过现在我们有四个逻辑回归的分类器，而我们需要对每一个分类器都分别进行识别分类。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/斯坦福课程/" rel="tag"># 斯坦福课程</a>
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/07/斯坦福机器学习课程 第四周 (2)神经网络/" rel="next" title="斯坦福机器学习课程 第四周 (2)神经网络">
+                <i class="fa fa-chevron-left"></i> 斯坦福机器学习课程 第四周 (2)神经网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/14/斯坦福机器学习课程 第五周 (1)训练神经网络/" rel="prev" title="斯坦福机器学习课程 第五周 (1)训练神经网络">
+                斯坦福机器学习课程 第五周 (1)训练神经网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络应用实例"><span class="nav-number">1.</span> <span class="nav-text">神经网络应用实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题引入"><span class="nav-number">1.1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND、OR、NOT的实现"><span class="nav-number">1.2.</span> <span class="nav-text">AND、OR、NOT的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AND"><span class="nav-number">1.2.1.</span> <span class="nav-text">AND</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OR"><span class="nav-number">1.2.2.</span> <span class="nav-text">OR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NOT"><span class="nav-number">1.2.3.</span> <span class="nav-text">NOT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个更复杂的例子"><span class="nav-number">1.3.</span> <span class="nav-text">一个更复杂的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解_XNOR"><span class="nav-number">1.4.</span> <span class="nav-text">求解    XNOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手写识别的展示"><span class="nav-number">1.5.</span> <span class="nav-text">手写识别的展示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的多类别分类"><span class="nav-number">2.</span> <span class="nav-text">神经网络的多类别分类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

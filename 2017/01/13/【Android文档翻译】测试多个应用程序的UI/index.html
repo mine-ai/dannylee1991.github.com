@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="https://developer.android.google.cn/training/testing/ui-testing/uiautomator-testing.html
+涉及多个应用程序的用户交互的用户界面（UI）测试允许您在用户流跨越其他应用程序或系统UI时验证您的应用程序行为正确。这样的用户流的示例是消息应用，其允许用户输入文本消息，启动Android联系人选择器，以便用户可以选择要向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Android文档翻译】测试多个应用程序的UI">
+<meta property="og:url" content="http://studyai.site/2017/01/13/【Android文档翻译】测试多个应用程序的UI/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="https://developer.android.google.cn/training/testing/ui-testing/uiautomator-testing.html
+涉及多个应用程序的用户交互的用户界面（UI）测试允许您在用户流跨越其他应用程序或系统UI时验证您的应用程序行为正确。这样的用户流的示例是消息应用，其允许用户输入文本消息，启动Android联系人选择器，以便用户可以选择要向">
+<meta property="og:updated_time" content="2017-01-14T11:10:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Android文档翻译】测试多个应用程序的UI">
+<meta name="twitter:description" content="https://developer.android.google.cn/training/testing/ui-testing/uiautomator-testing.html
+涉及多个应用程序的用户交互的用户界面（UI）测试允许您在用户流跨越其他应用程序或系统UI时验证您的应用程序行为正确。这样的用户流的示例是消息应用，其允许用户输入文本消息，启动Android联系人选择器，以便用户可以选择要向">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/01/13/【Android文档翻译】测试多个应用程序的UI/"/>
+
+
+
+
+
+  <title>【Android文档翻译】测试多个应用程序的UI | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/01/13/【Android文档翻译】测试多个应用程序的UI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Android文档翻译】测试多个应用程序的UI</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-13T08:45:58+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/01/13/【Android文档翻译】测试多个应用程序的UI/" class="leancloud_visitors" data-flag-title="【Android文档翻译】测试多个应用程序的UI">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://developer.android.google.cn/training/testing/ui-testing/uiautomator-testing.html" target="_blank" rel="external">https://developer.android.google.cn/training/testing/ui-testing/uiautomator-testing.html</a></p>
+<p>涉及多个应用程序的用户交互的用户界面（UI）测试允许您在用户流跨越其他应用程序或系统UI时验证您的应用程序行为正确。这样的用户流的示例是消息应用，其允许用户输入文本消息，启动Android联系人选择器，以便用户可以选择要向其发送消息的收件人，然后将控制权返回给原始应用程序，以供用户提交邮件。</p>
+<p>本课包括如何使用<a href="https://developer.android.google.cn/tools/testing-support-library/index.html" target="_blank" rel="external">Android测试支持库</a>提供的UI Automator测试框架编写此类UI测试。UI Automator API可让您与设备上的可见元素进行交互，无论哪个<a href="https://developer.android.google.cn/reference/android/app/Activity.html" target="_blank" rel="external">Activity</a>正在获取焦点。您的测试可以通过使用方便的描述符（例如该组件中显示的文本或其内容描述）来查找UI组件。UI Automator测试可以在运行Android 4.3（API级别18）或更高版本的设备上运行。</p>
+<p>UI Automator测试框架是一种基于工具的API，可与<a href="https://developer.android.google.cn/reference/android/support/test/runner/AndroidJUnitRunner.html" target="_blank" rel="external">AndroidJUnitRunner</a>测试运行程序配合使用。</p>
+<h2 id="设置UI_Automator">设置UI Automator</h2><p>在使用UI Automator构建UI测试之前，请确保按照<a href="/2017/01/11/【Android文档翻译】入门测试/">测试入门</a>中所述配置测试源代码位置和项目依赖关系。</p>
+<p>在Android应用程序模块的<code>build.gradle</code>文件中，您必须为UI Automator库设置依赖性引用:</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    ...</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>要优化UI Automator测试，您应该首先检查目标应用程序的UI组件，并确保它们可访问。这些优化提示将在接下来的两部分中介绍。</p>
+<h3 id="在设备上检查UI">在设备上检查UI</h3><p>在设计测试之前，请检查设备上可见的UI组件。为了确保您的UI Automator测试可以访问这些组件，请检查这些组件是否有可见的文本标签，<code>android：contentDescription</code>值或两者都有。</p>
+<p><code>uiautomatorviewer</code>工具提供了一个方便的可视界面来检查布局层次结构，并查看在设备前台可见的UI组件的属性。此信息允许您使用UI Automator创建更细粒度的测试。例如，您可以创建与特定可见属性匹配的UI选择器。</p>
+<p>启动uiautomatorviewer工具：</p>
+<ul>
+<li>1.在物理设备上启动目标应用程序。</li>
+<li>2.将设备连接到开发机器。</li>
+<li>3.打开终端窗口并导航到<code>&lt;android-sdk&gt;/tools/</code>目录。</li>
+<li>4.使用此命令运行工具：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>uiautomatorviewer</div></pre></td></tr></table></figure>
+<p>查看应用程序的UI属性：</p>
+<ul>
+<li>1.在<code>uiautomatorviewer</code>界面中，单击设备截图按钮。</li>
+<li>2.将鼠标悬停在左侧面板中的快照上，以查看由<code>uiautomatorviewer</code>工具标识的UI组件。属性列在右下方面板的右下方面板和右上方面板中的布局层次结构中。</li>
+<li>3.或者，单击<strong>Toggle NAF Nodes</strong>按钮可查看UI Automator无法访问的UI组件。只有有限的信息可用于这些组件。</li>
+</ul>
+<p>要了解Android提供的常见类型的UI组件，请参阅<a href="https://developer.android.google.cn/guide/topics/ui/index.html" target="_blank" rel="external">用户界面</a>。</p>
+<h3 id="确保您的Activity可访问">确保您的Activity可访问</h3><p>UI Automator测试框架对已实现Android辅助功能的应用的效果更好。当您使用View类型的UI元素或来自SDK或支持库的View子类时，您不需要实现辅助功能支持，因为这些类已经为您完成了。</p>
+<p>但是，有些应用使用自定义UI元素来提供更丰富的用户体验。这些元素将不提供自动可访问性支持。如果您的应用程式包含不是来自SDK或支援库的View子类别的执行个体，请务必按照下列步骤为这些元素加入无障碍功能：</p>
+<ul>
+<li>1.创建一个继承自<strong><a href="https://developer.android.google.cn/reference/android/support/v4/widget/ExploreByTouchHelper.html" target="_blank" rel="external">ExploreByTouchHelper</a></strong>的类。</li>
+<li>2.通过调用<a href="https://developer.android.google.cn/reference/android/support/v4/view/ViewCompat.html#setAccessibilityDelegate(android.view.View, android.support.v4.view.AccessibilityDelegateCompat" target="_blank" rel="external">setAccessibilityDelegate()</a>将新类的实例与特定自定义UI元素相关联。</li>
+</ul>
+<p>有关向自定义视图元素添加辅助功能的其他指南，请参阅<a href="https://developer.android.google.cn/guide/topics/ui/accessibility/custom-views.html" target="_blank" rel="external">构建可访问的自定义视图</a>。要了解更多有关在Android的可访问性一般的最佳实践，请参阅<a href="https://developer.android.google.cn/guide/topics/ui/accessibility/apps.html" target="_blank" rel="external">使应用程序更容易访问</a>。</p>
+<h3 id="创建UI_Automator测试类">创建UI Automator测试类</h3><p>您的UI Automator测试类应以与JUnit 4测试类相同的方式编写。要了解有关创建JUnit 4测试类和使用JUnit 4断言和注释的更多信息，请参阅<a href="/2017/01/11/【Android文档翻译】构建仪表化单元测试/#创建测试单元测试类">构建测试单元测试类</a>。</p>
+<p>在测试类定义的开头添加<code>@RunWith(AndroidJUnit4.class)</code>注解。您还需要指定Android测试支持库中提供的<a href="https://developer.android.google.cn/reference/android/support/test/runner/AndroidJUnitRunner.html" target="_blank" rel="external">AndroidJUnitRunner</a>类作为默认测试运行器。此步骤<a href="#在设备或模拟器上运行UI Automator测试">在设备或模拟器上的运行UI自动程序测试</a>中有更详细的描述。</p>
+<p>在您的UI Automator测试类中实现以下编程模型：</p>
+<ul>
+<li>1.通过调用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html#getInstance(android.app.Instrumentation" target="_blank" rel="external"><code>getInstance()</code></a>方法并传递一个<a href="https://developer.android.google.cn/reference/android/app/Instrumentation.html" target="_blank" rel="external"><code>Instrumentation</code></a>对象作为参数，获取<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html" target="_blank" rel="external"><code>UiDevice</code></a>对象以访问要测试的设备。</li>
+<li>2.通过调用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html#findObject(android.support.test.uiautomator.UiSelector" target="_blank" rel="external"><code>findObject()</code></a>方法，获取<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>对象以访问设备上显示的UI组件（例如，前台中的当前视图）</li>
+<li>3.通过调用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>的方法模拟要在该UI组件上执行的特定用户交互;例如，调用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#performMultiPointerGesture(android.view.MotionEvent.PointerCoords[]..." target="_blank" rel="external"><code>performMultiPointerGesture()</code></a>来模拟多点触摸手势，并使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#setText(java.lang.String" target="_blank" rel="external"><code>setText()</code></a>来编辑文本字段。</li>
+<li>4.在执行这些用户交互操作后，检查UI是否反映了预期的状态或行为。</li>
+</ul>
+<p>这些步骤在下面的部分中有更详细地描述。</p>
+<h3 id="访问UI组件">访问UI组件</h3><p><a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html" target="_blank" rel="external">UiDevice</a>对象是访问和操纵设备状态的主要方式。在测试中，可以调用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html" target="_blank" rel="external">UiDevice</a>的方法来检查各种属性的状态，例如当前方向或显示大小。您的测试可以使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html" target="_blank" rel="external">UiDevice</a>对象执行设备级操作，例如强制设备进行特定旋转，D-pad硬件按键事件，以及Home和Menu按键的事件。</p>
+<p>最好从设备的主屏幕开始测试。从主屏幕（或您在设备中选择的其他某个起始位置），您可以调用UI Automator API提供的方法来选择特定的UI元素并与其进行交互。</p>
+<p>以下代码段显示您的测试如何获取<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html" target="_blank" rel="external">UiDevice</a>的实例，并模拟Home按钮：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.Before;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.support.test.runner.AndroidJUnit4;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.support.test.uiautomator.UiDevice;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.support.test.uiautomator.By;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.support.test.uiautomator.Until;</span></div><div class="line">...</div><div class="line"></div><div class="line">@RunWith(AndroidJUnit4.class)</div><div class="line">@SdkSuppress(minSdkVersion = <span class="number">18</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChangeTextBehaviorTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String BASIC_SAMPLE_PACKAGE</div><div class="line">            = <span class="string">"com.example.android.testing.uiautomator.BasicSample"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> int LAUNCH_TIMEOUT = <span class="number">5000</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String STRING_TO_BE_TYPED = <span class="string">"UiAutomator"</span>;</div><div class="line">    <span class="keyword">private</span> UiDevice mDevice;</div><div class="line"></div><div class="line">    @Before</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> startMainActivityFromHomeScreen() &#123;</div><div class="line">        <span class="comment">// Initialize UiDevice instance</span></div><div class="line">        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());</div><div class="line"></div><div class="line">        <span class="comment">// Start from the home screen</span></div><div class="line">        mDevice.pressHome();</div><div class="line"></div><div class="line">        <span class="comment">// Wait for launcher</span></div><div class="line">        <span class="keyword">final</span> String launcherPackage = mDevice.getLauncherPackageName();</div><div class="line">        assertThat(launcherPackage, notNullValue());</div><div class="line">        mDevice.wait(Until.hasObject(By.pkg(launcherPackage).depth(<span class="number">0</span>)),</div><div class="line">                LAUNCH_TIMEOUT);</div><div class="line"></div><div class="line">        <span class="comment">// Launch the app</span></div><div class="line">        Context context = InstrumentationRegistry.getContext();</div><div class="line">        <span class="keyword">final</span> Intent intent = context.getPackageManager()</div><div class="line">                .getLaunchIntentForPackage(BASIC_SAMPLE_PACKAGE);</div><div class="line">        <span class="comment">// Clear out any previous instances</span></div><div class="line">        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);</div><div class="line">        context.startActivity(intent);</div><div class="line"></div><div class="line">        <span class="comment">// Wait for the app to appear</span></div><div class="line">        mDevice.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(<span class="number">0</span>)),</div><div class="line">                LAUNCH_TIMEOUT);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在示例中，<code>@SdkSuppress(minSdkVersion = 18)</code>语句有助于确保测试仅在UI自动化框架要求的Android 4.3（API级别18）或更高版本的设备上运行。</p>
+<p>使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiDevice.html#findObject(android.support.test.uiautomator.UiSelector" target="_blank" rel="external"><code>findObject()</code></a>方法来检索一个代表与给定选择器标准匹配的视图的<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>。请注意，每当您的测试使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external">UiObject</a>实例来单击UI元素或查询属性时，UI Automator测试框架会在当前显示中搜索匹配项。</p>
+<p>以下代码段显示了您的测试如何构建表示应用程序中的“取消”按钮和“确定”按钮的<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external">UiObject</a>实例。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">UiObject cancelButton = mDevice.findObject(<span class="keyword">new</span> UiSelector()</div><div class="line">        .<span class="built_in">text</span>(<span class="string">"Cancel"</span>))</div><div class="line">        .className(<span class="string">"android.widget.Button"</span>));</div><div class="line">UiObject okButton = mDevice.findObject(<span class="keyword">new</span> UiSelector()</div><div class="line">        .<span class="built_in">text</span>(<span class="string">"OK"</span>))</div><div class="line">        .className(<span class="string">"android.widget.Button"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Simulate a user-click on the OK button, if found.</span></div><div class="line"><span class="built_in">if</span>(okButton.<span class="built_in">exists</span>() &amp;&amp; okButton.isEnabled()) &#123;</div><div class="line">    okButton.<span class="built_in">click</span>();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="指定选择器">指定选择器</h4><p>如果要在应用程序中访问特定的UI组件，请使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiSelector.html" target="_blank" rel="external"><code>UiSelector</code></a>类。此类表示对当前显示的UI中的特定元素的查询。</p>
+<p>如果找到多个匹配元素，则布局层次结构中的第一个匹配元素将作为目标<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>返回。构建<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiSelector.html" target="_blank" rel="external"><code>UiSelector</code></a>时，可以将多个属性链接在一起以优化搜索。如果没有找到匹配的UI元素，则抛出<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObjectNotFoundException.html" target="_blank" rel="external"><code>UiAutomatorObjectNotFoundException</code></a>。</p>
+<p>您可以使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiSelector.html#childSelector(android.support.test.uiautomator.UiSelector" target="_blank" rel="external"><code>childSelector()</code></a>方法嵌套多个<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiSelector.html" target="_blank" rel="external"><code>UiSelector</code></a>实例。例如，以下代码示例显示您的测试如何指定搜索以在当前显示的UI中查找第一个ListView，然后在该ListView中搜索以查找具有文本属性Apps的UI元素。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiObject appItem = new UiObject(<span class="name">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.ListView"</span>)</div><div class="line">        .instance(<span class="number">1</span>)</div><div class="line">        .childSelector(<span class="name">new</span> UiSelector()</div><div class="line">        .text(<span class="string">"Apps"</span>)))<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>作为最佳实践，在指定选择器时，应该使用资源ID（如果已分配给UI元素）而不是文本元素或内容描述符。并非所有元素都具有文本元素（例如，工具栏中的图标）。文本选择器很脆弱，如果UI有轻微更改，则可能导致测试失败。它们也可能不跨越不同的语言扩展;您的文本选择器可能不匹配已被翻译的字符串。</p>
+<p>在选择器标准中指定对象状态可能很有用。例如，如果要选择所有已选元素的列表，以便可以取消选中它们，请调用参数设置为true的<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/By.html#checked(boolean" target="_blank" rel="external"><code>checked()</code></a>方法。</p>
+<h3 id="执行操作">执行操作</h3><p>一旦你的测试获得了一个<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>对象，你可以调用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>类中的方法在该对象所表示的UI组件上执行用户交互。您可以指定以下操作：</p>
+<ul>
+<li><a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#click(" target="_blank" rel="external"><code>click()</code></a>:单击UI元素的可见边界的中心。</li>
+<li><a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#dragTo(int, int, int" target="_blank" rel="external"><code>dragTo()</code></a>:将此对象拖放到任意坐标。</li>
+<li><a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#setText(java.lang.String" target="_blank" rel="external"><code>setText()</code></a>:在清除字段的内容后，在可编辑字段中设置文本。相反，<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#clearTextField(" target="_blank" rel="external"><code>clearTextField()</code></a>方法清除可编辑字段中的现有文本。</li>
+<li><a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html#swipeUp(int" target="_blank" rel="external"><code>swipeUp()</code></a>):对<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiObject.html" target="_blank" rel="external"><code>UiObject</code></a>执行向上滑动操作。类似地，<code>swipeDown()</code>，<code>swipeLeft()</code>和<code>swipeRight()</code>方法执行相应的操作。</li>
+</ul>
+<p>UI Automator测试框架允许您通过<code>getContext()</code>获取<code>Context</code>对象来发送<code>Intent</code>或启动<code>Activity</code>，而不使用shell命令。</p>
+<p>以下代码段显示了您的测试如何使用<code>Intent</code>启动正在测试的应用程序。当您只想测试计算器应用程序，而不关心启动器时，此方法很有用。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> void setUp() &#123;</div><div class="line">    ...</div><div class="line"></div><div class="line">    // Launch a simple calculator app</div><div class="line">    Context context = getInstrumentation().getContext();</div><div class="line">    <span class="keyword">Intent</span> <span class="keyword">intent</span> = context.getPackageManager()</div><div class="line">            .getLaunchIntentForPackage(CALC_PACKAGE);</div><div class="line">    <span class="keyword">intent</span>.addFlags(<span class="keyword">Intent</span>.FLAG_ACTIVITY_CLEAR_TASK);</div><div class="line">            // Clear <span class="keyword">out</span> <span class="built_in">any</span> previous instances</div><div class="line">    context.startActivity(<span class="keyword">intent</span>);</div><div class="line">    mDevice.<span class="keyword">wait</span>(Until.hasObject(By.pkg(CALC_PACKAGE).depth(<span class="number">0</span>)), TIMEOUT);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="对集合执行操作">对集合执行操作</h4><p>如果您要模拟项目集合（例如，音乐专辑中的歌曲或收件箱中的电子邮件列表）中的用户互动，请使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiCollection.html" target="_blank" rel="external"><code>UiCollection</code></a>类。要创建<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiCollection.html" target="_blank" rel="external"><code>UiCollection</code></a>对象，请指定用于搜索UI容器或其他子UI用户界面元素（例如包含子UI用户界面元素的布局视图）的包装器的<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiSelector.html" target="_blank" rel="external"><code>UiSelector</code></a>。</p>
+<p>以下代码段显示了您的测试可能如何构造一个<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiCollection.html" target="_blank" rel="external"><code>UiCollection</code></a>来表示在<code>FrameLayout</code>中显示的视频专辑：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">UiCollection videos = <span class="keyword">new</span> UiCollection(<span class="keyword">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.FrameLayout"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Retrieve the number of videos in this collection:</span></div><div class="line"><span class="keyword">int</span> count = videos.getChildCount(<span class="keyword">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.LinearLayout"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Find a specific video and simulate a user-click on it</span></div><div class="line">UiObject video = videos.getChildByText(<span class="keyword">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.LinearLayout"</span>), <span class="string">"Cute Baby Laughing"</span>);</div><div class="line">video.<span class="built_in">click</span>();</div><div class="line"></div><div class="line"><span class="comment">// Simulate selecting a checkbox that is associated with the video</span></div><div class="line">UiObject checkBox = video.getChild(<span class="keyword">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.Checkbox"</span>));</div><div class="line"><span class="built_in">if</span>(!checkBox.isSelected()) checkbox.<span class="built_in">click</span>();</div></pre></td></tr></table></figure>
+<h4 id="对可滚动视图执行操作">对可滚动视图执行操作</h4><p>使用<a href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiScrollable.html" target="_blank" rel="external"><code>UiScrollable</code></a>类来模拟跨显示的垂直或水平滚动。当UI元素位于屏幕外并且您需要滚动以将其置于视图中时，此技术非常有用。</p>
+<p>以下代码段显示了如何模拟向下滚动设置菜单并点击关于平板电脑选项：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiScrollable settingsItem = <span class="keyword">new</span> UiScrollable(<span class="keyword">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.ListView"</span>));</div><div class="line">UiObject about = settingsItem.getChildByText(<span class="keyword">new</span> UiSelector()</div><div class="line">        .className(<span class="string">"android.widget.LinearLayout"</span>), <span class="string">"About tablet"</span>);</div><div class="line">about.<span class="built_in">click</span>();</div></pre></td></tr></table></figure>
+<h3 id="验证结果">验证结果</h3><p><a href="https://developer.android.google.cn/reference/android/test/InstrumentationTestCase.html" target="_blank" rel="external"><code>InstrumentationTestCase</code></a>扩展了<a href="https://developer.android.google.cn/reference/junit/framework/TestCase.html" target="_blank" rel="external"><code>TestCase</code></a>，因此您可以使用标准的JUnit Assert方法来测试应用程序中的UI组件是否返回预期结果。</p>
+<p>以下代码段显示您的测试如何在计算器应用程序中找到多个按钮，按顺序点击它们，然后验证是否显示正确的结果。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">String</span> CALC_PACKAGE = <span class="string">"com.myexample.calc"</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> testTwoPlusThreeEqualsFive() &#123;</div><div class="line">    <span class="comment">// Enter an equation: 2 + 3 = ?</span></div><div class="line">    mDevice.findObject(<span class="keyword">new</span> UiSelector()</div><div class="line">            .packageName(CALC_PACKAGE).resourceId(<span class="string">"two"</span>)).<span class="built_in">click</span>();</div><div class="line">    mDevice.findObject(<span class="keyword">new</span> UiSelector()</div><div class="line">            .packageName(CALC_PACKAGE).resourceId(<span class="string">"plus"</span>)).<span class="built_in">click</span>();</div><div class="line">    mDevice.findObject(<span class="keyword">new</span> UiSelector()</div><div class="line">            .packageName(CALC_PACKAGE).resourceId(<span class="string">"three"</span>)).<span class="built_in">click</span>();</div><div class="line">    mDevice.findObject(<span class="keyword">new</span> UiSelector()</div><div class="line">            .packageName(CALC_PACKAGE).resourceId(<span class="string">"equals"</span>)).<span class="built_in">click</span>();</div><div class="line"></div><div class="line">    <span class="comment">// Verify the result = 5</span></div><div class="line">    UiObject result = mDevice.findObject(By.res(CALC_PACKAGE, <span class="string">"result"</span>));</div><div class="line">    assertEquals(<span class="string">"5"</span>, result.getText());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="在设备或模拟器上运行UI_Automator测试">在设备或模拟器上运行UI Automator测试</h2><p>您可以从Android Studio或从命令行运行UI Automator测试。确保指定<a href="https://developer.android.google.cn/reference/android/support/test/runner/AndroidJUnitRunner.html" target="_blank" rel="external">AndroidJUnitRunner</a>作为项目中的默认instrumentation runner。</p>
+<p>要运行UI Automator测试，请按照<a href="/2017/01/11/【Android文档翻译】入门测试/">测试入门</a>中所述的运行测试测试的步骤操作。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/13/【Android文档翻译】测试单个应用程序的UI/" rel="next" title="【Android文档翻译】测试单个应用程序的UI">
+                <i class="fa fa-chevron-left"></i> 【Android文档翻译】测试单个应用程序的UI
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/13/【Android文档翻译】测试你的Service/" rel="prev" title="【Android文档翻译】测试你的Service">
+                【Android文档翻译】测试你的Service <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置UI_Automator"><span class="nav-number">1.</span> <span class="nav-text">设置UI Automator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在设备上检查UI"><span class="nav-number">1.1.</span> <span class="nav-text">在设备上检查UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确保您的Activity可访问"><span class="nav-number">1.2.</span> <span class="nav-text">确保您的Activity可访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建UI_Automator测试类"><span class="nav-number">1.3.</span> <span class="nav-text">创建UI Automator测试类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问UI组件"><span class="nav-number">1.4.</span> <span class="nav-text">访问UI组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指定选择器"><span class="nav-number">1.4.1.</span> <span class="nav-text">指定选择器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行操作"><span class="nav-number">1.5.</span> <span class="nav-text">执行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对集合执行操作"><span class="nav-number">1.5.1.</span> <span class="nav-text">对集合执行操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对可滚动视图执行操作"><span class="nav-number">1.5.2.</span> <span class="nav-text">对可滚动视图执行操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证结果"><span class="nav-number">1.6.</span> <span class="nav-text">验证结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在设备或模拟器上运行UI_Automator测试"><span class="nav-number">2.</span> <span class="nav-text">在设备或模拟器上运行UI Automator测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

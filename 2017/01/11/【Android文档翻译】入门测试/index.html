@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Android的测试是基于JUnit的，你可以以一个本地单元测试的模式在JVM上运行，也可以在Android设备上运行它们。这个页面提供了一个关于构建android测试的概念和工具的介绍。
+
+测试类型当使用Android Studio来写测试的时候，你的测试代码必须放置在两个不同的代码目录下。对于你项目中的每个模块，Android Studio包含两个代码集合，对应以下的测试类型：
+
+本地单元测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Android文档翻译】入门测试">
+<meta property="og:url" content="http://studyai.site/2017/01/11/【Android文档翻译】入门测试/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="Android的测试是基于JUnit的，你可以以一个本地单元测试的模式在JVM上运行，也可以在Android设备上运行它们。这个页面提供了一个关于构建android测试的概念和工具的介绍。
+
+测试类型当使用Android Studio来写测试的时候，你的测试代码必须放置在两个不同的代码目录下。对于你项目中的每个模块，Android Studio包含两个代码集合，对应以下的测试类型：
+
+本地单元测">
+<meta property="og:image" content="http://studyai.site/img/17_01_11/001.png">
+<meta property="og:updated_time" content="2017-01-14T11:18:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Android文档翻译】入门测试">
+<meta name="twitter:description" content="Android的测试是基于JUnit的，你可以以一个本地单元测试的模式在JVM上运行，也可以在Android设备上运行它们。这个页面提供了一个关于构建android测试的概念和工具的介绍。
+
+测试类型当使用Android Studio来写测试的时候，你的测试代码必须放置在两个不同的代码目录下。对于你项目中的每个模块，Android Studio包含两个代码集合，对应以下的测试类型：
+
+本地单元测">
+<meta name="twitter:image" content="http://studyai.site/img/17_01_11/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/01/11/【Android文档翻译】入门测试/"/>
+
+
+
+
+
+  <title>【Android文档翻译】入门测试 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/01/11/【Android文档翻译】入门测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Android文档翻译】入门测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-11T22:21:58+08:00">
+                2017-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/01/11/【Android文档翻译】入门测试/" class="leancloud_visitors" data-flag-title="【Android文档翻译】入门测试">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Android的测试是基于<a href="http://junit.org/" target="_blank" rel="external">JUnit</a>的，你可以以一个本地单元测试的模式在JVM上运行，也可以在Android设备上运行它们。这个页面提供了一个关于构建android测试的概念和工具的介绍。</p>
+</blockquote>
+<h2 id="测试类型">测试类型</h2><p>当使用Android Studio来写测试的时候，你的测试代码必须放置在两个不同的代码目录下。对于你项目中的每个模块，Android Studio包含两个代码集合，对应以下的测试类型：</p>
+<ul>
+<li><strong>本地单元测试</strong></li>
+</ul>
+<p>放置在<code>module-name/src/test/java/</code>目录下。</p>
+<p>这些测试运行在本地的JVM上，并且没有访问Android 框架的API的权限。</p>
+<p>开始请看：<a href="/2017/01/11/【Android文档翻译】构建本地单元测试/">构建本地单元测试</a></p>
+<ul>
+<li><strong>仪表化测试</strong></li>
+</ul>
+<p>放置在<code>module-name/src/androidTest/java/</code>目录下。</p>
+<p>这些所有的测试必须运行在Android硬件设备上，或者Android模拟器上。</p>
+<p>仪表化测试是内置在APK中的依附于你的APP的运行在设备上的测试。系统运行你的测试APK，并且与你的app运行在同一进程中，因此你的测试能调用app中的方法并且改变app中的字段，并且自动化的运行你的UI界面。</p>
+<p>有关如何创建仪表化测试，请参阅以下的主题：</p>
+<ul>
+<li><a href="/2017/01/11/【Android文档翻译】构建仪表化单元测试/">构建仪表化单元测试</a>：通过Android依赖来构建复杂的单元测试，对于mock对象来说是不安全的。</li>
+<li><a href="/2017/01/11/【Android文档翻译】自动化UI测试/">自动化UI测试</a>：创建测试，在单个应用程序和多个应用程序之间的交互，来确认你的UI的交互行为是否准确。</li>
+<li><a href="/2017/01/11/【Android文档翻译】APP测试组件集成/">APP测试组件集成</a>：验证那些用户不直接与之交互的组件的行为，例如一个Service或者一个Content Provider。</li>
+</ul>
+<p><img src="/img/17_01_11/001.png" alt=""></p>
+<p>然而，<em>本地单元测试</em>和<em>仪表化测试</em>只是用于区分在本地JVM上运行的测试和在Android平台上(在硬件设备或者模拟器上)运行的测试的术语。在构建完整测试体系的时候应该理解的真正的测试类型见下表的描述：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">子类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">单元测试</td>
+<td style="text-align:center">本地单元测试</td>
+<td style="text-align:center">运行在本地JVM的单元测试。当你的测试没有Android框架依赖或者当你能模拟Android框架依赖时，你可以使用这些测试来最小化执行时间。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">仪表化测试</td>
+<td style="text-align:center">单元测试可以运行在一个Android设备或者模拟器上。这些测试可以访问仪表信息，例如你正在测试的App的Context。当你的测试有Android依赖时，摸你对象不能满足时，可以使用这些测试。</td>
+</tr>
+<tr>
+<td style="text-align:center">集成测试</td>
+<td style="text-align:center">仅仅在你App内部的原件</td>
+<td style="text-align:center">这个类型的测试可以在一个用户执行一个特殊的事件或者在它的activity中传入了一个特殊的输入时，用来验证目标的app行为与期望的是否相同。例如，它允许你检查目标app返回的正确的UI输出，响应到app的Activity的交互界面。UI测试框架，像Espresso允许你程序化模拟用户操作，并测试复杂的应用内的用户交互。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">跨应用组件</td>
+<td style="text-align:center">这个类型的测试用于验证不同用户应用程序之间或用户应用程序和系统应用程序之间的交互的正确行为。例如，当你在Android的菜单中执行一个事件，也许想测试你的app行为的正确性。UI测试框架支持跨应用互动，例如UIAutomator，允许你为这种情况创建测试。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="测试API">测试API</h2><p>接下来的通用API用于在Android上测试app。</p>
+<h3 id="JUnit">JUnit</h3><p>你应该写你自己的单元测试或者集成测试类，正如JUnit4测试类。框架提供了一个方便的方法来在测试中执行通用的设置，拆卸以及断言操作。</p>
+<p>一个基本的JUnit测试类是一个包含一个或多个测试模块的Java类。测试方法以<code>@Test</code>注解开头，包含练习和验证要测试的组件中的单个功能（即逻辑单元）的代码。</p>
+<p>以下代码段显示了一个JUnit集成测试的例子，它使用Espresso API对UI元素执行单击操作，然后检查是否显示预期的字符串。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@RunWith</span>(AndroidJUnit4.class)</div><div class="line"><span class="variable">@LargeTest</span></div><div class="line">public class MainActivityInstrumentationTest &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Rule</span></div><div class="line">    public ActivityTestRule mActivityRule = new ActivityTestRule&lt;&gt;(</div><div class="line">            MainActivity.class);</div><div class="line"></div><div class="line">    <span class="variable">@Test</span></div><div class="line">    public void sayHello()&#123;</div><div class="line">        onView(withText("Say hello!"))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">        onView(withId(R<span class="selector-class">.id</span><span class="selector-class">.textView</span>))<span class="selector-class">.check</span>(matches(withText(<span class="string">"Hello, World!"</span>)));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在你的JUnit测试类中，你可以通过使用以下注释调出测试代码中的部分进行特殊处理：</p>
+<ul>
+<li><code>@Before</code>:使用此注释可以指定包含测试设置操作的代码块。测试类会在每次测试之前调用这些代码块。你可以拥有多个<code>@Before</code>方法，但测试类调用这些方法的顺序不能保证。</li>
+<li><code>@After</code>:这个注解指定一个包含测试拆分操作的代码块。测试类在每个测试方法之后调用这个代码块。你可以在代码中定义多个<code>@After</code>操作。可以通过使用这个注解来释放任何内存中的资源。</li>
+<li><code>@Rule</code>:Rules允许你以一种可复用的方式来灵活的添加或者重定义每个测试方法的行为。在Android测试中，将此注解与某个Android测试支持库提供的测试规则一起使用，例如<a href="https://developer.android.google.cn/training/testing/start/index.html#test-apis" target="_blank" rel="external">ActivityTestRule</a>或者<a href="https://developer.android.google.cn/reference/android/support/test/rule/ServiceTestRule.html" target="_blank" rel="external">ServiceTestRule</a>。</li>
+<li><code>@BeforeClass</code>:使用这个注解来为每个测试类指定仅调用一次的静态方法。这个测试步骤在某些昂贵的操作(例如连接数据库)非常有用。</li>
+<li><code>@AfterClass</code>:使用这个注解来为每个测试类指定在所有的测试运行结束后仅调用一次的静态方法。这个测试步骤对于释放在<code>@BeforeClass</code>块之后分配的任意资源非常有用。</li>
+<li><code>@Test(timeout=)</code>:一些注解支持传递可以设置值的元素。例如，你可以指定测试的timeout时长。如果测试开始，但是没有在给定的超时时间内完成，它会自动失败。例如:<code>@Test(timeout=5000)</code></li>
+</ul>
+<p>更多的注解，见文档<a href="http://junit.sourceforge.net/javadoc/org/junit/package-summary.html" target="_blank" rel="external">JUnit注解</a>和<a href="https://developer.android.google.cn/reference/android/support/annotation/package-summary.html" target="_blank" rel="external">Android注解</a>。</p>
+<p>使用JUnit <a href="https://developer.android.google.cn/reference/junit/framework/Assert.html" target="_blank" rel="external">Assert</a>类来验证对象状态的正确性。这个断言方法会比较你测试中期望的值与实际结果的值，当两者值不一致时，会抛出一个异常。<a href="https://developer.android.google.cn/training/testing/start/index.html#AssertionClasses" target="_blank" rel="external">断言类</a>中有更多关于这些方法的描述。</p>
+<h3 id="Android测试支持库">Android测试支持库</h3><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html" target="_blank" rel="external">Android测试支持库</a>提供一个允许你快速构建并执行关于你app的测试代码的API接口，包括JUnit4和UI功能测试。这个库包括以下基于工具的API，当你想要自动化测试时，这些API非常有用：</p>
+<p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html#AndroidJUnitRunner" target="_blank" rel="external">AndroidJUnitRunner</a>:</p>
+<pre><code>一个适用于Android的JUnit4兼容测试运行器。
+</code></pre><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html#Espresso" target="_blank" rel="external">Espresso</a>:</p>
+<pre><code>一个UI测试框架；适合在应用程序内的功能UI测试。
+</code></pre><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html#UIAutomator" target="_blank" rel="external">UI Automator</a>:</p>
+<pre><code>适用于系统和已安装应用程序之间跨应用程序功能UI测试的UI测试框架。
+</code></pre><h3 id="断言类">断言类</h3><p>由于Android测试支持库继承自JUnit，因此你可以使用断言方法来展示测试结果。断言方法将测试返回的实际值与预期值进行比较，如果比较测试失败，则抛出AssertionException。使用断言比记录更方便，并提供更好的测试性能。</p>
+<p>为了简化测试开发，你应该使用<a href="https://github.com/hamcrest" target="_blank" rel="external">Hamcrest library</a>,它可以使用Hamcrest匹配器的API创建更灵活的测试。</p>
+<h3 id="Monkey和monkeyrunner">Monkey和monkeyrunner</h3><p>Android SDK包含两个功能级别的测试工具:</p>
+<p>Monkey</p>
+<pre><code>这是一个命令行工具，用于向设备发送按键，触摸和手势的伪随机流。你使用Android Debug <span class="function"><span class="title">Bridge</span><span class="params">(adb)</span></span>工具运行它，并使用它来压力测试您的应用程序，报告所遇到的错误，或通过使用相同的随机数种子多次运行该工具来重复事件流。
+</code></pre><p>monkeyrunner</p>
+<pre><code>这个工具是<span class="keyword">python</span>写的测试程序的API和执行环境。API包括用于连接到设备，安装和卸载软件包，截屏，比较两个图像以及针对应用程序运行测试包的功能。使用API，你可以编写大量，强大和复杂的测试。您使用monkeyrunner命令行工具运行使用API的程序。
+</code></pre><h3 id="构建Android测试的指南">构建Android测试的指南</h3><p>以下文档提供了有关如何构建和运行各种测试类型的更多详细信息：</p>
+<p><a href="/2017/01/11/【Android文档翻译】构建本地单元测试/">构建本地单元测试</a></p>
+<pre><code>构建没有依赖或只有简单的依赖的单元测试，你可以mock，它运行在本地JVM上。
+</code></pre><p><a href="/2017/01/11/【Android文档翻译】构建仪表化单元测试/">构建仪表化单元测试</a></p>
+<pre><code>使用Android依赖项构建复杂的单元测试，这对于在硬件设备或模拟器上运行的模拟对象无法满足。
+</code></pre><p><a href="/2017/01/11/【Android文档翻译】自动化UI测试/">自动化UI测试</a></p>
+<pre><code>创建测试以验证用户界面在单个应用程序内的用户交互或多个应用程序之间的交互正确运行。
+</code></pre><p><a href="/2017/01/11/【Android文档翻译】APP测试组件集成/">测试应用程序集成</a></p>
+<pre><code>验证用户不直接与之交互的组件（例如服务或内容提供者）的行为
+</code></pre><p><a href="/2017/01/14/【Android文档翻译】测试性能展示/">测试性能展示</a></p>
+<pre><code>编写测试应用程序UI性能的测试，以确保持续流畅的用户体验
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/11/【Android文档翻译】APP测试组件集成/" rel="next" title="【Android文档翻译】APP测试组件集成">
+                <i class="fa fa-chevron-left"></i> 【Android文档翻译】APP测试组件集成
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/11/【Android文档翻译】构建本地单元测试/" rel="prev" title="【Android文档翻译】构建本地单元测试">
+                【Android文档翻译】构建本地单元测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类型"><span class="nav-number">1.</span> <span class="nav-text">测试类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试API"><span class="nav-number">2.</span> <span class="nav-text">测试API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JUnit"><span class="nav-number">2.1.</span> <span class="nav-text">JUnit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android测试支持库"><span class="nav-number">2.2.</span> <span class="nav-text">Android测试支持库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断言类"><span class="nav-number">2.3.</span> <span class="nav-text">断言类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monkey和monkeyrunner"><span class="nav-number">2.4.</span> <span class="nav-text">Monkey和monkeyrunner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建Android测试的指南"><span class="nav-number">2.5.</span> <span class="nav-text">构建Android测试的指南</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

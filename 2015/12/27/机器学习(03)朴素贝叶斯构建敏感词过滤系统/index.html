@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="贝叶斯理论入门贝叶斯？
+贝叶斯概率以18世纪的一位神学家托马斯·贝叶斯(Thomas Bayes)的名字命名。贝叶斯概率引入先验知识和逻辑推理来处理不确定命题。另一种概率解释称为频数概率(frequency probability),它只从数据本身获得结论，并不考虑逻辑推理及先验知识。
+
+朴素贝叶斯中的朴素一词的含义是指：整个形式化过程，我们只做最原始、最简单的假设。(如果你不理解这句话的含义，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习(03)朴素贝叶斯构建敏感词过滤系统">
+<meta property="og:url" content="http://studyai.site/2015/12/27/机器学习(03)朴素贝叶斯构建敏感词过滤系统/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="贝叶斯理论入门贝叶斯？
+贝叶斯概率以18世纪的一位神学家托马斯·贝叶斯(Thomas Bayes)的名字命名。贝叶斯概率引入先验知识和逻辑推理来处理不确定命题。另一种概率解释称为频数概率(frequency probability),它只从数据本身获得结论，并不考虑逻辑推理及先验知识。
+
+朴素贝叶斯中的朴素一词的含义是指：整个形式化过程，我们只做最原始、最简单的假设。(如果你不理解这句话的含义，不">
+<meta property="og:image" content="http://studyai.site/img/ml_03_01.png">
+<meta property="og:updated_time" content="2015-12-27T13:42:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习(03)朴素贝叶斯构建敏感词过滤系统">
+<meta name="twitter:description" content="贝叶斯理论入门贝叶斯？
+贝叶斯概率以18世纪的一位神学家托马斯·贝叶斯(Thomas Bayes)的名字命名。贝叶斯概率引入先验知识和逻辑推理来处理不确定命题。另一种概率解释称为频数概率(frequency probability),它只从数据本身获得结论，并不考虑逻辑推理及先验知识。
+
+朴素贝叶斯中的朴素一词的含义是指：整个形式化过程，我们只做最原始、最简单的假设。(如果你不理解这句话的含义，不">
+<meta name="twitter:image" content="http://studyai.site/img/ml_03_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2015/12/27/机器学习(03)朴素贝叶斯构建敏感词过滤系统/"/>
+
+
+
+
+
+  <title>机器学习(03)朴素贝叶斯构建敏感词过滤系统 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2015/12/27/机器学习(03)朴素贝叶斯构建敏感词过滤系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习(03)朴素贝叶斯构建敏感词过滤系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-27T12:08:55+08:00">
+                2015-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/12/27/机器学习(03)朴素贝叶斯构建敏感词过滤系统/" class="leancloud_visitors" data-flag-title="机器学习(03)朴素贝叶斯构建敏感词过滤系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="贝叶斯理论入门">贝叶斯理论入门</h2><h3 id="贝叶斯？">贝叶斯？</h3><blockquote>
+<p>贝叶斯概率以18世纪的一位神学家<strong>托马斯·贝叶斯<code>(Thomas Bayes)</code></strong>的名字命名。贝叶斯概率引入先验知识和逻辑推理来处理不确定命题。另一种概率解释称为频数概率<code>(frequency probability)</code>,它只从数据本身获得结论，并不考虑逻辑推理及先验知识。</p>
+</blockquote>
+<p><strong>朴素贝叶斯</strong>中的<strong>朴素</strong>一词的含义是指：整个形式化过程，我们只做最原始、最简单的假设。(如果你不理解这句话的含义，不要担心，后面我们会详细讲解的)。</p>
+<h3 id="条件概率与贝叶斯准则">条件概率与贝叶斯准则</h3><p>如果你对$p(x,y|c_1)$符号很熟悉，那么请跳过本段</p>
+<h4 id="条件概率定义:">条件概率定义:</h4><blockquote>
+<p>事件A在另外一个事件B已经发生条件下的发生概率。条件概率表示为<strong>P(A|B)</strong>，读作“在B条件下A的概率”。</p>
+</blockquote>
+<h4 id="举个栗子：">举个栗子：</h4><p>假设现在有一个装了7块石头的罐子，其中3块是灰色的，4块是黑色的，如果从罐子里随即取出一块石头，那么是灰色石头的可能性是多少？很显然，答案是3/7。</p>
+<p>那么如果把这些石头分别放到两个桶中，A桶中为2块灰色2块黑色，B桶中为1块灰色2块黑色，那么取出灰色石头的概率又该如何计算呢？</p>
+<p>要计算$P(gray)$或者$P(black)$,事先得知道石头所在桶的信息会不会改变结果。你有可能已经想到计算从B桶中取到灰色石头的概率的方法，这就是所谓的<strong>条件概率<code>(conditional probability)</code></strong>。</p>
+<p>假定计算的是从B桶取到灰色石头的概率，这个概率可以记作$P(gray|bucketB)$,我们称之为“在已知石头出自B桶的条件下，取出灰色石头的概率”。不难得到，$P(gray|bucketA)$值为2/4,$P(gray|bucketB)$的值为1/3。</p>
+<p>记从B桶中取出灰色石头的概率为：$P(gray and bucketB)$，石头出自B桶的概率为$P(pucketB)$，那么条件概率计算公式如下：</p>
+<p>$$P(gray|bucketB) = P(gray and bucketB)/P(bucketB)$$</p>
+<h4 id="贝叶斯准则">贝叶斯准则</h4><p>另一种有效计算条件概率的方法称为<strong>贝叶斯准则</strong>。贝叶斯准则告诉我们如何交换条件概率中的条件与结果，即如果已知$p(x|c)$,要求$p(c|x)$,那么可以使用下面的计算方法：</p>
+<p>$$<br>p(c|x) = \dfrac{p(x|c)p(c)}{p(x)}<br>$$</p>
+<h3 id="基本原理">基本原理</h3><p>假设有一个数据集，它由两类数据组成，数据分布如下图所示：</p>
+<p><img src="/img/ml_03_01.png" alt="朴素贝叶斯图例"></p>
+<p>其中不同形状代表不同的数据类型。</p>
+<p>我们现在用<strong>$p1(x,y)$</strong>表示数据点$(x,y)$属于类别1<em>(图中圆点表示的类型)</em>的概率，用<strong>$p2(x,y)$</strong>表示数据点$(x,y)$属于类别2<em>(图中三角形表示的类型)</em>的概率。</p>
+<p>那么对于一个新的数据点$(x,y)$，我们可以通过以下规则来判断它所属于的类型：</p>
+<ul>
+<li>如果$p1(x,y) &gt; p2(x,y)$，那么类型为1</li>
+<li>如果$p1(x,y) &lt; p2(x,y)$，那么类型为2</li>
+</ul>
+<h2 id="使用朴素贝叶斯进行文档分类">使用朴素贝叶斯进行文档分类</h2><p>机器学习的一个重要应用就是文档的自动分类。对例如用户留言，邮件内容等任意类型的文本进行分类，我们可以观察文档中出现的词，并把每个词的出现或者不出现作为一个特征，这样得到的特征数目就会跟词汇表中的词目一样多。</p>
+<h3 id="两个假设前提">两个假设前提</h3><blockquote>
+<p>我们使用的朴素贝叶斯进行文档分类时，需要建立在两个假设前提之上的，虽然这两个假设前提有一些瑕疵，但实际情况证明，贝叶斯工作的效果很好。</p>
+</blockquote>
+<p>假设词汇表中有1000个单词。要得到好的概率分布，就需要足够的数据样本，假定样本数为$N$。由统计学可知，如果每个特征需要$N$个样本，那么对于10个特征将需要$N^{10}$个样本，对于包含1000个特征的词汇表，将需要$N^{1000}$个样本。可以看到，所需要的样本书会随着特征数目的增大而迅速增长。</p>
+<p><strong>假设1:特征之间相互独立</strong>，那么样本数就可以从$N^{1000}$减少到$1000N$了。</p>
+<p><strong>假设2:每个特征同等重要</strong>。</p>
+<blockquote>
+<p>注释：<strong>特征之间相互独立</strong>指的是统计意义上的独立，即一个特征的出现的可能性不受其他特征所影响。 举个例子来说明：比如单词A出现在B后面的概率和出现在C后面的概率相同。很明显这种情况很不靠谱，这也正是<strong>朴素贝叶斯</strong>中<strong>朴素</strong>一词的含义。</p>
+</blockquote>
+<h3 id="实现效果">实现效果</h3><p>接下来我们要用python代码来实现一个侮辱性词汇过滤系统，要用到我们刚才学习的朴素贝叶斯的知识。也许你会问，构建一个侮辱性词汇集合的数据库，遇到了侮辱性词汇，就认定这个文本为侮辱性文本，不就可以很好的解决这个问题了吗？何必要用贝叶斯呢？</p>
+<p>首先不否认这也是一种实现思路，但我们要做的过滤系统的最终效果将是由人工去判断样本数据是否为侮辱性的文本，然后剩下的就可以交给机器，机器会自动识别出侮辱性词汇，以及判断待测试数据是侮辱性文本的可能性和非侮辱性文本的可能性，取概率较大的作为判定结果来标识出侮辱性的文本。</p>
+<h3 id="数据的处理">数据的处理</h3><p>想要从一个文本中获取特征，首先需要<strong>拆分文本</strong>。这里的特征来自于文本的<strong>词条<code>(token)</code></strong>，我们可以把词条理解为单个单词。我们将出现在所有的文本中的词条做一个<strong>不重复的集合</strong>，然后对每一条文本进行标识，如果对应文本中对应位置的词条没有出现记为0，出现记为1。这样我们可以得到一系列用来标识文本片段特征的由0和1组成的列表，这个列表我们称为<strong>词条向量</strong>。</p>
+<h3 id="代码实现">代码实现</h3><h4 id="准备数据：从文本中构建词条向量">准备数据：从文本中构建词条向量</h4><p><strong>构建数据源：</strong>首先创建数据源，获取所有文本词条集合以及对应类型集合，这里省略分词部分逻辑。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 文本集合，每条文本中都有若干条词条</span></div><div class="line">    postingList = [[<span class="string">'my'</span>, <span class="string">'dog'</span>, <span class="string">'has'</span>, <span class="string">'flea'</span>, <span class="string">'problems'</span>, <span class="string">'help'</span>, <span class="string">'please'</span>],</div><div class="line">                   [<span class="string">'maybe'</span>, <span class="string">'not'</span>, <span class="string">'take'</span>, <span class="string">'him'</span>, <span class="string">'to'</span>, <span class="string">'dog'</span>, <span class="string">'park'</span>, <span class="string">'stupid'</span>],</div><div class="line">                   [<span class="string">'my'</span>, <span class="string">'dalmation'</span>, <span class="string">'is'</span>, <span class="string">'so'</span>, <span class="string">'cute'</span>, <span class="string">'I'</span>, <span class="string">'love'</span>, <span class="string">'him'</span>],</div><div class="line">                   [<span class="string">'stop'</span>, <span class="string">'posting'</span>, <span class="string">'stupid'</span>, <span class="string">'worthless'</span>, <span class="string">'garbage'</span>],</div><div class="line">                   [<span class="string">'mr'</span>, <span class="string">'licks'</span>, <span class="string">'ate'</span>, <span class="string">'my'</span>, <span class="string">'steak'</span>, <span class="string">'how'</span>, <span class="string">'to'</span>, <span class="string">'stop'</span>, <span class="string">'him'</span>],</div><div class="line">                   [<span class="string">'quit'</span>, <span class="string">'buying'</span>, <span class="string">'worthless'</span>, <span class="string">'dog'</span>, <span class="string">'food'</span>, <span class="string">'stupid'</span>]</div><div class="line">    ]</div><div class="line">    <span class="comment"># 1代表侮辱性文字，0代表正常言论</span></div><div class="line">    <span class="comment"># 这些数据将由人工标注，用于训练程序以便自动检测侮辱性留言</span></div><div class="line">    classVec = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> postingList,classVec</div></pre></td></tr></table></figure>
+<p><strong>词条字典构建：</strong>将所有词条集合传入，得到一个所有不重复词条的集合字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createVocabList</span><span class="params">(dataSet)</span>:</span></div><div class="line">    vocabSet = set([])</div><div class="line">    <span class="keyword">for</span> document <span class="keyword">in</span> dataSet:</div><div class="line">        <span class="comment"># '|'操作符可以取两个列表的并集，set()方法可以去除重复项</span></div><div class="line">        vocabSet = vocabSet | set(document)</div><div class="line">    <span class="keyword">return</span> list(vocabSet)</div></pre></td></tr></table></figure>
+<p><strong>构建词条向量：</strong>传入词条字典，和待测试的对应文本词条集合，得到词条向量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">setOfWords2Vec</span><span class="params">(vocabList, inputSet)</span>:</span></div><div class="line">    <span class="comment"># 初始化词条向量</span></div><div class="line">    <span class="comment"># [0]*len(vocabList) 可以获得一个和vocabList等长的，全部由0组成的集合</span></div><div class="line">    returnVec = [<span class="number">0</span>]*len(vocabList)</div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> inputSet:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocabList:</div><div class="line">            <span class="comment"># 如果词条集合中的词条出现在了词条字典中，则将词条向量中的词条对应位置的元素记为1</span></div><div class="line">            returnVec[vocabList.index(word)] = <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">"the word: %s is not in my Vocabulary!"</span> % word</div><div class="line">    <span class="keyword">return</span> returnVec</div></pre></td></tr></table></figure>
+<p>执行:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">postingList,classVec = loadDataSet()</div><div class="line">print(<span class="string">"------postings------"</span>)</div><div class="line"><span class="keyword">for</span> posting <span class="keyword">in</span> postingList:</div><div class="line">    print(posting)</div><div class="line">print(<span class="string">"------classVec------"</span>)</div><div class="line">print(classVec)</div><div class="line"></div><div class="line">vocabList = createVocabList(postingList)</div><div class="line">print(<span class="string">"------vocabList------"</span>)</div><div class="line">print(vocabList)</div><div class="line"></div><div class="line">print(<span class="string">"------words2Vec------"</span>)</div><div class="line"><span class="keyword">for</span> posting <span class="keyword">in</span> postingList:</div><div class="line">    print(setOfWords2Vec(vocabList,posting))</div></pre></td></tr></table></figure>
+<p>输出结果:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">------postings------</div><div class="line">['my', 'dog', 'has', 'flea', 'problems', 'help', 'please']</div><div class="line">['maybe', 'not', 'take', 'him', 'to', 'dog', 'park', 'stupid']</div><div class="line">['my', 'dalmation', 'is', 'so', 'cute', 'I', 'love', 'him']</div><div class="line">['stop', 'posting', 'stupid', 'worthless', 'garbage']</div><div class="line">['mr', 'licks', 'ate', 'my', 'steak', 'how', 'to', 'stop', 'him']</div><div class="line">['quit', 'buying', 'worthless', 'dog', 'food', 'stupid']</div><div class="line">------classVec------</div><div class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</div><div class="line">------vocabList------</div><div class="line">['cute', 'love', 'help', 'garbage', 'quit', 'I', 'problems', 'is', 'park', 'stop', 'flea', 'dalmation', 'licks', 'food', 'not', 'him', 'buying', 'posting', 'has', 'worthless', 'ate', 'to', 'maybe', 'please', 'dog', 'how', 'stupid', 'so', 'take', 'mr', 'steak', 'my']</div><div class="line">------words2Vec------</div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</div></pre></td></tr></table></figure>
+<p>这样我们就得到了这六组待测试数据的词条向量。</p>
+<h4 id="训练算法：通过词条向量计算是侮辱性评论的概率">训练算法：通过词条向量计算是侮辱性评论的概率</h4><h5 id="问题分析">问题分析</h5><p>前面介绍了如何将一组单词转换为一组数字，接下来看看如何使用这些数字计算概率。</p>
+<p>现在我们已经知道了一个词是否出现在一篇文档中，也知道该文档所属的类别。根据前面提到的贝叶斯准则，我们将其中的$x$替换为$\textbf{w}$。<strong>注意：这里的粗体的$\textbf{w}$代表一个向量，即它是由多个值组成。</strong></p>
+<p>$$<br>p(c_i|\textbf{w}) = \dfrac{p(\textbf{w}|c_i)p(c_i)}{p(\textbf{w})}<br>$$</p>
+<p>我们将使用上述公式，对每个类计算该值，然后比较着两个概率值的大小<code>（这个例子中就是分别计算是侮辱性言论和不是侮辱性言论的概率，比较两种情况的概率大小）</code>。</p>
+<p>如何计算呢？</p>
+<p><strong>step1:计算$p(c_{i})$</strong></p>
+<p>首先可以通过类别i<code>(侮辱性言论或者非侮辱性言论)</code>中文档数除以总的文档数来计算$p(ci)$<code>(对应类别的文档占总文档数的比例)</code></p>
+<p><strong>step2:计算$p(\textbf{w}|c_i)$</strong></p>
+<p>这里就要用到朴素贝叶斯的假设了。假设$\textbf{w}$展开为一个个独立特征，那么可以将上述概率写作$p(w_0,w_1,w_2..w_n|c_i)$。这里假设所有词都互相独立，该假设也称作<strong>条件独立假设</strong>，它意味着可以使用$p(w_0|c_i)p(w_1|c_i)p(w_2|c_i)..p(w_n|c_i)$来计算上述概率，这就极大的简化了计算的过程。</p>
+<h5 id="代码实现：">代码实现：</h5><p>朴素贝叶斯分类器训练函数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># trainMatrix:多个词条向量组成的集合矩阵</span></div><div class="line"><span class="comment"># trainCategory:分类标签集合</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainNBO</span><span class="params">(trainMatrix, trainCategory)</span>:</span></div><div class="line">    <span class="comment"># 记录词条向量个数</span></div><div class="line">    numTrainDocs = len(trainMatrix)</div><div class="line">    <span class="comment"># 单个词条向量的长度，即词条字典的长度</span></div><div class="line">    numWords = len(trainMatrix[<span class="number">0</span>])</div><div class="line">    <span class="comment"># 引入numpy后，sum函数可以计算一个集合的所有元素的总和</span></div><div class="line">    <span class="comment"># pAbusive 是所有词条向量中 是侮辱性言论的概率： 3/6 = 0.5</span></div><div class="line">    pAbusive = sum(trainCategory) / float(numTrainDocs)</div><div class="line"></div><div class="line">    <span class="comment"># 初始化 侮辱性/非侮辱性 言论中 词条分布总和向量</span></div><div class="line">    <span class="comment"># 引入numpy后,zeros(numWords)方法用来得到一个和numWords等长的0矩阵</span></div><div class="line">    p0Num = zeros(numWords)</div><div class="line">    p1Num = zeros(numWords)</div><div class="line">    <span class="comment"># 初始化 侮辱性/非侮辱性 言论中 词条总个数</span></div><div class="line">    p0Denom = <span class="number">0.0</span></div><div class="line">    p1Denom = <span class="number">0.0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTrainDocs):</div><div class="line">        <span class="keyword">if</span> trainCategory[i] == <span class="number">1</span>:</div><div class="line">            <span class="comment"># 如果为侮辱性言论，记录所有侮辱性词条向量累加之后的总向量</span></div><div class="line">            p1Num += trainMatrix[i]</div><div class="line">            <span class="comment"># 记录所有侮辱性言论中，总的词条个数</span></div><div class="line">            p1Denom += sum(trainMatrix[i])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 如果为非侮辱性言论，记录所有非侮辱性词条向量累加之后的总向量</span></div><div class="line">            p0Num += trainMatrix[i]</div><div class="line">            <span class="comment"># 记录所有非侮辱性言论中，总的词条个数</span></div><div class="line">            p0Denom += sum(trainMatrix[i])</div><div class="line"></div><div class="line">    <span class="comment"># 计算出一个标示每个词可能是侮辱性词汇概率的向量</span></div><div class="line">    p1Vect = p1Num / p1Denom</div><div class="line">    <span class="comment"># 计算出一个标示每个词可能是非侮辱性词汇概率的向量</span></div><div class="line">    p0Vect = p0Num / p0Denom</div><div class="line"></div><div class="line">    <span class="keyword">return</span> p0Vect, p1Vect, pAbusive</div></pre></td></tr></table></figure>
+<p>运行代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">postingList, classVec = loadDataSet()</div><div class="line"></div><div class="line">vocabList = createVocabList(postingList)</div><div class="line"></div><div class="line"><span class="keyword">for</span> posting <span class="keyword">in</span> postingList:</div><div class="line">    word2Vec = setOfWords2Vec(vocabList, posting)</div><div class="line">    trainMat.append(word2Vec)</div><div class="line"></div><div class="line">p0V,p1V,pAb = trainNBO(trainMat,classVec)</div><div class="line"></div><div class="line">print(<span class="string">"------p0V------"</span>)</div><div class="line">print(p0V)</div><div class="line">print(<span class="string">"------p1V------"</span>)</div><div class="line">print(p1V)</div><div class="line">print(<span class="string">"------pAb------"</span>)</div><div class="line">print(pAb)</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">------p0V------</div><div class="line">[ <span class="number">0.04166667</span>  <span class="number">0.04166667</span>  <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.</span>          <span class="number">0.04166667</span></div><div class="line">  <span class="number">0.04166667</span>  <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.04166667</span>  <span class="number">0.04166667</span>  <span class="number">0.04166667</span></div><div class="line">  <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.</span>          <span class="number">0.08333333</span>  <span class="number">0.</span>          <span class="number">0.</span></div><div class="line">  <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.04166667</span>  <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.04166667</span></div><div class="line">  <span class="number">0.04166667</span>  <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.04166667</span>  <span class="number">0.</span>          <span class="number">0.04166667</span></div><div class="line">  <span class="number">0.04166667</span>  <span class="number">0.125</span>     ]</div><div class="line">------p1V------</div><div class="line">[ <span class="number">0.</span>          <span class="number">0.</span>          <span class="number">0.</span>          <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.</span>          <span class="number">0.</span></div><div class="line">  <span class="number">0.</span>          <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.</span>          <span class="number">0.</span>          <span class="number">0.</span></div><div class="line">  <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.</span></div><div class="line">  <span class="number">0.10526316</span>  <span class="number">0.</span>          <span class="number">0.05263158</span>  <span class="number">0.05263158</span>  <span class="number">0.</span>          <span class="number">0.10526316</span></div><div class="line">  <span class="number">0.</span>          <span class="number">0.15789474</span>  <span class="number">0.</span>          <span class="number">0.05263158</span>  <span class="number">0.</span>          <span class="number">0.</span>          <span class="number">0.</span>        ]</div><div class="line">------pAb------</div><div class="line"><span class="number">0.5</span></div></pre></td></tr></table></figure>
+<p>p0V是所有词汇出现在非侮辱性言论中的概率向量。</p>
+<p>p1V是所有词汇出现在侮辱性言论中的概率向量。</p>
+<p>从中可以看出，p1V中，概率最大的是倒数第六个0.15789474,然后查询词条字典，发现这个词是‘stupid’,这意味着‘stupid’这个单词是最能表征类型1的词条，事实也确实如此。同时我们也能发现最能表征类别0的词条是‘him’。</p>
+<p><code>从结果中我们同样也能看到，在p0V中为0的词条，在p1V中不为0，相反的，在p1V中为0的词条，在p0V中也不为0。其实这并不是绝对的，这是巧合所致，如果我们的测试样本数量足够大，就可以看出这个现象了。</code></p>
+<h3 id="代码优化">代码优化</h3><p>代码实现了贝叶斯分类器，并不是完事大吉了，有些地方我们需要根据实际情况来优化我们的代码。</p>
+<h4 id="注意点1：">注意点1：</h4><p>利用贝叶斯分类器对文档进行分类时，要计算多个概率的乘积，以获得文档属于某个类别的概率，即计算$p(w_0|1)p(w_1|1)p(w_2|1)$。如果其中一个概率为0，那么最后的成积也为0。为降低这种影响，可以将所有词的出现数初始化为1，并将分母初始化为2<code>(分子分母各加1)</code>。</p>
+<p>将trainNBO()的14到18这几行代码进行修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 初始化 侮辱性/非侮辱性 言论中 词条分布总和向量</span></div><div class="line">   <span class="comment"># 引入numpy后,zeros(numWords)方法用来得到一个和numWords等长的单位矩阵</span></div><div class="line">   p0Num = ones(numWords)</div><div class="line">   p1Num = ones(numWords)</div><div class="line">   <span class="comment"># 初始化 侮辱性/非侮辱性 言论中 词条总个数</span></div><div class="line">   p0Denom = <span class="number">2.0</span></div><div class="line">   p1Denom = <span class="number">2.0</span></div></pre></td></tr></table></figure>
+<h4 id="注意点2：">注意点2：</h4><p>另一个问题是下溢出，这是由于太多很小的数相乘造成的。当计算$p(w_0|c_i)p(w_1|c_i)p(w_2|c_i)…p(w_N|c_i)$时，由于大部分因子都非常小，所以非常容易出现下溢出<code>(可以尝试用python计算多个很小的数字相乘，最后的结果会变为0)</code>。</p>
+<p>一种解决办法是对乘积取自然对数。在代数中有$ln(a*b)=ln(a)+ln(b)$,于是通过求对数可以将乘法转化为加法，从而避免下溢出或者浮点数舍入导致的错误。同时，采用自然对数进行处理不会有任何损失。</p>
+<p>修改trainNBO()中的代码，在return之前添加如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 分别对每个元素取对数</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(p1Vect)):</div><div class="line">    p1Vect[i]=log(p1Vect[i])</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(p0Vect)):</div><div class="line">    p0Vect[i]=log(p0Vect[i])</div></pre></td></tr></table></figure>
+<h3 id="只差一步，构建朴素贝叶斯分类函数">只差一步，构建朴素贝叶斯分类函数</h3><p>现在已经准备好了构建完整的分类器了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vec2Classify:待测试数据的词条向量</span></div><div class="line"><span class="comment"># pClass1:所有词条向量中是侮辱性词条向量的概率</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifyNB</span><span class="params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span></div><div class="line">	<span class="comment"># sum(vec2Classify * p1Vec)当前词条向量中，每个词条可能是侮辱性词条的概率之积p(w:c1)</span></div><div class="line">	<span class="comment"># pClass1 : p(c1)</span></div><div class="line">    p1 = sum(vec2Classify * p1Vec) + log(pClass1)</div><div class="line">    p0 = sum(vec2Classify * p0Vec) + log(<span class="number">1.0</span> - pClass1)</div><div class="line">    <span class="keyword">if</span> p1 &gt; p0:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>执行代码，检验结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">postingList, classVec = loadDataSet()</div><div class="line">vocabList = createVocabList(postingList)</div><div class="line"></div><div class="line">trainMat = []</div><div class="line"></div><div class="line"><span class="keyword">for</span> posting <span class="keyword">in</span> postingList:</div><div class="line">    word2Vec = setOfWords2Vec(vocabList, posting)</div><div class="line">    trainMat.append(word2Vec)</div><div class="line"></div><div class="line">p0V,p1V,pAb = trainNBO(trainMat,classVec)</div><div class="line"></div><div class="line"><span class="comment"># 测试数据1</span></div><div class="line">testEntry = [<span class="string">'love'</span>,<span class="string">'my'</span>,<span class="string">'dalmation'</span>]</div><div class="line">thisDoc = array(setOfWords2Vec(vocabList,testEntry))</div><div class="line"><span class="keyword">print</span> testEntry,<span class="string">'classified as: '</span>,classifyNB(thisDoc,p0V,p1V,pAb)</div><div class="line"></div><div class="line"><span class="comment"># 测试数据2</span></div><div class="line">testEntry = [<span class="string">'stupid'</span>,<span class="string">'garbage'</span>]</div><div class="line">thisDoc = array(setOfWords2Vec(vocabList,testEntry))</div><div class="line"><span class="keyword">print</span> testEntry,<span class="string">'classified as: '</span>,classifyNB(thisDoc,p0V,p1V,pAb)</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'love'</span>, <span class="string">'my'</span>, <span class="string">'dalmation'</span>] classified <span class="keyword">as</span>:  <span class="number">0</span></div><div class="line">[<span class="string">'stupid'</span>, <span class="string">'garbage'</span>] classified <span class="keyword">as</span>:  <span class="number">1</span></div></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2><p>至此，完成了朴素贝叶斯识别侮辱性言论的系统。对于分类而言，有的时候使用概率要比使用硬规则更为有效。可以看出，朴素贝叶斯提供了一种<strong>利用已知值来估计未知概率的有效方法</strong>。</p>
+<p>虽然建立在<strong>特征独立性假设</strong>和<strong>特征同等重要假设</strong>之上，但是，贝叶斯分类器依然是一种很有效的分类器。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/13/机器学习(02)决策树/" rel="next" title="机器学习(02)决策树">
+                <i class="fa fa-chevron-left"></i> 机器学习(02)决策树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/05/Numpy快速入门/" rel="prev" title="NumPy快速入门">
+                NumPy快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯理论入门"><span class="nav-number">1.</span> <span class="nav-text">贝叶斯理论入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯？"><span class="nav-number">1.1.</span> <span class="nav-text">贝叶斯？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件概率与贝叶斯准则"><span class="nav-number">1.2.</span> <span class="nav-text">条件概率与贝叶斯准则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件概率定义:"><span class="nav-number">1.2.1.</span> <span class="nav-text">条件概率定义:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#举个栗子："><span class="nav-number">1.2.2.</span> <span class="nav-text">举个栗子：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贝叶斯准则"><span class="nav-number">1.2.3.</span> <span class="nav-text">贝叶斯准则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本原理"><span class="nav-number">1.3.</span> <span class="nav-text">基本原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用朴素贝叶斯进行文档分类"><span class="nav-number">2.</span> <span class="nav-text">使用朴素贝叶斯进行文档分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个假设前提"><span class="nav-number">2.1.</span> <span class="nav-text">两个假设前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现效果"><span class="nav-number">2.2.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的处理"><span class="nav-number">2.3.</span> <span class="nav-text">数据的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.4.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备数据：从文本中构建词条向量"><span class="nav-number">2.4.1.</span> <span class="nav-text">准备数据：从文本中构建词条向量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练算法：通过词条向量计算是侮辱性评论的概率"><span class="nav-number">2.4.2.</span> <span class="nav-text">训练算法：通过词条向量计算是侮辱性评论的概率</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#问题分析"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码实现："><span class="nav-number">2.4.2.2.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码优化"><span class="nav-number">2.5.</span> <span class="nav-text">代码优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点1："><span class="nav-number">2.5.1.</span> <span class="nav-text">注意点1：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点2："><span class="nav-number">2.5.2.</span> <span class="nav-text">注意点2：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只差一步，构建朴素贝叶斯分类函数"><span class="nav-number">2.6.</span> <span class="nav-text">只差一步，构建朴素贝叶斯分类函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

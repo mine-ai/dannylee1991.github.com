@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="R," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="基本图形的绘制在R语言(01)中，最后的一个综合训练，我们生成了一部分数据，现在我们就用这些数据为例，来展示R是如何绘制一些图表的。
+数据的导入通过读取数据文件，我们可以导入之前产生的数据。
+12345678910111213&amp;gt; x=read.table(&quot;mark.txt&quot;,header=F)&amp;gt; x          V1  V2 V3  V41   10378001  99 73">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言（02）绘图">
+<meta property="og:url" content="http://studyai.site/2016/03/06/R语言（02）绘图/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="基本图形的绘制在R语言(01)中，最后的一个综合训练，我们生成了一部分数据，现在我们就用这些数据为例，来展示R是如何绘制一些图表的。
+数据的导入通过读取数据文件，我们可以导入之前产生的数据。
+12345678910111213&amp;gt; x=read.table(&quot;mark.txt&quot;,header=F)&amp;gt; x          V1  V2 V3  V41   10378001  99 73">
+<meta property="og:image" content="http://studyai.site/img/r_02_01.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_02.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_03.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_04.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_05.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_06.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_07.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_08.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_09.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_10.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_11.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_12.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_13.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_14.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_15.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_16.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_17.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_18.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_19.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_20.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_21.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_22.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_23.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_24.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_25.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_26.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_27.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_28.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_29.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_30.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_31.png">
+<meta property="og:image" content="http://studyai.site/img/r_02_32.png">
+<meta property="og:updated_time" content="2016-03-06T13:06:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言（02）绘图">
+<meta name="twitter:description" content="基本图形的绘制在R语言(01)中，最后的一个综合训练，我们生成了一部分数据，现在我们就用这些数据为例，来展示R是如何绘制一些图表的。
+数据的导入通过读取数据文件，我们可以导入之前产生的数据。
+12345678910111213&amp;gt; x=read.table(&quot;mark.txt&quot;,header=F)&amp;gt; x          V1  V2 V3  V41   10378001  99 73">
+<meta name="twitter:image" content="http://studyai.site/img/r_02_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2016/03/06/R语言（02）绘图/"/>
+
+
+
+
+
+  <title>R语言（02）绘图 | studyAI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/03/06/R语言（02）绘图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R语言（02）绘图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-06T18:08:55+08:00">
+                2016-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/03/06/R语言（02）绘图/" class="leancloud_visitors" data-flag-title="R语言（02）绘图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本图形的绘制">基本图形的绘制</h2><p>在<strong>R语言(01)</strong>中，最后的一个综合训练，我们生成了一部分数据，现在我们就用这些数据为例，来展示R是如何绘制一些图表的。</p>
+<h3 id="数据的导入">数据的导入</h3><p>通过读取数据文件，我们可以导入之前产生的数据。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; x=read.table(<span class="string">"mark.txt"</span>,header=<span class="literal">F</span>)</div><div class="line">&gt; x</div><div class="line">          V1  V2 V3  V4</div><div class="line"><span class="number">1</span>   <span class="number">10378001</span>  <span class="number">99</span> <span class="number">73</span>  <span class="number">98</span></div><div class="line"><span class="number">2</span>   <span class="number">10378002</span>  <span class="number">86</span> <span class="number">95</span>  <span class="number">90</span></div><div class="line"><span class="number">3</span>   <span class="number">10378003</span>  <span class="number">98</span> <span class="number">85</span>  <span class="number">84</span></div><div class="line"><span class="number">4</span>   <span class="number">10378004</span>  <span class="number">90</span> <span class="number">81</span> <span class="number">100</span></div><div class="line"><span class="number">5</span>   <span class="number">10378005</span>  <span class="number">81</span> <span class="number">88</span>  <span class="number">96</span></div><div class="line"><span class="number">6</span>   <span class="number">10378006</span>  <span class="number">99</span> <span class="number">63</span>  <span class="number">61</span></div><div class="line"><span class="number">7</span>   <span class="number">10378007</span>  <span class="number">88</span> <span class="number">79</span> <span class="number">100</span></div><div class="line"><span class="number">8</span>   <span class="number">10378008</span>  <span class="number">88</span> <span class="number">92</span>  <span class="number">95</span></div><div class="line"><span class="number">9</span>   <span class="number">10378009</span>  <span class="number">91</span> <span class="number">91</span> <span class="number">100</span></div><div class="line"><span class="keyword">...</span></div></pre></td></tr></table></figure>
+<p>其中V1列是学好，V2是均匀分布的成绩数据，V3和V4是正太分布的数据，其中V4对超过100的数据取100。</p>
+<h3 id="直方图分析_hist()">直方图分析 hist()</h3><p>绘制直方图函数hist()</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; hist(x$V2)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_01.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; hist(x$V3)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_02.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; hist(x$V4)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_03.png" alt=""></p>
+<h3 id="散点图_plot()">散点图 plot()</h3><p>散点图绘制函数plot()</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; plot(x$V1,x$V2)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_04.png" alt=""></p>
+<h3 id="柱状图barplot()">柱状图barplot()</h3><p>列联函数table(),柱状图绘制函数barplot()</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; table(x$V2)</div><div class="line"></div><div class="line"> <span class="number">80</span>  <span class="number">81</span>  <span class="number">82</span>  <span class="number">83</span>  <span class="number">84</span>  <span class="number">85</span>  <span class="number">86</span>  <span class="number">87</span>  <span class="number">88</span>  <span class="number">89</span>  <span class="number">90</span>  <span class="number">91</span>  <span class="number">92</span>  <span class="number">93</span>  <span class="number">94</span>  <span class="number">95</span>  <span class="number">96</span>  <span class="number">97</span>  <span class="number">98</span>  <span class="number">99</span> </div><div class="line">  <span class="number">1</span>   <span class="number">5</span>   <span class="number">7</span>   <span class="number">3</span>   <span class="number">3</span>   <span class="number">4</span>   <span class="number">6</span>   <span class="number">8</span>   <span class="number">7</span>   <span class="number">4</span>   <span class="number">7</span>   <span class="number">8</span>   <span class="number">4</span>   <span class="number">4</span>   <span class="number">5</span>   <span class="number">2</span>   <span class="number">6</span>   <span class="number">2</span>   <span class="number">4</span>   <span class="number">8</span> </div><div class="line"><span class="number">100</span> </div><div class="line">  <span class="number">2</span> </div><div class="line">&gt; barplot(table(x$V2))</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_05.png" alt=""></p>
+<h3 id="饼图_pie()">饼图 pie()</h3><p>饼图绘制函数pie()</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; pie(table(x$V2))</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_06.png" alt=""></p>
+<h3 id="箱尾图">箱尾图</h3><ul>
+<li>箱子的上下横线为样本的25%和75%分为数</li>
+<li>箱子中间的横线为样本的中位数</li>
+<li>上下延伸的直线称为尾线，尾线的尽头为最高值和最低值</li>
+<li>异常值是箱外部的个别与大多数样本相距很远的样本数据</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; boxplot(x$V2,x$V2,x$V3)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_07.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; boxplot(x[<span class="number">2</span>:<span class="number">4</span>],col=c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>),notch=<span class="literal">T</span>)</div></pre></td></tr></table></figure>
+<p>x[2:4] 是值第2到4列</p>
+<p>col=c(“red”,”green”,”blue”) 分别指定每个箱尾图的颜色</p>
+<p>notch=T 是控制中间的缺口的  主要是让用户更清楚的看到中位线</p>
+<p><img src="/img/r_02_08.png" alt=""></p>
+<p>水平放置的箱尾图</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; boxplot(x$V2,x$V2,x$V3,horizontal=<span class="literal">T</span>)</div></pre></td></tr></table></figure>
+<p>horizontal=T 设置水平显示</p>
+<p><img src="/img/r_02_09.png" alt=""></p>
+<h3 id="星相图_stars()">星相图 stars()</h3><ul>
+<li>每个观测单位的数值表示为一个图形</li>
+<li>每个图的每个角表示一个变量，字符串类型会标注在图的下方</li>
+<li>角线的长度表达值的大小</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; stars(x[c(<span class="string">"V2"</span>,<span class="string">"V3"</span>,<span class="string">"V4"</span>)])</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_10.png" alt=""></p>
+<p>星相图另一种表示：雷达图</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; stars(x[c(<span class="string">"V2"</span>,<span class="string">"V3"</span>,<span class="string">"V4"</span>)],full=<span class="literal">T</span>,draw.segment=<span class="literal">T</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_11.png" alt=""></p>
+<h3 id="人脸图">人脸图</h3><ul>
+<li>用五官的宽度和高度来描绘数值</li>
+<li>人对脸谱高度敏感和强记忆</li>
+<li>适合较少样本的情况</li>
+</ul>
+<p>安装aplpack包</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">require</span>(<span class="string">"aplpack"</span>)</div><div class="line">&gt; faces(x[c(<span class="string">"V2"</span>,<span class="string">"V3"</span>,<span class="string">"V4"</span>)])</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_12.png" alt=""></p>
+<p>其它脸谱图</p>
+<p>安装TeachingDemos包</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">require</span>(<span class="string">"TeachingDemos"</span>)</div><div class="line">&gt; faces2(x)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_13.png" alt=""></p>
+<h3 id="茎叶图_stem()">茎叶图 stem()</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; stem(x$V3)</div><div class="line"></div><div class="line">  The decimal point is <span class="number">1</span> digit(s) to the right of the |</div><div class="line"></div><div class="line">  <span class="number">6</span> | <span class="number">0233</span></div><div class="line">  <span class="number">6</span> | <span class="number">88</span></div><div class="line">  <span class="number">7</span> | <span class="number">000111222333333</span></div><div class="line">  <span class="number">7</span> | <span class="number">55556677888888888999999999</span></div><div class="line">  <span class="number">8</span> | <span class="number">0000011111112223333333444444</span></div><div class="line">  <span class="number">8</span> | <span class="number">5556666788888899</span></div><div class="line">  <span class="number">9</span> | <span class="number">001224</span></div><div class="line">  <span class="number">9</span> | <span class="number">559</span></div></pre></td></tr></table></figure>
+<p>6 | 0233  代表60,62,63,63四个样本数据.茎叶图没有图像输出，是一种高密集型的数据展现形式。</p>
+<h3 id="QQ图">QQ图</h3><ul>
+<li>可用于判断是否正态分布(服从正态分布的点基本都处于同一直线)</li>
+<li>直线的斜率是标准差，截距是均值</li>
+<li>点的散布越接近直线，则越接近正态分布</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; qqnorm(x$V2)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_14.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; qqline(x$V2)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_15.png" alt=""></p>
+<p>x$V3 数据服从正态分布，点基本都处于同一直线上：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; qqnorm(x$V3)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_16.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; qqline(x$V3)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_17.png" alt=""></p>
+<h2 id="图形绘制进阶">图形绘制进阶</h2><h3 id="散点图进一步设置">散点图进一步设置</h3><p>在mac上绘图时显示中文，需要安装以下安装包：</p>
+<ul>
+<li>showtext</li>
+<li>showtextdb</li>
+<li>sysfonts</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">library</span>(sysfonts)</div><div class="line">&gt; <span class="keyword">library</span>(showtext)</div><div class="line">&gt; dev.new() <span class="comment">#如果已打开图形设备，本句可以不用</span></div><div class="line">&gt; showtext.begin()</div></pre></td></tr></table></figure>
+<p>加入这几句之后，绘制的图像中就可以正常显示中文了。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; plot(x$V2,x$V3,</div><div class="line">main=<span class="string">"数学分析与线性代数成绩的关系"</span>,</div><div class="line">xlab=<span class="string">"数学分析"</span>,</div><div class="line">ylab=<span class="string">"线性代数"</span>,</div><div class="line">xlim=c(<span class="number">0</span>,<span class="number">100</span>),</div><div class="line">ylim=c(<span class="number">0</span>,<span class="number">100</span>),</div><div class="line">xaxs=<span class="string">"i"</span>, <span class="comment">#Set x axis style as internal</span></div><div class="line">yaxs=<span class="string">"i"</span>, <span class="comment">#Set y axis style as internal</span></div><div class="line">col=<span class="string">"red"</span>, <span class="comment">#Set the color of plotting symbol to red</span></div><div class="line">pch=<span class="number">19</span>) <span class="comment">#Set the plotting symbol to filled dots</span></div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_18.png" alt=""></p>
+<h3 id="连线图">连线图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; a=c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)</div><div class="line">&gt; b=c(<span class="number">4</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">12</span>)</div><div class="line">&gt; plot(a,b,type=<span class="string">"l"</span>)</div></pre></td></tr></table></figure>
+<p>type=”l” 代表想字母”l”一样，是折现。</p>
+<p><img src="/img/r_02_19.png" alt=""></p>
+<h3 id="密度图_density()">密度图 density()</h3><p>函数density()</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; plot(density(rnorm(<span class="number">1000</span>)))</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_20.png" alt=""></p>
+<h3 id="R中的内置数据集">R中的内置数据集</h3><p>在R中输入data可查看内置数据集：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data()</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_21.png" alt=""></p>
+<h3 id="热力图_heatmap()">热力图 heatmap()</h3><p>利用内置的mtcars数据集绘制</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; heatmap(as.matrix(mtcars),</div><div class="line">Rowv=<span class="literal">NA</span>,</div><div class="line">Colv=<span class="literal">NA</span>,</div><div class="line">col=heat.colors(<span class="number">256</span>),</div><div class="line">scale=<span class="string">"column"</span>,</div><div class="line">margins=c(<span class="number">2</span>,<span class="number">8</span>),</div><div class="line">main=<span class="string">"Car characteristics by Model"</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_22.png" alt=""></p>
+<h3 id="Iris(鸢尾花)数据集">Iris(鸢尾花)数据集</h3><ul>
+<li>Sepal花萼</li>
+<li>Petal花瓣</li>
+<li>Species种属</li>
+</ul>
+<p>这是一个非常著名的数据集，Iris也称鸢尾花卉数据集，是一类多重变量分析的数据集。通过花萼长度，花萼宽度，花瓣长度，花瓣宽度4个属性预测鸢尾花卉属于（Setosa，Versicolour，Virginica）三个种类中的哪一类。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt; iris</div><div class="line">    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species</div><div class="line"><span class="number">1</span>            <span class="number">5.1</span>         <span class="number">3.5</span>          <span class="number">1.4</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">2</span>            <span class="number">4.9</span>         <span class="number">3.0</span>          <span class="number">1.4</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">3</span>            <span class="number">4.7</span>         <span class="number">3.2</span>          <span class="number">1.3</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">4</span>            <span class="number">4.6</span>         <span class="number">3.1</span>          <span class="number">1.5</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">5</span>            <span class="number">5.0</span>         <span class="number">3.6</span>          <span class="number">1.4</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">6</span>            <span class="number">5.4</span>         <span class="number">3.9</span>          <span class="number">1.7</span>         <span class="number">0.4</span>     setosa</div><div class="line"><span class="number">7</span>            <span class="number">4.6</span>         <span class="number">3.4</span>          <span class="number">1.4</span>         <span class="number">0.3</span>     setosa</div><div class="line"><span class="number">8</span>            <span class="number">5.0</span>         <span class="number">3.4</span>          <span class="number">1.5</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">9</span>            <span class="number">4.4</span>         <span class="number">2.9</span>          <span class="number">1.4</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="number">10</span>           <span class="number">4.9</span>         <span class="number">3.1</span>          <span class="number">1.5</span>         <span class="number">0.1</span>     setosa</div><div class="line"><span class="number">11</span>           <span class="number">5.4</span>         <span class="number">3.7</span>          <span class="number">1.5</span>         <span class="number">0.2</span>     setosa</div><div class="line"><span class="keyword">...</span></div></pre></td></tr></table></figure>
+<h3 id="向日葵散点图_sunflowerplot()">向日葵散点图 sunflowerplot()</h3><ul>
+<li>用来克服散点图中数据点重叠问题</li>
+<li>在有重叠的地方用一朵“向日葵花”的花瓣数目来表示重叠数据个数</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; sunflowerplot(iris[,<span class="number">3</span>:<span class="number">4</span>],col=<span class="string">"gold"</span>,seg.col=<span class="string">"gold"</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_23.png" alt=""></p>
+<h3 id="散点图集">散点图集</h3><ul>
+<li>遍历样本中全部的变量配对画出二元图</li>
+<li>直观地了解所有变量之间的关系</li>
+</ul>
+<p>将iris数据集的第1到4列的数据取出，两两组合，形成散点图。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; pairs(iris[,<span class="number">1</span>:<span class="number">4</span>])</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_24.png" alt=""></p>
+<p>用plot也可以实现同样的效果</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; plot(iris[,<span class="number">1</span>:<span class="number">4</span>],</div><div class="line">main=<span class="string">"Relationships between </span></div><div class="line">characteristics of iris flowers",</div><div class="line">pch=<span class="number">19</span>,</div><div class="line">col=<span class="string">"blue"</span>,</div><div class="line">cex=<span class="number">0.9</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_25.png" alt=""></p>
+<ul>
+<li>利用par()在同一个device输出多个散点图</li>
+<li>Par命令博大精深，用于设置绘图参数，help(par)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; par(mfrow=c(<span class="number">3</span>,<span class="number">1</span>))</div><div class="line">&gt; plot(x$V2,x$V3);plot(x$V3,x$V4);plot(x$V4,x$V1)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_26.png" alt=""></p>
+<p>par(mfrow=c(3,1))   把屏幕划分成3个水平区域<br>plot(x1,x2);plot(x2,x3);plot(x3,x1);    分别将三个散点图显示在这三块区域中。</p>
+<blockquote>
+<p>如果想深入学习R语言图像绘制，建议对par()函数的文档深入学习，并且学习《R Graphs Cookbook》这本书，会有很大收获的。</p>
+</blockquote>
+<h3 id="颜色colors()">颜色colors()</h3><p>查看有哪些颜色 colors()</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt; colors()</div><div class="line">  [<span class="number">1</span>] <span class="string">"white"</span>                <span class="string">"aliceblue"</span>            <span class="string">"antiquewhite"</span>        </div><div class="line">  [<span class="number">4</span>] <span class="string">"antiquewhite1"</span>        <span class="string">"antiquewhite2"</span>        <span class="string">"antiquewhite3"</span>       </div><div class="line">  [<span class="number">7</span>] <span class="string">"antiquewhite4"</span>        <span class="string">"aquamarine"</span>           <span class="string">"aquamarine1"</span>         </div><div class="line"> [<span class="number">10</span>] <span class="string">"aquamarine2"</span>          <span class="string">"aquamarine3"</span>          <span class="string">"aquamarine4"</span>         </div><div class="line"> [<span class="number">13</span>] <span class="string">"azure"</span>                <span class="string">"azure1"</span>               <span class="string">"azure2"</span>              </div><div class="line"> [<span class="number">16</span>] <span class="string">"azure3"</span>               <span class="string">"azure4"</span>               <span class="string">"beige"</span>               </div><div class="line"> [<span class="number">19</span>] <span class="string">"bisque"</span>               <span class="string">"bisque1"</span>              <span class="string">"bisque2"</span>             </div><div class="line"> [<span class="number">22</span>] <span class="string">"bisque3"</span>              <span class="string">"bisque4"</span>              <span class="string">"black"</span>               </div><div class="line"> [<span class="number">25</span>] <span class="string">"blanchedalmond"</span>       <span class="string">"blue"</span>                 <span class="string">"blue1"</span>               </div><div class="line"> [<span class="number">28</span>] <span class="string">"blue2"</span>                <span class="string">"blue3"</span>                <span class="string">"blue4"</span>               </div><div class="line"> [<span class="number">31</span>] <span class="string">"blueviolet"</span>           <span class="string">"brown"</span>                <span class="string">"brown1"</span>              </div><div class="line"> [<span class="number">34</span>] <span class="string">"brown2"</span>               <span class="string">"brown3"</span>               <span class="string">"brown4"</span>        </div><div class="line"> <span class="keyword">...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>绘图设备</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; dev.cur() <span class="comment"># 当前图形窗</span></div><div class="line">&gt; dev.list() <span class="comment"># 查看现在所有的图形窗</span></div><div class="line">&gt; dev.next(which=dev.cur()) <span class="comment">#某个图形窗的后一个图形窗</span></div><div class="line">&gt; dev.prev(which=dev.cur()) <span class="comment">#某个图形窗的前一个图形窗</span></div><div class="line">&gt; dev.off(which=dev.cur()) <span class="comment">#关闭某个图形窗</span></div><div class="line">&gt; dev.set(which=dev.next()) <span class="comment">#设置图形窗</span></div><div class="line">&gt; dev.new(<span class="keyword">...</span>) <span class="comment">#开启新的图形窗</span></div><div class="line">&gt; graphics.off() <span class="comment">#关闭整个窗口</span></div></pre></td></tr></table></figure>
+<h3 id="三维散点图">三维散点图</h3><p>安装scatterplot3d包</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">library</span>(scatterplot3d)</div><div class="line">&gt; scatterplot3d(x[<span class="number">2</span>:<span class="number">4</span>])</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_27.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; x&lt;-y&lt;-seq(-<span class="number">2</span>*pi,<span class="number">2</span>*pi,pi/<span class="number">15</span>)</div><div class="line">&gt; f&lt;-<span class="keyword">function</span>(x,y)sin(x)*sin(y)</div><div class="line">&gt; z&lt;-outer(x,y,f)</div><div class="line">&gt; contour(x,y,z,col=<span class="string">"blue"</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_28.png" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; contour(x,y,z,col=<span class="string">"blue"</span>)</div><div class="line">&gt; persp(x,y,z,theta=<span class="number">30</span>,phi=<span class="number">30</span>,expand=<span class="number">0.7</span>,col=<span class="string">"lightblue"</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_29.png" alt=""></p>
+<h3 id="地图">地图</h3><p>安装maps包</p>
+<p>显示美国地图：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">library</span>(maps)</div><div class="line">&gt; map(<span class="string">"state"</span>,interior=<span class="literal">F</span>)</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_30.png" alt=""></p>
+<blockquote>
+<p>state 代表美国</p>
+</blockquote>
+<p>世界地图的绘制：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; map(<span class="string">"world"</span>,fill=<span class="literal">T</span>,col=heat.colors(<span class="number">10</span>))</div></pre></td></tr></table></figure>
+<p><img src="/img/r_02_31.png" alt=""></p>
+<h3 id="社交数据可视化">社交数据可视化</h3><p>通过R可以画出如下的facebook社交关系图:</p>
+<p><img src="/img/r_02_32.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/02/线性代数07-直线的参数表示/" rel="next" title="线性代数07-直线的参数表示">
+                <i class="fa fa-chevron-left"></i> 线性代数07-直线的参数表示
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/13/人工智能五子棋实现原理/" rel="prev" title="人工智能五子棋实现原理">
+                人工智能五子棋实现原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本图形的绘制"><span class="nav-number">1.</span> <span class="nav-text">基本图形的绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的导入"><span class="nav-number">1.1.</span> <span class="nav-text">数据的导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图分析_hist()"><span class="nav-number">1.2.</span> <span class="nav-text">直方图分析 hist()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图_plot()"><span class="nav-number">1.3.</span> <span class="nav-text">散点图 plot()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柱状图barplot()"><span class="nav-number">1.4.</span> <span class="nav-text">柱状图barplot()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#饼图_pie()"><span class="nav-number">1.5.</span> <span class="nav-text">饼图 pie()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箱尾图"><span class="nav-number">1.6.</span> <span class="nav-text">箱尾图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#星相图_stars()"><span class="nav-number">1.7.</span> <span class="nav-text">星相图 stars()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸图"><span class="nav-number">1.8.</span> <span class="nav-text">人脸图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#茎叶图_stem()"><span class="nav-number">1.9.</span> <span class="nav-text">茎叶图 stem()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ图"><span class="nav-number">1.10.</span> <span class="nav-text">QQ图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形绘制进阶"><span class="nav-number">2.</span> <span class="nav-text">图形绘制进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图进一步设置"><span class="nav-number">2.1.</span> <span class="nav-text">散点图进一步设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连线图"><span class="nav-number">2.2.</span> <span class="nav-text">连线图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密度图_density()"><span class="nav-number">2.3.</span> <span class="nav-text">密度图 density()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R中的内置数据集"><span class="nav-number">2.4.</span> <span class="nav-text">R中的内置数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热力图_heatmap()"><span class="nav-number">2.5.</span> <span class="nav-text">热力图 heatmap()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iris(鸢尾花)数据集"><span class="nav-number">2.6.</span> <span class="nav-text">Iris(鸢尾花)数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向日葵散点图_sunflowerplot()"><span class="nav-number">2.7.</span> <span class="nav-text">向日葵散点图 sunflowerplot()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图集"><span class="nav-number">2.8.</span> <span class="nav-text">散点图集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色colors()"><span class="nav-number">2.9.</span> <span class="nav-text">颜色colors()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三维散点图"><span class="nav-number">2.10.</span> <span class="nav-text">三维散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地图"><span class="nav-number">2.11.</span> <span class="nav-text">地图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社交数据可视化"><span class="nav-number">2.12.</span> <span class="nav-text">社交数据可视化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
