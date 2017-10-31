@@ -363,7 +363,7 @@
       
 
       
-        <h2 id="java-util-Collections">java.util.Collections</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * Returns an unmodifiable view of the specified list.  This method allows</div><div class="line">    * modules to provide users with "read-only" access to internal</div><div class="line">    * lists.  Query operations on the returned list "read through" to the</div><div class="line">    * specified list, and attempts to modify the returned list, whether</div><div class="line">    * direct or via its iterator, result in an</div><div class="line">    * &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt;.&lt;p&gt;</div><div class="line">    *</div><div class="line">    * The returned list will be serializable if the specified list</div><div class="line">    * is serializable. Similarly, the returned list will implement</div><div class="line">    * &#123;<span class="doctag">@link</span> RandomAccess&#125; if the specified list does.</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span>  &lt;T&gt; the class of the objects in the list</div><div class="line">    * <span class="doctag">@param</span>  list the list for which an unmodifiable view is to be returned.</div><div class="line">    * <span class="doctag">@return</span> an unmodifiable view of the specified list.</div><div class="line">    */</div><div class="line">   <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">unmodifiableList</span><span class="params">(List&lt;? extends T&gt; list)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> (list <span class="keyword">instanceof</span> RandomAccess ?</div><div class="line">               <span class="keyword">new</span> UnmodifiableRandomAccessList&lt;&gt;(list) :</div><div class="line">               <span class="keyword">new</span> UnmodifiableList&lt;&gt;(list));</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+        <h2 id="java-util-Collections"><a href="#java-util-Collections" class="headerlink" title="java.util.Collections"></a>java.util.Collections</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * Returns an unmodifiable view of the specified list.  This method allows</div><div class="line">    * modules to provide users with "read-only" access to internal</div><div class="line">    * lists.  Query operations on the returned list "read through" to the</div><div class="line">    * specified list, and attempts to modify the returned list, whether</div><div class="line">    * direct or via its iterator, result in an</div><div class="line">    * &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt;.&lt;p&gt;</div><div class="line">    *</div><div class="line">    * The returned list will be serializable if the specified list</div><div class="line">    * is serializable. Similarly, the returned list will implement</div><div class="line">    * &#123;<span class="doctag">@link</span> RandomAccess&#125; if the specified list does.</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span>  &lt;T&gt; the class of the objects in the list</div><div class="line">    * <span class="doctag">@param</span>  list the list for which an unmodifiable view is to be returned.</div><div class="line">    * <span class="doctag">@return</span> an unmodifiable view of the specified list.</div><div class="line">    */</div><div class="line">   <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">unmodifiableList</span><span class="params">(List&lt;? extends T&gt; list)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> (list <span class="keyword">instanceof</span> RandomAccess ?</div><div class="line">               <span class="keyword">new</span> UnmodifiableRandomAccessList&lt;&gt;(list) :</div><div class="line">               <span class="keyword">new</span> UnmodifiableList&lt;&gt;(list));</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>unmodifiableList用来获取一个只可读，不可写的指定的list。如果试图去写入或者改变这个list，则会抛出一个UnsupportedOperationException异常。</p>
 <p><strong>这是一个可以用来获取只可读不可写的list的方法。</strong></p>
 <p>那么他具体是怎么实现的呢？可以看一下UnmodifiableList或者UnmodifiableRandomAccessList的代码：</p>
@@ -960,7 +960,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -972,7 +972,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -980,6 +980,8 @@
   
 
   
+  
+
 
   
 

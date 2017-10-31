@@ -428,7 +428,7 @@
 <p>我很喜欢那种获得一种新的方式来思考我们的世界时的那种感觉。尤其是在一些模糊的想法变成一个具体的概念的时候。<strong>信息论</strong>就是这样一种把模糊的概念具象化的典型的例子。</p>
 <p>信息理论为我们描述很多事情提供了准确的语言。关于某个问题我到底有多不确定？问题A的答案会告诉我们多少关于问题B的答案的信息？一组信息和另一组信息的相似度如何衡量？在我小的时候，我就已经形成了一些关于这些问题的模糊的想法，但是信息论将我的这些想法形成了精确的强大的理论。这些理论有着巨大的应用范围，例如数据压缩、量子物理学、机器学习以及其他更广泛的领域。</p>
 <p>不过，信息论看起来似乎有些不容易理解，但我不认为信息论应该是这样难以理解的。事实上，信息论中许多核心理论都可以完全用图解的方式来解释！</p>
-<h2 id="可视化概率分布">可视化概率分布</h2><p>在我们深入信息理论之前，让我们考虑一下如何可视化简单的概率分布。</p>
+<h2 id="可视化概率分布"><a href="#可视化概率分布" class="headerlink" title="可视化概率分布"></a>可视化概率分布</h2><p>在我们深入信息理论之前，让我们考虑一下如何可视化简单的概率分布。</p>
 <p>我住在加利福尼亚州。有些时候这里是下雨天，但大多数时间里这里都是晴天！我们假设有75%的时间是晴天。我们很容易就可以将这些信息可视化的展示出来：</p>
 <p><img src="/img/17_06_13/001.png" width="100" height="100"></p>
 <p>大多数的时间，我都穿T恤衫，但在某些时间，我会穿外套。那么假设我38%的时间里是穿外套的。可视化这个信息也很容易：</p>
@@ -456,7 +456,7 @@
 <blockquote>
 <p>你可能已经听说过<strong>贝叶斯定理</strong>。其实你也完全可以使用贝叶斯定理来解释这部分内容。</p>
 </blockquote>
-<h2 id="Aside：辛普森悖论">Aside：辛普森悖论</h2><p>这些可视化概率分布的技巧真的很有用吗？我认为的确很有用！在我们图解信息论之前，我还需要一些时间来用可视化的技术探索一下辛普森悖论。辛普森悖论是一种非常不直观的统计状况。它真的很不容易被直观的理解。迈克尔·尼尔森（Michael Nielsen）撰写了一篇很有爱的文章：<a href="http://michaelnielsen.org/reinventing_explanation/" target="_blank" rel="external">“创新说明”</a>，探讨了不同方式来解释它。而我想尝试使用我们在上一节中学到的技巧来解释它。</p>
+<h2 id="Aside：辛普森悖论"><a href="#Aside：辛普森悖论" class="headerlink" title="Aside：辛普森悖论"></a>Aside：辛普森悖论</h2><p>这些可视化概率分布的技巧真的很有用吗？我认为的确很有用！在我们图解信息论之前，我还需要一些时间来用可视化的技术探索一下辛普森悖论。辛普森悖论是一种非常不直观的统计状况。它真的很不容易被直观的理解。迈克尔·尼尔森（Michael Nielsen）撰写了一篇很有爱的文章：<a href="http://michaelnielsen.org/reinventing_explanation/" target="_blank" rel="external">“创新说明”</a>，探讨了不同方式来解释它。而我想尝试使用我们在上一节中学到的技巧来解释它。</p>
 <p>测试两种肾结石治疗方法。对一半的患者使用A治疗方案，而另一半则使用B治疗方案。接受治疗方案B的患者比接受治疗方案A的患者更容易存活。</p>
 <p><img src="/img/17_06_13/007.png" width="400" height="400"></p>
 <p>然而，如果接受治疗方案A的话，患肾小结石的患者更有可能存活。然而大肾结石患者如果接受治疗方案A也更有可能存活！这怎么可能呢？</p>
@@ -466,7 +466,7 @@
 <p>为了更好地理解这一点，我们可以将前两个图表组合为一个三维图，其中将小型和大型肾结石的存活率分开展示。</p>
 <p><img src="/img/17_06_13/009.png" width="400" height="400"></p>
 <p>我们现在可以看到，在两种小肾结石和大肾结石的病例中，治疗方案A是超过治疗方案B的。治疗方案B看起来似乎更好，仅仅是因为应用它的患者本身更有可能存活！</p>
-<h2 id="编码">编码</h2><p>现在我们有了可视化概率的方法，我们可以深入到信息论中了。</p>
+<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>现在我们有了可视化概率的方法，我们可以深入到信息论中了。</p>
 <p>首先我向你介绍一位我假想的朋友，Bob。Bob很喜欢动物。他一直不停在谈论动物。事实上，他只会说四个字：“dog”, “cat”, “fish” 和 “bird”。</p>
 <p>几周前（虽然这只是我的想象)Bob搬到了澳大利亚。另外，他决定只想要使用二进制来交流。来自Bob的所有（虚构的）消息都是这样的：</p>
 <p><img src="/img/17_06_13/010.png" width="300" height="100"></p>
@@ -474,7 +474,7 @@
 <p><img src="/img/17_06_13/011.png" width="300" height="300"></p>
 <p>要发送消息，Bob用相应的编码字来替换每个单词，然后将它们连接在一起形成编码的字符串。</p>
 <p><img src="/img/17_06_13/012.png" width="300" height="150"></p>
-<h3 id="可变长度码">可变长度码</h3><p>不幸的是，在假想中的澳大利亚，通信服务是昂贵的。从Bob收到的每条消息中，每一位（bit）数据我都必须支付5美元。我是不是还没有提到Bob喜欢说很多话这件事？为了防止我破产，Bob和我决定来研究一些可以使我们的平均消息长度变得更短的方法。</p>
+<h3 id="可变长度码"><a href="#可变长度码" class="headerlink" title="可变长度码"></a>可变长度码</h3><p>不幸的是，在假想中的澳大利亚，通信服务是昂贵的。从Bob收到的每条消息中，每一位（bit）数据我都必须支付5美元。我是不是还没有提到Bob喜欢说很多话这件事？为了防止我破产，Bob和我决定来研究一些可以使我们的平均消息长度变得更短的方法。</p>
 <p>事实证明，并不是所有的词Bob都会经常说。Bob很喜欢狗，他一直在说“dog”。同时他也会不定期地说其他的动物，尤其是他的狗喜欢追的猫，但它大多数时间他还是在说“dog”。这是一个他的单词频率图：</p>
 <p><img src="/img/17_06_13/013.png" width="300" height="200"></p>
 <p>这似乎看来是有优化空间的。因为我们可以看到，按照旧的编码方式，对于不同的词无论它们是多么常见，都在使用2位长的码字来表示。</p>
@@ -491,7 +491,7 @@
 <p>这是一个简单的基本限制。这要求我们传达的信息平均码字长度至少是1.75位。无论我们用多么聪明的代码，都不可能让平均消息长度变得更短。我们称这种限制为<strong>熵</strong>。关于熵的内容，我们将在稍后详细讨论。</p>
 <p><img src="/img/17_06_13/017.png" width="500" height="300"></p>
 <p>如果我们想了解这个平均最短码字长度的限制，这个问题的关键在于理解如何在使得一些码字变短但同时其他码字变长的过程中进行权衡。一旦我们弄明白了如何进行这种权衡，我们就能够找出最好的编码方式了。</p>
-<h3 id="码字的空间">码字的空间</h3><p>码字长度为1时，能表示2种编码：0和1的编码；码字长度为2时，能表示4中编码：00，01，10和11。下面是每增加一位码字长度，能表示的编码种类数量的递增情况：</p>
+<h3 id="码字的空间"><a href="#码字的空间" class="headerlink" title="码字的空间"></a>码字的空间</h3><p>码字长度为1时，能表示2种编码：0和1的编码；码字长度为2时，能表示4中编码：00，01，10和11。下面是每增加一位码字长度，能表示的编码种类数量的递增情况：</p>
 <p><img src="/img/17_06_13/018.png" width="350" height="300"></p>
 <p>但我们感兴趣的是那些可变长度编码。一种比较简单的情况是有八个长度为3位的码字。我们也可能有一些比较复杂的组合，比如长度为2的两个码字，与长度为3的四个码字的组合。那么究竟是什么决定了我们可以有不同长度的码字呢？</p>
 <p>回想一下，Bob通过用它的码字替换每个单词并将它们连接在一起，将他的消息转换成编码的字符串。</p>
@@ -502,7 +502,7 @@
 <p>思考这个问题的一个好的方法是每个码字需要从可能的码字的空间中做出牺牲。如果我们取代码字01，那么我们就失去了使用任何以01前缀开头的码字的能力。我们不能使用010或011010110，因为会产生歧义。</p>
 <p><img src="/img/17_06_13/020.png" width="400" height="400"></p>
 <p>由于所有码字中，有$\frac{1}{1}$都是从01开始，所以我们牺牲了$\frac{1}{1}$的所有可能的码字。这是我们付出的代价，而换来的结果只是使得其中一个码字的长度缩短到2位长！反过来，这种牺牲意味着所有其他码字需要更长一些。在不同码字的长度之间总是有这种折衷。为获取一个比较短的码字，需要你牺牲更多的其他码字的空间。而我们需要弄清楚，正确的权衡方式是什么？</p>
-<h3 id="最佳编码">最佳编码</h3><p>可以理解为简短编码的长度是有一个限定的度量在里面，每减短一个bit的密文就会牺牲一些编码的可能性从而让其它密文的长度增长。 </p>
+<h3 id="最佳编码"><a href="#最佳编码" class="headerlink" title="最佳编码"></a>最佳编码</h3><p>可以理解为简短编码的长度是有一个限定的度量在里面，每减短一个bit的密文就会牺牲一些编码的可能性从而让其它密文的长度增长。 </p>
 <p>购买长度为0的码字的成本为1，会牺牲掉所有的码字空间，如果这样做，就不会有其他码字了。长度为1的码字（如“0”）的代价是$\frac{1}{2}$的码字空间，因为有一半的码字以“0”开始的。长度为2的码字的成本(例如“01”)是$\frac{1}{4}$码字空间，因为有$\frac{1}{4}$的码字以“01”开始的。一般来说，码字的代价随代码字的长度而呈指数减小。</p>
 <p><img src="/img/17_06_13/021.png" width="600" height="300"></p>
 <p>如果代价是以指数衰减，那么这个高度和面积也是成指数衰减。</p>
@@ -532,7 +532,7 @@
 <blockquote>
 <p>认真的读者可能已经注意到，我们的最优预算有可能提出码字具有分数长度的编码，这似乎很有用！这是意味着什么呢？当然，在实践中，如果你想通过发送一个单码字，你必须取整，但是我们稍后会看到，当我们一次发送很多码字时，可以发送分数码字！现在请你耐心的看我现在的讲解！</p>
 </blockquote>
-<h3 id="计算熵">计算熵</h3><p>回想一下，一个长度为$L$的消息代价是$\frac{1}{2^L}$。再做一个简单的变换后，这个信息的长度就是：$\log_2\left(\frac{1}{\text{cost}}\right)$。因为我们对每个码字$x$花费$p(x)$的成本，长度是$\log_2\left(\frac{1}{p(x)}\right)$。这是长度的最佳选择。</p>
+<h3 id="计算熵"><a href="#计算熵" class="headerlink" title="计算熵"></a>计算熵</h3><p>回想一下，一个长度为$L$的消息代价是$\frac{1}{2^L}$。再做一个简单的变换后，这个信息的长度就是：$\log_2\left(\frac{1}{\text{cost}}\right)$。因为我们对每个码字$x$花费$p(x)$的成本，长度是$\log_2\left(\frac{1}{p(x)}\right)$。这是长度的最佳选择。</p>
 <p><img src="/img/17_06_13/029.png" width="600" height="300"></p>
 <p>早些时候，我们讨论了如何从一个特定的概率分布$p$中获取平均消息来传达事件的基本限制。这个将平均消息长度缩短到最优的编码的限制，我们称之为$p$的熵，$H(p)$。现在我们知道了码字的最佳长度，而且我们可以精确的计算出来！</p>
 <p>$$<br>H(p) = \sum_x p(x)\log_2\left(\frac{1}{p(x)}\right)<br>$$</p>
@@ -543,7 +543,7 @@
 <p>这个需要发送的信息的平均长度对信息的压缩有明显的影响，这个熵还有其它方面的意义吗？当然！它描述了随机性，并且提供了一种量化信息的方式。</p>
 <p>如果我确实知道会发生什么事件，我根本就不必发消息！如果有两件可能发生的概率为50％，我只需要发送1bit的数据。如果有64个不同的事情可能以相等的概率发生，我必须发送6bit。发生的概率越集中在某一件事上，就越能用巧妙的编码方式来减少信息的平均长度。概率扩散的范围越大，信息越长。发生的概率越分散到不同事情上，我需要发送的信息平均长度就越长。</p>
 <p>结果越不明确，在发生事情时就能学到越多的东西。</p>
-<h2 id="交叉熵">交叉熵</h2><p>在Bob搬到澳大利亚不久之后，他和我假想的另一个女孩Alice结婚了(让我惊讶的是，我脑海里居然还有其他角色)。然而Alice并不是一个狗狗爱好者。她是一个猫猫爱好者。尽管如此，他们俩也可以在仅有非常有限的关于动物的词汇的情况下，找到共同话题。</p>
+<h2 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h2><p>在Bob搬到澳大利亚不久之后，他和我假想的另一个女孩Alice结婚了(让我惊讶的是，我脑海里居然还有其他角色)。然而Alice并不是一个狗狗爱好者。她是一个猫猫爱好者。尽管如此，他们俩也可以在仅有非常有限的关于动物的词汇的情况下，找到共同话题。</p>
 <p><img src="/img/17_06_13/030.png" width="300" height="300"></p>
 <p>他们两以不同的频率说着相同的话。Bob总是谈论狗，而Alice却总是谈论猫。</p>
 <p>最初，Alice使用Bob的编码向我发送消息。不幸的是，她的消息比他们实际需要的要长。Bob的编码是按照Bob的概率分布优化得到的。而Alice与Bob有不同的信息概率分布，并且Bob编码对她来说并不是最佳的。当Bob使用自己的编码时，码字的平均长度是1.75，但Alice在使用这组编码时，她的码字平均长度是2.25。如果他们两的概率密度越不相似，这个结果就越糟糕。</p>
@@ -573,7 +573,7 @@
 <p>$$<br>D_q(p) = H_q(p) - H(p)<br>$$</p>
 <p>关于KL分歧真正在做的事情，其实就像是在衡量不同概率分布之间的差异程度。（如果继续研究这个概念就会进入信息几何的领域。）</p>
 <p>交叉熵和KL分歧在机器学习中有着难以置信的用处。通常，我们希望一个分布与另一个分布相互靠近。例如，我们希望一个用于预测的概率分布与真实情况更接近。KL分歧为我们提供了一种很自然的方式来做到这一点，所以它在任何地方都有用武之地。</p>
-<h2 id="熵和多变量">熵和多变量</h2><p>让我回到之前关于天气和穿着的例子：</p>
+<h2 id="熵和多变量"><a href="#熵和多变量" class="headerlink" title="熵和多变量"></a>熵和多变量</h2><p>让我回到之前关于天气和穿着的例子：</p>
 <p><img src="/img/17_06_13/035.png" width="300" height="300"></p>
 <p>我的妈妈，就像大多数的家长一样，都会担心我的衣着跟天气不搭配。（她的这种担心不是没有道理的，因为我在冬天经常不穿外套。）所以她总是想要知道我这边有关天气和穿衣的信息。我需要发送几个bit的数据来传达这些信息呢？</p>
 <p>为了更方便的分析这个问题，我们把概率扁平化分析：</p>
@@ -593,7 +593,7 @@
 <p>我们称之为条件熵。可以把它写成如下的数学表达式：</p>
 <p>$$<br>H(X|Y) = \sum_y p(y) \sum_x p(x|y) \log_2\left(\frac{1}{p(x|y)}\right)<br>$$</p>
 <p>$$<br>~~~~ = \sum_{x,y} p(x,y) \log_2\left(\frac{1}{p(x|y)}\right)<br>$$</p>
-<h2 id="交互信息">交互信息</h2><p>在上一节，我们得到一个结论，那就是在知道一个变量的情况下，可能会意味着导致传达另一个变量需要更少的信息。</p>
+<h2 id="交互信息"><a href="#交互信息" class="headerlink" title="交互信息"></a>交互信息</h2><p>在上一节，我们得到一个结论，那就是在知道一个变量的情况下，可能会意味着导致传达另一个变量需要更少的信息。</p>
 <p>一种思考这种情况的很好方式是将信息的总量想象成一个条。如果不同的消息之间在共享信息，就叠加显示。例如，$X$和$Y$存在一部分共享信息，因此$H(X)$和$H(Y)$是有重叠部分。并且$H(X,Y)$是两者的共同信息，是$H(X)$和$H(Y)$的集合。</p>
 <p><img src="/img/17_06_13/041.png" width="300" height="200"></p>
 <p>一旦我们开始以这种方式思考事情，很多事情就变得简单了。</p>
@@ -614,7 +614,7 @@
 <p>这和同样可以告诉我们距离信息的KL分歧之间的关系是什么呢？KL分歧给了我们两个分布之间在同一个变量或一组变量上的距离。相反，信息的变化给我们两个相同分布的变量之间的距离。KL分歧是应用在不同信息的概率分布中的，标识这概率分布中的信息变化。</p>
 <p>我们可以将所有这些信息全部汇集成一个单独的图表：</p>
 <p><img src="/img/17_06_13/045.png" width="400" height="400"></p>
-<h2 id="分数形式的位">分数形式的位</h2><p>关于信息理论的一个非常不直观的事情是我们可以拥有小数位数。这看起来很奇怪，半个位(0.5bit)意味着什么？</p>
+<h2 id="分数形式的位"><a href="#分数形式的位" class="headerlink" title="分数形式的位"></a>分数形式的位</h2><p>关于信息理论的一个非常不直观的事情是我们可以拥有小数位数。这看起来很奇怪，半个位(0.5bit)意味着什么？</p>
 <p>有一种简单的答案：通常，我们对消息的平均长度感兴趣，而不是任何特定的消息长度。如果一半的时间发送一个位的长度，一半时间发送两个位的长度，那么平均发送的长度是1.5位。对于平均数是小数的情况并没有什么奇怪的。</p>
 <p>但是，这个答案其实是在避开这个问题。通常，码字的最佳长度都是分数形式。这意味着什么呢？</p>
 <p>具体来说，让我们考虑一个概率分布，其中事件$a$发生的概率是$71%$，另一个事件$b$发生的概率为$29%$。</p>
@@ -632,18 +632,18 @@
 <blockquote>
 <p>在实践中，人们使用在不同程度上有效的特定编码方案。<a href="https://en.wikipedia.org/wiki/Huffman_coding" target="_blank" rel="external">霍夫曼编码</a>，是一种基本类似于我们在这里草拟的这种编码，并没有非常优雅地处理小数位。你必须像上面那样对符号进行分组，或者使用更复杂的技巧来处理熵限制。<a href="https://en.wikipedia.org/wiki/Arithmetic_coding" target="_blank" rel="external">算术编码</a>有点不同，它优雅地处理了小数位以渐近最优。</p>
 </blockquote>
-<h2 id="总结">总结</h2><p>如果我们关心如何使用最少数量数据进行通信，那么这些想法显然是最基本的。如果我们关心压缩数据，信息理论将可以解决数据压缩的核心问题，并给出我们从根本上正确的抽象。但是，如果我们不在乎这些问题，那么除了好奇，我们还有其他什么原因呢？</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果我们关心如何使用最少数量数据进行通信，那么这些想法显然是最基本的。如果我们关心压缩数据，信息理论将可以解决数据压缩的核心问题，并给出我们从根本上正确的抽象。但是，如果我们不在乎这些问题，那么除了好奇，我们还有其他什么原因呢？</p>
 <p>来自信息理论的观点在很多情况下都会出现：机器学习，量子物理学，遗传学，热力学，甚至赌博。这些领域的从业者通常不关心信息理论。量子纠缠可以用熵来描述，通过假定关于你不知道的事物的最大熵，可以得出统计力学和热力学中的许多结果。赌徒的胜利或损失与KL分歧直接相关，特别是迭代设置。</p>
 <p>信息理论在所有这些地方出现，因为它为许多我们需要表达的事情提供了具体的，有原则的形式化表示。它给了我们衡量和表达不确定性的方法，两组数据有多么的不同，不同概率分布之间的距离是多少，以及但对于某个问题的答案中蕴含了多少其他问题的信息：扩散概率是怎样的，概率分布之间的距离以及相互依赖的两个变量是怎样的。有其他类似的理论或者观点吗？当然。但是信息论的思想是干净的，它们具有很好的性质和原则性的起源。在某些情况下，它们正是你所关心的，而在其他情况下，它是混乱世界中的一个方便的代理。</p>
 <p>机器学习是我最了解的领域，所以我们来谈一下。在机器学习中，分类是一种非常常见的问题。假设我们想看一张图片，并预测它是一只狗还是一只猫。我们的模型可能会告诉我们“这张图片中有80%的概率是一只狗，有20%的概率是一只猫”。那么我们就说正确答案是狗，那么我们以80%的概率做出的判断是好还是坏呢？以85%的概率做出的判断会比80%好多少呢？</p>
 <p>这是一个重要的问题，因为我们需要一些衡量我们模型好坏的概念，以便把它优化的更好。我们应该优化什么呢？正确的答案确实取决于我们使用的模型：我们是只关心最顶部的猜测是否正确呢，还是关心我们在获取正确答案中的信心呢？错误的自信会有多糟？没有一个正确的答案。而且通常不可能知道正确的答案，因为我们不知道如何以精确的方式使用模型来形式化我们最终关心的内容。然而很多问题中，交叉熵都是我们真正需要在意的，但并不总是如此。更常见的情况是我们并不知道我们关心什么，而交叉熵就是解决这些问题的一个很好的工具。</p>
 <p>信息为我们提供了一个强大的新框架来思考我们的世界。有时它能完美的解决一些问题，而有时并不可以，但它依然很有用。这篇文章仅仅是对信息论的一个概览，而信息论中还有许多其他主要的概念，例如我们没有提到的纠错码，但我希望我已经展示出了信息论是一个很美丽的主题，它并不是那么高不可攀。</p>
-<h2 id="进一步阅读">进一步阅读</h2><p>这里是<strong>克劳德·香农（Claude Shannon）</strong>关于信息论的原创论文<a href="http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf" target="_blank" rel="external">通信数学理论</a>。（这在早期的信息论论文中，似乎是一个重复的模式。是时代原因吗？还是因为缺少页面限制？或者是来自贝尔实验室的文化？）</p>
+<h2 id="进一步阅读"><a href="#进一步阅读" class="headerlink" title="进一步阅读"></a>进一步阅读</h2><p>这里是<strong>克劳德·香农（Claude Shannon）</strong>关于信息论的原创论文<a href="http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf" target="_blank" rel="external">通信数学理论</a>。（这在早期的信息论论文中，似乎是一个重复的模式。是时代原因吗？还是因为缺少页面限制？或者是来自贝尔实验室的文化？）</p>
 <p>封面和托马斯的信息要素理论似乎是标准参考。我觉得很有帮助。</p>
-<h2 id="致谢">致谢</h2><p>我非常感谢<a href="https://github.com/danmane" target="_blank" rel="external">Dan Mané</a>，<a href="https://www.cs.cmu.edu/~dga/" target="_blank" rel="external">David Andersen</a>，<a href="http://obsessionwithregression.blogspot.com/" target="_blank" rel="external">Emma Pierson</a>和Dario Amodei抽出时间来给出这篇文章令人难以置信的详细和广泛征求意见。我也很感激<a href="http://michaelnielsen.org/" target="_blank" rel="external">Michael Nielsen</a>，<a href="http://research.google.com/pubs/GregCorrado.html" target="_blank" rel="external">Greg Corrado</a>，<a href="http://www.iro.umontreal.ca/~bengioy/yoshua_en/index.html" target="_blank" rel="external">Yoshua Bengio</a>，<a href="https://aaroncourville.wordpress.com/" target="_blank" rel="external">Aaron Courville</a>，<a href="http://www.nickbeckstead.com/" target="_blank" rel="external">Nick Beckstead</a>，<a href="http://research.google.com/pubs/JonathonShlens.html" target="_blank" rel="external">Jon Shlens</a>，Andrew Dai，<a href="http://research.google.com/pubs/ChristianHoward.html" target="_blank" rel="external">Christian Howard</a>和<a href="http://www.bewitched.com/" target="_blank" rel="external">Martin Wattenberg</a>的评论。</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>我非常感谢<a href="https://github.com/danmane" target="_blank" rel="external">Dan Mané</a>，<a href="https://www.cs.cmu.edu/~dga/" target="_blank" rel="external">David Andersen</a>，<a href="http://obsessionwithregression.blogspot.com/" target="_blank" rel="external">Emma Pierson</a>和Dario Amodei抽出时间来给出这篇文章令人难以置信的详细和广泛征求意见。我也很感激<a href="http://michaelnielsen.org/" target="_blank" rel="external">Michael Nielsen</a>，<a href="http://research.google.com/pubs/GregCorrado.html" target="_blank" rel="external">Greg Corrado</a>，<a href="http://www.iro.umontreal.ca/~bengioy/yoshua_en/index.html" target="_blank" rel="external">Yoshua Bengio</a>，<a href="https://aaroncourville.wordpress.com/" target="_blank" rel="external">Aaron Courville</a>，<a href="http://www.nickbeckstead.com/" target="_blank" rel="external">Nick Beckstead</a>，<a href="http://research.google.com/pubs/JonathonShlens.html" target="_blank" rel="external">Jon Shlens</a>，Andrew Dai，<a href="http://research.google.com/pubs/ChristianHoward.html" target="_blank" rel="external">Christian Howard</a>和<a href="http://www.bewitched.com/" target="_blank" rel="external">Martin Wattenberg</a>的评论。</p>
 <p>还感谢我的前两个神经网络研讨会系列作为这些想法的豚鼠。</p>
 <p>最后，感谢读者发现错误和遗漏。尤其感谢Connor Zwick，Kai Arulkumaran，Jonathan Heusser，Otavio Good，以及匿名评论者。</p>
-<h2 id="更多的文章">更多的文章</h2><p><a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">了解卷积</a></p>
+<h2 id="更多的文章"><a href="#更多的文章" class="headerlink" title="更多的文章"></a>更多的文章</h2><p><a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">了解卷积</a></p>
 <p><a href="http://colah.github.io/posts/2014-12-Groups-Convolution/" target="_blank" rel="external">分组和分组卷积</a></p>
 <p><a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/" target="_blank" rel="external">神经网络，歧管和拓扑</a></p>
 <p><a href="http://colah.github.io/posts/2015-01-Visualizing-Representations/" target="_blank" rel="external">可视化展示深度学习和人类</a></p>
@@ -1240,7 +1240,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1252,7 +1252,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1260,6 +1260,8 @@
   
 
   
+  
+
 
   
 

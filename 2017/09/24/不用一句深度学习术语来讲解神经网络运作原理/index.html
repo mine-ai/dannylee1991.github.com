@@ -392,7 +392,7 @@
         <blockquote>
 <p>原创文章，转载请注明出处</p>
 </blockquote>
-<h2 id="神经网络==多层级组织架构的公司">神经网络==多层级组织架构的公司</h2><p>假设有一家公司，这家公司的组织架构是下面这种多层级的结构：</p>
+<h2 id="神经网络-多层级组织架构的公司"><a href="#神经网络-多层级组织架构的公司" class="headerlink" title="神经网络==多层级组织架构的公司"></a>神经网络==多层级组织架构的公司</h2><p>假设有一家公司，这家公司的组织架构是下面这种多层级的结构：</p>
 <p><img src="/img/17_09_24/001.png" alt=""></p>
 <p>公司每天接待一批固定数量的用户，这些用户会将自己的数据告诉给公司，公司做的事情就是通过每个用户上报的数据来推测当前用户群体整体所表现出来的状态。</p>
 <p><img src="/img/17_09_24/002.png" alt=""></p>
@@ -414,12 +414,12 @@
 <p>公司做的事情就是每天接待这1024个用户，他们会告诉公司自己手里卡片的灰度值，但不会告诉公司卡片拼起来的图片是什么，然后公司经过层层分析来得出当前所有用户卡片拼起来的图像是什么。</p>
 <p>这就是一个用户识别手写数字的DNN模型的形象比喻。</p>
 <hr>
-<h3 id="几个问题的思考">几个问题的思考</h3><h4 id="公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？">公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？</h4><p>扁平化的架构带来的好处是快速直接触达用户，但最终的准确率会比较低；多层级的架构带来的好处是更合理的分工，但会带来沟通和管理上的开销和数据损失。</p>
+<h3 id="几个问题的思考"><a href="#几个问题的思考" class="headerlink" title="几个问题的思考"></a>几个问题的思考</h3><h4 id="公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？"><a href="#公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？" class="headerlink" title="公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？"></a>公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？</h4><p>扁平化的架构带来的好处是快速直接触达用户，但最终的准确率会比较低；多层级的架构带来的好处是更合理的分工，但会带来沟通和管理上的开销和数据损失。</p>
 <p>所以如何设置公司层级是一门学问。</p>
-<h4 id="每个员工是如何生成报表的？">每个员工是如何生成报表的？</h4><p>每个员工根据自己对每个数据的重要程度的看法，计算出自己对每个数据的看法。然后在经过一层加工处理之后输出报表。</p>
-<h4 id="公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？">公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？</h4><p>应该招聘差异化大的人群，这样每个人能够产生对数据的不同看法。如果公司大部分人背景相似，那么他们对待同一类问题，产生的看法也都相似，没有多样化的观点，也容易导致公司做出错误判断。</p>
+<h4 id="每个员工是如何生成报表的？"><a href="#每个员工是如何生成报表的？" class="headerlink" title="每个员工是如何生成报表的？"></a>每个员工是如何生成报表的？</h4><p>每个员工根据自己对每个数据的重要程度的看法，计算出自己对每个数据的看法。然后在经过一层加工处理之后输出报表。</p>
+<h4 id="公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？"><a href="#公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？" class="headerlink" title="公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？"></a>公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？</h4><p>应该招聘差异化大的人群，这样每个人能够产生对数据的不同看法。如果公司大部分人背景相似，那么他们对待同一类问题，产生的看法也都相似，没有多样化的观点，也容易导致公司做出错误判断。</p>
 <hr>
-<h3 id="带入术语">带入术语</h3><ul>
+<h3 id="带入术语"><a href="#带入术语" class="headerlink" title="带入术语"></a>带入术语</h3><ul>
 <li>神经网络 -&gt; 多层级结构的公司</li>
 <li>神经网络架构 -&gt; 公司组织架构</li>
 <li>神经元 -&gt; 每一位员工</li>
@@ -439,7 +439,7 @@
 <li>训练/学习 -&gt; 带入大量已知状态的用户数据来根据公司的预测结果调整全员状态的过程</li>
 </ul>
 <hr>
-<h3 id="总结">总结</h3><p>神经网络是一个灵活的结构，当带入图片像素值以及图片标签数据时，它训练的就是一个图片识别模型；当带入的数据是邮件特征数据，以及邮件是否为垃圾邮件的类别数据时，它可能就是一个垃圾邮件识别模型。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>神经网络是一个灵活的结构，当带入图片像素值以及图片标签数据时，它训练的就是一个图片识别模型；当带入的数据是邮件特征数据，以及邮件是否为垃圾邮件的类别数据时，它可能就是一个垃圾邮件识别模型。</p>
 <p>这里的类比并不严谨，准确的定义还需要参考标准定义。不过通过形象化的类比，可以使我们对神经网络建立起系统化的认知。</p>
 
       
@@ -693,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络==多层级组织架构的公司"><span class="nav-number">1.</span> <span class="nav-text">神经网络==多层级组织架构的公司</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个问题的思考"><span class="nav-number">1.1.</span> <span class="nav-text">几个问题的思考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？"><span class="nav-number">1.1.1.</span> <span class="nav-text">公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每个员工是如何生成报表的？"><span class="nav-number">1.1.2.</span> <span class="nav-text">每个员工是如何生成报表的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？"><span class="nav-number">1.1.3.</span> <span class="nav-text">公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带入术语"><span class="nav-number">1.2.</span> <span class="nav-text">带入术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络-多层级组织架构的公司"><span class="nav-number">1.</span> <span class="nav-text">神经网络==多层级组织架构的公司</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个问题的思考"><span class="nav-number">1.1.</span> <span class="nav-text">几个问题的思考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？"><span class="nav-number">1.1.1.</span> <span class="nav-text">公司员工数量一定的情况下，组织架构是越扁平越好，还是层级越多越好？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每个员工是如何生成报表的？"><span class="nav-number">1.1.2.</span> <span class="nav-text">每个员工是如何生成报表的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？"><span class="nav-number">1.1.3.</span> <span class="nav-text">公司招聘员工的时候，应该招聘类似的人群，还是招聘差异化的人群？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带入术语"><span class="nav-number">1.2.</span> <span class="nav-text">带入术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1028,7 +1028,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1040,7 +1040,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1048,6 +1048,8 @@
   
 
   
+  
+
 
   
 

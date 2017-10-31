@@ -148,7 +148,7 @@
 <meta property="og:image" content="http://studyai.site/img/17_06_04/041.png">
 <meta property="og:image" content="http://studyai.site/img/17_06_04/042.png">
 <meta property="og:image" content="http://studyai.site/img/17_06_04/043.png">
-<meta property="og:updated_time" content="2017-06-05T15:35:31.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:17:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第十一周 (1)照片OCR">
 <meta name="twitter:description" content="问题描述和流水线（Pipeline）视频地址
@@ -433,7 +433,7 @@
       
 
       
-        <h2 id="问题描述和流水线（Pipeline）">问题描述和流水线（Pipeline）</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/iDBMm/problem-description-and-pipeline" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="问题描述和流水线（Pipeline）"><a href="#问题描述和流水线（Pipeline）" class="headerlink" title="问题描述和流水线（Pipeline）"></a>问题描述和流水线（Pipeline）</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/iDBMm/problem-description-and-pipeline" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在这一段和下几段视频中，我想向你介绍一种 机器学习的应用实例：<strong>照片OCR技术</strong>。我想介绍这部分内容的原因主要有以下三个:</p>
 <ul>
@@ -452,7 +452,7 @@
 <blockquote>
 <p>虽然现在OCR对扫描的文档来说已经是一个比较简单的问题了，但对于数码照片来说现在还是一个比较困难的机器学习问题。研究这个的目的不仅仅是因为这可以让计算机更好地理解我们的户外图像，更重要的是它衍生了很多应用。比如在帮助盲人方面，假如你能为盲人提供一种照相机，这种相机可以“看见”他们前面有什么东西，可以告诉他们面前的路牌上写的是什么字。现在也有研究人员将照片OCR技术应用到汽车导航系统中，想象一下你的车能读出街道的标识，并且将你导航至目的地。</p>
 </blockquote>
-<h3 id="OCR的大概步骤">OCR的大概步骤</h3><p>照片OCR的大体步骤如下：</p>
+<h3 id="OCR的大概步骤"><a href="#OCR的大概步骤" class="headerlink" title="OCR的大概步骤"></a>OCR的大概步骤</h3><p>照片OCR的大体步骤如下：</p>
 <ul>
 <li>1.<strong>文字识别技术（Text detection）</strong></li>
 </ul>
@@ -476,7 +476,7 @@
 <p>假如你的字符分割和分类系统告诉你它识别到的字是“C1eaning”，那么很多拼写修正系统会告诉你，这可能是单词“Cleaning”的拼写，你的字符分类算法刚才把字母“l”识别成了数字“1”。</p>
 <p>但在本课中，我们会不考虑最后这一步拼写检查，只关注前面三个步骤。</p>
 </blockquote>
-<h3 id="机器学习流水线（machine_learning_pipeline）">机器学习流水线（machine learning pipeline）</h3><p>像上面这样的一个系统，我们把它称之为<strong>机器学习流水线（machine learning pipeline）</strong>。</p>
+<h3 id="机器学习流水线（machine-learning-pipeline）"><a href="#机器学习流水线（machine-learning-pipeline）" class="headerlink" title="机器学习流水线（machine learning pipeline）"></a>机器学习流水线（machine learning pipeline）</h3><p>像上面这样的一个系统，我们把它称之为<strong>机器学习流水线（machine learning pipeline）</strong>。</p>
 <p>下面是OCR的流水线：</p>
 <p><img src="/img/17_06_04/006.png" alt=""></p>
 <p>具体来说，这幅图表示的就是照片OCR的流水线。</p>
@@ -487,20 +487,20 @@
 <p><img src="/img/17_06_04/007.png" alt=""></p>
 <p>因此使用流水线的方式通常提供了一个很好的办法来将整个工作分给不同的组员去完成。（当然所有这些工作都可以由一个人来完成，如果你希望这样做的话。）</p>
 <p>在复杂的机器学习系统中，流水线的概念已经渗透到各种应用中。你刚才看到的只是一种照片OCR流水线的运作过程。在接下来的几段视频中，我还将继续向你介绍更多的一些关于流水线的内容。我们还将使用这个例子来展示机器学习中其他一些非常重要的概念。</p>
-<h2 id="滑动窗体">滑动窗体</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/bQhq3/sliding-windows" target="_blank" rel="external">视频地址</a></p>
+<h2 id="滑动窗体"><a href="#滑动窗体" class="headerlink" title="滑动窗体"></a>滑动窗体</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/bQhq3/sliding-windows" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在上一节我们谈到了照片OCR流水线以及其工作原理。我们讲到可以照一张照片然后将其通过一系列机器学习组件来尝试读出图片中的文字信息。</p>
 <p>在本节，我想再多介绍一些照片OCR流水线中的组件是如何工作的。</p>
 </blockquote>
 <p>本节我们介绍一下<strong>滑动窗体(sliding windows)</strong>的分类器。在照片OCR中，我们可以使用<strong>滑动窗体(sliding windows)</strong>分类器来识别图片中的文字。</p>
-<h3 id="滑动窗体步骤">滑动窗体步骤</h3><ul>
+<h3 id="滑动窗体步骤"><a href="#滑动窗体步骤" class="headerlink" title="滑动窗体步骤"></a>滑动窗体步骤</h3><ul>
 <li>1.文字检测</li>
 </ul>
 <p>滑动窗的第一个步骤是<strong>文字检测(text detection)</strong>。</p>
 <p>对于OCR问题，我们想要达到下面这种从图片中识别文字的功能：</p>
 <p><img src="/img/17_06_04/008.gif" alt=""></p>
 <p>文字识别是计算机视觉中的一个非同寻常的问题，因为取决于你想要找到的文字的长度。这些长方形区域会呈现不同的宽高比。</p>
-<h4 id="例子：行人检测问题">例子：行人检测问题</h4><p>为了更好地介绍图像检测，我们从一个简单一点的行人探测的例子开始。</p>
+<h4 id="例子：行人检测问题"><a href="#例子：行人检测问题" class="headerlink" title="例子：行人检测问题"></a>例子：行人检测问题</h4><p>为了更好地介绍图像检测，我们从一个简单一点的行人探测的例子开始。</p>
 <p>假设我们想要实现一个从图中识别出行人的应用：</p>
 <p><img src="/img/17_06_04/009.gif" alt=""></p>
 <p>这个问题似乎比文字检测的问题更简单，因为大部分的行人都比较相似。因此可以使用一个固定宽高比的矩形（就是上图中的红色矩形）来分离出你希望找到的行人。但在文字检测中，文字区域的宽高比就无法固定了。</p>
@@ -558,8 +558,8 @@
 <p>以此类推，接下来你可以用一个更大的矩形，以同样的方式滑动窗口。直到完成最后的扫描过程之后，你的算法应该就能检测出图像中是否出现行人了。</p>
 <p>因此整个步骤就是：训练一个分类器，然后用一个滑动窗分类器来找出图像中出现的行人。</p>
 <hr>
-<h4 id="OCR文字检测">OCR文字检测</h4><p>接下来我们转向文字识别的例子，对于照片OCR流水线中，要检测出文字需要的步骤如下：</p>
-<h5 id="训练分类器">训练分类器</h5><p>跟行人检测类似你也可以先收集一些带标签的训练集：</p>
+<h4 id="OCR文字检测"><a href="#OCR文字检测" class="headerlink" title="OCR文字检测"></a>OCR文字检测</h4><p>接下来我们转向文字识别的例子，对于照片OCR流水线中，要检测出文字需要的步骤如下：</p>
+<h5 id="训练分类器"><a href="#训练分类器" class="headerlink" title="训练分类器"></a>训练分类器</h5><p>跟行人检测类似你也可以先收集一些带标签的训练集：</p>
 <table>
 <thead>
 <tr>
@@ -575,12 +575,12 @@
 </tbody>
 </table>
 <p>通过使用这些训练集来训练识别文字的分类器。</p>
-<h5 id="滑动窗体，识别文字区域">滑动窗体，识别文字区域</h5><p>训练完了以后，我们就可以把它应用到测试集图片中了。我们以这幅图片为例：</p>
+<h5 id="滑动窗体，识别文字区域"><a href="#滑动窗体，识别文字区域" class="headerlink" title="滑动窗体，识别文字区域"></a>滑动窗体，识别文字区域</h5><p>训练完了以后，我们就可以把它应用到测试集图片中了。我们以这幅图片为例：</p>
 <p><img src="/img/17_06_04/001.png" width="500" height="500" align="center"></p>
 <p>这里我们用一个固定的比例的矩形作为窗体来运行滑动窗体。如果我这样做的话，最终得到的结果是这样的：</p>
 <p><img src="/img/17_06_04/019.png" width="500" height="500" align="center"></p>
 <p>白色区域代表找到了文字的区域，黑色区域代表没有找到文字。不同的灰度表示分类器给出的输出结果的概率值，所以比如有些灰色的阴影表示分类器在这片区域似乎发现了文字，但并不十分确信；而比较白亮的区域则表示分类器预测这个区域有文字 的概率比较大。</p>
-<h5 id="代入“展开器”(expansion_operator)">代入“展开器”(expansion operator)</h5><p>现在我们还没完成文字检测呢，因为我们实际上想做的是在图像中有文字的各区域都画上矩形窗，所以我们还需要完成一步。我们取出分类器的输出，然后输入到一个被称为<strong>“展开器”(expansion operator)</strong>的东西。</p>
+<h5 id="代入“展开器”-expansion-operator"><a href="#代入“展开器”-expansion-operator" class="headerlink" title="代入“展开器”(expansion operator)"></a>代入“展开器”(expansion operator)</h5><p>现在我们还没完成文字检测呢，因为我们实际上想做的是在图像中有文字的各区域都画上矩形窗，所以我们还需要完成一步。我们取出分类器的输出，然后输入到一个被称为<strong>“展开器”(expansion operator)</strong>的东西。</p>
 <p>展开器的作用就是取过这张图片，对每一个白色的小点都扩展为一块白色的区域。</p>
 <p><img src="/img/17_06_04/020.png" width="800" height="500" align="center"></p>
 <p>从数学上来讲，对于每一个像素，我们都考察一下它是不是在左边这幅图中的某个白色像素的范围之内。比如说，某一个像素点在最左边那幅图中白色像素点的五或十个像素范围中，那么我们将把右边那幅图的相同像素设为白色。</p>
@@ -592,7 +592,7 @@
 <p>这个例子中漏掉了一些字，因为这些字的宽高比看起来不正常，以及写在玻璃上的文字比较难读出来，但整体来讲，检测效果还不错。</p>
 <p>这就是使用滑动窗来进行文字检测。</p>
 <p>找到这些有文字的长方形以后，我们现在就能够剪下这些图像区域，然后应用流水线的后面步骤对文字进行识别。</p>
-<h5 id="字符分割">字符分割</h5><p>如果你还记得的话，你应该知道流水线的第二步是字符分割。所以给出下面这样的图像我们应该怎样分割出图像中的单个字符呢？</p>
+<h5 id="字符分割"><a href="#字符分割" class="headerlink" title="字符分割"></a>字符分割</h5><p>如果你还记得的话，你应该知道流水线的第二步是字符分割。所以给出下面这样的图像我们应该怎样分割出图像中的单个字符呢？</p>
 <p><img src="/img/17_06_04/023.png" width="500" height="200" align="center"></p>
 <p>同样地，我们还是使用一种监督学习算法，用一些是否存在<strong>字符之间的分割区域</strong>的正样本和一些负样本来训练一个分类器。</p>
 <table>
@@ -616,7 +616,7 @@
 <p><img src="/img/17_06_04/027.png" width="300" height="200" align="center"></p>
 <p><img src="/img/17_06_04/028.png" width="300" height="200" align="center"></p>
 <p><img src="/img/17_06_04/029.png" width="300" height="200" align="center"></p>
-<h2 id="获取大量数据和人工数据">获取大量数据和人工数据</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/K0XQT/getting-lots-of-data-and-artificial-data" target="_blank" rel="external">视频地址</a></p>
+<h2 id="获取大量数据和人工数据"><a href="#获取大量数据和人工数据" class="headerlink" title="获取大量数据和人工数据"></a>获取大量数据和人工数据</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/K0XQT/getting-lots-of-data-and-artificial-data" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>想要获得一个高效的机器学习系统，我们通常需要在低偏差的算法中代入大量的训练数据。但是我们如何获取大量的训练数据呢？</p>
 <p>其实在机器学习中有一个很棒的想法，叫做<strong>“人工数据合成”（artificial data synthesis）</strong>。</p>
@@ -627,7 +627,7 @@
 <li>第二种，是我们通过扩大一个已经存在的带标签的小的训练集，来获得数据。</li>
 </ul>
 <p>这节课中我们将对这两种方法进行介绍。</p>
-<h3 id="创造新样本">创造新样本</h3><p>为了介绍人工数据合成的概念，让我们还是用之前用过的照片OCR流水线中的字母识别问题来举例。 </p>
+<h3 id="创造新样本"><a href="#创造新样本" class="headerlink" title="创造新样本"></a>创造新样本</h3><p>为了介绍人工数据合成的概念，让我们还是用之前用过的照片OCR流水线中的字母识别问题来举例。 </p>
 <p>假如我们可以在别处收集到一大堆标签数据：</p>
 <p><img src="/img/17_06_04/030.png" width="300" height="300" align="center"></p>
 <p>我们的目标就是对任意一个图像块，我们能够识别出图像中心的那个字符。</p>
@@ -642,7 +642,7 @@
 <p>在生成模拟数据的时候，需要考虑对模拟的样本进行模糊、变形、旋转等操作，因为这样创造出来的样本比较真实。如果你草率的生成一些样本，那么最终训练出来的算法可能效果不是很好。</p>
 </blockquote>
 <p>因此通过使用合成的数据，实际上已经获得了无限的训练样本。这就是人工数据合成。</p>
-<h3 id="通过已有的样本创造新样本">通过已有的样本创造新样本</h3><p>人工数据合成的第二种方法是使用你已经有的样本。</p>
+<h3 id="通过已有的样本创造新样本"><a href="#通过已有的样本创造新样本" class="headerlink" title="通过已有的样本创造新样本"></a>通过已有的样本创造新样本</h3><p>人工数据合成的第二种方法是使用你已经有的样本。</p>
 <p>我们选取一个真实的样本，然后通过添加别的数据来扩大你的训练集。</p>
 <p>比如下图中字母A，来自于一个真实的图像（不是一个合成的图像）：</p>
 <p><img src="/img/17_06_04/033.png" width="100" height="100" align="center"></p>
@@ -651,7 +651,7 @@
 <p>这样从一个图像A就能生成16种新的样本。</p>
 <p>所以用这种方法，你可以把一个很小的带标签训练集突然一下扩大，得到更多的训练样本。</p>
 <p>同样地，要把这个概念投入应用，还是需要仔细考虑的。比如要考虑什么样的变形是合理的。</p>
-<h4 id="引入形变方法的注意事项">引入形变方法的注意事项</h4><p>如果你想要通过对原始数据形变产生新数据，那么在选择要引入的干扰或变形要能代表你可能会在 测试集中看到的噪音源或干扰项。</p>
+<h4 id="引入形变方法的注意事项"><a href="#引入形变方法的注意事项" class="headerlink" title="引入形变方法的注意事项"></a>引入形变方法的注意事项</h4><p>如果你想要通过对原始数据形变产生新数据，那么在选择要引入的干扰或变形要能代表你可能会在 测试集中看到的噪音源或干扰项。</p>
 <p>比如对于字符识别这个例子，这种扭曲的方法事实上还是很合理的：</p>
 <p><img src="/img/17_06_04/035.png" width="500" height="300" align="center"></p>
 <p>因为这种程度的扭曲，在测试集中是会遇到的。</p>
@@ -661,25 +661,25 @@
 <hr>
 <p>人工数据合成的过程并没有什么技巧可言，有时候你只能一遍遍地尝试，然后观察效果。</p>
 <p>但你在确定需要添加什么样的变形时，你一定要考虑好你添加的那些额外的变形量是有意义的，能让你产生的训练样本至少在某种程度上是具有一定的代表性，能代表你可能会在测试集中看到的某种图像。</p>
-<h3 id="总结">总结</h3><p>最后，我将介绍一些在获取更多训练数据时的注意事项。</p>
-<h4 id="尝试获取更多数据之前，先优化好你的分类器">尝试获取更多数据之前，先优化好你的分类器</h4><p>首先，在考虑如何产生大量人工训练样本之前，通常最好应该先保证你已经有了一个低偏差的分类器。这样得到大量的数据才真的会起作用。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后，我将介绍一些在获取更多训练数据时的注意事项。</p>
+<h4 id="尝试获取更多数据之前，先优化好你的分类器"><a href="#尝试获取更多数据之前，先优化好你的分类器" class="headerlink" title="尝试获取更多数据之前，先优化好你的分类器"></a>尝试获取更多数据之前，先优化好你的分类器</h4><p>首先，在考虑如何产生大量人工训练样本之前，通常最好应该先保证你已经有了一个低偏差的分类器。这样得到大量的数据才真的会起作用。</p>
 <p>标准的方法是画出学习曲线，然后确保你已经有了一个低偏差或者高方差的分类器。如果你没有得到一个低偏差的分类器，你还可以尝试增大分类器的特征数，或者在神经网络中增大隐藏层单元数，直到你得到一个偏差比较小的分类器。</p>
 <p>你一定要避免的是，花了几个星期的时间或者几个月的工夫，考虑好了怎么样能获得比较好的人工合成数据，然后才意识到即使获得了大量的训练数据，自己的学习算法的表现依然没有提高多少。</p>
-<h4 id="尝试和你的团队沟通，头脑风暴">尝试和你的团队沟通，头脑风暴</h4><p>第二，当我在解决机器学习问题时，通常我会问我的团队或者我的学生：“我们要付出多少工作量来获得10倍于我们现有的数据量？”</p>
+<h4 id="尝试和你的团队沟通，头脑风暴"><a href="#尝试和你的团队沟通，头脑风暴" class="headerlink" title="尝试和你的团队沟通，头脑风暴"></a>尝试和你的团队沟通，头脑风暴</h4><p>第二，当我在解决机器学习问题时，通常我会问我的团队或者我的学生：“我们要付出多少工作量来获得10倍于我们现有的数据量？”</p>
 <p>但让我经常感到有一点吃惊的是，他们的回答都是：“这并不是什么难事，最多花上几天时间，我们就能给一个机器学习问题获得十倍于我们现有数据量的数据。”而且通常来说，如果你能得到10倍的数据量，那么你一般都能让你的学习算法表现更好。</p>
 <p>因此，如果你加入某个产品设计小组，要设计某个机器学习的应用产品，可以问问你的团队这个问题。说不定几分钟的头脑风暴以后，你的团队就会想出一种方法，真的一下子能获得10倍的数据量。</p>
-<h4 id="“众包”_(crowd_sourcing)–人工标记样本">“众包” (crowd sourcing)–人工标记样本</h4><p>另一种很好的办法，我们称之为<strong>“众包” (crowd sourcing)</strong>的办法。</p>
+<h4 id="“众包”-crowd-sourcing-–人工标记样本"><a href="#“众包”-crowd-sourcing-–人工标记样本" class="headerlink" title="“众包” (crowd sourcing)–人工标记样本"></a>“众包” (crowd sourcing)–人工标记样本</h4><p>另一种很好的办法，我们称之为<strong>“众包” (crowd sourcing)</strong>的办法。</p>
 <p>现在已经有一些网站，或者一些服务机构能让你通过网络雇一些人替你完成标记大量训练数据的工作。通常都很廉价。</p>
 <p>很明显这种方法，就像学术文献一样，它也是很复杂的，同时取决于标记人的可靠性。</p>
 <p>可能<strong>“亚马逊土耳其机器人”（Amazon Mechanical Turk）</strong>就是当前最流行的一个众包选择。</p>
-<h2 id="上限分析：流水线上的下一步工作是什么">上限分析：流水线上的下一步工作是什么</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/LrJbq/ceiling-analysis-what-part-of-the-pipeline-to-work-on-next" target="_blank" rel="external">视频地址</a></p>
+<h2 id="上限分析：流水线上的下一步工作是什么"><a href="#上限分析：流水线上的下一步工作是什么" class="headerlink" title="上限分析：流水线上的下一步工作是什么"></a>上限分析：流水线上的下一步工作是什么</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/LrJbq/ceiling-analysis-what-part-of-the-pipeline-to-work-on-next" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在前面的课程中，我不止一次地说过<strong>在你开发机器学习系统时，你最宝贵的资源就是你的时间</strong>。</p>
 <p>作为一个开发者，你需要正确选择下一步的工作。或者也许你有一个开发团队共同开发一个机器学习系统，同样最宝贵的还是开发系统所花费的时间。</p>
 <p>你需要尽量避免的你和你的团队花费了大量时间 在某一个模块上，在几周甚至几个月的努力以后才意识到所有这些付出的劳动，都对你最终系统的表现并没有太大的帮助。</p>
 <p>在这本节，我将介绍一下关于<strong>上限分析(ceiling analysis)</strong>的内容。这种方式通常能提供一种很有价值的信号，告诉你流水线中的哪个部分最值得你花时间。</p>
 </blockquote>
-<h3 id="上限分析主要思想">上限分析主要思想</h3><p>依然以<strong>照片OCR流水线</strong>为例：</p>
+<h3 id="上限分析主要思想"><a href="#上限分析主要思想" class="headerlink" title="上限分析主要思想"></a>上限分析主要思想</h3><p>依然以<strong>照片OCR流水线</strong>为例：</p>
 <p><img src="/img/17_06_04/006.png" width="500" height="300" align="center"></p>
 <p>当我们面对这样一个流水线时，你应该怎样分配资源呢？哪一个方框最值得你投入精力，投入时间去改善效果呢？</p>
 <p>为了回答这个问题，我们可以对学习系统使用一个<strong>数值评价量度</strong>。</p>
@@ -773,7 +773,7 @@
 <p>我们可以看到，如果我们拥有完美的文字检测模块，那么整个系统的表现将会从准确率72%上升到89%，因此效果的增益是17%。这就意味着，如果你在现有系统的基础上花费时间和精力改善文字检测模块的效果，那么系统的表现可能会提高17%。</p>
 <p>而相对来讲，如果我们取得完美的字符分割模块，那么最终系统表现只提升了1%。这给我们提供了一个很重要的信息，那就是不管我们投入多大精力在字符分割上，系统效果的潜在上升空间也都是很小很小。所以你就不会让一个比较大的工程师团队花时间忙于字符分割模块，因为通过上限分析我们知道了即使你把字符分割模块做得再好，再怎么完美，你的系统表现最多也只能提升1%。</p>
 <p>最后，如果我们取得完美的字符识别模块，那么整个系统的表现将提高10%。所以，同样你也可以分析10%的效果提升值得投入多少工作量。</p>
-<h3 id="上限分析的原理">上限分析的原理</h3><p>下面我换一个复杂一点的例子再来演绎一下上限分析的原理。</p>
+<h3 id="上限分析的原理"><a href="#上限分析的原理" class="headerlink" title="上限分析的原理"></a>上限分析的原理</h3><p>下面我换一个复杂一点的例子再来演绎一下上限分析的原理。</p>
 <p>假如说你想对这张图像进行人脸识别：</p>
 <p><img src="/img/17_06_04/037.png" width="300" height="500" align="center"></p>
 <blockquote>
@@ -840,7 +840,7 @@
 <p>原来有一个大概两个人的研究小组，花了整整18个月都在完善背景移除的效果（我不详细地讲具体的细节和原因是什么），就为了得到一个更好的背景移除效果。事实上他们确实研究出了非常复杂的算法，貌似最后还发表了一篇文章，但最终他们发现所有付出的这些劳动，都不能给他们研发系统的整体表现带来比较大的提升。而如果要是之前，他们组某个人做一下上限分析，他们就会提前意识到这个问题。</p>
 <p>后来，他们中有一个人跟我说，如果他们之前也做了某种这样的分析，他们就会可以把精力花在 其他更重要的模块上，而不是把18个月花在背景移除上。</p>
 </blockquote>
-<h3 id="一些建议">一些建议</h3><p>经过这么多年在机器学习中的摸爬滚打，我已经学会了<strong>不要凭自己的直觉来判断应该改进哪个模块</strong>，相反地如果要解决某个机器学习问题，最好能把问题分成多个模块，然后做一下上限分析。</p>
+<h3 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h3><p>经过这么多年在机器学习中的摸爬滚打，我已经学会了<strong>不要凭自己的直觉来判断应该改进哪个模块</strong>，相反地如果要解决某个机器学习问题，最好能把问题分成多个模块，然后做一下上限分析。</p>
 <p>这通常它可以告诉你一个更可靠的，关于该把劲儿往哪儿使的方法。</p>
 
       
@@ -1100,7 +1100,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述和流水线（Pipeline）"><span class="nav-number">1.</span> <span class="nav-text">问题描述和流水线（Pipeline）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OCR的大概步骤"><span class="nav-number">1.1.</span> <span class="nav-text">OCR的大概步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习流水线（machine_learning_pipeline）"><span class="nav-number">1.2.</span> <span class="nav-text">机器学习流水线（machine learning pipeline）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑动窗体"><span class="nav-number">2.</span> <span class="nav-text">滑动窗体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#滑动窗体步骤"><span class="nav-number">2.1.</span> <span class="nav-text">滑动窗体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子：行人检测问题"><span class="nav-number">2.1.1.</span> <span class="nav-text">例子：行人检测问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OCR文字检测"><span class="nav-number">2.1.2.</span> <span class="nav-text">OCR文字检测</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#训练分类器"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">训练分类器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#滑动窗体，识别文字区域"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">滑动窗体，识别文字区域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代入“展开器”(expansion_operator)"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">代入“展开器”(expansion operator)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符分割"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">字符分割</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取大量数据和人工数据"><span class="nav-number">3.</span> <span class="nav-text">获取大量数据和人工数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创造新样本"><span class="nav-number">3.1.</span> <span class="nav-text">创造新样本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过已有的样本创造新样本"><span class="nav-number">3.2.</span> <span class="nav-text">通过已有的样本创造新样本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入形变方法的注意事项"><span class="nav-number">3.2.1.</span> <span class="nav-text">引入形变方法的注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.3.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试获取更多数据之前，先优化好你的分类器"><span class="nav-number">3.3.1.</span> <span class="nav-text">尝试获取更多数据之前，先优化好你的分类器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试和你的团队沟通，头脑风暴"><span class="nav-number">3.3.2.</span> <span class="nav-text">尝试和你的团队沟通，头脑风暴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“众包”_(crowd_sourcing)–人工标记样本"><span class="nav-number">3.3.3.</span> <span class="nav-text">“众包” (crowd sourcing)–人工标记样本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上限分析：流水线上的下一步工作是什么"><span class="nav-number">4.</span> <span class="nav-text">上限分析：流水线上的下一步工作是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上限分析主要思想"><span class="nav-number">4.1.</span> <span class="nav-text">上限分析主要思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上限分析的原理"><span class="nav-number">4.2.</span> <span class="nav-text">上限分析的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些建议"><span class="nav-number">4.3.</span> <span class="nav-text">一些建议</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述和流水线（Pipeline）"><span class="nav-number">1.</span> <span class="nav-text">问题描述和流水线（Pipeline）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OCR的大概步骤"><span class="nav-number">1.1.</span> <span class="nav-text">OCR的大概步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习流水线（machine-learning-pipeline）"><span class="nav-number">1.2.</span> <span class="nav-text">机器学习流水线（machine learning pipeline）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑动窗体"><span class="nav-number">2.</span> <span class="nav-text">滑动窗体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#滑动窗体步骤"><span class="nav-number">2.1.</span> <span class="nav-text">滑动窗体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子：行人检测问题"><span class="nav-number">2.1.1.</span> <span class="nav-text">例子：行人检测问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OCR文字检测"><span class="nav-number">2.1.2.</span> <span class="nav-text">OCR文字检测</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#训练分类器"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">训练分类器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#滑动窗体，识别文字区域"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">滑动窗体，识别文字区域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代入“展开器”-expansion-operator"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">代入“展开器”(expansion operator)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符分割"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">字符分割</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取大量数据和人工数据"><span class="nav-number">3.</span> <span class="nav-text">获取大量数据和人工数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创造新样本"><span class="nav-number">3.1.</span> <span class="nav-text">创造新样本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过已有的样本创造新样本"><span class="nav-number">3.2.</span> <span class="nav-text">通过已有的样本创造新样本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入形变方法的注意事项"><span class="nav-number">3.2.1.</span> <span class="nav-text">引入形变方法的注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.3.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试获取更多数据之前，先优化好你的分类器"><span class="nav-number">3.3.1.</span> <span class="nav-text">尝试获取更多数据之前，先优化好你的分类器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试和你的团队沟通，头脑风暴"><span class="nav-number">3.3.2.</span> <span class="nav-text">尝试和你的团队沟通，头脑风暴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“众包”-crowd-sourcing-–人工标记样本"><span class="nav-number">3.3.3.</span> <span class="nav-text">“众包” (crowd sourcing)–人工标记样本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上限分析：流水线上的下一步工作是什么"><span class="nav-number">4.</span> <span class="nav-text">上限分析：流水线上的下一步工作是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上限分析主要思想"><span class="nav-number">4.1.</span> <span class="nav-text">上限分析主要思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上限分析的原理"><span class="nav-number">4.2.</span> <span class="nav-text">上限分析的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些建议"><span class="nav-number">4.3.</span> <span class="nav-text">一些建议</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1433,9 +1433,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1447,14 +1471,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

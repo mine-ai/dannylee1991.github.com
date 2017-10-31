@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_09_07/009.png">
 <meta property="og:image" content="http://studyai.site/img/16_09_07/010.png">
 <meta property="og:image" content="http://studyai.site/img/16_09_07/011.png">
-<meta property="og:updated_time" content="2016-10-15T17:44:31.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:17:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第四周 (2)神经网络">
 <meta name="twitter:description" content="神经网络的表示I视频地址
@@ -388,9 +388,9 @@
       
 
       
-        <h2 id="神经网络的表示I">神经网络的表示I</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/ka3jK/model-representation-i" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="神经网络的表示I"><a href="#神经网络的表示I" class="headerlink" title="神经网络的表示I"></a>神经网络的表示I</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/ka3jK/model-representation-i" target="_blank" rel="external">视频地址</a></p>
 <p>这节课介绍神经网络如何表示我们的假设。</p>
-<h3 id="神经网络起源">神经网络起源</h3><p>神经网络是在模拟大脑中的神经元时发明的，因此，要解释如何表示模型假设，我们先来看看神经元在大脑中是什么样的。我们的大脑中充满了这样的神经元：</p>
+<h3 id="神经网络起源"><a href="#神经网络起源" class="headerlink" title="神经网络起源"></a>神经网络起源</h3><p>神经网络是在模拟大脑中的神经元时发明的，因此，要解释如何表示模型假设，我们先来看看神经元在大脑中是什么样的。我们的大脑中充满了这样的神经元：</p>
 <p><img src="/img/16_09_07/001.png" alt=""></p>
 <p>神经元是大脑中的细胞，其中有两点值得我们注意，一是神经元有一个细胞主体(Cell body)，二是神经元有一定数量的输入神经，这些输入神经叫做<strong>树突(Dendrite)</strong>。可以把它们想象成输入电线，它们接收来自其他神经元的信息。神经元的输出神经叫做<strong>轴突(Axon)</strong>，这些输出神经是用来给其他神经元传递信号或者传送信息的。</p>
 <p>简而言之，神经元是一个计算单元，它从<strong>输入神经</strong>接受一定数目的信息，并做一些计算，然后将结果通过它的<strong>轴突</strong>传送到大脑中的其他神经元。</p>
@@ -401,7 +401,7 @@
 <blockquote>
 <p>顺便说一下，这也是我们感觉和肌肉运转的原理。如果你想要活动一块肌肉，就会触发一个神经元给你的肌肉，发送脉冲，并引起你的肌肉收缩。如果一些感官，比如说眼睛，想要向大脑传递一个消息，那么它就是像这样发送电脉冲给大脑的。</p>
 </blockquote>
-<h3 id="神经网络逻辑单元">神经网络逻辑单元</h3><p>在一个计算机的神经网络里，我们将使用一个非常简单的模型来模拟神经元的工作：</p>
+<h3 id="神经网络逻辑单元"><a href="#神经网络逻辑单元" class="headerlink" title="神经网络逻辑单元"></a>神经网络逻辑单元</h3><p>在一个计算机的神经网络里，我们将使用一个非常简单的模型来模拟神经元的工作：</p>
 <p><img src="/img/16_09_07/003.png" alt=""></p>
 <p>我们将神经元模拟成一个逻辑单元。上图中，黄色的圆圈，你可以理解为类似神经元的东西，然后我们通过它的树突(或者说是它的输入神经)传递给它一些信息。然后神经元做一些计算，并通过它的输出神经(即它的轴突)输出计算结果。</p>
 <p>这里的$h_{\theta}(x)$通常值的是：</p>
@@ -411,14 +411,14 @@
 <p>这就是一个简单的模拟神经元的模型。</p>
 <hr>
 <p>当我绘制一个神经网络时，有时会额外增加一个$x_{0}$的输入节点，这个$x_{0}$节点有时也被称作<strong>偏置单位(或偏置神经元)</strong>。但由于$x_{0}=1$，有时我是不会画出它的，这取决于它是否对例子有利。</p>
-<h3 id="激励函数">激励函数</h3><p>在神经网络中，有时我们会听到“一个有Sigmoid函数或者Logistic函数作为<strong>激励函数(activation function)</strong>的人工神经元”这样的话。其实这里所指的<strong>激励函数(activation function)</strong>只是对类似非线性函数$g(z)$的另一个术语称呼：</p>
+<h3 id="激励函数"><a href="#激励函数" class="headerlink" title="激励函数"></a>激励函数</h3><p>在神经网络中，有时我们会听到“一个有Sigmoid函数或者Logistic函数作为<strong>激励函数(activation function)</strong>的人工神经元”这样的话。其实这里所指的<strong>激励函数(activation function)</strong>只是对类似非线性函数$g(z)$的另一个术语称呼：</p>
 <p>$$<br>\begin{align*}<br>g(z)<br>= \frac{1}{1+e^{-z}}<br>\end{align*}<br>$$</p>
 <p>$$<br>\begin{align*}<br>z<br>= \theta^{T}x<br>\end{align*}<br>$$</p>
 <blockquote>
 <p>在之前我们一值称$\theta$为模型的参数，但在神经网络的文献里，有时你可能会看到人们谈论一个模型的<strong>权重(weight)</strong>，这个<strong>权重(weight)</strong>其实和模型的参数$\theta$是一个东西。</p>
 </blockquote>
 <hr>
-<h3 id="解读神经网络">解读神经网络</h3><h4 id="输入层，输出层，隐藏层">输入层，输出层，隐藏层</h4><p>神经网络其实就是这些不同的神经元组合在一起的集合：</p>
+<h3 id="解读神经网络"><a href="#解读神经网络" class="headerlink" title="解读神经网络"></a>解读神经网络</h3><h4 id="输入层，输出层，隐藏层"><a href="#输入层，输出层，隐藏层" class="headerlink" title="输入层，输出层，隐藏层"></a>输入层，输出层，隐藏层</h4><p>神经网络其实就是这些不同的神经元组合在一起的集合：</p>
 <p><img src="/img/16_09_07/005.png" alt=""></p>
 <p>具体来说：</p>
 <ul>
@@ -432,7 +432,7 @@
 <p>用神经网络的术语来说，第一层也被称为<strong>输入层</strong>，因为我们在这一层输入我们的特征项$x_{1}$，$x_{2}$和$x_{3}$。</p>
 <p>最后一层，也被称为<strong>输出层</strong>，因为这一层的神经元会输出假设函数的最终计算结果$h_{Θ}(x)$。</p>
 <p>中间层，也被称为<strong>隐藏层</strong>，在监督学习中，你能看到输入，也能看到输出，而隐藏层的值在你的训练过程中是看不到的，它的值不是$x$也不是$y$，所以我们叫它隐藏层。神经网络可以有不止一个的隐藏层。<strong>在神经网络中，任何一个非输入层且非输出层，就被称为隐藏层</strong>。</p>
-<h4 id="神经网络运行原理">神经网络运行原理</h4><p><img src="/img/16_09_07/005.png" alt=""></p>
+<h4 id="神经网络运行原理"><a href="#神经网络运行原理" class="headerlink" title="神经网络运行原理"></a>神经网络运行原理</h4><p><img src="/img/16_09_07/005.png" alt=""></p>
 <p>接下来，让我们来逐步分析，上图所呈现的神经网络的计算步骤。</p>
 <p>首先需要说明以下两个符号的含义：</p>
 <ul>
@@ -459,11 +459,11 @@
 <p>以上我们讨论了三个隐藏单位是怎么计算它们的值的，最后，在输出层，我们还有一个单元，它用来计算$h_{Θ}(x)$：</p>
 <p>$$<br>h_{Θ}(x) = a_{1}^{(3)}=g(<br>Θ_{10}^{(2)}a_{0}^{(2)} +<br>Θ_{11}^{(2)}a_{1}^{(2)} +<br>Θ_{12}^{(2)}a_{2}^{(2)} +<br>Θ_{13}^{(2)}a_{3}^{(2)}<br>)<br>$$</p>
 <p>以上就是从数学上对一个人工神经网络的定义。</p>
-<h2 id="神经网络的表示II">神经网络的表示II</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Hw3VK/model-representation-ii" target="_blank" rel="external">视频地址</a></p>
+<h2 id="神经网络的表示II"><a href="#神经网络的表示II" class="headerlink" title="神经网络的表示II"></a>神经网络的表示II</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Hw3VK/model-representation-ii" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>这节课，将介绍如何高效地进行计算，并展示一个向量化的实现方法。更重要的是让你们明白神经网络的好处所在，并且介绍它是如何帮助我们学习复杂的非线性假设的。</p>
 </blockquote>
-<h3 id="前向传播(forward_propagation)的向量化实现">前向传播(forward propagation)的向量化实现</h3><p>以这个神经网络为例：</p>
+<h3 id="前向传播-forward-propagation-的向量化实现"><a href="#前向传播-forward-propagation-的向量化实现" class="headerlink" title="前向传播(forward propagation)的向量化实现"></a>前向传播(forward propagation)的向量化实现</h3><p>以这个神经网络为例：</p>
 <p><img src="/img/16_09_07/006.png" alt=""></p>
 <p>上一节我们介绍过假设函数的计算方式，以及上面这些方程的含义。接下来，我要定义一些额外的项，来简化上面的式子的表示，比如我要把上面第一行(用来表示第一个隐藏层输出的值)：</p>
 <p>$$<br>a_{1}^{(2)} = g(Θ_{10}^{(1)}x_{0} +<br>Θ_{11}^{(1)}x_{1} +<br>Θ_{12}^{(1)}x_{2} +<br>Θ_{13}^{(1)}x_{3}<br>)<br>$$</p>
@@ -513,7 +513,7 @@
 <blockquote>
 <p>这样的命名是因为我们从输入层的激励开始，然后进行前向传播给隐藏层，并计算隐藏层的激励，然后我们继续向前传播，并计算出层的激励，这个从输入层，到隐藏层，再到输出层，依次计算激励的过程，叫<strong>前向传播</strong>。</p>
 </blockquote>
-<h3 id="神经网络与逻辑回归的对比，以及学习非线性假设的原理">神经网络与逻辑回归的对比，以及学习非线性假设的原理</h3><p>这种前向传播也可以帮助我们了解神经网络的原理，以及解释为什么神经网络可以帮助我们学习非线性假设。</p>
+<h3 id="神经网络与逻辑回归的对比，以及学习非线性假设的原理"><a href="#神经网络与逻辑回归的对比，以及学习非线性假设的原理" class="headerlink" title="神经网络与逻辑回归的对比，以及学习非线性假设的原理"></a>神经网络与逻辑回归的对比，以及学习非线性假设的原理</h3><p>这种前向传播也可以帮助我们了解神经网络的原理，以及解释为什么神经网络可以帮助我们学习非线性假设。</p>
 <p>例如下面这个神经网络：</p>
 <p><img src="/img/16_09_07/008.png" alt=""></p>
 <p>我们暂时盖住左边部分，看右侧这一部分：</p>
@@ -526,7 +526,7 @@
 <p>然而有趣的是，特征项$a_{1}^{(2)}$、$a_{2}^{(2)}$、$a_{3}^{(2)}$是通过输入的函数来学习的。具体来说，就是从第一层(Layer1)映射到第二层(Layer2)的函数。这个函数由其他一组参数$Θ^{(1)}$决定。所以，在神经网络中，它没有用输入特征$x_{1}$、$x_{2}$、$x_{3}$来训练逻辑回归，而是训练逻辑回归的输入:$a_{1}^{(2)}$、$a_{2}^{(2)}$、$a_{3}^{(2)}$。</p>
 <p>可以想象，如果在$Θ^{(1)}$中选择不同的参数有时可以学习到一些很有趣的，和很复杂的特征，就可以得到一个比使用原始输入$x_{1}$、$x_{2}$、$x_{3}$时得到的假设更好的假设。</p>
 <p>你也可以使用多项式作为输入，例如：$x_{1}x_{2}$、$x_{2}x_{3}$等作为输入项。这个算法都可以灵活的快速学习任意的特征项，并把最后的结果通过最后一个单元的逻辑回归输出出来。</p>
-<h3 id="神经网络的架构">神经网络的架构</h3><p>你还可以用其他类型的图来表示神经网络。神经网络中神经元相连接的方式，称为<strong>神经网络的架构(Architecture)</strong>。</p>
+<h3 id="神经网络的架构"><a href="#神经网络的架构" class="headerlink" title="神经网络的架构"></a>神经网络的架构</h3><p>你还可以用其他类型的图来表示神经网络。神经网络中神经元相连接的方式，称为<strong>神经网络的架构(Architecture)</strong>。</p>
 <p>下面是另外一个神经网络架构的例子：</p>
 <p><img src="/img/16_09_07/011.png" alt=""></p>
 <p>在这个神经网络中，第一层被称为输入层，第四层任然是我们的输出层。其中，第二层和第三层都是隐藏层。</p>
@@ -790,7 +790,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的表示I"><span class="nav-number">1.</span> <span class="nav-text">神经网络的表示I</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络起源"><span class="nav-number">1.1.</span> <span class="nav-text">神经网络起源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络逻辑单元"><span class="nav-number">1.2.</span> <span class="nav-text">神经网络逻辑单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激励函数"><span class="nav-number">1.3.</span> <span class="nav-text">激励函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解读神经网络"><span class="nav-number">1.4.</span> <span class="nav-text">解读神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入层，输出层，隐藏层"><span class="nav-number">1.4.1.</span> <span class="nav-text">输入层，输出层，隐藏层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#神经网络运行原理"><span class="nav-number">1.4.2.</span> <span class="nav-text">神经网络运行原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的表示II"><span class="nav-number">2.</span> <span class="nav-text">神经网络的表示II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前向传播(forward_propagation)的向量化实现"><span class="nav-number">2.1.</span> <span class="nav-text">前向传播(forward propagation)的向量化实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络与逻辑回归的对比，以及学习非线性假设的原理"><span class="nav-number">2.2.</span> <span class="nav-text">神经网络与逻辑回归的对比，以及学习非线性假设的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络的架构"><span class="nav-number">2.3.</span> <span class="nav-text">神经网络的架构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的表示I"><span class="nav-number">1.</span> <span class="nav-text">神经网络的表示I</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络起源"><span class="nav-number">1.1.</span> <span class="nav-text">神经网络起源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络逻辑单元"><span class="nav-number">1.2.</span> <span class="nav-text">神经网络逻辑单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激励函数"><span class="nav-number">1.3.</span> <span class="nav-text">激励函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解读神经网络"><span class="nav-number">1.4.</span> <span class="nav-text">解读神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入层，输出层，隐藏层"><span class="nav-number">1.4.1.</span> <span class="nav-text">输入层，输出层，隐藏层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#神经网络运行原理"><span class="nav-number">1.4.2.</span> <span class="nav-text">神经网络运行原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的表示II"><span class="nav-number">2.</span> <span class="nav-text">神经网络的表示II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前向传播-forward-propagation-的向量化实现"><span class="nav-number">2.1.</span> <span class="nav-text">前向传播(forward propagation)的向量化实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络与逻辑回归的对比，以及学习非线性假设的原理"><span class="nav-number">2.2.</span> <span class="nav-text">神经网络与逻辑回归的对比，以及学习非线性假设的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络的架构"><span class="nav-number">2.3.</span> <span class="nav-text">神经网络的架构</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1123,9 +1123,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1137,14 +1161,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

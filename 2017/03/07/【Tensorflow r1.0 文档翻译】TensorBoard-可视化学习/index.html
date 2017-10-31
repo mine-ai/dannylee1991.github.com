@@ -389,7 +389,7 @@
 <p>当TensorBoard完全配置好时，它看起来是这样的：</p>
 <p><img src="/img/17_03_07/001.png" alt=""></p>
 <p>本教程旨在帮助您学习TensorBoard的基本使用方式。当然，还有其他介绍资源！<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tensorboard/README.md" target="_blank" rel="external">TensorBoard README</a>有大量关于TensorBoard的信息，包括提示和技巧和调试信息。</p>
-<h2 id="序列化数据">序列化数据</h2><p>TensorBoard通过读取TensorFlow事件文件进行操作，这些文件包含运行TensorFlow时可以生成的摘要数据。下面是TensorBoard中摘要数据的一般生命周期。</p>
+<h2 id="序列化数据"><a href="#序列化数据" class="headerlink" title="序列化数据"></a>序列化数据</h2><p>TensorBoard通过读取TensorFlow事件文件进行操作，这些文件包含运行TensorFlow时可以生成的摘要数据。下面是TensorBoard中摘要数据的一般生命周期。</p>
 <p>首先，创建要从其中收集摘要数据的TensorFlow图，并决定要使用<a href="https://www.tensorflow.org/api_guides/python/summary" target="_blank" rel="external">summary operations</a>注释哪些节点。</p>
 <p>例如，假设你正在训练一个卷积神经网络来识别MNIST数字。你想记录学习速率随时间的变化，以及目标函数如何变化。通过将<a href="https://www.tensorflow.org/api_docs/python/tf/summary/scalar" target="_blank" rel="external"><code>tf.summary.scalar</code></a>操作分别附加到输出学习速率和损失的节点来收集这些信息。然后，给每个<code>scalar_summary</code>赋予有意义的<code>tag</code>，如<code>learning rate</code>或<code>loss function</code>。</p>
 <p>也许你也想要可视化来自特定层的激活的分布，或梯度或权重的分布。通过将<a href="https://www.tensorflow.org/api_docs/python/tf/summary/histogram" target="_blank" rel="external"><code>tf.summary.histogram</code></a>操作附加到梯度输出和分别保存您的权重的变量来收集此数据。</p>
@@ -403,7 +403,7 @@
 <p>在我们初始化<code>FileWriter</code>之后，我们在训练和测试模型时，必须向<code>FileWriter</code>添加摘要。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Train the model, and also write summaries.</span></div><div class="line"><span class="comment"># Every 10th step, measure test-set accuracy, and write test summaries</span></div><div class="line"><span class="comment"># All other steps, run train_step on training data, &amp; add training summaries</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">feed_dict</span><span class="params">(train)</span>:</span></div><div class="line">  <span class="string">"""Make a TensorFlow feed_dict: maps data onto Tensor placeholders."""</span></div><div class="line">  <span class="keyword">if</span> train <span class="keyword">or</span> FLAGS.fake_data:</div><div class="line">    xs, ys = mnist.train.next_batch(<span class="number">100</span>, fake_data=FLAGS.fake_data)</div><div class="line">    k = FLAGS.dropout</div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    xs, ys = mnist.test.images, mnist.test.labels</div><div class="line">    k = <span class="number">1.0</span></div><div class="line">  <span class="keyword">return</span> &#123;x: xs, y_: ys, keep_prob: k&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(FLAGS.max_steps):</div><div class="line">  <span class="keyword">if</span> i % <span class="number">10</span> == <span class="number">0</span>:  <span class="comment"># Record summaries and test-set accuracy</span></div><div class="line">    summary, acc = sess.run([merged, accuracy], feed_dict=feed_dict(<span class="keyword">False</span>))</div><div class="line">    test_writer.add_summary(summary, i)</div><div class="line">    print(<span class="string">'Accuracy at step %s: %s'</span> % (i, acc))</div><div class="line">  <span class="keyword">else</span>:  <span class="comment"># Record train set summaries, and train</span></div><div class="line">    summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(<span class="keyword">True</span>))</div><div class="line">    train_writer.add_summary(summary, i)</div></pre></td></tr></table></figure>
 <p>现在，你就可以通过TensorBoard来可视化数据了。</p>
-<h2 id="启动TensorBoard">启动TensorBoard</h2><p>要运行TensorBoard，请使用以下命令（或者<code>python -m tensorflow.tensorboard</code>）:</p>
+<h2 id="启动TensorBoard"><a href="#启动TensorBoard" class="headerlink" title="启动TensorBoard"></a>启动TensorBoard</h2><p>要运行TensorBoard，请使用以下命令（或者<code>python -m tensorflow.tensorboard</code>）:</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tensorboard --logdir=path/<span class="keyword">to</span>/<span class="built_in">log</span>-directory</div></pre></td></tr></table></figure>
 <p>其中<code>logdir</code>指向<code>FileWriter</code>将其数据序列化的目录。如果此logdir目录包含包含单独运行的序列化数据的子目录，则TensorBoard将可视化所有这些运行的数据。TensorBoard开始运行之后，就可以打开您的Web浏览器到<code>localhost:6006</code>来查看TensorBoard了。</p>
 <p>当你看着TensorBoard，你会看到在右上角的导航选项卡。每个选项卡表示可以可视化的一组序列化数据。</p>
@@ -1002,7 +1002,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1014,7 +1014,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1022,6 +1022,8 @@
   
 
   
+  
+
 
   
 

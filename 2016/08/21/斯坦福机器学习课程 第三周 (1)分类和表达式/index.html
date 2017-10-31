@@ -115,7 +115,7 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
 <meta property="og:image" content="http://studyai.site/img/16_08_22/010.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_22/011.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_22/012.png">
-<meta property="og:updated_time" content="2016-08-25T15:54:32.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第三周 (1)分类和表达式">
 <meta name="twitter:description" content="分类视频地址
@@ -400,7 +400,7 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
       
 
       
-        <h2 id="分类">分类</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/wlPeP/classification" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/wlPeP/classification" target="_blank" rel="external">视频地址</a></p>
 <p>在接下来的几节课中，将介绍分类问题。我们将学习一种叫做<strong>逻辑回归(Logistic Regression)</strong>的算法，这也是目前最流行，使用最广泛的一种学习算法。</p>
 <p>下面是几个使用分类算法的例子：</p>
 <ul>
@@ -414,7 +414,7 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
 <p>0：“负类”（例如：良性肿瘤）<br>1：“正类”（例如：恶性肿瘤）</p>
 </blockquote>
 <p>现在我们要开始研究只有两类（0和1）的分类问题。之后我们也会讨论更多类别的问题：$y\in {0,1,2,3,…}$，这就是所谓的<strong>多类分类问题</strong>。但接下来，我们将开始介绍只有两种类别的分类问题，或者叫做<strong>二元分类</strong>问题。</p>
-<h3 id="二元分类">二元分类</h3><p>那么我们要怎样开发一个分类算法呢？下面是一个用来给肿瘤分类的训练集的例子(恶性或良性)。</p>
+<h3 id="二元分类"><a href="#二元分类" class="headerlink" title="二元分类"></a>二元分类</h3><p>那么我们要怎样开发一个分类算法呢？下面是一个用来给肿瘤分类的训练集的例子(恶性或良性)。</p>
 <p><img src="/img/16_08_22/001.png" alt=""></p>
 <blockquote>
 <p>注意这里的恶性值(Malignant)只取两个值：0也就是良性，1也就是恶性。</p>
@@ -441,7 +441,7 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
 <blockquote>
 <p>顺便提一句，<strong>逻辑回归算法</strong>是一个<strong>分类算法</strong>，即使它的名字里有<strong>回归</strong>，但我们也把它当成分类算法来使用。这里只是因为历史原因，才被这样称呼。</p>
 </blockquote>
-<h2 id="假设函数表达式">假设函数表达式</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/RJXfB/hypothesis-representation" target="_blank" rel="external">视频地址</a> </p>
+<h2 id="假设函数表达式"><a href="#假设函数表达式" class="headerlink" title="假设函数表达式"></a>假设函数表达式</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/RJXfB/hypothesis-representation" target="_blank" rel="external">视频地址</a> </p>
 <p>之前我们说过，我们希望分类器的输出值的范围能控制在0和1之间：</p>
 <p>$$<br>0\le h_{\theta}(x)\le1<br>$$</p>
 <p>因此我们渴望找到一个满足这种预测值性质的函数。</p>
@@ -460,7 +460,7 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
 <p>因此我们可以得到：</p>
 <p>$$<br>\begin{align*}<br>h_{\theta}(x) &amp;= g(\theta^{T}x) \\<br>&amp;= \frac{1}{1+e^{-\theta^{T}x}}<br>\end{align*}<br>$$ </p>
 <p>接下来我们要做的就是用参数$\theta$来拟合我们的数据。</p>
-<h3 id="对假设函数的进一步理解">对假设函数的进一步理解</h3><p><strong>假设函数的解释</strong>：</p>
+<h3 id="对假设函数的进一步理解"><a href="#对假设函数的进一步理解" class="headerlink" title="对假设函数的进一步理解"></a>对假设函数的进一步理解</h3><p><strong>假设函数的解释</strong>：</p>
 <p>$h_{\theta}(x)$是对于新注入样本$x$的满足$y=1$的概率估计。</p>
 <p>举个肿瘤分类的例子来说：</p>
 <p>如果：</p>
@@ -475,7 +475,7 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
 </blockquote>
 <p>由于我们知道，$y$的取值不是0就是1，因此当我们得到了$y=1$的概率时，$y=0$的概率就很容易得出：</p>
 <p>$$<br>P(y=0|x;\theta) + P(y=1|x;\theta) = 1 \\<br>P(y=0|x;\theta) = 1 - P(y=1|x;\theta)<br>$$</p>
-<h2 id="决策边界">决策边界</h2><p><a href="https://www.coursera.org/learn/machine-learning/discussions/weeks/3" target="_blank" rel="external">视频地址</a></p>
+<h2 id="决策边界"><a href="#决策边界" class="headerlink" title="决策边界"></a>决策边界</h2><p><a href="https://www.coursera.org/learn/machine-learning/discussions/weeks/3" target="_blank" rel="external">视频地址</a></p>
 <p>这一节向大家介绍一个<strong>决策边界(Decision Boundary)</strong>的概念，这个概念能更好的帮助大家理解逻辑回归中假设函数在计算什么。</p>
 <p>在上一节中，我们说假设函数可以表示为如下形式：</p>
 <p>$$<br>h_{\theta}(x) = g(\theta^{T}x)<br>$$</p>
@@ -1129,9 +1129,33 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1143,14 +1167,12 @@ Email的垃圾邮件分类问题：区分邮件是否为垃圾邮件
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

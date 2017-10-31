@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_07_19/008.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_19/009.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_19/010.png">
-<meta property="og:updated_time" content="2016-07-25T00:51:58.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:17:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第一周 (2)监督学习">
 <meta name="twitter:description" content="监督学习在本视频中，我将介绍一种也许是最常见的机器学习问题。即监督学习。后面将给出监督学习更正式的定义，现在最好以示例来说明什么是监督学习。之后再给出正式的定义。
@@ -383,7 +383,7 @@
       
 
       
-        <h2 id="监督学习">监督学习</h2><p>在本视频中，我将介绍一种也许是最常见的机器学习问题。即监督学习。后面将给出监督学习更正式的定义，现在最好以示例来说明什么是监督学习。之后再给出正式的定义。</p>
+        <h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><p>在本视频中，我将介绍一种也许是最常见的机器学习问题。即监督学习。后面将给出监督学习更正式的定义，现在最好以示例来说明什么是监督学习。之后再给出正式的定义。</p>
 <p>假设你想预测房价（无比需要啊！)，之前，某学生已经从某地收集了数据集（不是中国的，囧） 其中一个数据集是这样的。</p>
 <p><img src="/img/16_07_19/001.png" alt=""></p>
 <p> 这是横坐标，即不同房子的面积，单位平方脚（^-^） 纵轴上是房价，单位 千美元。 根据给定数据，假设你朋友有栋房子，750平尺（70平米） 想知道这房子能卖多少，好卖掉。 那么，学习算法怎么帮你呢？学习算法可以： 绘出一条直线，让直线尽可能匹配到所有数据。 </p>
@@ -1009,9 +1009,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1023,14 +1047,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

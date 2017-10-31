@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_07_29/021.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_29/022.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_29/023.png">
-<meta property="og:updated_time" content="2016-09-24T04:38:41.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:20:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第二周 (2)多元线性回归分析">
 <meta name="twitter:description" content="多特征量视频地址
@@ -399,13 +399,13 @@
       
 
       
-        <h2 id="多特征量">多特征量</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/6Nj1q/multiple-features" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="多特征量"><a href="#多特征量" class="headerlink" title="多特征量"></a>多特征量</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/6Nj1q/multiple-features" target="_blank" rel="external">视频地址</a></p>
 <p>在这段视频中，我们将开始介绍一种新的更为有效的线性回归形式，这种形式适用于多个变量，或者多特征量的情况。</p>
 <p>比如说：在之前我们学习过的线性回归中，我们只有一个单一特征量：‘房屋面积x’，我们希望用这个特征量来预测房子的价格，这就是我们的假设 。</p>
 <p><img src="/img/16_07_29/001.png" alt=""></p>
 <p>但是想象一下，如果我们不仅有房屋面积作为预测房屋价格的特征量或者变量，我们还知道卧室的数量楼层的数量以及房子的使用年限，这样就给了我们更多可以用来预测房屋价格的信息:</p>
 <p><img src="/img/16_07_29/002.png" alt=""></p>
-<h3 id="多特征量的表示">多特征量的表示</h3><p>先简单介绍一下记法：</p>
+<h3 id="多特征量的表示"><a href="#多特征量的表示" class="headerlink" title="多特征量的表示"></a>多特征量的表示</h3><p>先简单介绍一下记法：</p>
 <ul>
 <li>$n$ = 来表示特征量的数目</li>
 </ul>
@@ -419,7 +419,7 @@
 <li>$x_j^{(i)}$ = 第$i$个训练样本的第$j$个特征量 </li>
 </ul>
 <p>这个例子中，$x_3^{(2)}$代表着第2个训练样本里的第3个特征量。这里值是2。</p>
-<h3 id="多特征量的假设函数">多特征量的假设函数</h3><p>这是我们之前使用的假设形式：</p>
+<h3 id="多特征量的假设函数"><a href="#多特征量的假设函数" class="headerlink" title="多特征量的假设函数"></a>多特征量的假设函数</h3><p>这是我们之前使用的假设形式：</p>
 <p>$$<br>h_{θ}(x) = θ_0 + θ_1 * x<br>$$</p>
 <p>其中$x$就是我们唯一的特征量，但现在我们有了多个特征量我们就不能再 使用这种简单的表示方式了。取而代之的，我们将把线性回归的假设改成这样：</p>
 <p>$$<br>h_{θ}(x) = θ_{0} + θ_{1} x_{1} + θ_{2} x_{2} + … + θ_{n} x_{n}<br>$$</p>
@@ -443,7 +443,7 @@
 <p>$$<br>h_{θ}(x) = θ^{T} x<br>$$</p>
 <p>即用参数向量$θ$以及特征向量$X$的内积来表示。</p>
 <p>这样的表示方法让我们可以以这种紧凑的形式写出假设，这就是多特征量情况下的假设形式。起另一个名字：就是<strong>所谓的多元线性回归</strong>。</p>
-<h2 id="多特征的梯度下降">多特征的梯度下降</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Z9DKX/gradient-descent-for-multiple-variables" target="_blank" rel="external">视频地址</a></p>
+<h2 id="多特征的梯度下降"><a href="#多特征的梯度下降" class="headerlink" title="多特征的梯度下降"></a>多特征的梯度下降</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Z9DKX/gradient-descent-for-multiple-variables" target="_blank" rel="external">视频地址</a></p>
 <p>在之前的视频中，我们谈到了一种线性回归的假设形式，这是一种有多特征或者是多变量的形式。在本节视频中我们将会谈到如何找到满足这一假设的参数，尤其是如何使用梯度下降法来解决多特征的线性回归问题。</p>
 <p>为尽快让你理解，假设现有多元线性回归并约定$x_{0}=1$。</p>
 <p><strong>假设函数(Hypothesis)</strong>如下：</p>
@@ -478,11 +478,11 @@
 <p><img src="/img/16_07_29/007.png" alt=""></p>
 <p><img src="/img/16_07_29/008.png" alt=""></p>
 <p>从上图可以看出，对于$n &gt;= 1$的梯度下降规则，其实是一个通用规则。请务必看懂上图，确保理解之后再继续学习！</p>
-<h2 id="梯度下降实用技巧_1：特征缩放(Feature_Scaling)以及均值归一化(mean_normalization)">梯度下降实用技巧 1：特征缩放(Feature Scaling)以及均值归一化(mean normalization)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/xx3Da/gradient-descent-in-practice-i-feature-scaling" target="_blank" rel="external">视频地址</a></p>
+<h2 id="梯度下降实用技巧-1：特征缩放-Feature-Scaling-以及均值归一化-mean-normalization"><a href="#梯度下降实用技巧-1：特征缩放-Feature-Scaling-以及均值归一化-mean-normalization" class="headerlink" title="梯度下降实用技巧 1：特征缩放(Feature Scaling)以及均值归一化(mean normalization)"></a>梯度下降实用技巧 1：特征缩放(Feature Scaling)以及均值归一化(mean normalization)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/xx3Da/gradient-descent-in-practice-i-feature-scaling" target="_blank" rel="external">视频地址</a></p>
 <p>在这段视频以及下一段视频中，我想告诉你一些关于梯度下降运算中的实用技巧。</p>
 <p>在这段视频中我会告诉你两个称为<strong>特征缩放(feature scaling)</strong>以及<strong>均值归一化(mean normalization)</strong>的方法。</p>
 <p>这两个方法都是为了<strong>保证特征的取值在合适的范围内</strong>的。</p>
-<h3 id="特征缩放(feature_scaling)"><strong>特征缩放(feature scaling)</strong></h3><p>其中，<strong>特征缩放(feature scaling)</strong>大致的思路是这样的：<strong>梯度下降算法中，在有多个特征的情况下，如果你能确保这些不同的特征都处在一个相近的范围，这样梯度下降法就能更快地收敛。</strong></p>
+<h3 id="特征缩放-feature-scaling"><a href="#特征缩放-feature-scaling" class="headerlink" title="特征缩放(feature scaling)"></a><strong>特征缩放(feature scaling)</strong></h3><p>其中，<strong>特征缩放(feature scaling)</strong>大致的思路是这样的：<strong>梯度下降算法中，在有多个特征的情况下，如果你能确保这些不同的特征都处在一个相近的范围，这样梯度下降法就能更快地收敛。</strong></p>
 <p>举个例子来说明：</p>
 <p>$$<br>x_{1} = size(0-2000 feet^{2})\\<br>x_{2} = 卧室的数量(1-5)<br>$$</p>
 <p>假如你有一个具有两个特征的问题，其中$x_{1}$是房屋面积大小，它的取值在0到2000之间；$x_{2}$是卧室的数量，可能这个值的取值范围在1到5之间。其代价函数$J(θ)$是一个关于参数$θ_{0}$，$θ_{1}$和$θ_{2}$的函数。但这里我们暂时不考虑$θ_{0}$并假想一个函数的变量只有$θ_{1}$和$θ_{2}$。</p>
@@ -503,7 +503,7 @@
 <p>$-1$和$+1$这两个数字并不是太重要，所以如果你有一个特征$x_{1}$它的取值在<code>0 ~ 3</code>之间，这没问题 如果你有另外一个特征取值在<code>-2 ~ +0.5</code>之间，这也没什么关系，因为这也非常接近<code>-1 ~ +1</code>的范围。</p>
 <p>但如果你有另一个特征$x_{3}$，假如它的范围在<code>-100 ~ +100</code>之间，那么这个范围跟<code>-1 ~ +1</code>就有很大不同了。所以这可能是一个不那么好的特征。类似地，如果你的特征在一个非常非常小的范围内，比如另外一个特征$x_{4}$，它的范围在<code>-0.0001 ~ +0.0001</code>之间,那么这同样是一个比<code>-1 ~ +1</code>小得多的范围，因此我同样会认为这个特征也不太好。所以可能你认可的范围，也许可以大于或者小于<code>-1 ~ +1</code>，但是也别太大或太小，只要与<code>-1 ~ +1</code>范围偏差不多就可以接受。</p>
 <p>因此，总的来说不用过于担心你的特征是否在完全相同的范围或区间内，但是只要它们足够接近的话，梯度下降法就会正常地工作。</p>
-<h3 id="均值归一化(mean_normalization)"><strong>均值归一化(mean normalization)</strong></h3><p>除了在特征缩放中将特征除以最大值以外，有时候我们也会进行一个称为<strong>均值归一化(mean normalization)</strong>的工作。</p>
+<h3 id="均值归一化-mean-normalization"><a href="#均值归一化-mean-normalization" class="headerlink" title="均值归一化(mean normalization)"></a><strong>均值归一化(mean normalization)</strong></h3><p>除了在特征缩放中将特征除以最大值以外，有时候我们也会进行一个称为<strong>均值归一化(mean normalization)</strong>的工作。</p>
 <p>具体做法就是：如果你有一个特征$x_{i}$你就用$x_{i} - μ_{i}$来替换。这样做的目的是为了<strong>让你的特征值具有为0的平均值</strong>。很明显 我们不需要把这一步应用到$x_{0}$中，因为$x_{0}$总是等于1的，所以它不可能有为0的的平均值。</p>
 <p>但是对其他的特征来说，比如房子的大小取值介于<code>0 ~ 2000</code>，并且假如房子面积的平均值是等于1000的，那么你可以用这个公式 </p>
 <p>$$<br>x_{1} = \frac{size - 1000}{2000}<br>$$</p>
@@ -515,7 +515,7 @@
 <blockquote>
 <p>最后直的一提的是：特征缩放其实并不需要太精确，其目的只是为了让梯度下降能够运行得更快一点，让梯度下降收敛所需的循环次数更少一些而已。</p>
 </blockquote>
-<h2 id="梯度下降实用技巧_2：学习速率(Learning_Rate)">梯度下降实用技巧 2：学习速率(Learning Rate)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/3iawu/gradient-descent-in-practice-ii-learning-rate" target="_blank" rel="external">视频地址</a></p>
+<h2 id="梯度下降实用技巧-2：学习速率-Learning-Rate"><a href="#梯度下降实用技巧-2：学习速率-Learning-Rate" class="headerlink" title="梯度下降实用技巧 2：学习速率(Learning Rate)"></a>梯度下降实用技巧 2：学习速率(Learning Rate)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/3iawu/gradient-descent-in-practice-ii-learning-rate" target="_blank" rel="external">视频地址</a></p>
 <p>在本段视频中，我将集中讨论<strong>学习率$α$</strong>。具体来说这是梯度下降算法的更新规则。</p>
 <p>$$<br>θ_{j} := θ_{j} -α \frac{∂}{∂θ_{0}} J(θ)<br>$$</p>
 <p>这里我想要告诉大家两点： </p>
@@ -523,7 +523,7 @@
 <li>如何调试(Debugging) : 也就是我认为应该如何确定梯度下降是正常工作的。</li>
 <li>如何选择学习率$α$ : 如何选择这个参数才能保证梯度下降正常工作。</li>
 </ul>
-<h3 id="收敛的判断">收敛的判断</h3><p>梯度下降算法所做的事情就是为你找到一个$θ$值，并希望它能够最小化代价函数$J(θ)$。</p>
+<h3 id="收敛的判断"><a href="#收敛的判断" class="headerlink" title="收敛的判断"></a>收敛的判断</h3><p>梯度下降算法所做的事情就是为你找到一个$θ$值，并希望它能够最小化代价函数$J(θ)$。</p>
 <p>我通常会在梯度下降算法运行时，绘出代价函数$J(θ)$的值。这里的$x$轴是表示梯度下降算法的迭代步数：</p>
 <p><img src="/img/16_07_29/012.png" alt=""></p>
 <blockquote>
@@ -544,7 +544,7 @@
 <p>实际上，我们很难提前判断梯度下降算法需要多少步迭代才能收敛。通常我们需要画出这类<strong>代价函数随迭代步数数增加的变化曲线</strong>，通常我会通过看这种曲线来试着判断梯度下降算法是否已经收敛。另外也可以进行一些自动的<strong>收敛测试</strong>（也就是说用一种算法来告诉你梯度下降算法是否已经收敛）。</p>
 <p>自动收敛测试一个非常典型的例子是：如果代价函数$J(θ)$的下降小于一个很小的值$ε$那么就认为已经收敛。比如可以选择$10^{-3}$作为阈值$ε$。但通常要选择一个合适的阈值$ε$是相当困难的。</p>
 <p><strong>因此，为了检查梯度下降算法是否收敛,我实际上还是通过看上边的这条曲线图，而不是依靠自动收敛测试。</strong></p>
-<h3 id="判断梯度下降算法是否正常工作">判断梯度下降算法是否正常工作</h3><p>此外这种曲线图也可以在算法没有正常工作时提前警告你。具体地说如果代价函数$J(θ)$随迭代步数的变化曲线是这个样子:</p>
+<h3 id="判断梯度下降算法是否正常工作"><a href="#判断梯度下降算法是否正常工作" class="headerlink" title="判断梯度下降算法是否正常工作"></a>判断梯度下降算法是否正常工作</h3><p>此外这种曲线图也可以在算法没有正常工作时提前警告你。具体地说如果代价函数$J(θ)$随迭代步数的变化曲线是这个样子:</p>
 <p><img src="/img/16_07_29/016.png" alt=""></p>
 <p>很明确的表示梯度下降算法没有正常工作，而这样的曲线图通常意味着你应该使用较小的学习率$α$。如果$J(θ)$在上升，那么最常见的原因是你在最小化一个函数时，如果你的学习率太大，梯度下降算法可能将冲过最小值达到最小值另一侧的更大的一个点。下次迭代时，也可能再次冲过最小值，达到更大的一个点，然后一直这样下去。</p>
 <p><img src="/img/16_07_29/017.png" alt=""></p>
@@ -561,12 +561,12 @@
 <blockquote>
 <p>在某些情况下，如果学习率$α$过大，也可能出现收敛缓慢的问题。</p>
 </blockquote>
-<h3 id="如何选择$α$">如何选择$α$</h3><p>为了调试，当我运行梯度下降算法时，我通常会尝试一系列$α$值，比如0.001， 0.01， 0.1， 1 … 这里每隔10倍取一个值，然后对于这些不同的$α$值绘制$J(θ)$随迭代步数变化的曲线，然后选择看上去使得$J(θ)$快速下降的一个$α$值。</p>
+<h3 id="如何选择-α"><a href="#如何选择-α" class="headerlink" title="如何选择$α$"></a>如何选择$α$</h3><p>为了调试，当我运行梯度下降算法时，我通常会尝试一系列$α$值，比如0.001， 0.01， 0.1， 1 … 这里每隔10倍取一个值，然后对于这些不同的$α$值绘制$J(θ)$随迭代步数变化的曲线，然后选择看上去使得$J(θ)$快速下降的一个$α$值。</p>
 <p>事实上在为梯度下降算法选择合适的学习率时，我大致是按3的倍数来取值的。例如：0.001， 0.003， 0、01，0.03，0.1，0.3，1…</p>
 <p>所以我会尝试一系列$α$值，直到我找到不能再小了的值，同时找到另一个不能再大的值，然后我尽量挑选其中最大的那个$α$值，或者一个比最大值略小一些的合理的值。当我做了以上工作时，我通常就可以得到一个不错的学习率。</p>
-<h2 id="特征的选择和多项式回归">特征的选择和多项式回归</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Rqgfz/features-and-polynomial-regression" target="_blank" rel="external">视频地址</a></p>
+<h2 id="特征的选择和多项式回归"><a href="#特征的选择和多项式回归" class="headerlink" title="特征的选择和多项式回归"></a>特征的选择和多项式回归</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Rqgfz/features-and-polynomial-regression" target="_blank" rel="external">视频地址</a></p>
 <p>你现在了解了多变量的线性回归，在本节中我想告诉你一些用来选择特征的方法，以及如何得到不同的学习算法。当选择了合适的特征后，这些算法往往是非常有效的。另外，我也想给你们讲一讲多项式回归，它使得你们能够使用，线性回归的方法来拟合非常复杂的函数，甚至是非线性函数。</p>
-<h3 id="特征的选择">特征的选择</h3><p>以预测房价为例，假设你有两个特征，分别是房子临街的宽度和垂直宽度。这就是我们想要卖出的房子的图片：</p>
+<h3 id="特征的选择"><a href="#特征的选择" class="headerlink" title="特征的选择"></a>特征的选择</h3><p>以预测房价为例，假设你有两个特征，分别是房子临街的宽度和垂直宽度。这就是我们想要卖出的房子的图片：</p>
 <p><img src="/img/16_07_29/019.png" alt=""></p>
 <p>临街宽度其实就是拥有的土地的宽度，而纵向深度就是你的房子的深度。你可能会建立一个像这样的线性回归模型：</p>
 <p><strong>Housing prices prediction</strong></p>
@@ -576,7 +576,7 @@
 <p>$$<br>h_{θ}(x) = Θ_{0} + Θ_{1}x<br>$$</p>
 <p>这得到的就是我拥有的土地的面积。然后我可以把假设选择为使其只使用一个特征，也就是我的土地的面积。</p>
 <p>由于矩形面积的计算方法是矩形长和宽相乘，因此这取决于你从什么样的角度去审视一个特定的问题，而不是直接去使用临街宽度和纵深，这两个我们只是碰巧在开始时使用的特征。有时通过定义新的特征，你确实会得到一个更好的模型。</p>
-<h3 id="多项式回归">多项式回归</h3><p>与选择特征的想法密切相关的一个概念，被称为<strong>多项式回归(polynomial regression)</strong>。</p>
+<h3 id="多项式回归"><a href="#多项式回归" class="headerlink" title="多项式回归"></a>多项式回归</h3><p>与选择特征的想法密切相关的一个概念，被称为<strong>多项式回归(polynomial regression)</strong>。</p>
 <p>比方说你有这样一个住房价格的数据集：</p>
 <p><img src="/img/16_07_29/020.png" alt=""></p>
 <p>为了拟合它，可能会有多个不同的模型供选择。其中一个你可以选择的是像这样的二次模型：</p>
@@ -857,7 +857,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多特征量"><span class="nav-number">1.</span> <span class="nav-text">多特征量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多特征量的表示"><span class="nav-number">1.1.</span> <span class="nav-text">多特征量的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多特征量的假设函数"><span class="nav-number">1.2.</span> <span class="nav-text">多特征量的假设函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多特征的梯度下降"><span class="nav-number">2.</span> <span class="nav-text">多特征的梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降实用技巧_1：特征缩放(Feature_Scaling)以及均值归一化(mean_normalization)"><span class="nav-number">3.</span> <span class="nav-text">梯度下降实用技巧 1：特征缩放(Feature Scaling)以及均值归一化(mean normalization)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征缩放(feature_scaling)"><span class="nav-number">3.1.</span> <span class="nav-text">特征缩放(feature scaling)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#均值归一化(mean_normalization)"><span class="nav-number">3.2.</span> <span class="nav-text">均值归一化(mean normalization)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降实用技巧_2：学习速率(Learning_Rate)"><span class="nav-number">4.</span> <span class="nav-text">梯度下降实用技巧 2：学习速率(Learning Rate)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收敛的判断"><span class="nav-number">4.1.</span> <span class="nav-text">收敛的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断梯度下降算法是否正常工作"><span class="nav-number">4.2.</span> <span class="nav-text">判断梯度下降算法是否正常工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选择$α$"><span class="nav-number">4.3.</span> <span class="nav-text">如何选择$α$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征的选择和多项式回归"><span class="nav-number">5.</span> <span class="nav-text">特征的选择和多项式回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征的选择"><span class="nav-number">5.1.</span> <span class="nav-text">特征的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式回归"><span class="nav-number">5.2.</span> <span class="nav-text">多项式回归</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多特征量"><span class="nav-number">1.</span> <span class="nav-text">多特征量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多特征量的表示"><span class="nav-number">1.1.</span> <span class="nav-text">多特征量的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多特征量的假设函数"><span class="nav-number">1.2.</span> <span class="nav-text">多特征量的假设函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多特征的梯度下降"><span class="nav-number">2.</span> <span class="nav-text">多特征的梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降实用技巧-1：特征缩放-Feature-Scaling-以及均值归一化-mean-normalization"><span class="nav-number">3.</span> <span class="nav-text">梯度下降实用技巧 1：特征缩放(Feature Scaling)以及均值归一化(mean normalization)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征缩放-feature-scaling"><span class="nav-number">3.1.</span> <span class="nav-text">特征缩放(feature scaling)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#均值归一化-mean-normalization"><span class="nav-number">3.2.</span> <span class="nav-text">均值归一化(mean normalization)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降实用技巧-2：学习速率-Learning-Rate"><span class="nav-number">4.</span> <span class="nav-text">梯度下降实用技巧 2：学习速率(Learning Rate)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收敛的判断"><span class="nav-number">4.1.</span> <span class="nav-text">收敛的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断梯度下降算法是否正常工作"><span class="nav-number">4.2.</span> <span class="nav-text">判断梯度下降算法是否正常工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选择-α"><span class="nav-number">4.3.</span> <span class="nav-text">如何选择$α$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征的选择和多项式回归"><span class="nav-number">5.</span> <span class="nav-text">特征的选择和多项式回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征的选择"><span class="nav-number">5.1.</span> <span class="nav-text">特征的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式回归"><span class="nav-number">5.2.</span> <span class="nav-text">多项式回归</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1190,9 +1190,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1204,14 +1228,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

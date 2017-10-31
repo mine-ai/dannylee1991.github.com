@@ -138,7 +138,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_10_24/054.png">
 <meta property="og:image" content="http://studyai.site/img/16_10_24/055.png">
 <meta property="og:image" content="http://studyai.site/img/16_10_24/056.png">
-<meta property="og:updated_time" content="2016-11-24T15:51:37.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:19:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第六周 (2)偏差VS方差">
 <meta name="twitter:description" content="偏差 VS 方差视频地址
@@ -419,7 +419,7 @@
       
 
       
-        <h2 id="偏差_VS_方差">偏差 VS 方差</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/yCAup/diagnosing-bias-vs-variance" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="偏差-VS-方差"><a href="#偏差-VS-方差" class="headerlink" title="偏差 VS 方差"></a>偏差 VS 方差</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/yCAup/diagnosing-bias-vs-variance" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大、要么是方差比较大。换句话说，出现的情况要么是欠拟合、要么是过拟合问题。</p>
 <p>对于这两种情况，哪个和偏差有关，哪个和方差有关，或者是不是和两个都有关，搞清楚这一点非常重要。因为这两种情况其实是一个很有效的指示器，指示着改进算法最有效的方法和途径。</p>
@@ -439,16 +439,16 @@
 <p>下面我们来画出如下这个示意图，其中横坐标代表多项式的次数，纵坐标表示训练误差。其中<strong>蓝色线表示训练集误差的变化情况</strong>，<strong>红色线表示验证集误差的变化情况</strong>：</p>
 <p><img src="/img/16_10_24/018.png" alt=""></p>
 <p>可以看到随着多项式次数的增多，训练集误差呈下降趋势，验证集误差呈先降后升的趋势。</p>
-<h3 id="如何分辨算法处于偏差还是方差？">如何分辨算法处于偏差还是方差？</h3><p>假设你得出了一个学习算法，而这个算法并没有表现地如你期望那么好，所以你的交叉验证误差或者测试集误差都很大，我们应该如何判断此时的学习算法正处于高偏差的问题还是高方差的问题呢？</p>
+<h3 id="如何分辨算法处于偏差还是方差？"><a href="#如何分辨算法处于偏差还是方差？" class="headerlink" title="如何分辨算法处于偏差还是方差？"></a>如何分辨算法处于偏差还是方差？</h3><p>假设你得出了一个学习算法，而这个算法并没有表现地如你期望那么好，所以你的交叉验证误差或者测试集误差都很大，我们应该如何判断此时的学习算法正处于高偏差的问题还是高方差的问题呢？</p>
 <p><img src="/img/16_10_24/019.png" alt=""></p>
 <p>图中左边点表示偏差(bias)情况，右侧点表示方差(variance)情况。</p>
-<h4 id="偏差情况">偏差情况</h4><p>可以看到偏差情况下，测试集误差和验证集误差都很大，两者误差可能很接近：</p>
+<h4 id="偏差情况"><a href="#偏差情况" class="headerlink" title="偏差情况"></a>偏差情况</h4><p>可以看到偏差情况下，测试集误差和验证集误差都很大，两者误差可能很接近：</p>
 <p><img src="/img/16_10_24/020.png" alt=""></p>
 <p>那么当你遇到这种情况，就说明你的算法正处于高偏差的问题。</p>
-<h4 id="方差情况">方差情况</h4><p>而反过来，如果你的交叉验证集误差远远大于训练集误差：</p>
+<h4 id="方差情况"><a href="#方差情况" class="headerlink" title="方差情况"></a>方差情况</h4><p>而反过来，如果你的交叉验证集误差远远大于训练集误差：</p>
 <p><img src="/img/16_10_24/021.png" alt=""></p>
 <p>这就预示着你的算法正处于高方差和过拟合的情况。</p>
-<h2 id="正则化和偏差/方差">正则化和偏差/方差</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/4VDlf/regularization-and-bias-variance" target="_blank" rel="external">视频地址</a></p>
+<h2 id="正则化和偏差-方差"><a href="#正则化和偏差-方差" class="headerlink" title="正则化和偏差/方差"></a>正则化和偏差/方差</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/4VDlf/regularization-and-bias-variance" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>你现在应该已经知道算法正则化可以有效地防止过拟合，但正则化跟算法的偏差和方差又有什么关系呢？在这一节中，我想更深入地探讨一下偏差和方差的问题。讨论一下两者之间是如何互相影响的，以及和算法的正则化之间的相互关系。</p>
 </blockquote>
@@ -457,7 +457,7 @@
 <p>为了防止过拟合现象，我们要使用一个正则化项，因此我们试图通过这样一个正则化项：</p>
 <p><img src="/img/16_10_24/023.png" alt=""></p>
 <p>来让参数的值尽可能的小。正则化项的求和范围照例取为$j=1$到$j=m$，而非$j=0$到$j=m$。</p>
-<h3 id="正则化参数$λ$对假设函数的影响">正则化参数$λ$对假设函数的影响</h3><p>然后我们来分析以下三种情形：</p>
+<h3 id="正则化参数-λ-对假设函数的影响"><a href="#正则化参数-λ-对假设函数的影响" class="headerlink" title="正则化参数$λ$对假设函数的影响"></a>正则化参数$λ$对假设函数的影响</h3><p>然后我们来分析以下三种情形：</p>
 <ul>
 <li><strong>第一种情形是正则化参数$λ$取一个比较大的值（比如$λ$的值取为10000甚至更大）</strong></li>
 </ul>
@@ -488,7 +488,7 @@
 <p><img src="/img/16_10_24/028.png" alt=""></p>
 <p>总结一下，<strong>我们对于训练误差$Jtrain$,$Jcv$,$Jtest$的定义，都是平均误差平方和</strong>。</p>
 <hr>
-<h3 id="选择一个正确的$λ$">选择一个正确的$λ$</h3><p>下面就是我们自动选取正则化参数$λ$的方法：</p>
+<h3 id="选择一个正确的-λ"><a href="#选择一个正确的-λ" class="headerlink" title="选择一个正确的$λ$"></a>选择一个正确的$λ$</h3><p>下面就是我们自动选取正则化参数$λ$的方法：</p>
 <p>通常我的做法是选取一系列我想要尝试的$λ$值。因此首先我可能考虑不使用正则化的情形，以及一系列我可能会试的值，比如说我可能从0.01,0.02,0.04开始，一直试下去，通常我会将步长设为2倍的速度增长，直到一个比较大的值。在本例中，我们最终取值为10.24（实际上我们取的值是10，但已经非常接近了）。</p>
 <p><img src="/img/16_10_24/029.png" alt=""></p>
 <p>因此，这样我就得到了12个不同的正则化参数$λ$，对应的12个不同的模型，当然了，你也可以试小于0.01的值或者大于10的值。但在这里，我就不讨论这些情况了。</p>
@@ -502,15 +502,15 @@
 <p>测出每一个参数$\theta$在交叉验证集上的评价误差平方和，然后我就选取这12个模型中交叉验证集误差最小的那个模型作为最终选择。</p>
 <p>对于本例而言，假如说最终我选择了$\theta^{(5)}$，因为此时的交叉验证集误差最小，做完这些最后，如果我想看看该模型在测试集上的表现，我可以用经过学习得到的模型$\theta^{(5)}$来测出它对测试集的预测效果是如何。（再次重申，这里我们依然使用交叉验证集来拟合模型，这也是为什么我之前预留了一部分数据作为测试集的原因。）</p>
 <p>这样我就可以用这部分测试集比较准确地估算出我的参数向量$\theta$对于新样本的泛化能力，这就是模型选择在选取正则化参数$λ$时的应用。</p>
-<h3 id="正则化参数$λ$对交叉验证集误差和训练集误差产生的影响">正则化参数$λ$对交叉验证集误差和训练集误差产生的影响</h3><p>在这一节中，我想讲的最后一个问题是，当我们改变正则化参数$λ$的值时，交叉验证集误差和训练集误差会随之发生怎样的变化。</p>
+<h3 id="正则化参数-λ-对交叉验证集误差和训练集误差产生的影响"><a href="#正则化参数-λ-对交叉验证集误差和训练集误差产生的影响" class="headerlink" title="正则化参数$λ$对交叉验证集误差和训练集误差产生的影响"></a>正则化参数$λ$对交叉验证集误差和训练集误差产生的影响</h3><p>在这一节中，我想讲的最后一个问题是，当我们改变正则化参数$λ$的值时，交叉验证集误差和训练集误差会随之发生怎样的变化。</p>
 <p>我想提醒一下，我们最初的代价函数$J(\theta)$是包含正则化项的，但在这里我们把训练误差和交叉验证集误差定义为不包括正则化项。</p>
 <p><img src="/img/16_10_24/033.png" alt=""></p>
 <p>我要做的是绘制出$Jtrain(\theta)$和$Jcv(\theta)$的曲线，表达的是随着增大正则化项参数$λ$，看看假设在训练集上的是如何变化的，以及在交叉验证集上表现如何变化。</p>
 <p>就像我们之前看到的，如果$λ$的值很小，那也就是说我们几乎没有使用正则化，因此我们有很大可能处于过拟合；而如果$λ$的值取的很大的时候，我们很有可能处于高偏差的情况。</p>
-<h3 id="$λ$在训练集上的变化">$λ$在训练集上的变化</h3><p>所以，如果你画出$Jtrain(\theta)$和$Jcv(\theta)$的曲线，你就会发现当$λ$的取值很小时，对训练集的拟合相对较好，因为没有使用正则化。而如果$λ$的值很大时，你将处于高偏差问题，不能对训练集很好地拟合，训练集误差$Jtrain(\theta)$的值会趋于上升。</p>
+<h3 id="λ-在训练集上的变化"><a href="#λ-在训练集上的变化" class="headerlink" title="$λ$在训练集上的变化"></a>$λ$在训练集上的变化</h3><p>所以，如果你画出$Jtrain(\theta)$和$Jcv(\theta)$的曲线，你就会发现当$λ$的取值很小时，对训练集的拟合相对较好，因为没有使用正则化。而如果$λ$的值很大时，你将处于高偏差问题，不能对训练集很好地拟合，训练集误差$Jtrain(\theta)$的值会趋于上升。</p>
 <p><img src="/img/16_10_24/032.png" alt=""></p>
 <p>此时，你练训练集都不能很好地拟合。反过来，当$λ$的值取得很小的时候，你的数据能随意地与高次多项式很好地拟合。</p>
-<h3 id="$λ$在交叉验证集上的变化">$λ$在交叉验证集上的变化</h3><p>在曲线的右端，当$λ$的值取得很大时，我们会处于欠拟合问题。这对应着偏差问题，那么此时交叉验证集误差将会很大。我们的假设不能在交叉验证集上表现地比较好。</p>
+<h3 id="λ-在交叉验证集上的变化"><a href="#λ-在交叉验证集上的变化" class="headerlink" title="$λ$在交叉验证集上的变化"></a>$λ$在交叉验证集上的变化</h3><p>在曲线的右端，当$λ$的值取得很大时，我们会处于欠拟合问题。这对应着偏差问题，那么此时交叉验证集误差将会很大。我们的假设不能在交叉验证集上表现地比较好。</p>
 <p><img src="/img/16_10_24/034.png" alt=""></p>
 <p>而在曲线的左端，对应的是高方差问题，此时我们的$λ$值取得很小很小，因此我们会对数据过度拟合，所以交叉验证集误差也会很大。</p>
 <p>这就是当我们改变正则化参数$λ$的值时，交叉验证集误差和训练集误差随之发生的变化。当然，在中间取的某个$λ$的值，表现得刚好合适，这种情况下表现最好，交叉验证集误差或者测试集误差都很小。</p>
@@ -519,7 +519,7 @@
 <p>当我在尝试为学习算法选择正则化参数$λ$的时候，我通常都会画出像这样一个图，帮助我更好地理解各种情况，同时也帮助我确认我选择的正则化参数值到底好不好。</p>
 <p>希望这节课的内容让你更深入地理解了正则化以及它对学习算法的偏差和方差的影响，到目前为止你已经从不同角度认识了方差和偏差问题 在下一节视频中我要做的是基于我们已经介绍过的所有这些概念，将它们结合起来，建立我们的诊断法。也称为<strong>学习曲线</strong>这种方法通常被用来诊断一个学习算法到底是处于偏差问题还是方差问题，还是两者都有。</p>
 </blockquote>
-<h2 id="学习曲线(Learning_Curves)">学习曲线(Learning Curves)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Kont7/learning-curves" target="_blank" rel="external">视频地址</a></p>
+<h2 id="学习曲线-Learning-Curves"><a href="#学习曲线-Learning-Curves" class="headerlink" title="学习曲线(Learning Curves)"></a>学习曲线(Learning Curves)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Kont7/learning-curves" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>绘制学习曲线非常有用，也许你想检查你的学习算法运行是否正常，或者你希望改进算法的表现或效果，那么学习曲线就是一种很好的工具。</p>
 <p>我经常使用学习曲线来判断某一个学习算法是否处于偏差方差问题，或者二者皆有。</p>
@@ -556,8 +556,8 @@
 <p>所以如果你把$Jtrain(\theta)$和$Jcv(\theta)$绘制出来，就应该得到这样的曲线：</p>
 <p><img src="/img/16_10_24/044.png" width="300" height="200" align="center"></p>
 <hr>
-<h3 id="高偏差/高方差下的学习曲线">高偏差/高方差下的学习曲线</h3><p>现在我们来看看当处于高偏差或者高方差的情况时，这些学习曲线又会变成什么样子。</p>
-<h4 id="高偏差下的学习曲线">高偏差下的学习曲线</h4><p>假如你的假设处于高偏差问题，为了更清楚地解释这个问题，我要用一个简单的例子来说明，也就是用一条直线来拟合数据的例子（很显然，一条直线不能很好地拟合数据）：</p>
+<h3 id="高偏差-高方差下的学习曲线"><a href="#高偏差-高方差下的学习曲线" class="headerlink" title="高偏差/高方差下的学习曲线"></a>高偏差/高方差下的学习曲线</h3><p>现在我们来看看当处于高偏差或者高方差的情况时，这些学习曲线又会变成什么样子。</p>
+<h4 id="高偏差下的学习曲线"><a href="#高偏差下的学习曲线" class="headerlink" title="高偏差下的学习曲线"></a>高偏差下的学习曲线</h4><p>假如你的假设处于高偏差问题，为了更清楚地解释这个问题，我要用一个简单的例子来说明，也就是用一条直线来拟合数据的例子（很显然，一条直线不能很好地拟合数据）：</p>
 <p>$$<br>h_{\theta}(x)=\theta_{0} + \theta_{1}x<br>$$</p>
 <p><img src="/img/16_10_24/045.png" width="300" height="200" align="center"></p>
 <p>现在我们来想一想，如果增大样本容量m会发生什么情况呢？</p>
@@ -575,7 +575,7 @@
 <p><strong>所以如果学习算法正处于高偏差的情形，那么选用更多的训练集数据对于改善算法表现无益。</strong></p>
 <p>所以能够看清你的算法正处于高偏差的情形，是一件很有意义的事情，因为这样可以让你避免把时间浪费在想收集更多的训练样本上，因为再多的数据也是无意义的。</p>
 <hr>
-<h4 id="高方差下的学习曲线">高方差下的学习曲线</h4><p>接下来我们再来看看正处于高方差的时候，学习曲线应该是什么样子的。</p>
+<h4 id="高方差下的学习曲线"><a href="#高方差下的学习曲线" class="headerlink" title="高方差下的学习曲线"></a>高方差下的学习曲线</h4><p>接下来我们再来看看正处于高方差的时候，学习曲线应该是什么样子的。</p>
 <p>首先我们看看训练集误差，如果你的训练集样本容量很小，如下图：</p>
 <p><img src="/img/16_10_24/049.png" width="300" height="200" align="center"></p>
 <p>如果我们用很高阶次的多项式来拟合：</p>
@@ -600,7 +600,7 @@
 <p>以上画出的学习曲线都是相当理想化的形式，针对一个实际的学习算法，如果你画出学习曲线的话，你会看到基本类似的结果。虽然有的时候数据会带有一点噪声或干扰的曲线，但总的来说像这样画出学习曲线确实能帮助你来看清你的学习算法是否处于高偏差、高方差、或者二者皆有的情形。</p>
 <p>所以在改进一个学习算法的时候，通常要先画出这些学习曲线。这项工作会让你更轻松地看出偏差或方差的问题。</p>
 </blockquote>
-<h2 id="重新审视决定下一步做什么">重新审视决定下一步做什么</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/zJTzp/deciding-what-to-do-next-revisited" target="_blank" rel="external">视频地址</a></p>
+<h2 id="重新审视决定下一步做什么"><a href="#重新审视决定下一步做什么" class="headerlink" title="重新审视决定下一步做什么"></a>重新审视决定下一步做什么</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/zJTzp/deciding-what-to-do-next-revisited" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>我们讨论了模型选择问题，偏差和方差的问题，那么这些诊断法则怎样帮助我们判断哪些方法可能有助于改进学习算法的效果，而哪些可能是徒劳的呢？让我们再次回到最开始的例子，在那里寻找答案。</p>
 </blockquote>
@@ -635,7 +635,7 @@
 </blockquote>
 <p>第五种和第六种方式，增大和减小正则化参数$λ$，是很方便的方法，不至于花费太多时间。减小$λ$可以修正<strong>高偏差问题</strong>，增大$λ$可以修正<strong>高方差问题</strong>。</p>
 <hr>
-<h3 id="和神经网络的联系">和神经网络的联系</h3><p>最后我们回顾一下这几节课介绍的这些内容，并且看看它们和神经网络的联系。</p>
+<h3 id="和神经网络的联系"><a href="#和神经网络的联系" class="headerlink" title="和神经网络的联系"></a>和神经网络的联系</h3><p>最后我们回顾一下这几节课介绍的这些内容，并且看看它们和神经网络的联系。</p>
 <p>我想介绍一些很实用的经验或建议，这些也是我平时为神经网络模型选择结构或者链接形式的一些技巧。</p>
 <p>当你在用一个相对比较简单的神经网络模型进行神经网络拟合的时候：</p>
 <ul>
@@ -914,7 +914,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#偏差_VS_方差"><span class="nav-number">1.</span> <span class="nav-text">偏差 VS 方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何分辨算法处于偏差还是方差？"><span class="nav-number">1.1.</span> <span class="nav-text">如何分辨算法处于偏差还是方差？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#偏差情况"><span class="nav-number">1.1.1.</span> <span class="nav-text">偏差情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方差情况"><span class="nav-number">1.1.2.</span> <span class="nav-text">方差情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则化和偏差/方差"><span class="nav-number">2.</span> <span class="nav-text">正则化和偏差/方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化参数$λ$对假设函数的影响"><span class="nav-number">2.1.</span> <span class="nav-text">正则化参数$λ$对假设函数的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择一个正确的$λ$"><span class="nav-number">2.2.</span> <span class="nav-text">选择一个正确的$λ$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化参数$λ$对交叉验证集误差和训练集误差产生的影响"><span class="nav-number">2.3.</span> <span class="nav-text">正则化参数$λ$对交叉验证集误差和训练集误差产生的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#$λ$在训练集上的变化"><span class="nav-number">2.4.</span> <span class="nav-text">$λ$在训练集上的变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#$λ$在交叉验证集上的变化"><span class="nav-number">2.5.</span> <span class="nav-text">$λ$在交叉验证集上的变化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习曲线(Learning_Curves)"><span class="nav-number">3.</span> <span class="nav-text">学习曲线(Learning Curves)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高偏差/高方差下的学习曲线"><span class="nav-number">3.1.</span> <span class="nav-text">高偏差/高方差下的学习曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高偏差下的学习曲线"><span class="nav-number">3.1.1.</span> <span class="nav-text">高偏差下的学习曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高方差下的学习曲线"><span class="nav-number">3.1.2.</span> <span class="nav-text">高方差下的学习曲线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新审视决定下一步做什么"><span class="nav-number">4.</span> <span class="nav-text">重新审视决定下一步做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#和神经网络的联系"><span class="nav-number">4.1.</span> <span class="nav-text">和神经网络的联系</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#偏差-VS-方差"><span class="nav-number">1.</span> <span class="nav-text">偏差 VS 方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何分辨算法处于偏差还是方差？"><span class="nav-number">1.1.</span> <span class="nav-text">如何分辨算法处于偏差还是方差？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#偏差情况"><span class="nav-number">1.1.1.</span> <span class="nav-text">偏差情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方差情况"><span class="nav-number">1.1.2.</span> <span class="nav-text">方差情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则化和偏差-方差"><span class="nav-number">2.</span> <span class="nav-text">正则化和偏差/方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化参数-λ-对假设函数的影响"><span class="nav-number">2.1.</span> <span class="nav-text">正则化参数$λ$对假设函数的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择一个正确的-λ"><span class="nav-number">2.2.</span> <span class="nav-text">选择一个正确的$λ$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化参数-λ-对交叉验证集误差和训练集误差产生的影响"><span class="nav-number">2.3.</span> <span class="nav-text">正则化参数$λ$对交叉验证集误差和训练集误差产生的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#λ-在训练集上的变化"><span class="nav-number">2.4.</span> <span class="nav-text">$λ$在训练集上的变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#λ-在交叉验证集上的变化"><span class="nav-number">2.5.</span> <span class="nav-text">$λ$在交叉验证集上的变化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习曲线-Learning-Curves"><span class="nav-number">3.</span> <span class="nav-text">学习曲线(Learning Curves)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高偏差-高方差下的学习曲线"><span class="nav-number">3.1.</span> <span class="nav-text">高偏差/高方差下的学习曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高偏差下的学习曲线"><span class="nav-number">3.1.1.</span> <span class="nav-text">高偏差下的学习曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高方差下的学习曲线"><span class="nav-number">3.1.2.</span> <span class="nav-text">高方差下的学习曲线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新审视决定下一步做什么"><span class="nav-number">4.</span> <span class="nav-text">重新审视决定下一步做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#和神经网络的联系"><span class="nav-number">4.1.</span> <span class="nav-text">和神经网络的联系</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1247,9 +1247,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1261,14 +1285,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

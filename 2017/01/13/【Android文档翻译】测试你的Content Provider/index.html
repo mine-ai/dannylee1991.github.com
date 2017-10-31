@@ -368,7 +368,7 @@
       
         <p><a href="https://developer.android.google.cn/training/testing/integration-testing/content-provider-testing.html" target="_blank" rel="external">https://developer.android.google.cn/training/testing/integration-testing/content-provider-testing.html</a></p>
 <p>如果要实施content provider来存储和检索数据或使数据可供其他应用程序访问，则应测试提供程序以确保其不会以意外的方式运行。本课程介绍如何测试公共content provider，并且也适用于您对自己的应用保持私有的content provider。</p>
-<h2 id="为content_provider创建集成测试">为content provider创建集成测试</h2><p>在Android中，应用程式将content provider视为提供资料表的资料API，而内部资讯提供不可见。content provider可以具有许多公共常量，但是它通常具有很少的公共方法并且没有公共变量。因此，您应该仅根据提供程序的公共成员编写测试。这样设计的content provider在其本身与其用户之间提供合同。</p>
+<h2 id="为content-provider创建集成测试"><a href="#为content-provider创建集成测试" class="headerlink" title="为content provider创建集成测试"></a>为content provider创建集成测试</h2><p>在Android中，应用程式将content provider视为提供资料表的资料API，而内部资讯提供不可见。content provider可以具有许多公共常量，但是它通常具有很少的公共方法并且没有公共变量。因此，您应该仅根据提供程序的公共成员编写测试。这样设计的content provider在其本身与其用户之间提供合同。</p>
 <p>content provider允许您访问实际的用户数据，因此确保在隔离的测试环境中测试内容提供程序很重要。这种方法允许您只运行在测试用例中明确设置的数据依赖关系。这也意味着您的测试不会修改实际的用户数据。例如，您应避免编写失败的测试，因为上一个测试中遗留了数据。同样，您的测试应避免在content provider中添加或删除实际联系人信息。</p>
 <p>要单独测试content provider程序，请使用<a href="https://developer.android.google.cn/reference/android/test/ProviderTestCase2.html" target="_blank" rel="external">ProviderTestCase2</a>类。此类允许您使用Android模拟对象类（如<a href="https://developer.android.google.cn/reference/android/test/IsolatedContext.html" target="_blank" rel="external">IsolatedContext</a>和<a href="https://developer.android.google.cn/reference/android/test/mock/MockContentResolver.html" target="_blank" rel="external">MockContentResolver</a>）访问文件和数据库信息，而不会影响实际的用户数据。</p>
 <p>您的集成测试应写为JUnit 4测试类。要了解有关创建JUnit 4测试类和使用JUnit 4断言的更多信息，请参阅<a href="/2017/01/11/【Android文档翻译】构建本地单元测试/#创建本地单元测试类">创建本地单元测试类</a>。</p>
@@ -380,12 +380,12 @@
 <li>从<a href="https://developer.android.google.cn/reference/android/support/test/InstrumentationRegistry.html" target="_blank" rel="external">InstrumentationRegistry</a>类设置Context对象。有关示例，请参阅下面的代码段。</li>
 </ul>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    setContext(InstrumentationRegistry.getTargetContext());</div><div class="line">    <span class="keyword">super</span>.setUp();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="ProviderTestCase2的工作原理">ProviderTestCase2的工作原理</h3><p>你通过<a href="https://developer.android.google.cn/reference/android/test/ProviderTestCase2.html" target="_blank" rel="external">ProviderTestCase2</a>测试provider。这个基类扩展了<a href="https://developer.android.google.cn/reference/android/test/AndroidTestCase.html" target="_blank" rel="external">AndroidTestCase</a>，因此它提供了JUnit测试框架以及特定于Android的测试应用程序权限的方法。这个类的最重要的特性是它的初始化，它创建隔离的测试环境。</p>
+<h3 id="ProviderTestCase2的工作原理"><a href="#ProviderTestCase2的工作原理" class="headerlink" title="ProviderTestCase2的工作原理"></a>ProviderTestCase2的工作原理</h3><p>你通过<a href="https://developer.android.google.cn/reference/android/test/ProviderTestCase2.html" target="_blank" rel="external">ProviderTestCase2</a>测试provider。这个基类扩展了<a href="https://developer.android.google.cn/reference/android/test/AndroidTestCase.html" target="_blank" rel="external">AndroidTestCase</a>，因此它提供了JUnit测试框架以及特定于Android的测试应用程序权限的方法。这个类的最重要的特性是它的初始化，它创建隔离的测试环境。</p>
 <p>初始化在<a href="https://developer.android.google.cn/reference/android/test/ProviderTestCase2.html" target="_blank" rel="external">ProviderTestCase2</a>的构造函数中完成，它在自己的构造函数中调用子类。<a href="https://developer.android.google.cn/reference/android/test/ProviderTestCase2.html" target="_blank" rel="external">ProviderTestCase2</a>构造函数创建一个<a href="https://developer.android.google.cn/reference/android/test/IsolatedContext.html" target="_blank" rel="external">IsolatedContext</a>对象，允许文件和数据库操作，但存根与Android系统的其他交互。文件和数据库操作本身发生在设备或模拟器本地的目录中，并且具有特殊的前缀。</p>
 <p>然后，构造函数创建一个<a href="https://developer.android.google.cn/reference/android/test/mock/MockContentResolver.html" target="_blank" rel="external">MockContentResolver</a>以用作测试的解析器。</p>
 <p>最后，构造函数创建一个被测试提供者的实例。这是一个正常的<a href="https://developer.android.google.cn/reference/android/content/ContentProvider.html" target="_blank" rel="external">ContentProvider</a>对象，但它从<a href="https://developer.android.google.cn/reference/android/test/IsolatedContext.html" target="_blank" rel="external">IsolatedContext</a>获取其所有环境信息，因此它被限制在隔离的测试环境中工作。在测试用例类中执行的所有测试都针对这个孤立的对象运行。</p>
 <p>您对content provider运行集成测试的方式与仪表化单元测试相同。要对content provider运行集成测试，请按照<a href="/2017/01/11/【Android文档翻译】构建仪表化单元测试/#运行仪表单元测试">运行仪表单元测试</a>中所述的步骤操作。</p>
-<h2 id="测试什么">测试什么</h2><p>以下是测试content provider的一些具体指南。</p>
+<h2 id="测试什么"><a href="#测试什么" class="headerlink" title="测试什么"></a>测试什么</h2><p>以下是测试content provider的一些具体指南。</p>
 <ul>
 <li>使用解析器方法测试：即使您可以在<a href="https://developer.android.google.cn/reference/android/test/ProviderTestCase2.html" target="_blank" rel="external">ProviderTestCase2</a>中实例化一个content provider对象，您应该始终使用适当的URI测试解析器对象。这样做可确保您通过执行常规应用程序的相同交互方式来测试content provider。</li>
 <li><p>测试公共provider作为合同：如果您打算将您的provider公开并可供其他应用程序使用，那么您应该将其作为合同进行测试。下面是一些实例：</p>
@@ -654,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为content_provider创建集成测试"><span class="nav-number">1.</span> <span class="nav-text">为content provider创建集成测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProviderTestCase2的工作原理"><span class="nav-number">1.1.</span> <span class="nav-text">ProviderTestCase2的工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试什么"><span class="nav-number">2.</span> <span class="nav-text">测试什么</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为content-provider创建集成测试"><span class="nav-number">1.</span> <span class="nav-text">为content provider创建集成测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProviderTestCase2的工作原理"><span class="nav-number">1.1.</span> <span class="nav-text">ProviderTestCase2的工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试什么"><span class="nav-number">2.</span> <span class="nav-text">测试什么</span></a></li></ol></div>
             
 
           </div>
@@ -989,7 +989,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1001,7 +1001,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1009,6 +1009,8 @@
   
 
   
+  
+
 
   
 

@@ -392,11 +392,11 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
       
 
       
-        <h2 id="数据的可视化">数据的可视化</h2><p>经过前两部的处理：</p>
+        <h2 id="数据的可视化"><a href="#数据的可视化" class="headerlink" title="数据的可视化"></a>数据的可视化</h2><p>经过前两部的处理：</p>
 <p><a href="/2016/11/30/房价预测（1）-搜房网数据爬取/">房价预测（1）-搜房网数据爬取</a></p>
 <p><a href="/2016/12/08/房价预测（2）-数据清洗与持久化/">房价预测（2）-数据清洗与持久化</a></p>
 <p>我们已经能够爬取fang.com上的数据并持久化到本地的<strong>MongoDB</strong>中，这一节主要介绍如何将数据进行可视化的展示。</p>
-<h3 id="R语言引入">R语言引入</h3><p>数据可视化的处理方式有很多种，可以用js，python。你可以选择任何你喜欢的支持可视化的库来进行操作，这里我选择<strong>R语言</strong>。</p>
+<h3 id="R语言引入"><a href="#R语言引入" class="headerlink" title="R语言引入"></a>R语言引入</h3><p>数据可视化的处理方式有很多种，可以用js，python。你可以选择任何你喜欢的支持可视化的库来进行操作，这里我选择<strong>R语言</strong>。</p>
 <blockquote>
 <p>R是用于统计分析、绘图的语言和操作环境。R是属于GNU系统的一个自由、免费、源代码开放的软件，它是一个用于统计计算和统计制图的优秀工具。</p>
 <p>R是一套完整的数据处理、计算和制图软件系统。其功能包括：数据存储和处理系统；数组运算工具（其向量、矩阵运算方面功能尤其强大）；完整连贯的统计分析工具；优秀的统计制图功能；简便而强大的编程语言；可操纵数据的输入和输出，可实现分支、循环，用户可自定义功能。</p>
@@ -407,10 +407,10 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
 <p><a href="/2016/02/29/R语言（01）－R快速入门/">R语言（01）－R快速入门</a></p>
 <p><a href="/2016/03/06/R语言（02）绘图/">R语言（02）－R绘图</a></p>
 <p>不熟悉R的同学可以先行了解一下~</p>
-<h3 id="RStudio">RStudio</h3><p>这里再推荐一个比较好用的R语言集成环境:</p>
+<h3 id="RStudio"><a href="#RStudio" class="headerlink" title="RStudio"></a>RStudio</h3><p>这里再推荐一个比较好用的R语言集成环境:</p>
 <p><strong>RStudio</strong></p>
 <p><img src="/img/16_12_14/001.png" alt=""></p>
-<h3 id="数据导入到R">数据导入到R</h3><p>安装好R的开发环境之后，如果想要导入mongo的数据，需要安装<code>mongolite</code>。</p>
+<h3 id="数据导入到R"><a href="#数据导入到R" class="headerlink" title="数据导入到R"></a>数据导入到R</h3><p>安装好R的开发环境之后，如果想要导入mongo的数据，需要安装<code>mongolite</code>。</p>
 <p>打开RStudio，点击<code>Tools-&gt;Install Packages...</code>，搜索<code>mongolite</code>，点击确认安装即可。</p>
 <p>安装成功后，在R的命令行下引入<code>mongolite</code>:</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; library(<span class="name">mongolite</span>)</div></pre></td></tr></table></figure>
@@ -418,7 +418,7 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">con</span> &lt;- mongo(<span class="string">"soufang"</span>, url = <span class="string">"mongodb://localhost:27017/soufang"</span>)</div><div class="line">mydata &lt;- <span class="keyword">con</span>$<span class="keyword">find</span>()</div></pre></td></tr></table></figure>
 <p>这样就把我们爬取到的所有数据都导入到了R中的mydata变量中。这里我暂时爬取了13198条数据：</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Imported <span class="number">13198</span> <span class="keyword">records</span>. Simplifying <span class="keyword">into</span> dataframe<span class="attr">...</span></div></pre></td></tr></table></figure>
-<h3 id="基本图形绘制">基本图形绘制</h3><p>接下来我们就可以绘制一些图表了：</p>
+<h3 id="基本图形绘制"><a href="#基本图形绘制" class="headerlink" title="基本图形绘制"></a>基本图形绘制</h3><p>接下来我们就可以绘制一些图表了：</p>
 <p>比如说:</p>
 <p>我们可以绘制出<strong>价格-数量</strong>关系的柱状图：</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; barplot(<span class="name">table</span>(<span class="name">x&lt;-as</span>.numeric(<span class="name">mydata</span>$total_price)))</div></pre></td></tr></table></figure>
@@ -471,7 +471,7 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
 <p><img src="/img/16_12_14/009.png" alt=""></p>
 <p>可以看出，松江区大概在4万以下的。</p>
 <hr>
-<h3 id="查询房价走势">查询房价走势</h3><p>最后我们来查一下每平米房价随发布时间的柱状图。</p>
+<h3 id="查询房价走势"><a href="#查询房价走势" class="headerlink" title="查询房价走势"></a>查询房价走势</h3><p>最后我们来查一下每平米房价随发布时间的柱状图。</p>
 <p>首先，我们需要对房价数据按照发布日期进行<strong>分组（group by）</strong>操作。</p>
 <p>有两种方式：</p>
 <ul>
@@ -1088,7 +1088,7 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1100,7 +1100,7 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1108,6 +1108,8 @@ R是用于统计分析、绘图的语言和操作环境。R是属于">
   
 
   
+  
+
 
   
 

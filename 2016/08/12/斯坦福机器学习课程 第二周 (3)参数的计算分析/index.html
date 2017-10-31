@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_08_12/002.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_12/003.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_12/004.png">
-<meta property="og:updated_time" content="2016-08-13T07:47:53.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:19:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第二周 (3)参数的计算分析">
 <meta name="twitter:description" content="正规方程(Normal Equation)视频地址
@@ -371,7 +371,7 @@
       
 
       
-        <h2 id="正规方程(Normal_Equation)">正规方程(Normal Equation)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/2DKxQ/normal-equation" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="正规方程-Normal-Equation"><a href="#正规方程-Normal-Equation" class="headerlink" title="正规方程(Normal Equation)"></a>正规方程(Normal Equation)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/2DKxQ/normal-equation" target="_blank" rel="external">视频地址</a></p>
 <p>这一节我们要讲<strong>正规方程(Normal Equation)</strong>。对于某些线性回归问题，用正规方程法求解参数$θ$的最优值更好。具体而言，到目前为止，我们一直在使用的线性回归的算法是<strong>梯度下降法</strong>，就是说，为了最小化代价函数$J(θ)$，我们通过多次迭代来计算梯度下降，来收敛到全局最小值。相反地，<strong>正规方程法提供了一种可以直接一次性求解$θ$的最优值的解法</strong>。</p>
 <p>首先让我们先对这个算法有一个直观的理解，我们举一个例子来解释这个问题：</p>
 <p><img src="/img/16_08_12/001.png" alt=""></p>
@@ -382,7 +382,7 @@
 <p><img src="/img/16_08_12/003.png" alt=""></p>
 <p>我们如何最小化这个代价函数$J$?实际上微积分告诉我们一种方法: 对每个参数$θ$求$J$的偏导数，然后把它们全部置零。如果你这样做 并且求出$θ_{0}$，$θ_{1}$，一直到$θ_{n}$的值，这样就能得到能够最小化代价函数$J$的$θ$值。</p>
 <p><img src="/img/16_08_12/004.png" alt=""></p>
-<h3 id="正规方程法_实例">正规方程法 实例</h3><p>举个实现正规方程法的例子：</p>
+<h3 id="正规方程法-实例"><a href="#正规方程法-实例" class="headerlink" title="正规方程法 实例"></a>正规方程法 实例</h3><p>举个实现正规方程法的例子：</p>
 <p>假如说我有$m=4$个训练样本，训练集如下：</p>
 <table>
 <thead>
@@ -515,13 +515,13 @@
 <blockquote>
 <p>这就是通过正规方程来求解最优的$θ$值的过程，在数学上可以证明这个式子会给出最优的$θ$值，可以最小化代价函数$J(θ)$，但在这里我并不打算给出证明过程。</p>
 </blockquote>
-<h3 id="使用Octave来执行正规方程">使用Octave来执行正规方程</h3><p>$$<br>θ = (X^{T}X)^{-1}X^{T}y<br>$$</p>
+<h3 id="使用Octave来执行正规方程"><a href="#使用Octave来执行正规方程" class="headerlink" title="使用Octave来执行正规方程"></a>使用Octave来执行正规方程</h3><p>$$<br>θ = (X^{T}X)^{-1}X^{T}y<br>$$</p>
 <p>这个方程在Octave中的表达方式如下：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">pinv</span><span class="params">(X`*X)</span></span>*X`*y</div></pre></td></tr></table></figure>
 <p>其中X`代表X的转置，pinv是用来计算矩阵的逆的函数。</p>
-<h3 id="正规方程不需要对特征变量归一化">正规方程不需要对特征变量归一化</h3><p>在之前视频中我提到<strong>特征变量归一化</strong>和让特征变量在相似的范围内的想法将所有的值归一化在类似范围内。<strong>如果你使用正规方程法 那么就不需要归一化特征变量，实际上这是没问题的</strong>。</p>
+<h3 id="正规方程不需要对特征变量归一化"><a href="#正规方程不需要对特征变量归一化" class="headerlink" title="正规方程不需要对特征变量归一化"></a>正规方程不需要对特征变量归一化</h3><p>在之前视频中我提到<strong>特征变量归一化</strong>和让特征变量在相似的范围内的想法将所有的值归一化在类似范围内。<strong>如果你使用正规方程法 那么就不需要归一化特征变量，实际上这是没问题的</strong>。</p>
 <p>例如：$x_{1}$在0到1的区间，$x_{2}$在0到1000的区间，$x_{3}$在0到$10^{-5}$的区间，如果使用正规方程法，不需要做特征变量归一化也是没有问题的，<strong>但如果你使用梯度下降法，特征变量归一化就很重要</strong>。</p>
-<h3 id="梯度下降法VS正规方程">梯度下降法VS正规方程</h3><p>最后你何时应该使用梯度下降法，而何时应该使用正规方程法呢？这里列举了一些它们的优点和缺点：</p>
+<h3 id="梯度下降法VS正规方程"><a href="#梯度下降法VS正规方程" class="headerlink" title="梯度下降法VS正规方程"></a>梯度下降法VS正规方程</h3><p>最后你何时应该使用梯度下降法，而何时应该使用正规方程法呢？这里列举了一些它们的优点和缺点：</p>
 <p>假如你有$m$个训练样本和$n$个特征变量 :</p>
 <table>
 <thead>
@@ -553,7 +553,7 @@
 <p>那么在什么情况下会考虑使用梯度下降算法呢？ 通常$n<10000$的情况下，建议使用正规方程法，当$n>10000$时，建议使用梯度下降法。</10000$的情况下，建议使用正规方程法，当$n></p>
 </blockquote>
 <p>随着我们要讲的学习算法越来越复杂，例如当我们讲到分类算法：像逻辑回归算法，我们会看到实际上对于那些问题，并不能使用正规方程法。对于那些更复杂的学习算法，我们将不得不仍然使用梯度下降法。因此，梯度下降法是一个非常有用的算法，可以用在有大量特征变量的线性回归问题，因为标准方程法不适合用在它们上。但对于特征变量比较少的情况下，正规方程法是一个比梯度下降法更快的替代算法。所以这两算法都是值得学习的。</p>
-<h2 id="*正规方程法的不可逆性">*正规方程法的不可逆性</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/zSiE6/normal-equation-noninvertibility" target="_blank" rel="external">视频地址</a></p>
+<h2 id="正规方程法的不可逆性"><a href="#正规方程法的不可逆性" class="headerlink" title="*正规方程法的不可逆性"></a>*正规方程法的不可逆性</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/zSiE6/normal-equation-noninvertibility" target="_blank" rel="external">视频地址</a></p>
 <p>在这段视频中我想谈谈正规方程(normal equation)以及它们的不可逆性。由于这是一种较为深入的概念，并且总有人问我有关这方面的问题，因此我想在这里来讨论它。由于概念较为深入，所以对这段可选材料大家放轻松吧，也许你可能会深入地探索下去并且会觉得理解以后会非常有用，但即使你没有理解正规方程和线性回归的关系也没有关系。</p>
 <p>首先，我们知道，并不是所有的矩阵都是可逆的，不可逆的矩阵被称为<strong>奇异矩阵</strong>或<strong>退化矩阵</strong></p>
 <p>那么当计算</p>
@@ -846,7 +846,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正规方程(Normal_Equation)"><span class="nav-number">1.</span> <span class="nav-text">正规方程(Normal Equation)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正规方程法_实例"><span class="nav-number">1.1.</span> <span class="nav-text">正规方程法 实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Octave来执行正规方程"><span class="nav-number">1.2.</span> <span class="nav-text">使用Octave来执行正规方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正规方程不需要对特征变量归一化"><span class="nav-number">1.3.</span> <span class="nav-text">正规方程不需要对特征变量归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降法VS正规方程"><span class="nav-number">1.4.</span> <span class="nav-text">梯度下降法VS正规方程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#*正规方程法的不可逆性"><span class="nav-number">2.</span> <span class="nav-text">*正规方程法的不可逆性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正规方程-Normal-Equation"><span class="nav-number">1.</span> <span class="nav-text">正规方程(Normal Equation)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正规方程法-实例"><span class="nav-number">1.1.</span> <span class="nav-text">正规方程法 实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Octave来执行正规方程"><span class="nav-number">1.2.</span> <span class="nav-text">使用Octave来执行正规方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正规方程不需要对特征变量归一化"><span class="nav-number">1.3.</span> <span class="nav-text">正规方程不需要对特征变量归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降法VS正规方程"><span class="nav-number">1.4.</span> <span class="nav-text">梯度下降法VS正规方程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正规方程法的不可逆性"><span class="nav-number">2.</span> <span class="nav-text">*正规方程法的不可逆性</span></a></li></ol></div>
             
 
           </div>
@@ -1179,9 +1179,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1193,14 +1217,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

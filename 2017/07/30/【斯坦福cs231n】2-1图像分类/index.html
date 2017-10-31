@@ -388,7 +388,7 @@
       
 
       
-        <h2 id="图像分类">图像分类</h2><p><strong>动机.</strong>在这一部分，我们将介绍图像分类问题，这是将输入图像分配到一组固定类别标签中的某一个标签的任务。尽管这个问题很简单，但它是计算机视觉的核心问题之一，并且有着各种各样的实际应用。此外，正如我们将在后面看到的，许多其它不同的计算机视觉任务（例如对象检测，分割）都可以被简化为图像识别问题。</p>
+        <h2 id="图像分类"><a href="#图像分类" class="headerlink" title="图像分类"></a>图像分类</h2><p><strong>动机.</strong>在这一部分，我们将介绍图像分类问题，这是将输入图像分配到一组固定类别标签中的某一个标签的任务。尽管这个问题很简单，但它是计算机视觉的核心问题之一，并且有着各种各样的实际应用。此外，正如我们将在后面看到的，许多其它不同的计算机视觉任务（例如对象检测，分割）都可以被简化为图像识别问题。</p>
 <p><strong>示例.</strong>例如，在下面的图像识别的例子中，图像分类模型接收单张图片，并对四个标签{cat，dog，hat，mug}的概率赋值。如图所示，请记住，对于计算机而言，图像被表示为一个大的三维数组。在这个例子中，猫图像是248像素宽，400像素高，并且有三个颜色通道：红色，绿色，蓝色（或简称RGB）。因此，该图像由248 x 400 x 3数字组成，总共297,600个数字。其中每个数字都是一个范围在0（黑色）到255（白色）的整数。我们的任务就是把这将近30万个数字转成像{cat}这样的单一的标签。</p>
 <p><img src="/img/17_07_30/001.png" alt=""></p>
 <blockquote>
@@ -420,7 +420,7 @@
 <li><strong>学习：</strong>我们的任务是使用训练集来了解每一个类别的样子。我们将此步骤称为<em>训练分类器（training a classifier）</em>，或者<em>学习模型（learning a model）</em>。</li>
 <li><strong>评估：</strong>最后，我们通过预测一组从未见过的新图像的标签来评估分类器的质量。然后，我们将这些图像的真实标签与分类器预测的图像进行比较。直观地说，我们希望达到的效果是大多数预测结果与真实答案（我们称之为ground truth）相匹配。</li>
 </ul>
-<h2 id="最邻近分类器（Nearest_Neighbor_Classifier）">最邻近分类器（Nearest Neighbor Classifier）</h2><p>我们将开发一种叫做<strong>最邻近分类器</strong>，来作为我们的第一个图片分类的实现。这种分类器与卷积网络无关，在实践中很少使用，但它可以使我们了解处理图像分类问题的基本方法。</p>
+<h2 id="最邻近分类器（Nearest-Neighbor-Classifier）"><a href="#最邻近分类器（Nearest-Neighbor-Classifier）" class="headerlink" title="最邻近分类器（Nearest Neighbor Classifier）"></a>最邻近分类器（Nearest Neighbor Classifier）</h2><p>我们将开发一种叫做<strong>最邻近分类器</strong>，来作为我们的第一个图片分类的实现。这种分类器与卷积网络无关，在实践中很少使用，但它可以使我们了解处理图像分类问题的基本方法。</p>
 <p><strong>示例图像分类数据集：CIFAR-10.</strong><a href="http://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="external">CIFAR-10</a>是一个流行的toy级别的图像分类数据集。这个数据集包含60,000个长宽都是32像素的小图片。每个图片都有一个标签（例如“飞机，汽车，鸟等”）。这60,000张图像被划分为50,000张图像的训练集和10,000张图像的测试集。在下面的图片中，您可以看到10个类别中的每个类别的10个随机示例图像：</p>
 <p><img src="/img/17_07_30/004.jpg" alt=""></p>
 <blockquote>
@@ -449,14 +449,14 @@
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">distances = <span class="built_in">np</span>.<span class="built_in">sqrt</span>(<span class="built_in">np</span>.<span class="built_in">sum</span>(<span class="built_in">np</span>.square(self.Xtr - X[i,:]), axis = <span class="number">1</span>))</div></pre></td></tr></table></figure>
 <p>请注意，在上面的计算中，我引入了<code>np.sqrt</code>，但在实际的最邻近应用中，我们可以省略求平方根的操作，因为平方根是一个单调函数。也就是说，它对距离的绝对值的差值起到了缩放的作用，但它依然保留了排序结果，因此对于最邻近问题来说，有没有这一步开根号的运算，其结果都是相同的。如果你在CIFAR-10上运行这个L2最邻近分类器，那么你得到的准确率是<strong>35.4%</strong>（比L1的结果略低一些）。</p>
 <p><strong>L1 vs L2.</strong>这两者之间存在什么样的差异呢？这是一个很有意思的问题。在特定的情况下，当涉及两个向量之间的差异时，L2距离比L1距离更糟一些。L1和L2距离（或等效地，一对图像之间的差异的L1 / L2范数）是<a href="http://planetmath.org/vectorpnorm" target="_blank" rel="external">p范数</a>最常用的特殊情况。</p>
-<h3 id="KNN分类器（k_-_Nearest_Neighbor_Classifier）">KNN分类器（k - Nearest Neighbor Classifier）</h3><p>您可能已经注意到，当我们想进行预测时，只使用最接近的一个图像的标签是很奇怪的。事实上，通过使用所谓的<strong>KNN分类器</strong>，人们可以做得更好。实际上这个想法很简单：不是在训练集中找到单个最接近的图像，我们将找到最接近的<strong>k</strong>个图像，并让他们对测试图像的标签进行投票。尤其是，当$k=1$的时候，我们KNN分类器实际上就是最邻近分类器。从直觉上来说，较高的<strong>k</strong>值有更平滑的效果，使得分类器更能抵抗离群值：</p>
+<h3 id="KNN分类器（k-Nearest-Neighbor-Classifier）"><a href="#KNN分类器（k-Nearest-Neighbor-Classifier）" class="headerlink" title="KNN分类器（k - Nearest Neighbor Classifier）"></a>KNN分类器（k - Nearest Neighbor Classifier）</h3><p>您可能已经注意到，当我们想进行预测时，只使用最接近的一个图像的标签是很奇怪的。事实上，通过使用所谓的<strong>KNN分类器</strong>，人们可以做得更好。实际上这个想法很简单：不是在训练集中找到单个最接近的图像，我们将找到最接近的<strong>k</strong>个图像，并让他们对测试图像的标签进行投票。尤其是，当$k=1$的时候，我们KNN分类器实际上就是最邻近分类器。从直觉上来说，较高的<strong>k</strong>值有更平滑的效果，使得分类器更能抵抗离群值：</p>
 <p><img src="/img/17_07_30/006.jpeg" alt=""></p>
 <blockquote>
 <p>上图中，使用二维散点图用三种颜色（红、蓝、绿）来表示三种类别，分别展示了原始数据在最邻近分类器上和在5-NN分类器上的效果。彩色的区域显示在L2距离下生成的<strong>判定边界</strong>。白色区域显示出不能被明确分类的点（即，类别投票至少被分为两类）。请注意，在使用最邻近分类器的情况下，异常值数据点（例如蓝色区域中的绿点）会产生可能不正确的预测的区块，而5-NN分类器在这种情况下会得到相对平滑的效果，这也意味着对测试数据的<strong>泛化</strong>能力更好（未被显示）。还要注意，5-NN图像中的灰色区域是由最邻近的几个邻居颜色不同导致的（例如，有两个是红色的，两个是蓝色的，一个是绿色的）。</p>
 </blockquote>
 <hr>
 <p>在实践中，当我们使用kNN分类器时，应该选择什么样的k值才合适呢？接下来我们来谈谈这个问题。</p>
-<h2 id="验证集，交叉验证，超参数调谐">验证集，交叉验证，超参数调谐</h2><p>kNN分类器需要指定一个k值，但是当k取什么值时效果最好呢？另外，我们还可以选择L1范数、L2范数，等，以及许多我们甚至没有考虑到的选择。这些选择被称为<strong>超参数（Hyperparameter）</strong>，他们在许多机器学习算法的设计过程中都会出现。通常这些值应该被设置为多少，并不是十分显而易见。</p>
+<h2 id="验证集，交叉验证，超参数调谐"><a href="#验证集，交叉验证，超参数调谐" class="headerlink" title="验证集，交叉验证，超参数调谐"></a>验证集，交叉验证，超参数调谐</h2><p>kNN分类器需要指定一个k值，但是当k取什么值时效果最好呢？另外，我们还可以选择L1范数、L2范数，等，以及许多我们甚至没有考虑到的选择。这些选择被称为<strong>超参数（Hyperparameter）</strong>，他们在许多机器学习算法的设计过程中都会出现。通常这些值应该被设置为多少，并不是十分显而易见。</p>
 <p>你也许会试图建议我们尝试许多不同的值，然后看看哪些值的效果最好。这的确是一个好办法，这也是我们接下来要做的，但这个过程必须非常仔细地进行。特别要说吗的是，<strong>我们不能使用测试集来调整参数</strong>。当您在设计一款机器学习算法时，您应该将将测试集视为一个非常宝贵的资源，在理想情况下，除非在测试阶段，都不要去触碰它。否则，你调整的参数将会作用域测试集上，这样做非常危险，因为当你开始在真实的数据上使用该模型时，你会发现性能显著降低。在实践过程中，我们称这种现象为<strong>过拟合</strong>测试集。关于这一现象的另一种解释是，如果你在测试集上调整了参数，你实际上是在把测试集当做训练集在使用，因此，你实现的模型的性能对于实际观察到的情况来说都是过于乐观的。但与之相反的，如果我们只是在最后的测试过程中使用一次测试集，那么它仍然是测量分类器<strong>泛化</strong>的一个很好的代理（我们将在以后的课程中看到更多关于泛化的讨论）。</p>
 <blockquote>
 <p>评估测试集在每次训练结束后只运行一次。</p>
@@ -480,7 +480,7 @@
 <p>常见的数据分割。给定训练集和测试集。训练集被分割为几等份（例如这里的五等分）。第1-4份数据作为训练集。一份作为验证集（例如这里的黄颜色的第五份），用来调节超参数。交叉验证更进一步的操作是迭代循环这5份数据，分别作为验证集的预测结果。这被称为5倍交叉验证。一旦模型被训练，并且确定了所有的最佳的超参数，最终在测试集（红色）上单词评估干模型。</p>
 </blockquote>
 <hr>
-<h2 id="最近邻分类器的优缺点">最近邻分类器的优缺点</h2><p>思考最邻近分类器的优缺点是一件值得做的事情。很明显，一个优点是：它的实现很简单，理解起来也很简单。此外，这个分类器不需要训练的时间，因为用于预测结果的数据全部来自于被存储的以及可能被索引的训练数据。但是，我们需要消耗一次测试的时间，因为对测试数据进行分类，我们需要将每个训练样本进行比较。这是一种不好的方式，因为在实践过程中，我们往往很在意测试运行的时间，而不太在意训练所花费的时间。事实上，我们将在稍后的深度神经网络课程中，我们将看到另一个极端：它会在训练样本的过程中花费巨大的开销，但一旦训练结束，在一个新的测试样本上执行分类任务时的开销是非常小的。这种模式在实践中更为理想。</p>
+<h2 id="最近邻分类器的优缺点"><a href="#最近邻分类器的优缺点" class="headerlink" title="最近邻分类器的优缺点"></a>最近邻分类器的优缺点</h2><p>思考最邻近分类器的优缺点是一件值得做的事情。很明显，一个优点是：它的实现很简单，理解起来也很简单。此外，这个分类器不需要训练的时间，因为用于预测结果的数据全部来自于被存储的以及可能被索引的训练数据。但是，我们需要消耗一次测试的时间，因为对测试数据进行分类，我们需要将每个训练样本进行比较。这是一种不好的方式，因为在实践过程中，我们往往很在意测试运行的时间，而不太在意训练所花费的时间。事实上，我们将在稍后的深度神经网络课程中，我们将看到另一个极端：它会在训练样本的过程中花费巨大的开销，但一旦训练结束，在一个新的测试样本上执行分类任务时的开销是非常小的。这种模式在实践中更为理想。</p>
 <p>除此之外，关于最邻近分类器的计算复杂度问题，一直是一个活跃的研究领域，并且有一些可以加速数据集中最邻近数据的查找的<strong>近似最邻近（Approximate Nearest Neighbor(ANN)）</strong>算法和库存在（例如<a href="http://www.cs.ubc.ca/research/flann/" target="_blank" rel="external">FLANN</a>）。这些算法允许在检索期间以其空间/时间复杂度来折衷最近相邻检索的正确性，并且通常依赖于涉及构建kdtree或运行k-means算法的预处理/索引阶段。</p>
 <p>在某些场景中，最近邻分类器有时可能是一个很好的选择（特别是如果数据是低维数据），但很少适用于实际的图像分类场景。其中一个问题是图像是高维度对象（即它们通常包含许多像素），并且高维空间的距离是非常不直观的。下面的图像说明了我们上面开发的基于像素的L2相似度与人类感知相似性的区别：</p>
 <p><img src="/img/17_07_30/009.png" alt=""></p>
@@ -495,7 +495,7 @@
 </blockquote>
 <hr>
 <p>特别地，请注意，彼此相邻的图像更多是图像的平均颜色分布或背景的类型相似的图像，而不是其相似的标签类型的图像。例如，可以看到一张狗的图片和一张青蛙的照片像邻，因为两者都是在白色背景上。理想情况下，我们希望所有10个类中的图像形成自己的集群，使得同一类的图像在彼此附近，而不管不相关的特征和变化（如背景）。然而，要获得这个属性，我们将不得不超越像素级别的去考虑问题。</p>
-<h2 id="概要">概要</h2><p>综上所述：</p>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>综上所述：</p>
 <ul>
 <li>我们引入了<strong>图像分类</strong>的问题，其中给出了一组全部标记为单一类别的图像。然后，我们要求为这些类别预测一组新的测试图像，并测量预测的准确性。</li>
 <li>我们引入了一个称为<strong>最近邻分类器</strong>的简单分类<strong>器</strong>。我们看到有与此分类器相关联的多个超参数（如k值或用于比较示例的距离类型），并没有明显的选择方式。</li>
@@ -506,7 +506,7 @@
 <li>最后，我们看到在原始像素值上使用L1或L2距离是不够的，因为这些距离与图像的背景和颜色分布相比，与其语义内容相比更强烈。</li>
 </ul>
 <p>在接下来的课程中，我们将着手解决这些挑战，最终达成90％精度的解决方案，让我们在完成学习后完全丢弃训练集，并允许我们在不到一毫秒内评估测试图像。</p>
-<h2 id="总结：在实践中应用kNN">总结：在实践中应用kNN</h2><p>如果您希望在实践中应用kNN（希望不是在图像上），请按如下步骤进行：</p>
+<h2 id="总结：在实践中应用kNN"><a href="#总结：在实践中应用kNN" class="headerlink" title="总结：在实践中应用kNN"></a>总结：在实践中应用kNN</h2><p>如果您希望在实践中应用kNN（希望不是在图像上），请按如下步骤进行：</p>
 <ul>
 <li>1.预处理数据：规范数据中的特征（例如图像中的一个像素），使其具有零均值和单位方差。我们将在后面的章节中更详细地介绍这一点，并且选择不覆盖本节中的数据规范化，因为图像中的像素通常是均匀的，并且不会展现出广泛不同的分布，从而减轻了数据规范化的需要。</li>
 <li>2.如果您的数据非常高，请考虑使用维度降低技术，如PCA（<a href="http://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank" rel="external">wiki ref</a>，<a href="http://cs229.stanford.edu/notes/cs229-notes10.pdf" target="_blank" rel="external">CS229ref</a>，<a href="http://www.bigdataexaminer.com/cgi-sys/suspendedpage.cgi" target="_blank" rel="external">博客引用</a>），甚至使用<a href="http://scikit-learn.org/stable/modules/random_projection.html" target="_blank" rel="external">随机投影</a>。</li>
@@ -515,7 +515,7 @@
 <li>5.如果您的kNN分类器运行时间过长，请考虑使用近似最近邻库（<a href="http://www.cs.ubc.ca/research/flann/" target="_blank" rel="external">FLANN</a>）来加速检索（以某种精度为代价）。</li>
 <li>6.记下提供最佳效果的超参数。有一个问题是您应该使用最佳超参数的完整训练集，因为如果要将验证数据折叠到训练集中（因为数据的大小会更大），最佳超参数可能会改变。实际上，在最终分类器中不使用验证数据更为清晰，并且在估计超参数时认为它被刻录。评估测试集上的最佳模型。上报在测试集上的准确率，这个结果作为kNN分类器的最终表现。</li>
 </ul>
-<h2 id="进一步阅读">进一步阅读</h2><p>这里有一些（可选）链接，您可能会发现更多有趣的东西：</p>
+<h2 id="进一步阅读"><a href="#进一步阅读" class="headerlink" title="进一步阅读"></a>进一步阅读</h2><p>这里有一些（可选）链接，您可能会发现更多有趣的东西：</p>
 <ul>
 <li><a href="http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf" target="_blank" rel="external">关于机器学习的一些有用的事情</a>，其中特别是第6部分是相关的，但这整篇文章都是值得一读的。</li>
 <li><a href="http://people.csail.mit.edu/torralba/shortCourseRLOC/index.html" target="_blank" rel="external">认可和学习对象类别</a>，ICCV 2005的短期课程对象分类。</li>
@@ -778,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像分类"><span class="nav-number">1.</span> <span class="nav-text">图像分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最邻近分类器（Nearest_Neighbor_Classifier）"><span class="nav-number">2.</span> <span class="nav-text">最邻近分类器（Nearest Neighbor Classifier）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KNN分类器（k_-_Nearest_Neighbor_Classifier）"><span class="nav-number">2.1.</span> <span class="nav-text">KNN分类器（k - Nearest Neighbor Classifier）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证集，交叉验证，超参数调谐"><span class="nav-number">3.</span> <span class="nav-text">验证集，交叉验证，超参数调谐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最近邻分类器的优缺点"><span class="nav-number">4.</span> <span class="nav-text">最近邻分类器的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">5.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结：在实践中应用kNN"><span class="nav-number">6.</span> <span class="nav-text">总结：在实践中应用kNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步阅读"><span class="nav-number">7.</span> <span class="nav-text">进一步阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像分类"><span class="nav-number">1.</span> <span class="nav-text">图像分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最邻近分类器（Nearest-Neighbor-Classifier）"><span class="nav-number">2.</span> <span class="nav-text">最邻近分类器（Nearest Neighbor Classifier）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KNN分类器（k-Nearest-Neighbor-Classifier）"><span class="nav-number">2.1.</span> <span class="nav-text">KNN分类器（k - Nearest Neighbor Classifier）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证集，交叉验证，超参数调谐"><span class="nav-number">3.</span> <span class="nav-text">验证集，交叉验证，超参数调谐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最近邻分类器的优缺点"><span class="nav-number">4.</span> <span class="nav-text">最近邻分类器的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">5.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结：在实践中应用kNN"><span class="nav-number">6.</span> <span class="nav-text">总结：在实践中应用kNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步阅读"><span class="nav-number">7.</span> <span class="nav-text">进一步阅读</span></a></li></ol></div>
             
 
           </div>
@@ -1113,7 +1113,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1125,7 +1125,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1133,6 +1133,8 @@
   
 
   
+  
+
 
   
 

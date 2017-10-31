@@ -393,8 +393,8 @@
 
       
         <p><a href="https://codelabs.developers.google.com/codelabs/android-perf-testing/index.html?index=..%2F..%2Findex#0" target="_blank" rel="external">https://codelabs.developers.google.com/codelabs/android-perf-testing/index.html?index=..%2F..%2Findex#0</a></p>
-<h2 id="1-概述">1.概述</h2><p>在这个codelab中，您将创建一个稳定和可重用的测试工具，在非常简单的现有应用程序上运行性能测试。线束将自动收集信息，如系统日志，位置请求，电池电压，图形配置等。测试失败也将记录到文件中，我们将向您展示如何编写基于性能的测试的示例。哇，这很多，对吧？Good luck!! :)</p>
-<h3 id="你会学到什么">你会学到什么</h3><ul>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在这个codelab中，您将创建一个稳定和可重用的测试工具，在非常简单的现有应用程序上运行性能测试。线束将自动收集信息，如系统日志，位置请求，电池电压，图形配置等。测试失败也将记录到文件中，我们将向您展示如何编写基于性能的测试的示例。哇，这很多，对吧？Good luck!! :)</p>
+<h3 id="你会学到什么"><a href="#你会学到什么" class="headerlink" title="你会学到什么"></a>你会学到什么</h3><ul>
 <li>如何快速导航某些Android性能工具</li>
 <li>如何使用Espresso测试框架编写单元和性能测试</li>
 <li>如何使用MonkeyRunner和Gradle来自动化测试工作流</li>
@@ -403,8 +403,8 @@
 <p>由于此Codelab中的移动部件和组件的数量相当大，因此您可以通过取消注释现有代码来启用每个部件。这将使得您熟悉线束，同时还使得您对自己的项目执行类似的步骤。我们将最终得到一个测试工具，逻辑上看起来像这样。</p>
 <p><img src="/img/17_01_14/003.png" alt=""></p>
 <p>让我们开始吧！</p>
-<h2 id="2-设置">2.设置</h2><p>首先，您需要设置您的开发环境。</p>
-<h3 id="你需要什么">你需要什么</h3><p>安装以下软件包的计算机：</p>
+<h2 id="2-设置"><a href="#2-设置" class="headerlink" title="2.设置"></a>2.设置</h2><p>首先，您需要设置您的开发环境。</p>
+<h3 id="你需要什么"><a href="#你需要什么" class="headerlink" title="你需要什么"></a>你需要什么</h3><p>安装以下软件包的计算机：</p>
 <ul>
 <li>最新版本的Android Studio</li>
 <li>最新版本的Android SDK</li>
@@ -427,8 +427,8 @@
 <p><strong>注意：</strong>线束将适用于较旧版本的Android，但某些数据将无法收集。</p>
 </blockquote>
 <p>在下一步中，我们将下载并构建测试应用程序。</p>
-<h2 id="3-运行并理解测试应用程序">3.运行并理解测试应用程序</h2><p>在此步骤中，我们在您的Android设备上构建并运行提供的测试应用程序。</p>
-<h3 id="获取代码">获取代码</h3><p>运行以下命令从GitHub下载示例代码。或者从<a href="https://github.com/googlecodelabs/android-perf-testing/archive/master.zip" target="_blank" rel="external">这里</a>直接作为zip文件下载。</p>
+<h2 id="3-运行并理解测试应用程序"><a href="#3-运行并理解测试应用程序" class="headerlink" title="3.运行并理解测试应用程序"></a>3.运行并理解测试应用程序</h2><p>在此步骤中，我们在您的Android设备上构建并运行提供的测试应用程序。</p>
+<h3 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h3><p>运行以下命令从GitHub下载示例代码。或者从<a href="https://github.com/googlecodelabs/android-perf-testing/archive/master.zip" target="_blank" rel="external">这里</a>直接作为zip文件下载。</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/googlecodelabs/android-perf-testing.git</div></pre></td></tr></table></figure>
 <p>当这样做之后，你的计算机上会有一个<code>android-perf-testing</code>文件夹。</p>
 <p>打开Android Studio。在快速启动屏幕上，点击“打开现有的Android Studio项目”（或选择<strong>File &gt; Open</strong>）。</p>
@@ -453,9 +453,9 @@
 <p>现在我们有示例应用程序的源代码导入和应用程序构建和运行。在我们自动执行某些测试之前，让我们快速了解应用的效果以及我们通常用于诊断性能问题的工具，然后我们将更好地准备自动执行这些步骤。</p>
 <blockquote>
 <p><strong>重要提示，在下一步之前，确定你：</strong></p>
-<pre><code>- 使用Android Studio窗口顶部的“<span class="keyword">*</span><span class="keyword">*</span>Run<span class="keyword">*</span><span class="keyword">*</span>”图标部署示例应用程序。
+<pre><code>- 使用Android Studio窗口顶部的“**Run**”图标部署示例应用程序。
 </code></pre></blockquote>
-<h2 id="4-练习包含的应用程序的性能问题">4.练习包含的应用程序的性能问题</h2><p>我们将手动检查应用程序中的性能问题。如果我们不了解我们正在寻找什么，我们不能自动进行性能测试，所以让我们手动寻找一些jank。</p>
+<h2 id="4-练习包含的应用程序的性能问题"><a href="#4-练习包含的应用程序的性能问题" class="headerlink" title="4.练习包含的应用程序的性能问题"></a>4.练习包含的应用程序的性能问题</h2><p>我们将手动检查应用程序中的性能问题。如果我们不了解我们正在寻找什么，我们不能自动进行性能测试，所以让我们手动寻找一些jank。</p>
 <p>再次启动应用程式，然后轻触<strong>Open List View</strong>按钮。您将看到一个如下所示的屏幕：</p>
 <p><img src="/img/17_01_14/010.png" alt=""></p>
 <p>滚动到列表的底部;该应用程序随着你的滚动的距离变得更加jankier。这是因为应用程序无法为每16毫秒（大多数与UI相关的性能问题的主要原因）提供渲染子系统一帧;因此，Android正在跳过这一帧并导致视觉上的jank。当您向下滚动页面时，应用程序会跳过更多帧。如果你足够持久，你甚至会注意到它可能崩溃，直到到达列表的底部。</p>
@@ -475,11 +475,11 @@
 <li>使用与启用GPU渲染配置文件相同的过程停用GPU渲染配置文件。</li>
 </ul>
 </blockquote>
-<h2 id="5-使用Systrace">5.使用Systrace</h2><p>我们不会深入到Systrace，但我们将调试该应用程序与systrace快速诊断jank问题。此步骤还将确保Systrace在您的系统上正确配置，但如果您精通Systrace，则可以跳过此步骤。</p>
-<h3 id="什么是Systrace？">什么是Systrace？</h3><p>见<a href="http://developer.android.com/tools/help/systrace.html" target="_blank" rel="external">Android文档</a>:</p>
+<h2 id="5-使用Systrace"><a href="#5-使用Systrace" class="headerlink" title="5.使用Systrace"></a>5.使用Systrace</h2><p>我们不会深入到Systrace，但我们将调试该应用程序与systrace快速诊断jank问题。此步骤还将确保Systrace在您的系统上正确配置，但如果您精通Systrace，则可以跳过此步骤。</p>
+<h3 id="什么是Systrace？"><a href="#什么是Systrace？" class="headerlink" title="什么是Systrace？"></a>什么是Systrace？</h3><p>见<a href="http://developer.android.com/tools/help/systrace.html" target="_blank" rel="external">Android文档</a>:</p>
 <p><em>Systrace是一个工具，它将帮助您通过捕获和显示应用程序进程和其他Android系统进程的执行时间来分析应用程序的性能。</em></p>
-<h3 id="我们用它做什么？">我们用它做什么？</h3><p>我们正在使用Systrace在我们的应用程序中查找性能问题。当我们使用我们的应用程序运行Systrace时，它会从Android中收集数据，然后将其格式化为一个html文件，我们可以在网络浏览器中查看。当我们打开Systrace结果时，我们希望它能够帮助我们解决与我们的应用程序相关的一些基本问题。到目前为止，我们所知道的是，我们的应用程序是janky;如果工具帮助我们找出原因，这将是很好的。</p>
-<h3 id="如何运行Systrace">如何运行Systrace</h3><p>点击Android Studio窗口左下角的“<strong>Terminal</strong>”文本按钮。</p>
+<h3 id="我们用它做什么？"><a href="#我们用它做什么？" class="headerlink" title="我们用它做什么？"></a>我们用它做什么？</h3><p>我们正在使用Systrace在我们的应用程序中查找性能问题。当我们使用我们的应用程序运行Systrace时，它会从Android中收集数据，然后将其格式化为一个html文件，我们可以在网络浏览器中查看。当我们打开Systrace结果时，我们希望它能够帮助我们解决与我们的应用程序相关的一些基本问题。到目前为止，我们所知道的是，我们的应用程序是janky;如果工具帮助我们找出原因，这将是很好的。</p>
+<h3 id="如何运行Systrace"><a href="#如何运行Systrace" class="headerlink" title="如何运行Systrace"></a>如何运行Systrace</h3><p>点击Android Studio窗口左下角的“<strong>Terminal</strong>”文本按钮。</p>
 <p><img src="/img/17_01_14/012.png" alt=""></p>
 <p>运行以下命令：</p>
 <p>Mac / Linux:</p>
@@ -514,16 +514,16 @@
 <p>您可以在浏览器窗口底部再次找到非绿色警报的说明。特别是，查找警报，指示您的应用程序缺少可怕的16ms时间窗口以产生一帧。警报还标记其他问题，如不回收视图或不正确的时间布局充气。点击此行中的一些红色提醒，直到您也找到一个<strong>Inflation during ListView recycling</strong>的描述。应该有很多。</p>
 <p>想想为什么它可能告诉你。你将如何解决它？</p>
 <p>每当你有性能问题，Systrace是你应该开始寻找问题的主要地方之一。在这里我们验证帧被丢弃，我们发现我们的应用程序的问题。但是我们真的不应该通过手动协调我们的测试运行与Systrace来找到这个问题。在下一步中，我们将自动执行我们执行的测试，然后我们将跟踪自动化Systrace。</p>
-<h2 id="Espresso自动化UI测试">Espresso自动化UI测试</h2><p>现在，让我们开始自动化我们之前执行的手动测试：打开<code>ListView</code>并滚动整个列表。</p>
+<h2 id="Espresso自动化UI测试"><a href="#Espresso自动化UI测试" class="headerlink" title="Espresso自动化UI测试"></a>Espresso自动化UI测试</h2><p>现在，让我们开始自动化我们之前执行的手动测试：打开<code>ListView</code>并滚动整个列表。</p>
 <p>作为一个快速的Android测试引擎：通常有两种类型的测试为Android应用程序编写。单元测试通常执行离散的代码位。Android仪表化测试练习应用程序组件，以及通常模拟Android用户输入和/或模拟零件，没有专门测试。<a href="http://developer.android.com/tools/testing-support-library/index.html#Espresso" target="_blank" rel="external">Espressolibrary</a>用于协助Android仪表化测试。</p>
-<h3 id="Espresso_Test_Library">Espresso Test Library</h3><p>Espresso是一个测试库，提供用于编写​​UI测试的API，以模拟单个应用程序中的用户交互。大多数用户交互可以在使用Espresso和<a href="http://developer.android.com/tools/testing-support-library/index.html" target="_blank" rel="external">Android测试支持库</a>的其他部分的测试中快速简洁地编写脚本。</p>
+<h3 id="Espresso-Test-Library"><a href="#Espresso-Test-Library" class="headerlink" title="Espresso Test Library"></a>Espresso Test Library</h3><p>Espresso是一个测试库，提供用于编写​​UI测试的API，以模拟单个应用程序中的用户交互。大多数用户交互可以在使用Espresso和<a href="http://developer.android.com/tools/testing-support-library/index.html" target="_blank" rel="external">Android测试支持库</a>的其他部分的测试中快速简洁地编写脚本。</p>
 <blockquote>
 <p>注意：有时Android测试需要特定的架构设计，以允许模拟Android框架的部分。这是一个复杂的主题，在这个特定的代码库的范围之外。</p>
 </blockquote>
-<h3 id="Espresso_Library依赖">Espresso Library依赖</h3><p>使用Espresso的第一步是向项目添加库依赖项。通过在依赖关系部分中的<code>app/build.gradle</code>文件中取消注释以下行来添加库。这个片段包括一对其他经常被用到的与Espresso关联的库。</p>
+<h3 id="Espresso-Library依赖"><a href="#Espresso-Library依赖" class="headerlink" title="Espresso Library依赖"></a>Espresso Library依赖</h3><p>使用Espresso的第一步是向项目添加库依赖项。通过在依赖关系部分中的<code>app/build.gradle</code>文件中取消注释以下行来添加库。这个片段包括一对其他经常被用到的与Espresso关联的库。</p>
 <figure class="highlight roboconf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">androidTestCompile "com.android.support:support-annotations:$&#123;<span class="attribute">supportLibVersion&#125;"</span></div><div class="line">androidTestCompile 'com.android.support.test:runner:0.5'</div><div class="line">androidTestCompile 'com<span class="variable">.android</span><span class="variable">.support</span><span class="variable">.test</span>:rules:0.5'</div><div class="line">androidTestCompile 'com<span class="variable">.android</span><span class="variable">.support</span><span class="variable">.test</span><span class="variable">.espresso</span>:espresso-core:2.2.1'</div></pre></td></tr></table></figure>
 <p>每次编辑Gradle脚本时，Android Studio都会询问您是否要在文件查看器顶部的黄色栏中与Gradle进行同步。单击<strong>Sync Now</strong>，然后等待项目的构建和重新配置。</p>
-<h3 id="编写Espresso测试">编写Espresso测试</h3><p>现在我们将编写一个测试来滚动应用程序<code>ListView</code>，就像我们之前手动操作一样。</p>
+<h3 id="编写Espresso测试"><a href="#编写Espresso测试" class="headerlink" title="编写Espresso测试"></a>编写Espresso测试</h3><p>现在我们将编写一个测试来滚动应用程序<code>ListView</code>，就像我们之前手动操作一样。</p>
 <p>在<code>app/src/androidTest/java/</code>中导航到<code>androidTest</code>源目录。一些测试类已在<code>com.google.android.perftesting</code>包中定义。打开<code>SimpleListActivityTest</code>类。这个类保存你将为<code>SimpleListActivity</code>类逻辑编写的测试。</p>
 <p><img src="/img/17_01_14/018.png" alt=""></p>
 <p>取消注释在文件中定义的<code>ActivityTestRule</code>（见下文）。此JUnit规则确保在运行类中定义的任何测试之前创建指定的activity。</p>
@@ -535,7 +535,7 @@
 <blockquote>
 <p><strong>注意：</strong> <code>@PerfTest</code>注解用于隔离应包括在性能测试中的测试和类。</p>
 </blockquote>
-<h3 id="运行测试">运行测试</h3><p>要运行所有应用程序的配置，您应当运行<code>connectedCheck</code> Gradle任务。在Android Studio中有几种方法可以运行此任务。记住确保您的测试设备的屏幕在设备上运行测试之前已解锁。</p>
+<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>要运行所有应用程序的配置，您应当运行<code>connectedCheck</code> Gradle任务。在Android Studio中有几种方法可以运行此任务。记住确保您的测试设备的屏幕在设备上运行测试之前已解锁。</p>
 <ul>
 <li>在屏幕的最右侧有一个Gradle文本按钮，可用于打开Gradle任务导航器。在<strong>android-perf-testing &gt; android-perf-testing &gt; Tasks &gt; verification</strong>路径结构下，您可以双击<code>connectedCheck</code>任务。</li>
 </ul>
@@ -567,8 +567,8 @@
 </ul>
 </blockquote>
 <p>让我们继续自动化Systrace，在测试中检测jank。</p>
-<h2 id="7-使用MonkeyRunner自动化Systrace">7.使用MonkeyRunner自动化Systrace</h2><p>自动化systrace是有点棘手，因为它需要与测试套件并行运行。Android开发套件附带一个名为<a href="http://developer.android.com/tools/help/monkeyrunner_concepts.html" target="_blank" rel="external">MonkeyRunner</a>的工具，我们可以使用它。 MonkeyRunner允许您使用Python 2.7语法创建脚本，允许使用连接的Android设备进行编排。这允许我们启动Systrace，然后在并行线程（以及其他）中启动测试套件。</p>
-<h3 id="MonkeyRunner脚本">MonkeyRunner脚本</h3><p>自动化systrace和测试套件的脚本相当长，所以它被包含在repo中作为一个名为<a href="https://github.com/googlecodelabs/android-perf-testing/blob/master/run_perf_tests.py" target="_blank" rel="external">run_perf_tests.py</a>的文件。在脚本末尾查看函数调用调用，作为自动化所需逻辑的摘要。你会注意到脚本遵循这个一般结构：</p>
+<h2 id="7-使用MonkeyRunner自动化Systrace"><a href="#7-使用MonkeyRunner自动化Systrace" class="headerlink" title="7.使用MonkeyRunner自动化Systrace"></a>7.使用MonkeyRunner自动化Systrace</h2><p>自动化systrace是有点棘手，因为它需要与测试套件并行运行。Android开发套件附带一个名为<a href="http://developer.android.com/tools/help/monkeyrunner_concepts.html" target="_blank" rel="external">MonkeyRunner</a>的工具，我们可以使用它。 MonkeyRunner允许您使用Python 2.7语法创建脚本，允许使用连接的Android设备进行编排。这允许我们启动Systrace，然后在并行线程（以及其他）中启动测试套件。</p>
+<h3 id="MonkeyRunner脚本"><a href="#MonkeyRunner脚本" class="headerlink" title="MonkeyRunner脚本"></a>MonkeyRunner脚本</h3><p>自动化systrace和测试套件的脚本相当长，所以它被包含在repo中作为一个名为<a href="https://github.com/googlecodelabs/android-perf-testing/blob/master/run_perf_tests.py" target="_blank" rel="external">run_perf_tests.py</a>的文件。在脚本末尾查看函数调用调用，作为自动化所需逻辑的摘要。你会注意到脚本遵循这个一般结构：</p>
 <ul>
 <li>1.检查环境变量</li>
 <li>2.定义函数</li>
@@ -606,7 +606,7 @@
 <p><strong>重要：</strong>该脚本将在编码表的这个阶段报告“OVERALL”故障，因为并不是所有的测试配件都已就位。您可能还会收到关于“流”故障的错误或测试套件可能失败。这些错误在这一点上也是正常的。</p>
 <p>重要的是确保您在项目中的<code>perftesting/&lt;DeviceID&gt;/testdata/</code>目录中有一个<code>trace.html</code>文件。还要仔细观察<code>perftesting/&lt;DeviceID&gt;/logs/files</code>，以确保<code>run_perf_tests.py</code>脚本中的命令没有失败。您的<code>perftesting/&lt;DeviceID&gt;/testdata/</code>目录中目前应该没有文件。</p>
 </blockquote>
-<h3 id="为MonkeyRunner添加Gradle任务">为MonkeyRunner添加Gradle任务</h3><p>现在，我们让脚本对开发环境更加原生，所以我们可以从Gradle和/或Android Studio运行它。最简单的方法是创建一个将运行monkeyrunner脚本的Gradle任务。在Gradle中，我们可以通过在<code>buildSrc</code>目录中定义一个新任务来为一个典型的项目做到这一点;让我们这样做。</p>
+<h3 id="为MonkeyRunner添加Gradle任务"><a href="#为MonkeyRunner添加Gradle任务" class="headerlink" title="为MonkeyRunner添加Gradle任务"></a>为MonkeyRunner添加Gradle任务</h3><p>现在，我们让脚本对开发环境更加原生，所以我们可以从Gradle和/或Android Studio运行它。最简单的方法是创建一个将运行monkeyrunner脚本的Gradle任务。在Gradle中，我们可以通过在<code>buildSrc</code>目录中定义一个新任务来为一个典型的项目做到这一点;让我们这样做。</p>
 <p>导航到<code>buildSrc/src/main/groovy/com/google/android/perftesting/RunLocalPerfTestsTask</code>并取消注释那里的代码来实现任务。Android Studio可能会在与重复类定义相关的文件编辑窗口中报告这些Gradle任务上的构建错误，因此可以忽略这些错误。</p>
 <p><img src="/img/17_01_14/024.png" alt=""></p>
 <p>你也应该仔细阅读<code>buildSrc/src/main/groovy/com/google/android/perftesting/PerfTestTaskGeneratorPlugin</code>。这是一个自定义Gradle插件，它查询连接的Android设备，然后为每个连接的设备设置一个<code>RunLocalPerfTestsTask</code>Gradle任务。自定义Gradle插件还创建一个额外的通用<code>RunLocalPerfTests</code>任务，在运行时执行每个特定于设备的gradle任务。</p>
@@ -624,8 +624,8 @@
 <p>你现在应该有一个运行配置<code>runLocalPerfTests</code>在你的gradle边栏，如下图所示：</p>
 <p><img src="/img/17_01_14/027.png" alt=""></p>
 <p>赞！！现在，您可以在Android Studio中连接到计算机的设备上运行性能测试，并且在对源代码进行更改时，应用和测试APK都会根据需要重新构建。您还在<code>testdata</code>目录中有Systrace <code>trace.html</code>文件以进行调试，但是目前您没有关于正在运行的测试的大量数据。让我们解决这个问题。</p>
-<h2 id="8-收集更多数据并添加性能约束">8.收集更多数据并添加性能约束</h2><p>我们已经启用了Systrace和测试执行，但我们需要更多的信息。此外，由于我们现在通过MonkeyRunner运行测试，我们失去了测试成功/失败信息。让我们解决这个问题。</p>
-<h3 id="收集更多数据">收集更多数据</h3><p>团队开发了一些我们可以使用的JUnit规则示例。这些规则在<code>com.google.android.perftesting.testrules</code>包中的<code>app/src/androidTest/java/</code>目录中可用。让我们将这些规则添加到现有测试中。</p>
+<h2 id="8-收集更多数据并添加性能约束"><a href="#8-收集更多数据并添加性能约束" class="headerlink" title="8.收集更多数据并添加性能约束"></a>8.收集更多数据并添加性能约束</h2><p>我们已经启用了Systrace和测试执行，但我们需要更多的信息。此外，由于我们现在通过MonkeyRunner运行测试，我们失去了测试成功/失败信息。让我们解决这个问题。</p>
+<h3 id="收集更多数据"><a href="#收集更多数据" class="headerlink" title="收集更多数据"></a>收集更多数据</h3><p>团队开发了一些我们可以使用的JUnit规则示例。这些规则在<code>com.google.android.perftesting.testrules</code>包中的<code>app/src/androidTest/java/</code>目录中可用。让我们将这些规则添加到现有测试中。</p>
 <p>导航到<code>app/src/androidTests</code>目录。打开<code>SimpleListActivityTest</code>类并取消注解<code>@Rule</code>注释的成员变量，其中类名以<code>Enable</code>开头，例如下面的行。同时解决导入错误。</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Rule</span></div><div class="line"><span class="keyword">public</span> EnableTestTracing mEnableTestTracing = <span class="keyword">new</span> EnableTestTracing();</div><div class="line">    </div><div class="line"><span class="meta">@Rule</span></div><div class="line"><span class="keyword">public</span> EnablePostTestDumpsys mEnablePostTestDumpsys = <span class="keyword">new</span> EnablePostTestDumpsys();</div><div class="line"></div><div class="line"><span class="meta">@Rule</span></div><div class="line"><span class="keyword">public</span> EnableLogcatDump mEnableLogcatDump = <span class="keyword">new</span> EnableLogcatDump();</div><div class="line"></div><div class="line"><span class="meta">@Rule</span></div><div class="line"><span class="keyword">public</span> EnableNetStatsDump mEnableNetStatsDump = <span class="keyword">new</span> EnableNetStatsDump();</div></pre></td></tr></table></figure>
 <p>这些规则中的每一个导致记录不同的数据集。</p>
@@ -640,13 +640,13 @@
 <p>现在导航到同一目录中的<code>TestListener</code>类。取消注释<code>testRunStarted</code>和<code>testRunFinished</code>方法的代码，解决导入构建错误。</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">testRunStarted</span><span class="params">(Description description)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Log.w(LOG_TAG, <span class="string">"Test run started."</span>);</div><div class="line">    <span class="comment">// Cleanup data from past test runs.</span></div><div class="line">    deleteExistingTestFilesInAppData();</div><div class="line">   deleteExistingTestFilesInExternalData();</div><div class="line">....</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">testRunFinished</span><span class="params">(Result result)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Log.w(LOG_TAG, <span class="string">"Test run finished."</span>);</div><div class="line">....</div></pre></td></tr></table></figure>
 <p>这将启用电池统计信息收集，测试失败日志记录，并且在测试完成后，此代码还将所有正在收集的日志文件移动到可访问的位置，在那里可以通过简单的adb命令从主机计算机拉出。</p>
-<h3 id="再次运行测试">再次运行测试</h3><p>接下来，使用Android Studio窗口顶部的<code>runLocalPerfTests</code><strong>Run Configuration</strong>再次运行性能测试。</p>
+<h3 id="再次运行测试"><a href="#再次运行测试" class="headerlink" title="再次运行测试"></a>再次运行测试</h3><p>接下来，使用Android Studio窗口顶部的<code>runLocalPerfTests</code><strong>Run Configuration</strong>再次运行性能测试。</p>
 <p>您可能会注意到，monkeyrunner脚本已经标记更多的问题，因为更多的文件现在被拉到，因此，可以执行检查。导航到项目根目录中的<code>testdata</code>目录。你会发现相当多的信息现在被记录到目录结构类似于测试类包结构的目录。浏览这些文件以查看正在记录的信息。</p>
 <blockquote>
 <p><strong>重要：</strong>如果此时没有看到新文件，请转到下一步，解决性能问题，然后再次查找文件。</p>
 </blockquote>
 <p>在下一步中，我们将查看当前脚本的输出，并从线束的信息开始修复性能问题。</p>
-<h2 id="9-修复性能问题">9.修复性能问题</h2><p>在上次性能测试运行中，您遇到了性能问题。让我们现在利用线束收集的信息来解决这些问题。</p>
+<h2 id="9-修复性能问题"><a href="#9-修复性能问题" class="headerlink" title="9.修复性能问题"></a>9.修复性能问题</h2><p>在上次性能测试运行中，您遇到了性能问题。让我们现在利用线束收集的信息来解决这些问题。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="number">1</span>) scrollFullList(com<span class="selector-class">.google</span><span class="selector-class">.android</span><span class="selector-class">.perftesting</span><span class="selector-class">.SimpleListActivityTest</span>)</div><div class="line">Script: org<span class="selector-class">.junit</span><span class="selector-class">.runners</span><span class="selector-class">.model</span><span class="selector-class">.TestTimedOutException</span>: test timed out after <span class="number">2500</span> milliseconds</div><div class="line">Script:         at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.sleep</span>(Native Method)</div><div class="line">Script:         at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.sleep</span>(Thread<span class="selector-class">.java</span>:<span class="number">1031</span>)</div><div class="line">Script:         at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.sleep</span>(Thread<span class="selector-class">.java</span>:<span class="number">985</span>)</div><div class="line">Script:         at com<span class="selector-class">.google</span><span class="selector-class">.android</span><span class="selector-class">.perftesting</span><span class="selector-class">.SimpleListActivityTest</span><span class="selector-class">.scrollFullList</span>(SimpleListActivityTest<span class="selector-class">.java</span>:<span class="number">101</span>)</div><div class="line">Script:         at java<span class="selector-class">.lang</span><span class="selector-class">.reflect</span><span class="selector-class">.Method</span><span class="selector-class">.invoke</span>(Native Method)</div><div class="line">Script:         at org<span class="selector-class">.junit</span><span class="selector-class">.runners</span><span class="selector-class">.model</span><span class="selector-class">.FrameworkMethod</span>$<span class="number">1</span>.runReflectiveCall(FrameworkMethod<span class="selector-class">.java</span>:<span class="number">50</span>)</div><div class="line">Script:         at org<span class="selector-class">.junit</span><span class="selector-class">.internal</span><span class="selector-class">.runners</span><span class="selector-class">.model</span><span class="selector-class">.ReflectiveCallable</span><span class="selector-class">.run</span>(ReflectiveCallable<span class="selector-class">.java</span>:<span class="number">12</span>)</div><div class="line">Script:         at org<span class="selector-class">.junit</span><span class="selector-class">.runners</span><span class="selector-class">.model</span><span class="selector-class">.FrameworkMethod</span><span class="selector-class">.invokeExplosively</span>(FrameworkMethod<span class="selector-class">.java</span>:<span class="number">47</span>)</div><div class="line">Script:         at org<span class="selector-class">.junit</span><span class="selector-class">.internal</span><span class="selector-class">.runners</span><span class="selector-class">.statements</span><span class="selector-class">.InvokeMethod</span><span class="selector-class">.evaluate</span>(InvokeMethod<span class="selector-class">.java</span>:<span class="number">17</span>)</div><div class="line">Script:         at org<span class="selector-class">.junit</span><span class="selector-class">.internal</span><span class="selector-class">.runners</span><span class="selector-class">.statements</span><span class="selector-class">.FailOnTimeout</span><span class="variable">$CallableStatement</span>.call(FailOnTimeout<span class="selector-class">.java</span>:<span class="number">298</span>)</div><div class="line">Script:         at org<span class="selector-class">.junit</span><span class="selector-class">.internal</span><span class="selector-class">.runners</span><span class="selector-class">.statements</span><span class="selector-class">.FailOnTimeout</span><span class="variable">$CallableStatement</span>.call(FailOnTimeout<span class="selector-class">.java</span>:<span class="number">292</span>)</div><div class="line">Script:         at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.FutureTask</span><span class="selector-class">.run</span>(FutureTask<span class="selector-class">.java</span>:<span class="number">237</span>)</div><div class="line">Script:         at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.run</span>(Thread<span class="selector-class">.java</span>:<span class="number">818</span>)</div></pre></td></tr></table></figure>
 <p>此错误也记录在<code>testdata</code>目录的子目录中名为<code>test.failure.log</code>的文件中，该文件对应于测试类和方法名称。</p>
 <p>如果你打开<code>gfxinfo.dumpsys.log</code>文件，你会看到一行注明了JANK过量的存在（样本中下方约92％）。</p>
@@ -664,20 +664,20 @@
 <p>变成这样：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Glide</span><span class="selector-class">.with</span>(<span class="selector-tag">contactImage</span><span class="selector-class">.getContext</span>())</div><div class="line">       <span class="selector-class">.load</span>(<span class="selector-tag">R</span><span class="selector-class">.drawable</span><span class="selector-class">.bbq</span>)</div><div class="line">       <span class="selector-class">.fitCenter</span>()</div><div class="line">       <span class="selector-class">.into</span>(<span class="selector-tag">contactImage</span>);</div></pre></td></tr></table></figure>
 <p>再次运行perf测试，并在web浏览器中刷新<code>trace.html</code>文件。你可以继续优化，但你得到了一种方法。现在，您有一个可重复的方式标记问题，然后运行测试，以查看具体的更改是否有所作为。</p>
-<h2 id="10-总结">10.总结</h2><p>恭喜！你已经完成了codelab。让我们再花几分钟来总结你学到的东西和一些关键的事情要记住。</p>
-<h3 id="我们所涵盖的">我们所涵盖的</h3><ul>
+<h2 id="10-总结"><a href="#10-总结" class="headerlink" title="10.总结"></a>10.总结</h2><p>恭喜！你已经完成了codelab。让我们再花几分钟来总结你学到的东西和一些关键的事情要记住。</p>
+<h3 id="我们所涵盖的"><a href="#我们所涵盖的" class="headerlink" title="我们所涵盖的"></a>我们所涵盖的</h3><ul>
 <li>如何构建一个可重复使用的测试工具，用于检测Android应用程序中的jank和性能问题，并且可以从Android Studio中进行管理</li>
 <li>如何使用MonkeyRunner自动化测试框架的大多数功能</li>
 <li>如何使用性能约束和JUnit规则注解测试</li>
 <li>如何在测试周期中以各种粒度从测试收集各种数据</li>
 </ul>
-<h3 id="需要记住的事情">需要记住的事情</h3><ul>
+<h3 id="需要记住的事情"><a href="#需要记住的事情" class="headerlink" title="需要记住的事情"></a>需要记住的事情</h3><ul>
 <li>必需是 Debuggable apk</li>
 <li>对于大多数数据的统计，需要Android Marshmallow设备</li>
 <li>使用项目定义的PerfTest注释来限制测试的范围</li>
 <li>Systrace当前设置为在示例中运行10秒，您可能需要延长此时间。</li>
 </ul>
-<h3 id="了解更多">了解更多</h3><p>如果您想详细了解效果测试，请参阅Android开发者文档网站上的<a href="https://developer.android.com/preview/testing/performance.html" target="_blank" rel="external">测试展示效果</a>。</p>
+<h3 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h3><p>如果您想详细了解效果测试，请参阅Android开发者文档网站上的<a href="https://developer.android.com/preview/testing/performance.html" target="_blank" rel="external">测试展示效果</a>。</p>
 <p>如果您想了解更多关于Systrace的信息，请参阅<a href="http://developer.android.com/tools/help/systrace.html" target="_blank" rel="external">官方文档</a>。</p>
 <p>如果你对Espresso和UI测试更好奇，请查看这些<a href="http://developer.android.com/training/testing/ui-testing/espresso-testing.html" target="_blank" rel="external">官方文档</a>。</p>
 
@@ -936,7 +936,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#你会学到什么"><span class="nav-number">1.1.</span> <span class="nav-text">你会学到什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-设置"><span class="nav-number">2.</span> <span class="nav-text">2.设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#你需要什么"><span class="nav-number">2.1.</span> <span class="nav-text">你需要什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运行并理解测试应用程序"><span class="nav-number">3.</span> <span class="nav-text">3.运行并理解测试应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取代码"><span class="nav-number">3.1.</span> <span class="nav-text">获取代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-练习包含的应用程序的性能问题"><span class="nav-number">4.</span> <span class="nav-text">4.练习包含的应用程序的性能问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-使用Systrace"><span class="nav-number">5.</span> <span class="nav-text">5.使用Systrace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Systrace？"><span class="nav-number">5.1.</span> <span class="nav-text">什么是Systrace？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们用它做什么？"><span class="nav-number">5.2.</span> <span class="nav-text">我们用它做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何运行Systrace"><span class="nav-number">5.3.</span> <span class="nav-text">如何运行Systrace</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Espresso自动化UI测试"><span class="nav-number">6.</span> <span class="nav-text">Espresso自动化UI测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Espresso_Test_Library"><span class="nav-number">6.1.</span> <span class="nav-text">Espresso Test Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Espresso_Library依赖"><span class="nav-number">6.2.</span> <span class="nav-text">Espresso Library依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写Espresso测试"><span class="nav-number">6.3.</span> <span class="nav-text">编写Espresso测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试"><span class="nav-number">6.4.</span> <span class="nav-text">运行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-使用MonkeyRunner自动化Systrace"><span class="nav-number">7.</span> <span class="nav-text">7.使用MonkeyRunner自动化Systrace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MonkeyRunner脚本"><span class="nav-number">7.1.</span> <span class="nav-text">MonkeyRunner脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为MonkeyRunner添加Gradle任务"><span class="nav-number">7.2.</span> <span class="nav-text">为MonkeyRunner添加Gradle任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-收集更多数据并添加性能约束"><span class="nav-number">8.</span> <span class="nav-text">8.收集更多数据并添加性能约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收集更多数据"><span class="nav-number">8.1.</span> <span class="nav-text">收集更多数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再次运行测试"><span class="nav-number">8.2.</span> <span class="nav-text">再次运行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-修复性能问题"><span class="nav-number">9.</span> <span class="nav-text">9.修复性能问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-总结"><span class="nav-number">10.</span> <span class="nav-text">10.总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们所涵盖的"><span class="nav-number">10.1.</span> <span class="nav-text">我们所涵盖的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要记住的事情"><span class="nav-number">10.2.</span> <span class="nav-text">需要记住的事情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解更多"><span class="nav-number">10.3.</span> <span class="nav-text">了解更多</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#你会学到什么"><span class="nav-number">1.1.</span> <span class="nav-text">你会学到什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-设置"><span class="nav-number">2.</span> <span class="nav-text">2.设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#你需要什么"><span class="nav-number">2.1.</span> <span class="nav-text">你需要什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运行并理解测试应用程序"><span class="nav-number">3.</span> <span class="nav-text">3.运行并理解测试应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取代码"><span class="nav-number">3.1.</span> <span class="nav-text">获取代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-练习包含的应用程序的性能问题"><span class="nav-number">4.</span> <span class="nav-text">4.练习包含的应用程序的性能问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-使用Systrace"><span class="nav-number">5.</span> <span class="nav-text">5.使用Systrace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Systrace？"><span class="nav-number">5.1.</span> <span class="nav-text">什么是Systrace？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们用它做什么？"><span class="nav-number">5.2.</span> <span class="nav-text">我们用它做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何运行Systrace"><span class="nav-number">5.3.</span> <span class="nav-text">如何运行Systrace</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Espresso自动化UI测试"><span class="nav-number">6.</span> <span class="nav-text">Espresso自动化UI测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Espresso-Test-Library"><span class="nav-number">6.1.</span> <span class="nav-text">Espresso Test Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Espresso-Library依赖"><span class="nav-number">6.2.</span> <span class="nav-text">Espresso Library依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写Espresso测试"><span class="nav-number">6.3.</span> <span class="nav-text">编写Espresso测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试"><span class="nav-number">6.4.</span> <span class="nav-text">运行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-使用MonkeyRunner自动化Systrace"><span class="nav-number">7.</span> <span class="nav-text">7.使用MonkeyRunner自动化Systrace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MonkeyRunner脚本"><span class="nav-number">7.1.</span> <span class="nav-text">MonkeyRunner脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为MonkeyRunner添加Gradle任务"><span class="nav-number">7.2.</span> <span class="nav-text">为MonkeyRunner添加Gradle任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-收集更多数据并添加性能约束"><span class="nav-number">8.</span> <span class="nav-text">8.收集更多数据并添加性能约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收集更多数据"><span class="nav-number">8.1.</span> <span class="nav-text">收集更多数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再次运行测试"><span class="nav-number">8.2.</span> <span class="nav-text">再次运行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-修复性能问题"><span class="nav-number">9.</span> <span class="nav-text">9.修复性能问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-总结"><span class="nav-number">10.</span> <span class="nav-text">10.总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们所涵盖的"><span class="nav-number">10.1.</span> <span class="nav-text">我们所涵盖的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要记住的事情"><span class="nav-number">10.2.</span> <span class="nav-text">需要记住的事情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解更多"><span class="nav-number">10.3.</span> <span class="nav-text">了解更多</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1271,7 +1271,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1283,7 +1283,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1291,6 +1291,8 @@
   
 
   
+  
+
 
   
 

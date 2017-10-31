@@ -378,10 +378,10 @@
 <p><strong>注意：</strong>Android不为<code>BroadcastReceiver</code>提供单独的测试用例类。要验证<code>BroadcastReceiver</code>响应是否正确，您可以测试向其发送<code>Intent</code>对象的组件。您可以通过调用<code>InstrumentationRegistry.getTargetContext()</code>创建一个<code>BroadcastReceiver</code>的实例，然后调用要测试的<code>BroadcastReceiver</code>方法（通常是<code>onReceive()</code>方法）。</p>
 </blockquote>
 <p>该类教您使用Android平台提供的测试API和工具构建自动化集成测试。</p>
-<h2 id="课程">课程</h2><p><a href="/2017/01/13/【Android文档翻译】测试你的Service/">测试你的Service</a></p>
+<h2 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h2><p><a href="/2017/01/13/【Android文档翻译】测试你的Service/">测试你的Service</a></p>
 <pre><code>了解如何构建集成测试，以验证服务是否能与您的应用正常工作。
 </code></pre><p><a href="/2017/01/13/【Android文档翻译】测试你的Content Provider/">测试你的Content Provider</a></p>
-<pre><code>了解如何构建集成测试，以验证<span class="attribute">Content</span> Provider是否能够与您的应用正常工作。
+<pre><code>了解如何构建集成测试，以验证Content Provider是否能够与您的应用正常工作。
 </code></pre>
       
     </div>
@@ -973,7 +973,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -985,7 +985,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -993,6 +993,8 @@
   
 
   
+  
+
 
   
 

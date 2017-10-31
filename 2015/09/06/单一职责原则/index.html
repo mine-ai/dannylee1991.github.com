@@ -408,13 +408,13 @@ IUserInfo
       
 
       
-        <h2 id="单一职责原则">单一职责原则</h2><p>单一职责原则的英文名称是<strong>Single Responsibility Principle</strong>,简称<strong>SRP</strong>.</p>
-<h2 id="定义">定义</h2><p><strong>单一职责的定义是：</strong></p>
+        <h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>单一职责原则的英文名称是<strong>Single Responsibility Principle</strong>,简称<strong>SRP</strong>.</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>单一职责的定义是：</strong></p>
 <blockquote>
 <p>There should never be more than one reason for a class to change.</p>
 <p>应该有且仅有一个原因引起类的变更。</p>
 </blockquote>
-<h2 id="举例">举例</h2><p>例如IUserInfo接口定义如下：</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>例如IUserInfo接口定义如下：</p>
 <table>
 <thead>
 <tr>
@@ -512,7 +512,7 @@ IUserInfo
 <p>IUserInfo接口继承IUserBO和IUserBiz</p>
 <p>分清职责后的代码示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">IUserInfo userInfo = <span class="keyword">new</span> UserInfo();</div><div class="line"><span class="comment">//我要赋值了，我就认为它是一个纯粹的BO</span></div><div class="line">IUserBO userBO = (IUserBO)userInfo;</div><div class="line">userBO.setPassword(<span class="string">"abc"</span>);</div><div class="line"><span class="comment">//我要执行动作了，我就认为是一个业务逻辑类</span></div><div class="line">IUserBiz userBiz = (IUserBiz)userInfo;</div><div class="line">userBiz.deleteUser();</div><div class="line">......</div></pre></td></tr></table></figure>
-<h2 id="注意点：">注意点：</h2><p>单一职责原则最难划分的就是职责。一个职责一个接口，但问题是“职责”没有一个量化的标准，一个类到底要负责那些职责？这些职责该怎样细化？细化后是否都要有一个接口或类？这些都需要从实际的项目去考虑。</p>
+<h2 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h2><p>单一职责原则最难划分的就是职责。一个职责一个接口，但问题是“职责”没有一个量化的标准，一个类到底要负责那些职责？这些职责该怎样细化？细化后是否都要有一个接口或类？这些都需要从实际的项目去考虑。</p>
 <p>对于接口，我们在设计的时候一定要做到单一，但是对于实现类酒需要多方面考虑了。生搬硬套单一职责原则会引起类的剧增，给维护带来非常多的麻烦，而且过分细分类的职责也会人为地增加系统的复杂性。本来一个类可以实现的，硬要拆成两个类，然后再使用聚合或组合的方式藕合在一起，人为地制造了系统的复杂性。<strong><em>所以原则是死的，人是活的，这句话很有道理。</em></strong></p>
 <p>单一职责适用于接口，类，同时也适用于方法，什么意思呢？一个方法尽可能只做一件事情，比如一个方法修改用户密码，不要把这个方法放到“修改用户信息”方法中，这个方法点颗粒度很粗，比如下面这个方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//一个方法承担多个职责</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">changeUser</span><span class="params">(IUserBO userBO,String..changeOptions)</span></span></div></pre></td></tr></table></figure>
@@ -1110,7 +1110,7 @@ IUserInfo
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1122,7 +1122,7 @@ IUserInfo
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1130,6 +1130,8 @@ IUserInfo
   
 
   
+  
+
 
   
 

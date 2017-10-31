@@ -94,7 +94,7 @@
 在之前的视频中，我们讨论了评价指标。在本节课的视频中，我们来讨论一下机器学习系统设计中另一个重要的方面，这往往涉及到用来训练的数据有多少。
 在之前的一些视频中，我曾告诫大家不要一开始就盲目地花大量的时间来收集大量的数据，因为这种做法只在某些情况下能起到实际的作用。但事实证明，在一定条件下，得到大量的数据，并在某种类型的学习算法中进行训练，却是一种有效的获得一个具有良好性能">
 <meta property="og:image" content="http://studyai.site/img/17_02_04/001.png">
-<meta property="og:updated_time" content="2017-02-05T16:39:17.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:18:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第六周 (5)使用大数据集">
 <meta name="twitter:description" content="机器学习的数据视频地址
@@ -374,7 +374,7 @@
       
 
       
-        <h2 id="机器学习的数据">机器学习的数据</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/XcNcz/data-for-machine-learning" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="机器学习的数据"><a href="#机器学习的数据" class="headerlink" title="机器学习的数据"></a>机器学习的数据</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/XcNcz/data-for-machine-learning" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在之前的视频中，我们讨论了评价指标。在本节课的视频中，我们来讨论一下机器学习系统设计中另一个重要的方面，这往往涉及到用来训练的数据有多少。</p>
 <p>在之前的一些视频中，我曾告诫大家不要一开始就盲目地花大量的时间来收集大量的数据，因为这种做法只在某些情况下能起到实际的作用。但事实证明，在一定条件下，得到大量的数据，并在某种类型的学习算法中进行训练，却是一种有效的获得一个具有良好性能的学习算法的方法。而这种情况往往出现在这些条件对于你的问题都成立，并且你能够得到大量数据的情况下。这是一个很好的获得非常高性能的学习算法的方式。</p>
@@ -1010,9 +1010,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1024,14 +1048,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

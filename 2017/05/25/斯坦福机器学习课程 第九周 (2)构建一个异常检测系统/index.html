@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://studyai.site/img/17_05_25/012.png">
 <meta property="og:image" content="http://studyai.site/img/17_05_25/013.png">
 <meta property="og:image" content="http://studyai.site/img/17_05_25/014.png">
-<meta property="og:updated_time" content="2017-05-26T12:57:15.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:19:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第九周 (2)构建一个异常检测系统">
 <meta name="twitter:description" content="异常检测系统的开发与评估视频地址
@@ -391,7 +391,7 @@
       
 
       
-        <h2 id="异常检测系统的开发与评估">异常检测系统的开发与评估</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Mwrni/developing-and-evaluating-an-anomaly-detection-system" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="异常检测系统的开发与评估"><a href="#异常检测系统的开发与评估" class="headerlink" title="异常检测系统的开发与评估"></a>异常检测系统的开发与评估</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Mwrni/developing-and-evaluating-an-anomaly-detection-system" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在上一节中，我们推导了异常检测算法。在本节，我想介绍一下如何开发一个异常检测的应用来解决一个实际问题。</p>
 </blockquote>
@@ -403,7 +403,7 @@
 </blockquote>
 <p>还是以飞机发动机的为例，现在假如你有了一些带标签数据，我们用$y=0$表示完全正常的样本，用$y=1$表示有异常的样本。</p>
 <p>那么异常检测算法的推导和评价方法如下所示：</p>
-<h3 id="数据集划分">数据集划分</h3><ul>
+<h3 id="数据集划分"><a href="#数据集划分" class="headerlink" title="数据集划分"></a>数据集划分</h3><ul>
 <li>我们先考虑训练样本。对于训练集，我们还是需要把数据看成是无标签的，通常来讲我们把这些样本都看成<strong>正常</strong>的，但可能有一些异常的也被分到你的训练集里，这也没关系（毕竟异常的是少数）：</li>
 </ul>
 <p>$$<br>x^{(1)},x^{(2)},…,x^{(m)}<br>$$</p>
@@ -423,7 +423,7 @@
 <blockquote>
 <p>注意：不要把交叉验证集和测试集混在一起使用，这样效果并不好。</p>
 </blockquote>
-<h3 id="异常检测算法的推导和评估方法">异常检测算法的推导和评估方法</h3><p>有了训练集、交叉验证集和测试集，异常检测算法的推导和评估方法如下：</p>
+<h3 id="异常检测算法的推导和评估方法"><a href="#异常检测算法的推导和评估方法" class="headerlink" title="异常检测算法的推导和评估方法"></a>异常检测算法的推导和评估方法</h3><p>有了训练集、交叉验证集和测试集，异常检测算法的推导和评估方法如下：</p>
 <p>首先我们使用训练样本来拟合模型$p(x)$。</p>
 <p>然后我们预设一个比较小的$ε$，对于$p(x)&lt;ε$的样本视为异常样本，然后分别在测试集合交叉验证集上进行测试和验证。我们知道在测试集合交叉验证集上是存在$y=1$的异常样本的，只不过量比较少而已。</p>
 <p>这里其实我们可以把异常检测算法想象成是对交叉验证集和测试集中的$y$进行预测，这与监督学习有些类似，因为我们在对有标签的数据进行预测。所以我们可以通过对标签预测正确的次数来评价算法的好坏。</p>
@@ -437,11 +437,11 @@
 <li>计算出$F_1-score$，通过一个很简单的数字来总结出查准和召回的大小。</li>
 </ul>
 <p>通过这些方法，你就可以评价你的异常检测算法在交叉验证和测试集样本中的表现。</p>
-<h4 id="ε是怎么得到的呢？">ε是怎么得到的呢？</h4><p>现在还有一个问题没有说明，那就是参数$p(x)&lt;ε$中的$ε$是如何求得的？</p>
+<h4 id="ε是怎么得到的呢？"><a href="#ε是怎么得到的呢？" class="headerlink" title="ε是怎么得到的呢？"></a>ε是怎么得到的呢？</h4><p>现在还有一个问题没有说明，那就是参数$p(x)&lt;ε$中的$ε$是如何求得的？</p>
 <p>如果你有一组交叉验证集样本，一种选择参数$ε$的方法就是通过尝试多个不同的$ε$，然后选出一个使得$F_1-score$最大的$ε$，这个$ε$就是在交叉验证集上表现最好的。</p>
 <p>更一般来说,我们使用训练集、测试集和交叉验证集的方法是当我们需要作出决定时，比如要包括哪些特征或者说要确定参数$ε$取多大合适，我们就可以不断地用交叉验证集来评价这个算法，然后决定我们应该用哪些特征，以及选择哪一个$ε$。</p>
 <p>所以就是在交叉验证集中评价算法，然后选出一组特征，或者找到能符合我们要求的ε的值后，我们就能用测试集来最终评价算法的表现了。</p>
-<h2 id="异常检测_VS_监督学习">异常检测 VS 监督学习</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Rkc5x/anomaly-detection-vs-supervised-learning" target="_blank" rel="external">视频地址</a></p>
+<h2 id="异常检测-VS-监督学习"><a href="#异常检测-VS-监督学习" class="headerlink" title="异常检测 VS 监督学习"></a>异常检测 VS 监督学习</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/Rkc5x/anomaly-detection-vs-supervised-learning" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在上一节，我们谈到如何评价一个异常检测算法。我们先是用了一些带标签的数据，以及一些我们知道是异常或者正常的样本(用$y=1$或$y=0$来表示)。</p>
 <p>这就引出了这样一个问题：既然我们有了带标签的数据，那么为什么我们不直接用监督学习的方法（比如逻辑回归或者神经网络）呢？</p>
@@ -472,12 +472,12 @@
 <p>关于上面表格中，有关<strong>异常检测</strong>中的不同类型的异常情况，我们用之前的垃圾邮件的例子来说明。</p>
 <p>在那个例子中，垃圾邮件的类型其实也有很多种。有的是想卖东西给你、有的是想钓出你的密码(这种就叫钓鱼邮件)、还有其他一些类型的垃圾邮件…但对于垃圾邮件的问题，我们能得到绝大多数不同类型的垃圾邮件，因为我们有大量的垃圾邮件样本的集合。因此这也是为什么我们通常把垃圾邮件问题看作是监督学习问题的原因，虽然垃圾邮件的种类通常有太多太多 。</p>
 <p>因此，我们可以看看一些异常检测的应用和监督学习应用的比较，我们不难发现对于欺诈检测(fraud detection)，如果你掌握了许多种不同类型的诈骗方法，并且只有相对较小的训练集（只有很少一部分用户有异常行为）那我会使用异常检测算法。当然，有时候欺诈检测的方法也可能会偏向于使用监督学习算法，但是如果你并没有看到许多在你网站上进行异常行为的用户样本，那么欺诈检测通常还是被当做是一个异常检测算法，而不是一个监督学习算法。</p>
-<h2 id="选择使用什么特征">选择使用什么特征</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/LSpXm/choosing-what-features-to-use" target="_blank" rel="external">视频地址</a></p>
+<h2 id="选择使用什么特征"><a href="#选择使用什么特征" class="headerlink" title="选择使用什么特征"></a>选择使用什么特征</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/LSpXm/choosing-what-features-to-use" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>前面我们讲到了异常检测算法，并且我们也讨论了如何评估一个异常检测算法。</p>
 <p>事实上当你应用异常检测时，对它的效率影响最大的因素之一，是你使用什么特征变量。那么在本节，我将给出一些关于如何设计或选择异常检测算法的特征变量建议。</p>
 </blockquote>
-<h3 id="对不服从高斯分布的数据进行转换">对不服从高斯分布的数据进行转换</h3><p>在我们的异常检测算法中，我们做的事情之一就是使用正态(高斯)分布来对特征向量建模。通常情况下，我们都需要用直方图来可视化这些数据，如下图：</p>
+<h3 id="对不服从高斯分布的数据进行转换"><a href="#对不服从高斯分布的数据进行转换" class="headerlink" title="对不服从高斯分布的数据进行转换"></a>对不服从高斯分布的数据进行转换</h3><p>在我们的异常检测算法中，我们做的事情之一就是使用正态(高斯)分布来对特征向量建模。通常情况下，我们都需要用直方图来可视化这些数据，如下图：</p>
 <p><img src="/img/17_05_25/001.png" alt=""></p>
 <p>这么做的原因是为了在使用算法之前，确保我们的数据看起来是服从高斯分布的（当然即使你的数据并不是高斯分布，它也基本上可以良好地运行，但最好转换成高斯分布的样式之后在带入计算）。</p>
 <p>如果你的样本的某个特征展示效果完全不像一个正态分布的形状：</p>
@@ -528,14 +528,14 @@
 <p>我们对原始数据尝试了不同的转换之后，图像最终趋于了正太分布的样式。在Octive中实现的过程如下：</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hist(<span class="name">x</span>,<span class="number">50</span>)</div><div class="line">hist(<span class="name">x</span>.^<span class="number">0.5</span>,<span class="number">50</span>)</div><div class="line">hist(<span class="name">x</span>.^<span class="number">0.2</span>,<span class="number">50</span>)</div><div class="line">hist(<span class="name">x</span>.^<span class="number">0.1</span>,<span class="number">50</span>)</div><div class="line">hist(<span class="name">x</span>.^<span class="number">0.05</span>,<span class="number">50</span>)</div><div class="line">hist(<span class="name">log</span>(<span class="name">x</span>),<span class="number">50</span>)</div><div class="line">xNew = log(<span class="name">x</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>最终我们选择了$log(x)$来代替原来的$x$。</p>
-<h3 id="异常检测算法的特征变量的获取">异常检测算法的特征变量的获取</h3><p>对于异常检测算法的特征变量的获取的方法，其实和之前学习的误差分析步骤是类似的。</p>
+<h3 id="异常检测算法的特征变量的获取"><a href="#异常检测算法的特征变量的获取" class="headerlink" title="异常检测算法的特征变量的获取"></a>异常检测算法的特征变量的获取</h3><p>对于异常检测算法的特征变量的获取的方法，其实和之前学习的误差分析步骤是类似的。</p>
 <ul>
 <li>首先我们先训练处一个异常检测学习算法。</li>
 <li>然后在一组交叉验证集上运行算法。</li>
 <li>然后找出那些异常样本。</li>
 <li>然后我们尝试其他的特征变量，看是否能让我们的算法变得更好。</li>
 </ul>
-<h4 id="举例说明">举例说明</h4><p>我们用一个具体的例子来说明上面的过程：</p>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>我们用一个具体的例子来说明上面的过程：</p>
 <p>在异常检测中，我们希望$p(x)$的值对正常样本来说是比较大的，而对异常样本来说，值是很小的。但一个很常见的问题是$p(x)$是具有可比性的（即对于两者都很大）。</p>
 <p>这是我的一组无标签数据：</p>
 <p><img src="/img/17_05_25/010.png" alt=""></p>
@@ -553,7 +553,7 @@
 <blockquote>
 <p><strong>总结</strong>:选择异常检测需要考虑的特征时，先找出异常样本，然后尝试通过引入新的特征来验证对异常样本的识别的准确性。如果有所提高，就可以考虑引入这个特征。</p>
 </blockquote>
-<h4 id="关于特征选择的思考">关于特征选择的思考</h4><p>最后我想与你分享一些我平时在为异常检查算法选择特征变量时的一些思考。</p>
+<h4 id="关于特征选择的思考"><a href="#关于特征选择的思考" class="headerlink" title="关于特征选择的思考"></a>关于特征选择的思考</h4><p>最后我想与你分享一些我平时在为异常检查算法选择特征变量时的一些思考。</p>
 <p>通常，我会选择那些既不是特别大也不是特别小的特征变量。以数据中心异常计算机的监测的例子为例，我们有以下四个特征：</p>
 <p>$$<br>x_1=机器内存使用  \\<br>x_2=硬盘资源使用  \\<br>x_3=CPU使用  \\<br>x_4=网络情况<br>$$</p>
 <p>我假设CPU使用情况和网络情况呈线性关系，正常情况下如果其中一个服务器正在运行时，CPU负载和流量都很大。</p>
@@ -820,7 +820,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常检测系统的开发与评估"><span class="nav-number">1.</span> <span class="nav-text">异常检测系统的开发与评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集划分"><span class="nav-number">1.1.</span> <span class="nav-text">数据集划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法的推导和评估方法"><span class="nav-number">1.2.</span> <span class="nav-text">异常检测算法的推导和评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ε是怎么得到的呢？"><span class="nav-number">1.2.1.</span> <span class="nav-text">ε是怎么得到的呢？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常检测_VS_监督学习"><span class="nav-number">2.</span> <span class="nav-text">异常检测 VS 监督学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择使用什么特征"><span class="nav-number">3.</span> <span class="nav-text">选择使用什么特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对不服从高斯分布的数据进行转换"><span class="nav-number">3.1.</span> <span class="nav-text">对不服从高斯分布的数据进行转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法的特征变量的获取"><span class="nav-number">3.2.</span> <span class="nav-text">异常检测算法的特征变量的获取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#举例说明"><span class="nav-number">3.2.1.</span> <span class="nav-text">举例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于特征选择的思考"><span class="nav-number">3.2.2.</span> <span class="nav-text">关于特征选择的思考</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常检测系统的开发与评估"><span class="nav-number">1.</span> <span class="nav-text">异常检测系统的开发与评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集划分"><span class="nav-number">1.1.</span> <span class="nav-text">数据集划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法的推导和评估方法"><span class="nav-number">1.2.</span> <span class="nav-text">异常检测算法的推导和评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ε是怎么得到的呢？"><span class="nav-number">1.2.1.</span> <span class="nav-text">ε是怎么得到的呢？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常检测-VS-监督学习"><span class="nav-number">2.</span> <span class="nav-text">异常检测 VS 监督学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择使用什么特征"><span class="nav-number">3.</span> <span class="nav-text">选择使用什么特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对不服从高斯分布的数据进行转换"><span class="nav-number">3.1.</span> <span class="nav-text">对不服从高斯分布的数据进行转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法的特征变量的获取"><span class="nav-number">3.2.</span> <span class="nav-text">异常检测算法的特征变量的获取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#举例说明"><span class="nav-number">3.2.1.</span> <span class="nav-text">举例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于特征选择的思考"><span class="nav-number">3.2.2.</span> <span class="nav-text">关于特征选择的思考</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1153,9 +1153,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1167,14 +1191,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

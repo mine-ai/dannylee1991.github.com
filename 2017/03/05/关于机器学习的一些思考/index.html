@@ -379,7 +379,7 @@
 </blockquote>
 <p>不管这句话说得是否过于夸大，但TensorFlow在github上开源一个月之内就收到了10000+的star，这是github上机器学习领域也是python领域star增长最快的项目了。截止目前，TensorFlow的star为49227，已经超过了linux的42490。可见，机器学习的发展速度之迅猛，是不容小视的。</p>
 <p>本文是我对机器学习领域的一些见解和思考，主要涉及<strong>机器学习的定义</strong>，<strong>机器学习的学习方式</strong>以及<strong>相关概念的理解</strong>。你会看到很多教科书上看不到的解读，虽然不是很严谨，但有助于你对一些概念建立起直觉上的理解，从而帮助你更好的了解这一领域的知识。</p>
-<h2 id="思考1：机器学习是什么">思考1：机器学习是什么</h2><h3 id="机器学习定义">机器学习定义</h3><blockquote>
+<h2 id="思考1：机器学习是什么"><a href="#思考1：机器学习是什么" class="headerlink" title="思考1：机器学习是什么"></a>思考1：机器学习是什么</h2><h3 id="机器学习定义"><a href="#机器学习定义" class="headerlink" title="机器学习定义"></a>机器学习定义</h3><blockquote>
 <p>机器学习(Machine Learning, ML)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。</p>
 </blockquote>
 <p>这是百度百科给出的定义，更加通俗的解释一下，机器学习是人工智能领域下的子领域，通过对大量现有数据的分析运算来对未知数据进行预测的一种学科。（虽然说法不严谨，但这种解释有助于理解）</p>
@@ -394,24 +394,24 @@
 <li>就能够处理的很好（<strong>预测结果</strong>）</li>
 </ul>
 <p>这就是机器学习的通用模型，虽然不是严谨的学术定义，但相信这能使你建立一种直觉上的认识。</p>
-<h3 id="这是一项新技术吗？">这是一项新技术吗？</h3><p>机器学习目前处于学术界迈向工业界的一个过程，其核心算法几十年前就有了，理念也绝非新鲜事物，达到工业级别是一个时间问题，而现在<strong>我们就处在这一学术界迈向工业界的关键阶段</strong>。</p>
+<h3 id="这是一项新技术吗？"><a href="#这是一项新技术吗？" class="headerlink" title="这是一项新技术吗？"></a>这是一项新技术吗？</h3><p>机器学习目前处于学术界迈向工业界的一个过程，其核心算法几十年前就有了，理念也绝非新鲜事物，达到工业级别是一个时间问题，而现在<strong>我们就处在这一学术界迈向工业界的关键阶段</strong>。</p>
 <p>其实，机器学习的核心概念早在第一台计算机制造之前就已经产生了。这里也不做过多介绍，大家可以自行去搜索。</p>
-<h2 id="思考2：如何学习机器学习">思考2：如何学习机器学习</h2><h3 id="学习框架_or_学习算法?">学习框架 or 学习算法?</h3><p>完全没有学过这一领域的东西，是否应该直接上手TensorFlow之类的框架呢？</p>
+<h2 id="思考2：如何学习机器学习"><a href="#思考2：如何学习机器学习" class="headerlink" title="思考2：如何学习机器学习"></a>思考2：如何学习机器学习</h2><h3 id="学习框架-or-学习算法"><a href="#学习框架-or-学习算法" class="headerlink" title="学习框架 or 学习算法?"></a>学习框架 or 学习算法?</h3><p>完全没有学过这一领域的东西，是否应该直接上手TensorFlow之类的框架呢？</p>
 <p>框架只是工具，不管是TensorFlow还是Caffe还是Torch，都是对算法的封装，很多之前做其他方面开发的程序员，在接触一个框架或者工具时，都倾向于追求能达到“直接去调用一下就得到结果”这样的效果，但机器学习领域的框架并不是如此，它要求你对机器学习领域的算法有一定了解，要明白自己在做什么。</p>
 <p>所以先对这个领域的算法知识有个掌握之后，再去学习和使用框架来实践操作可能是效率更高的一种学习模式。相反，直接上手来学习框架，期望直接调用一些API就得出结果的想法会让你有种寸步难行的感觉。</p>
 <p>这里安利一下<a href="https://www.coursera.org/" target="_blank" rel="external">coursera</a>上的吴恩达老师的<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习</a>课程（可能会需要翻墙才能访问，自行购买vpn）。这门课深入浅出的讲解了机器学习领域的流行的算法的实现原理。</p>
 <blockquote>
 <p>介绍一下吴恩达老师，在最强大脑第四季开播之前，可能知道他的人很少。吴恩达是华裔美国人，是斯坦福大学计算机科学系和电子工程系副教授，人工智能实验室主任，是Coursera的联合创始人。之前是google负责google大脑项目，后来在14年5月16日加入百度，担任百度首席科学家，负责百度研究院的领导工作，尤其是Baidu Brain计划。这是中国互联网公司迄今为止引进的最重量级人物。</p>
 </blockquote>
-<h3 id="深入底层_or_关注上层？">深入底层 or 关注上层？</h3><p>在技术领域一直流传着这样一种理念：底层的就是牛X的。上层技术变化无常，但底层技术万变不离其宗。再加上底层技术的学习成本远高于上层技术，而且吃透了底层技术能够对上层技术有更深刻的理解，导致程序员对底层技术有一种神圣的向往情节。</p>
+<h3 id="深入底层-or-关注上层？"><a href="#深入底层-or-关注上层？" class="headerlink" title="深入底层 or 关注上层？"></a>深入底层 or 关注上层？</h3><p>在技术领域一直流传着这样一种理念：底层的就是牛X的。上层技术变化无常，但底层技术万变不离其宗。再加上底层技术的学习成本远高于上层技术，而且吃透了底层技术能够对上层技术有更深刻的理解，导致程序员对底层技术有一种神圣的向往情节。</p>
 <p>技术领域，专注细节不是坏事，但对于机器学习这个领域呢？恐怕我们需要重新考量一下这种思维模式了。</p>
 <p>其实在机器学习领域，也是提倡对底层实现算法有一定的了解的，但并不代表我们要去亲自实现一些算法，比如神经网络中的反向传播算法的实现，很多框架都已经写的很完善了，而且都是数值计算领域的专家来实现的高质量高性能的代码，我们没必要花时间和精力来重新造轮子，也没必要去研究他们是如何造的这个轮子。我们更应该把宝贵的时间留在理解这些算法的原理上，以及学会使用这些算法来应用到实际中的问题，这才是把好钢用到了刀刃上。</p>
 <p>实际上，正确的学习方式是，首先学习并理解算法原理，在直觉层面建立起对算法的认识，然后快速动手实践，将学到的算法应用到小项目里，不用太过在意写的东西是不是很挫，重要的是开始写！然后再不断的完善你的项目。带着一些问题去继续学习，你会有更多的收获。</p>
-<h3 id="不要想太多有的没的">不要想太多有的没的</h3><p>可能很多人跟我一样，刚开始了解这一领域的东西的时候，很是兴奋，感觉造出一个通用人工智能指日可待了。再加上近些年随着人工智能概念的兴起，出来了一批相关影视作品和科幻小说，更让我们对人工智能产生了一系列不切实际的想法。</p>
+<h3 id="不要想太多有的没的"><a href="#不要想太多有的没的" class="headerlink" title="不要想太多有的没的"></a>不要想太多有的没的</h3><p>可能很多人跟我一样，刚开始了解这一领域的东西的时候，很是兴奋，感觉造出一个通用人工智能指日可待了。再加上近些年随着人工智能概念的兴起，出来了一批相关影视作品和科幻小说，更让我们对人工智能产生了一系列不切实际的想法。</p>
 <p>对于这一点，我想说明的是，不要过分执迷于AI能创建出智能大脑的想法，除非你是业内出类拔萃的专家。科幻小说与电影只是一种艺术表现手法，并不代表着未来。通常，人们看不懂看不透的地方就容易形成骗局，通用智能虽然是人工智能一直以来在追求的一个目标，但目前主流学术发展方向并没有朝着这方面走。机器学习、深度学习的确在飞速的进步，未来也会波及到很多行业，但这个学科归根结底还是一门基于数据的学科，并没有达到拥有情感、独立思考等这方面的能力，实际上，绝大多数业内专家对这方面的想法是持有厌恶态度的，倒是相关的社科类软文在这个时代被吹上了天。</p>
 <p>因此，与其花时间想这些有的没的，还不如花时间脚踏实地的去学习一下算法、写写代码，除非你想成为一个科幻小说作家。</p>
-<h2 id="思考3：机器学习中一些概念的解读">思考3：机器学习中一些概念的解读</h2><p>机器学习领域中有很多很有趣、很耐人寻味的原理值得细细品味，下面是我对其中部分概念的直觉上的理解，可能你在教科书或者教学视频上看不到这种解读，但这些概念所折射出来的现象也许就是我所描述的那样。当然，如果你没有看过这个领域，甚至没有写过代码也没关系，我保证能让你能读得懂。</p>
-<h3 id="神经网络">神经网络</h3><p><strong>神经网络</strong>是机器学习领域出镜率很高的一个词汇，很多人对它的理解一直是停留在“<strong>很牛X，很复杂</strong>”的状态。下面用一个例子来解释神经网络的使用原理：</p>
+<h2 id="思考3：机器学习中一些概念的解读"><a href="#思考3：机器学习中一些概念的解读" class="headerlink" title="思考3：机器学习中一些概念的解读"></a>思考3：机器学习中一些概念的解读</h2><p>机器学习领域中有很多很有趣、很耐人寻味的原理值得细细品味，下面是我对其中部分概念的直觉上的理解，可能你在教科书或者教学视频上看不到这种解读，但这些概念所折射出来的现象也许就是我所描述的那样。当然，如果你没有看过这个领域，甚至没有写过代码也没关系，我保证能让你能读得懂。</p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p><strong>神经网络</strong>是机器学习领域出镜率很高的一个词汇，很多人对它的理解一直是停留在“<strong>很牛X，很复杂</strong>”的状态。下面用一个例子来解释神经网络的使用原理：</p>
 <p>假设你有一个下周六是否要去电影院看电影的决定。这个决定的结果无非只有两种：<strong>去</strong>或者<strong>不去</strong>。</p>
 <p>影响你去或不去的因素有很多：</p>
 <ul>
@@ -437,12 +437,12 @@
 <p>这就是一个训练好的神经网络的使用方式，这幅图就是一个典型的三层神经网络，从左到右依次是<strong>输出层</strong>、<strong>隐藏层</strong>、<strong>输出层</strong>，其中0.3，0.6，1.0是通过<strong>训练</strong>得出的<strong>权值</strong>。</p>
 <p><img src="/img/17_03_05/005.png" alt=""></p>
 <p>我相信你对神经网络还是有很多疑问，比如0.3，0.6和1.0是怎么得来的（实际上是通过<strong>反向传播算法</strong>得来的），但神经网络运作的大体模式就是这样，希望你能对它产生一种宏观层面的认识。</p>
-<h3 id="偏拟合_和_过拟合">偏拟合 和 过拟合</h3><p><strong>偏拟合</strong>和<strong>过拟合</strong>具体是什么意思呢？不要被陌生的名词吓到。</p>
+<h3 id="偏拟合-和-过拟合"><a href="#偏拟合-和-过拟合" class="headerlink" title="偏拟合 和 过拟合"></a>偏拟合 和 过拟合</h3><p><strong>偏拟合</strong>和<strong>过拟合</strong>具体是什么意思呢？不要被陌生的名词吓到。</p>
 <p>首先要说明的是，这两个词都不是褒义词，都是我们不想看到的一种状态。</p>
 <p>其实所谓<strong>偏拟合</strong>就是相当于某一领域经验不足的人，由于经历的事情太少，容易做出一些错误的判断，这种现象就是<strong>偏拟合</strong>。</p>
 <p>所谓<strong>过拟合</strong>，恰恰相反，是指某一领域经验非常丰富的人，由于经历的事情太多，反而容易对新的事物产生偏见（因为既往的经验会告诉他这是不对的），从而产生错误的决定。</p>
 <p>教科书上不会这么解释<strong>偏拟合</strong>和<strong>过拟合</strong>的概念，但事实上这个概念描述的就是这样的现象。是不是我们身边随处可见这两种现象呢？</p>
-<h3 id="查准率_和_召回率">查准率 和 召回率</h3><p>假设我们现在写了个用于预测病人是否患有肺癌的程序，我们出入了100个病人的体征数据，然后来告知这一批病人有谁不幸得了肺癌。</p>
+<h3 id="查准率-和-召回率"><a href="#查准率-和-召回率" class="headerlink" title="查准率 和 召回率"></a>查准率 和 召回率</h3><p>假设我们现在写了个用于预测病人是否患有肺癌的程序，我们出入了100个病人的体征数据，然后来告知这一批病人有谁不幸得了肺癌。</p>
 <p>假设我们的预测准确率为98%，这个结果乍一看是不是很高呢？但我告诉你另一个事实，那就是我们只有两个病人是真正患有肺癌的，然而我们的算法正确的识别了两者中的一位，并且还错误的认为在98名没有患有肺癌的患者里有一位癌症患者。那这还是一个好结果吗？</p>
 <p>很明显，100个人里只有两个人患有癌症，其中一个还预测错误，这是一个很差的结果，但我们的准确率为98%，因为我们预测对了100个人中的98个人，所以从准确率上来看并不差，但实际结果却很差。</p>
 <p>这就是典型的<strong>偏斜类</strong>问题。</p>
@@ -470,7 +470,7 @@
 <li>…</li>
 </ul>
 <p>类似这类的<strong>鸡汤名言</strong>，我们会有新的思考。我们会发现，真正的牛人说的话，不仅仅准确率高，而且查准率和召回率也很高。</p>
-<h3 id="无监督学习">无监督学习</h3><p><strong>无监督学习</strong>是相对于<strong>监督学习</strong>而言的。那么什么是<strong>监督学习</strong>呢？</p>
+<h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><p><strong>无监督学习</strong>是相对于<strong>监督学习</strong>而言的。那么什么是<strong>监督学习</strong>呢？</p>
 <p><strong>监督学习</strong>通俗的将就是我们告诉机器一堆格式为：</p>
 <p><strong>bulabulabula的东西，是xxx</strong></p>
 <p>来预测未知类别的数据：</p>
@@ -749,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思考1：机器学习是什么"><span class="nav-number">1.</span> <span class="nav-text">思考1：机器学习是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习定义"><span class="nav-number">1.1.</span> <span class="nav-text">机器学习定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这是一项新技术吗？"><span class="nav-number">1.2.</span> <span class="nav-text">这是一项新技术吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考2：如何学习机器学习"><span class="nav-number">2.</span> <span class="nav-text">思考2：如何学习机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习框架_or_学习算法?"><span class="nav-number">2.1.</span> <span class="nav-text">学习框架 or 学习算法?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入底层_or_关注上层？"><span class="nav-number">2.2.</span> <span class="nav-text">深入底层 or 关注上层？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要想太多有的没的"><span class="nav-number">2.3.</span> <span class="nav-text">不要想太多有的没的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考3：机器学习中一些概念的解读"><span class="nav-number">3.</span> <span class="nav-text">思考3：机器学习中一些概念的解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络"><span class="nav-number">3.1.</span> <span class="nav-text">神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏拟合_和_过拟合"><span class="nav-number">3.2.</span> <span class="nav-text">偏拟合 和 过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查准率_和_召回率"><span class="nav-number">3.3.</span> <span class="nav-text">查准率 和 召回率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无监督学习"><span class="nav-number">3.4.</span> <span class="nav-text">无监督学习</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思考1：机器学习是什么"><span class="nav-number">1.</span> <span class="nav-text">思考1：机器学习是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习定义"><span class="nav-number">1.1.</span> <span class="nav-text">机器学习定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这是一项新技术吗？"><span class="nav-number">1.2.</span> <span class="nav-text">这是一项新技术吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考2：如何学习机器学习"><span class="nav-number">2.</span> <span class="nav-text">思考2：如何学习机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习框架-or-学习算法"><span class="nav-number">2.1.</span> <span class="nav-text">学习框架 or 学习算法?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入底层-or-关注上层？"><span class="nav-number">2.2.</span> <span class="nav-text">深入底层 or 关注上层？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要想太多有的没的"><span class="nav-number">2.3.</span> <span class="nav-text">不要想太多有的没的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考3：机器学习中一些概念的解读"><span class="nav-number">3.</span> <span class="nav-text">思考3：机器学习中一些概念的解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络"><span class="nav-number">3.1.</span> <span class="nav-text">神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏拟合-和-过拟合"><span class="nav-number">3.2.</span> <span class="nav-text">偏拟合 和 过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查准率-和-召回率"><span class="nav-number">3.3.</span> <span class="nav-text">查准率 和 召回率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无监督学习"><span class="nav-number">3.4.</span> <span class="nav-text">无监督学习</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1084,7 +1084,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1096,7 +1096,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1104,6 +1104,8 @@
   
 
   
+  
+
 
   
 

@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_08_25/020.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_25/021.png">
 <meta property="og:image" content="http://studyai.site/img/16_08_25/022.png">
-<meta property="og:updated_time" content="2016-09-04T15:02:30.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:18:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第三周 (2)Logistic回归模型">
 <meta name="twitter:description" content="逻辑回归的代价函数视频地址
@@ -400,7 +400,7 @@
       
 
       
-        <h2 id="逻辑回归的代价函数">逻辑回归的代价函数</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/1XG8G/cost-function" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="逻辑回归的代价函数"><a href="#逻辑回归的代价函数" class="headerlink" title="逻辑回归的代价函数"></a>逻辑回归的代价函数</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/1XG8G/cost-function" target="_blank" rel="external">视频地址</a></p>
 <p>这节课将讲解逻辑回归中，如何定义用来拟合参数的<strong>代价函数</strong>。</p>
 <p><img src="/img/16_08_25/001.png" alt=""></p>
 <p>如上图所示，我们现在有一组训练集，其中有$m$个训练样本，由于是一个分类问题，我们的$y$取值范围就是0和1。并且我们给出了假设函数$h_{\theta}(x)$。现在的问题就是，我们如何确定我们的参数$\theta$的值呢？也就是说如何<strong>拟合参数$\theta$</strong>呢？</p>
@@ -453,9 +453,9 @@
 </li>
 </ul>
 <p>这就是我们所期望的效果：<strong>当假设函数和期望值越接近时，代价函数值越小，反之越大。</strong></p>
-<h2 id="简化代价函数以及梯度下降">简化代价函数以及梯度下降</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/MtEaZ/simplified-cost-function-and-gradient-descent" target="_blank" rel="external">视频地址</a></p>
+<h2 id="简化代价函数以及梯度下降"><a href="#简化代价函数以及梯度下降" class="headerlink" title="简化代价函数以及梯度下降"></a>简化代价函数以及梯度下降</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/MtEaZ/simplified-cost-function-and-gradient-descent" target="_blank" rel="external">视频地址</a></p>
 <p>这节课我们来讲解一种<strong>稍微简单一些的方式来写代价函数</strong>，来替代我们现有的方法。同时也要讲清楚，<strong>如何运用梯度下降法来拟合出逻辑回归的参数$\theta$</strong>。因此，听了这节课，你应该就能够实现一个完整的逻辑回归算法了。</p>
-<h3 id="简化单个样本的代价函数$Cost(h_{\theta}(x),y)$">简化单个样本的代价函数$Cost(h_{\theta}(x),y)$</h3><p>之前我们讲解了逻辑回归中的代价函数：</p>
+<h3 id="简化单个样本的代价函数-Cost-h-theta-x-y"><a href="#简化单个样本的代价函数-Cost-h-theta-x-y" class="headerlink" title="简化单个样本的代价函数$Cost(h_{\theta}(x),y)$"></a>简化单个样本的代价函数$Cost(h_{\theta}(x),y)$</h3><p>之前我们讲解了逻辑回归中的代价函数：</p>
 <p><img src="/img/16_08_25/008.png" alt=""></p>
 <p>上图中有：</p>
 <ul>
@@ -469,7 +469,7 @@
 <blockquote>
 <p>我们知道在上面的式子中，$y$的取值非0即1，如果$y=1$那么$Cost(h_{\theta}(x),y)=-log(h_{\theta}(x))$，如果$y=0$那么$Cost(h_{\theta}(x),y)=-log(1-h_{\theta}(x))$。效果和分开写是完全一样的。</p>
 </blockquote>
-<h3 id="拟合逻辑回归的参数$\theta$">拟合逻辑回归的参数$\theta$</h3><p>这样一来，我们就可以写出完整的逻辑回归的代价函数了：</p>
+<h3 id="拟合逻辑回归的参数-theta"><a href="#拟合逻辑回归的参数-theta" class="headerlink" title="拟合逻辑回归的参数$\theta$"></a>拟合逻辑回归的参数$\theta$</h3><p>这样一来，我们就可以写出完整的逻辑回归的代价函数了：</p>
 <p><img src="/img/16_08_25/009.png" alt=""></p>
 <blockquote>
 <p>似乎我们有其他方式来表示单个样本的代价函数$Cost(h_{\theta}(x),y)$，但在这里不做详细的说明，但是我可以告诉你，现在我们使用的这种形式的代价函数的式子，是从统计学中的<strong>极大似然法</strong>得来的。不过如果你不理解什么是<strong>极大似然法</strong>，以及逻辑回归中的代价函数为什么是这种形式，也没关系，也不会影响你后面的学习。</p>
@@ -496,9 +496,9 @@
 </ul>
 <p>由于假设函数的不同，实际上线性回归和逻辑回归的梯度下降是两个完全不同的东西。</p>
 <p>当我们在讨论线性回归的梯度下降算法时，我们谈到了如何监控梯度下降法以确保其收敛。其实我们通常也把这种方法运用在逻辑回归中，来检测梯度下降，以确保其正常收敛。这里就不多做介绍，可以参考<strong>斯坦福机器学习课程 第一周 (5)参数学习-梯度下降算法</strong>来实现。</p>
-<h2 id="高级优化">高级优化</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/licwf/advanced-optimization" target="_blank" rel="external">视频地址</a></p>
+<h2 id="高级优化"><a href="#高级优化" class="headerlink" title="高级优化"></a>高级优化</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/licwf/advanced-optimization" target="_blank" rel="external">视频地址</a></p>
 <p>这节课中会介绍一些高级优化概念和技巧。利用这些技巧，我们就使通过梯度下降进行逻辑回归的速度大大提高，这也将使得算法更加适合解决大型的机器学习问题。</p>
-<h3 id="优化算法概念引入">优化算法概念引入</h3><p>现在我们换个角度来看看什么是梯度下降：</p>
+<h3 id="优化算法概念引入"><a href="#优化算法概念引入" class="headerlink" title="优化算法概念引入"></a>优化算法概念引入</h3><p>现在我们换个角度来看看什么是梯度下降：</p>
 <p>我们有个代价函数$J(\theta)$，并且我们希望最小化代价函数$min_{\theta}J(\theta)$。</p>
 <p>为了得到最小化代价函数$min_{\theta}J(\theta)$，我们需要计算出$J(\theta)$关于每一项$\theta$的偏导：</p>
 <p><img src="/img/16_08_25/014.png" alt=""></p>
@@ -512,7 +512,7 @@
 <li><strong>限制变尺度法(L-BFGS)</strong></li>
 </ul>
 <p>除了我们常说的梯度下降算法外的其他三种算法，都有着更复杂的方式来求最小化代价函数。但是这三种算法的细节，超出了本门课程的范畴(实际上如果你想要研究这些算法，可能你需要花费几周的时间，你可以专门学一门课程来提高数值计算能力)。不过我会告诉你他们的一些特性。</p>
-<h3 id="优缺点">优缺点</h3><p>这三种算法有许多优点：</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>这三种算法有许多优点：</p>
 <p><strong>优点</strong>：</p>
 <ul>
 <li>不需要手动选择学习率$a$<ul>
@@ -535,7 +535,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="使用实例">使用实例</h3><p>接下来来举例说明如何使用这些算法。</p>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p>接下来来举例说明如何使用这些算法。</p>
 <p>比如你有一个包含两个参数的问题：</p>
 <p><img src="/img/16_08_25/016.png" alt=""></p>
 <p>对于上图中的代价函数，我们可以求得当$\theta_{1}=5$,$\theta_{2}=5$时，$J(\theta)$的值最小。</p>
@@ -556,7 +556,7 @@
 <p><img src="/img/16_08_25/020.png" alt=""></p>
 <p>然后在Octave终端下带入<code>fminunc</code>函数：</p>
 <p><img src="/img/16_08_25/021.png" alt=""></p>
-<h3 id="在逻辑回归中使用优化算法">在逻辑回归中使用优化算法</h3><p>上面的例子是一个简单的二次函数中使用优化算法的例子，下面我们介绍一些在逻辑回归中使用这些算法：</p>
+<h3 id="在逻辑回归中使用优化算法"><a href="#在逻辑回归中使用优化算法" class="headerlink" title="在逻辑回归中使用优化算法"></a>在逻辑回归中使用优化算法</h3><p>上面的例子是一个简单的二次函数中使用优化算法的例子，下面我们介绍一些在逻辑回归中使用这些算法：</p>
 <p><img src="/img/16_08_25/022.png" alt=""></p>
 <p>上图就是逻辑回归问题的代价函数的求解代码。可以看到大体流程和之前的例子是一致的，你只需要把相应的计算<code>jVal</code>以及各个<code>gradient</code>的代码，按照逻辑回归的规则填写完整即可。</p>
 <blockquote>
@@ -820,7 +820,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归的代价函数"><span class="nav-number">1.</span> <span class="nav-text">逻辑回归的代价函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化代价函数以及梯度下降"><span class="nav-number">2.</span> <span class="nav-text">简化代价函数以及梯度下降</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简化单个样本的代价函数$Cost(h_{\theta}(x),y)$"><span class="nav-number">2.1.</span> <span class="nav-text">简化单个样本的代价函数$Cost(h_{\theta}(x),y)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合逻辑回归的参数$\theta$"><span class="nav-number">2.2.</span> <span class="nav-text">拟合逻辑回归的参数$\theta$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级优化"><span class="nav-number">3.</span> <span class="nav-text">高级优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化算法概念引入"><span class="nav-number">3.1.</span> <span class="nav-text">优化算法概念引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">3.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用实例"><span class="nav-number">3.3.</span> <span class="nav-text">使用实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在逻辑回归中使用优化算法"><span class="nav-number">3.4.</span> <span class="nav-text">在逻辑回归中使用优化算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归的代价函数"><span class="nav-number">1.</span> <span class="nav-text">逻辑回归的代价函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化代价函数以及梯度下降"><span class="nav-number">2.</span> <span class="nav-text">简化代价函数以及梯度下降</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简化单个样本的代价函数-Cost-h-theta-x-y"><span class="nav-number">2.1.</span> <span class="nav-text">简化单个样本的代价函数$Cost(h_{\theta}(x),y)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合逻辑回归的参数-theta"><span class="nav-number">2.2.</span> <span class="nav-text">拟合逻辑回归的参数$\theta$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级优化"><span class="nav-number">3.</span> <span class="nav-text">高级优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化算法概念引入"><span class="nav-number">3.1.</span> <span class="nav-text">优化算法概念引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">3.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用实例"><span class="nav-number">3.3.</span> <span class="nav-text">使用实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在逻辑回归中使用优化算法"><span class="nav-number">3.4.</span> <span class="nav-text">在逻辑回归中使用优化算法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1153,9 +1153,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1167,14 +1191,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

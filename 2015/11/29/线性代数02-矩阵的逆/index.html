@@ -99,7 +99,7 @@ $$A \cdot I = A$$
 单位矩阵是行列数相同，第i行i列为1，其他为0的矩阵。
 例如：
 $$ \begin{bmatrix}   1 &amp;amp; 0 &amp;amp; 0 \\   0 &amp;amp; 1 &amp;amp; 0 \\   0 &amp;amp; 0 &amp;amp; 1  \end{bma">
-<meta property="og:updated_time" content="2015-11-29T13:58:49.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:21:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数02-矩阵的逆">
 <meta name="twitter:description" content="单位向量如果有一个矩阵I,对于以下两种情况都成立：
@@ -381,20 +381,20 @@ $$ \begin{bmatrix}   1 &amp;amp; 0 &amp;amp; 0 \\   0 &amp;amp; 1 &amp;amp; 0 \\
       
 
       
-        <h2 id="单位向量">单位向量</h2><p>如果有一个矩阵I,对于以下两种情况都成立：</p>
+        <h2 id="单位向量"><a href="#单位向量" class="headerlink" title="单位向量"></a>单位向量</h2><p>如果有一个矩阵I,对于以下两种情况都成立：</p>
 <p>$$<br>I \cdot A = A<br>$$</p>
 <p>$$<br>A \cdot I = A<br>$$</p>
 <p>那么I被称为单位矩阵。</p>
 <p>单位矩阵是行列数相同，第i行i列为1，其他为0的矩阵。</p>
 <p>例如：</p>
 <p>$$<br> \begin{bmatrix}<br>   1 &amp; 0 &amp; 0 \\<br>   0 &amp; 1 &amp; 0 \\<br>   0 &amp; 0 &amp; 1<br>  \end{bmatrix}<br> $$</p>
-<h2 id="矩阵的逆">矩阵的逆</h2><p>如果矩阵I是单位矩阵</p>
+<h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>如果矩阵I是单位矩阵</p>
 <p>$$<br>A \cdot A^{-1} = I<br>$$</p>
 <p>$$<br>A^{-1} \cdot A = I<br>$$</p>
 <p>那么$$A^{-1}$$就是矩阵A的逆矩阵。</p>
-<h2 id="对2x2的矩阵求逆">对2x2的矩阵求逆</h2><p>$$<br>A<br>{=}<br>\begin{bmatrix}<br>   a &amp; b \\<br>   c &amp; d<br>  \end{bmatrix}<br>$$</p>
+<h2 id="对2x2的矩阵求逆"><a href="#对2x2的矩阵求逆" class="headerlink" title="对2x2的矩阵求逆"></a>对2x2的矩阵求逆</h2><p>$$<br>A<br>{=}<br>\begin{bmatrix}<br>   a &amp; b \\<br>   c &amp; d<br>  \end{bmatrix}<br>$$</p>
 <p>$$<br>A^{-1}<br>{=}<br>\dfrac{1}{ad-bc}\begin{bmatrix}<br>   d &amp; -b \\<br>   -c &amp; a<br>  \end{bmatrix}<br>$$</p>
-<h2 id="通过高思消元法（增广矩阵）求任意矩阵的逆矩阵">通过高思消元法（增广矩阵）求任意矩阵的逆矩阵</h2><p>对增广矩阵进行一系列<strong>初等行变换</strong> 使得左边的矩阵变成右边的单位矩阵</p>
+<h2 id="通过高思消元法（增广矩阵）求任意矩阵的逆矩阵"><a href="#通过高思消元法（增广矩阵）求任意矩阵的逆矩阵" class="headerlink" title="通过高思消元法（增广矩阵）求任意矩阵的逆矩阵"></a>通过高思消元法（增广矩阵）求任意矩阵的逆矩阵</h2><p>对增广矩阵进行一系列<strong>初等行变换</strong> 使得左边的矩阵变成右边的单位矩阵</p>
 <p>所谓初等行变换 就是某一行与其他任意行进行加减或者成倍的加减 或者替换 操作</p>
 <p>举例：</p>
 <p>$$<br>\left[<br>    \begin{array}{ccc|ccc}<br>      1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\<br>      0 &amp; 2 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\<br>      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1<br>    \end{array}<br>\right]\tag{0}<br>$$</p>
@@ -992,9 +992,33 @@ $$ \begin{bmatrix}   1 &amp;amp; 0 &amp;amp; 0 \\   0 &amp;amp; 1 &amp;amp; 0 \\
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1006,14 +1030,12 @@ $$ \begin{bmatrix}   1 &amp;amp; 0 &amp;amp; 0 \\   0 &amp;amp; 1 &amp;amp; 0 \\
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

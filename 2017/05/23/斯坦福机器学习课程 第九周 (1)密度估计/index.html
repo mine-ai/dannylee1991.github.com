@@ -116,7 +116,7 @@
 <meta property="og:image" content="http://studyai.site/img/17_05_23/017.png">
 <meta property="og:image" content="http://studyai.site/img/17_05_23/018.png">
 <meta property="og:image" content="http://studyai.site/img/17_05_23/019.png">
-<meta property="og:updated_time" content="2017-05-25T13:11:47.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:19:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第九周 (1)密度估计">
 <meta name="twitter:description" content="动机:异常检测视频地址
@@ -398,7 +398,7 @@
       
 
       
-        <h2 id="动机:异常检测">动机:异常检测</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/V9MNG/problem-motivation" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="动机-异常检测"><a href="#动机-异常检测" class="headerlink" title="动机:异常检测"></a>动机:异常检测</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/V9MNG/problem-motivation" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在接下来的一系列课程中，我将向大家介绍<strong>异常检测(Anomaly detection)问题</strong>。这是机器学习算法的一个常见应用。这种算法的一个有趣之处在于它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。</p>
 </blockquote>
@@ -416,7 +416,7 @@
 <p>从数据上来看，它看起来像我们之前见过的引擎，因此我们可以直接认为它是正常的。然而如果你的新飞机引擎的$x_{test}$对应的点在这外面：</p>
 <p><img src="/img/17_05_23/003.png" alt=""></p>
 <p>那么我们可以认为这是一个异常的引擎。</p>
-<h3 id="异常检测问题更正式的定义">异常检测问题更正式的定义</h3><p><strong>异常检测问题</strong>更正式一些的定义如下：</p>
+<h3 id="异常检测问题更正式的定义"><a href="#异常检测问题更正式的定义" class="headerlink" title="异常检测问题更正式的定义"></a>异常检测问题更正式的定义</h3><p><strong>异常检测问题</strong>更正式一些的定义如下：</p>
 <p>假设我们有$m$个<strong>正常的</strong>样本数据$｛x^{(1)}，x^{(2)}，…，x^{(m)}｝$，我们需要一个算法来告诉我们一个新的样本数据$x_{test}$是否异常。</p>
 <p>我们要采取的方法是：给定无标签的训练集，对数据集$x$建立一个概率分布模型$p(x)$。当我们建立了$x$的概率模型之后，我们就会说，对于新的飞机引擎$x_{test}$，如果概率$p$低于阈值$ε$：</p>
 <p>$$<br>p(x_{test}) \lt ε<br>$$</p>
@@ -442,23 +442,23 @@
 </tr>
 </tbody>
 </table>
-<h3 id="异常检测的应用场景">异常检测的应用场景</h3><h4 id="欺诈检测">欺诈检测</h4><p>异常检测最常见的应用就是欺诈检测了。</p>
+<h3 id="异常检测的应用场景"><a href="#异常检测的应用场景" class="headerlink" title="异常检测的应用场景"></a>异常检测的应用场景</h3><h4 id="欺诈检测"><a href="#欺诈检测" class="headerlink" title="欺诈检测"></a>欺诈检测</h4><p>异常检测最常见的应用就是欺诈检测了。</p>
 <p>假设你有很多用户，你的每个用户都在从事不同的活动。你可以对不同的用户活动计算特征变量，然后建立一个用来表示用户行为对应的特征向量出现的概率的模型（用来表示用户表现出各种行为的可能性的模型）。</p>
 <p>因此假设你看到某个用户在网站上行为的特征变量是这样的：</p>
 <p>$$<br>\begin{align*}<br>x_1&amp;:是用户登录的频率 \\<br>x_2&amp;:是用户访问某个页面的次数 \\<br>x_3&amp;:是用户在论坛上发帖的次数 \\<br>x_4&amp;:是用户的打字速度（有些网站是可以记录的）<br>\end{align*}<br>$$</p>
 <p>因此你可以根据这些数据建一个模型$p(x)$，然后你可以通过这个模型来发现你网站上的行为奇怪的用户。你只需要看哪些用户的$p(x)\ltε$即可，接下来你就可以对这些用户的档案做进一步筛选，或者要求这些用户 验证他们的身份，从而让你的网站防御异常行为或者欺诈行为。</p>
 <p>这种技术将会找到行为不正常的用户，而不仅仅是有欺诈行为的用户。然而这就是许多许多在线购物网站常常用来识别异常用户的技术。</p>
-<h4 id="工业领域查找异常产品">工业领域查找异常产品</h4><p>异常检测的另一个例子是在工业生产领域，事实上我们上面已经谈到过飞机引擎的问题，你可以通过异常检测找到异常的飞机引擎，然后要求进一步细查这些引擎的质量。</p>
-<h4 id="计算机监控">计算机监控</h4><p>第三个应用是数据中心的计算机监控。实际上我有些朋友正在从事这类工作。</p>
+<h4 id="工业领域查找异常产品"><a href="#工业领域查找异常产品" class="headerlink" title="工业领域查找异常产品"></a>工业领域查找异常产品</h4><p>异常检测的另一个例子是在工业生产领域，事实上我们上面已经谈到过飞机引擎的问题，你可以通过异常检测找到异常的飞机引擎，然后要求进一步细查这些引擎的质量。</p>
+<h4 id="计算机监控"><a href="#计算机监控" class="headerlink" title="计算机监控"></a>计算机监控</h4><p>第三个应用是数据中心的计算机监控。实际上我有些朋友正在从事这类工作。</p>
 <p>如果你正在管理一个计算机集群或者一个数据中心，其中有许多计算机。那么我们可以为每台计算机计算特征变量，例如计算机的内存消耗、硬盘访问量、CPU负载或者一些更加复杂的特征（例如一台计算机的CPU负载与网络流量的比值）。</p>
 <p>那么给定正常情况下数据中心中计算机的特征变量，你可以建立$p(x)$模型，通过它来找到运行不正常的计算机。</p>
 <p>目前这种技术正在被各大数据中心使用，用来监测大量计算机可能发生的异常。</p>
-<h2 id="高斯分布(正态分布)">高斯分布(正态分布)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/ZYAyC/gaussian-distribution" target="_blank" rel="external">视频地址</a></p>
+<h2 id="高斯分布-正态分布"><a href="#高斯分布-正态分布" class="headerlink" title="高斯分布(正态分布)"></a>高斯分布(正态分布)</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/ZYAyC/gaussian-distribution" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在本节我将介绍<strong>高斯分布</strong>（也称为<strong>正态分布</strong>）。</p>
 <p>如果你已经对高斯分布非常熟悉了，那么也许你可以直接跳过这一节。但是如果你不确定或者你已经有段时间没有接触高斯分布了，那么请从头到尾看完这一节。在下一节中，我们将应用高斯分布来推导一套异常检测算法。</p>
 </blockquote>
-<h3 id="高斯分布的定义">高斯分布的定义</h3><p>假设$x$是一个实数随机变量（即：$x \in R$），如果x的概率分布服从高斯分布：其中均值为$μ$，方差为$σ^2$，那么将它记作：</p>
+<h3 id="高斯分布的定义"><a href="#高斯分布的定义" class="headerlink" title="高斯分布的定义"></a>高斯分布的定义</h3><p>假设$x$是一个实数随机变量（即：$x \in R$），如果x的概率分布服从高斯分布：其中均值为$μ$，方差为$σ^2$，那么将它记作：</p>
 <p>$$<br>x \sim N(μ,σ^2)<br>$$</p>
 <blockquote>
 <p>这里的$\sim$符号读作：”服从…分布”。大写字母$N$表示Normal (正态)，有两个参数，其中$μ$表示均值，$σ^2$表示方差。</p>
@@ -470,7 +470,7 @@
 <p>高斯分布的数学公式如下：</p>
 <p>$$<br>p(x;μ,σ^2)=<br>\frac{1}{\sqrt{2π}σ}exp(-\frac{(x-μ)^2}{2σ^2})<br>$$</p>
 <p>其实我们并不需要记住这个公式，当我们真的需要用到它时，我们总可以查资料找到它。</p>
-<h3 id="高斯分布中，$μ$和$σ$的关系">高斯分布中，$μ$和$σ$的关系</h3><p>我们举例来说明一下高斯分布中$μ$和$σ$这两个参数之间的关系：</p>
+<h3 id="高斯分布中，-μ-和-σ-的关系"><a href="#高斯分布中，-μ-和-σ-的关系" class="headerlink" title="高斯分布中，$μ$和$σ$的关系"></a>高斯分布中，$μ$和$σ$的关系</h3><p>我们举例来说明一下高斯分布中$μ$和$σ$这两个参数之间的关系：</p>
 <table>
 <thead>
 <tr>
@@ -490,7 +490,7 @@
 </tbody>
 </table>
 <p>值得提醒的是，在高斯分布的图像中，不管曲线的形状如何，曲线围城的总面积都是1。所以如果$σ$很大，就意味着数据的离散化程度越大，中间区域就会变宽，但由于总概率为1，所以高度会降低；反之如果$σ$很小，就意味着数据的离散化程度越小，中间区域就会变窄，但由于总概率为1，所以高度会升高。</p>
-<h3 id="参数估计问题">参数估计问题</h3><p>接下来让我们来看参数估计问题。</p>
+<h3 id="参数估计问题"><a href="#参数估计问题" class="headerlink" title="参数估计问题"></a>参数估计问题</h3><p>接下来让我们来看参数估计问题。</p>
 <p>假设我们有以下数据集：</p>
 <p>$$<br>｛x^{(1)},x^{(2)},…,x^{(m)}｝ \ \ \ \ \ \ \  x^{(i)} \in R<br>$$</p>
 <p>其对应的数据在图像中如下：</p>
@@ -498,7 +498,7 @@
 <p>如果这些数据是服从正态分布的：</p>
 <p>$$<br>x \sim N(μ,σ^2)<br>$$</p>
 <p>但我们只有数据，并不知道参数$μ$和$σ$的具体值。那么参数估计问题，就是在寻找这些参数具体值的问题。</p>
-<h4 id="高斯分布的参数估计公式">高斯分布的参数估计公式</h4><p>具体来说，高斯分布中的参数估计公式如下：</p>
+<h4 id="高斯分布的参数估计公式"><a href="#高斯分布的参数估计公式" class="headerlink" title="高斯分布的参数估计公式"></a>高斯分布的参数估计公式</h4><p>具体来说，高斯分布中的参数估计公式如下：</p>
 <p>$$<br>μ=\frac{1}{m}\sum_{i=1}^mx^{(i)}<br>$$</p>
 <p>$$<br>σ^2=\frac{1}{m}\sum_{i=1}^m(x^{(i)}-μ)^2<br>$$</p>
 <p>可以看出来，$μ$是在对所有m个样本求均值，$σ^2$实际上是对所有样本与均值做差再取平方后得到的平均大小。</p>
@@ -506,7 +506,7 @@
 <p>再提一下，如果你精通统计学，你可能听过<strong>极大似然估计</strong>，那么这里的估计实际就是对$μ$和$σ^2$的极大似然估计。如果你不知道，也无所谓。</p>
 <p>还有一点，如果你在学习统计学时，可能会见到这个式子：$σ^2=\frac{1}{m-1}\sum_{i=1}^m(x^{(i)}-μ)^2$，但在机器学习领域，大家习惯使用$σ^2=\frac{1}{m}\sum_{i=1}^m(x^{(i)}-μ)^2$，其实在实际情况中，具体使用$\frac{1}{m}$还是$\frac{1}{m-1}$其实区别很小，只要你有一个稍大的数据集。这两个版本的公式在理论特性和数学特性上稍有不同，但在实际应用中，他们的区别甚小，几乎可以忽略不计。</p>
 </blockquote>
-<h2 id="异常检测的具体算法">异常检测的具体算法</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/C8IJp/algorithm" target="_blank" rel="external">视频地址</a></p>
+<h2 id="异常检测的具体算法"><a href="#异常检测的具体算法" class="headerlink" title="异常检测的具体算法"></a>异常检测的具体算法</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/C8IJp/algorithm" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在上节课中，我们谈到了高斯分布。在本节我将应用高斯分布开发异常检测算法。</p>
 </blockquote>
@@ -533,7 +533,7 @@
 <blockquote>
 <p>注意：对于熟悉统计学的同学来说，上面的式子实际上就对应于一个从$x_1$到$x_n$的独立的假设。但实际应用中，无论这些特征是否相互独立，这些算法的效果都还不错。</p>
 </blockquote>
-<h3 id="异常检测算法步骤总结">异常检测算法步骤总结</h3><p>让我们来总结一下<strong>异常检测</strong>算法的具体步骤：</p>
+<h3 id="异常检测算法步骤总结"><a href="#异常检测算法步骤总结" class="headerlink" title="异常检测算法步骤总结"></a>异常检测算法步骤总结</h3><p>让我们来总结一下<strong>异常检测</strong>算法的具体步骤：</p>
 <ul>
 <li>1.从样本中选择一些能体现出异常行为的特征$x_i$。</li>
 </ul>
@@ -559,7 +559,7 @@
 <blockquote>
 <p>给定一个用户行为的样本，如何知道用户行为是否异常呢？我们将用户行为数据带入到$p(x)$的计算中来，如果这个结果非常小，那么我们就将这个行为标注为异常行为。</p>
 </blockquote>
-<h3 id="异常分析例子">异常分析例子</h3><p>假如说我们有下面这样的数据集：</p>
+<h3 id="异常分析例子"><a href="#异常分析例子" class="headerlink" title="异常分析例子"></a>异常分析例子</h3><p>假如说我们有下面这样的数据集：</p>
 <p><img src="/img/17_05_23/014.png" alt=""></p>
 <p>从图中我们可以看出，数据集有两个特征$x_1$和$x_2$。</p>
 <p>其中特征$x_1$对应的是水平方向的数据，它的均值是5，标准差是2；$x_2$对应的是竖直方向上的数据，它的均值是3，标准差是1：</p>
@@ -850,7 +850,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机:异常检测"><span class="nav-number">1.</span> <span class="nav-text">动机:异常检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测问题更正式的定义"><span class="nav-number">1.1.</span> <span class="nav-text">异常检测问题更正式的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测的应用场景"><span class="nav-number">1.2.</span> <span class="nav-text">异常检测的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#欺诈检测"><span class="nav-number">1.2.1.</span> <span class="nav-text">欺诈检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工业领域查找异常产品"><span class="nav-number">1.2.2.</span> <span class="nav-text">工业领域查找异常产品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算机监控"><span class="nav-number">1.2.3.</span> <span class="nav-text">计算机监控</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯分布(正态分布)"><span class="nav-number">2.</span> <span class="nav-text">高斯分布(正态分布)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯分布的定义"><span class="nav-number">2.1.</span> <span class="nav-text">高斯分布的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯分布中，$μ$和$σ$的关系"><span class="nav-number">2.2.</span> <span class="nav-text">高斯分布中，$μ$和$σ$的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数估计问题"><span class="nav-number">2.3.</span> <span class="nav-text">参数估计问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯分布的参数估计公式"><span class="nav-number">2.3.1.</span> <span class="nav-text">高斯分布的参数估计公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常检测的具体算法"><span class="nav-number">3.</span> <span class="nav-text">异常检测的具体算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法步骤总结"><span class="nav-number">3.1.</span> <span class="nav-text">异常检测算法步骤总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常分析例子"><span class="nav-number">3.2.</span> <span class="nav-text">异常分析例子</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机-异常检测"><span class="nav-number">1.</span> <span class="nav-text">动机:异常检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测问题更正式的定义"><span class="nav-number">1.1.</span> <span class="nav-text">异常检测问题更正式的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测的应用场景"><span class="nav-number">1.2.</span> <span class="nav-text">异常检测的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#欺诈检测"><span class="nav-number">1.2.1.</span> <span class="nav-text">欺诈检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工业领域查找异常产品"><span class="nav-number">1.2.2.</span> <span class="nav-text">工业领域查找异常产品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算机监控"><span class="nav-number">1.2.3.</span> <span class="nav-text">计算机监控</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯分布-正态分布"><span class="nav-number">2.</span> <span class="nav-text">高斯分布(正态分布)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯分布的定义"><span class="nav-number">2.1.</span> <span class="nav-text">高斯分布的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯分布中，-μ-和-σ-的关系"><span class="nav-number">2.2.</span> <span class="nav-text">高斯分布中，$μ$和$σ$的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数估计问题"><span class="nav-number">2.3.</span> <span class="nav-text">参数估计问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯分布的参数估计公式"><span class="nav-number">2.3.1.</span> <span class="nav-text">高斯分布的参数估计公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常检测的具体算法"><span class="nav-number">3.</span> <span class="nav-text">异常检测的具体算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常检测算法步骤总结"><span class="nav-number">3.1.</span> <span class="nav-text">异常检测算法步骤总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常分析例子"><span class="nav-number">3.2.</span> <span class="nav-text">异常分析例子</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1183,9 +1183,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1197,14 +1221,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

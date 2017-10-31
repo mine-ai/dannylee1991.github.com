@@ -91,7 +91,7 @@ Logistic回归分类的主要思想是：根据现有数据边界线建立回归
 <meta property="og:description" content="什么是Logistic回归什么是回归？假设现在有一些数据点，我们用一条直线对这些点进行拟合（该线称为最佳拟合直线），这个拟合过程就称作回归。
 Logistic回归分类的主要思想是：根据现有数据边界线建立回归公式，以此进行分类。这里的&amp;quot;回归&amp;quot;一词，源于最佳拟合，在训练分类器时的主要做法就是寻找最佳拟合参数集，这其中运用到的就是最优化算法(可以找到最优解的算法)。
 其中回归过程中运">
-<meta property="og:updated_time" content="2016-01-06T16:46:19.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:20:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习(04)Logistic回归">
 <meta name="twitter:description" content="什么是Logistic回归什么是回归？假设现在有一些数据点，我们用一条直线对这些点进行拟合（该线称为最佳拟合直线），这个拟合过程就称作回归。
@@ -369,13 +369,13 @@ Logistic回归分类的主要思想是：根据现有数据边界线建立回归
       
 
       
-        <h2 id="什么是Logistic回归">什么是Logistic回归</h2><h3 id="什么是回归？">什么是<strong>回归</strong>？</h3><p>假设现在有一些数据点，我们用一条直线对这些点进行拟合（该线称为最佳拟合直线），这个拟合过程就称作<strong>回归</strong>。</p>
+        <h2 id="什么是Logistic回归"><a href="#什么是Logistic回归" class="headerlink" title="什么是Logistic回归"></a>什么是Logistic回归</h2><h3 id="什么是回归？"><a href="#什么是回归？" class="headerlink" title="什么是回归？"></a>什么是<strong>回归</strong>？</h3><p>假设现在有一些数据点，我们用一条直线对这些点进行拟合（该线称为最佳拟合直线），这个拟合过程就称作<strong>回归</strong>。</p>
 <p>Logistic回归分类的主要思想是：根据现有数据边界线建立回归公式，以此进行分类。这里的<code>&quot;回归&quot;</code>一词，源于最佳拟合，在训练分类器时的主要做法就是寻找最佳拟合参数集，这其中运用到的就是<strong>最优化算法</strong>(可以找到最优解的算法)。</p>
 <p>其中回归过程中运用到的数学原理的核心，就是<strong>Logistic函数</strong>。</p>
-<h3 id="什么是Logistic">什么是Logistic</h3><blockquote>
+<h3 id="什么是Logistic"><a href="#什么是Logistic" class="headerlink" title="什么是Logistic"></a>什么是Logistic</h3><blockquote>
 <p><strong>Logistic函数</strong>或<strong>Logistic曲线</strong>是一种常见的S形函数，它是皮埃尔·弗朗索瓦·韦吕勒在1844或1845年在研究它与人口增长的关系时命名的。广义Logistic曲线可以模仿一些情况人口增长（P）的S形曲线。起初阶段大致是指数增长；然后随着开始变得饱和，增加变慢；最后，达到成熟时增加停止。</p>
 </blockquote>
-<h3 id="举个栗子">举个栗子</h3><p>简单来说如果想了解到底哪些因素是胃癌的危险因素，我们就可以使用Logistic回归来处理。</p>
+<h3 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h3><p>简单来说如果想了解到底哪些因素是胃癌的危险因素，我们就可以使用Logistic回归来处理。</p>
 <p>想探讨胃癌发生的危险因素，可以选择两组人群，一组是胃癌组，一组是非胃癌组，两组人群肯定有不同的体征和生活方式等。这里的因变量就是是否胃癌，即“是”或“否”，为两分类变量，自变量就可以包括很多了，例如年龄、性别、饮食习惯、幽门螺杆菌感染等。自变量既可以是连续的，也可以是分类的。通过Logistic回归分析，我们可以大致了解到底哪些因素是胃癌的危险因素。</p>
 
       
@@ -966,9 +966,33 @@ Logistic回归分类的主要思想是：根据现有数据边界线建立回归
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -980,14 +1004,12 @@ Logistic回归分类的主要思想是：根据现有数据边界线建立回归
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

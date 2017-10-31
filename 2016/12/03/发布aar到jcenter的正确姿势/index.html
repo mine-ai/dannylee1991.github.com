@@ -394,10 +394,10 @@
       
         <p>前段时间开发了一个android测试小插件<a href="https://github.com/DannyLee1991/ATestKit" target="_blank" rel="external">ATestKit</a>，准备发布到jcenter库中，可期间碰壁无数，折腾了两天最终终于上传成功。</p>
 <p>下面是我的最终整理：</p>
-<h2 id="上传aar到jcenter的正确姿势">上传aar到jcenter的正确姿势</h2><p>打开<a href="https://bintray.com" target="_blank" rel="external">https://bintray.com</a>。</p>
-<h3 id="第一坑：你需要一个vpn。">第一坑：你需要一个vpn。</h3><p>注册时国内的qq邮箱，163邮箱通通用不了，gmail可用。</p>
+<h2 id="上传aar到jcenter的正确姿势"><a href="#上传aar到jcenter的正确姿势" class="headerlink" title="上传aar到jcenter的正确姿势"></a>上传aar到jcenter的正确姿势</h2><p>打开<a href="https://bintray.com" target="_blank" rel="external">https://bintray.com</a>。</p>
+<h3 id="第一坑：你需要一个vpn。"><a href="#第一坑：你需要一个vpn。" class="headerlink" title="第一坑：你需要一个vpn。"></a>第一坑：你需要一个vpn。</h3><p>注册时国内的qq邮箱，163邮箱通通用不了，gmail可用。</p>
 <p>天朝国情，访问google需要翻墙，不解释。</p>
-<h3 id="第二坑：注意注册入口">第二坑：注意注册入口</h3><p>首页有一个<strong>START YOUR FREE TRIAL</strong>:</p>
+<h3 id="第二坑：注意注册入口"><a href="#第二坑：注意注册入口" class="headerlink" title="第二坑：注意注册入口"></a>第二坑：注意注册入口</h3><p>首页有一个<strong>START YOUR FREE TRIAL</strong>:</p>
 <p><img src="/img/16_12_03/001.png" alt=""></p>
 <p>如果你按照网上搜到排名很靠前的的其他教程来进行，比如说这几篇：</p>
 <ul>
@@ -418,13 +418,13 @@
 <p>继续回到首页，拉到页面最底端，有另外一个入口：</p>
 <p><img src="/img/16_12_03/004.png" alt=""></p>
 <p>从这里注册进入，你就可以不用创建组织了。</p>
-<h3 id="第三坑：收费？！">第三坑：收费？！</h3><p>如果你不幸点击了首页的<strong>START YOUR FREE TRIAL</strong>，那么你的首页上会有这么一个奇怪的标识：</p>
+<h3 id="第三坑：收费？！"><a href="#第三坑：收费？！" class="headerlink" title="第三坑：收费？！"></a>第三坑：收费？！</h3><p>如果你不幸点击了首页的<strong>START YOUR FREE TRIAL</strong>，那么你的首页上会有这么一个奇怪的标识：</p>
 <p><img src="/img/16_12_03/007.png" alt=""></p>
 <p>点进来看一看，虽然没有明确说免费版到期后会怎样，但手动终止免费版后会删掉你库里所有的东东：</p>
 <p><img src="/img/16_12_03/008.png" alt=""></p>
 <p>如果想继续使用，那么150刀一月。</p>
 <p><strong>没想到jcenter如此恶毒的把免费试用入口放在最显眼的位置，而且不明确告诉你试用账号到期后的后果，并且把免费使用的社区版入口藏的那么深。</strong></p>
-<h3 id="正常配置流程">正常配置流程</h3><p>通过社区版注册入口进入之后，就没有了奇怪的标识，我们可以创建一个个人仓库了：</p>
+<h3 id="正常配置流程"><a href="#正常配置流程" class="headerlink" title="正常配置流程"></a>正常配置流程</h3><p>通过社区版注册入口进入之后，就没有了奇怪的标识，我们可以创建一个个人仓库了：</p>
 <p><img src="/img/16_12_03/009.png" alt=""></p>
 <p>配置选择public，类型选择Maven：</p>
 <p><img src="/img/16_12_03/010.png" alt=""></p>
@@ -1047,7 +1047,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1059,7 +1059,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1067,6 +1067,8 @@
   
 
   
+  
+
 
   
 

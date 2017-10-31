@@ -96,7 +96,7 @@ kNN的工作原理是：
 <meta property="og:image" content="http://studyai.site/img/ml_01_03.png">
 <meta property="og:image" content="http://studyai.site/img/ml_01_04.png">
 <meta property="og:image" content="http://studyai.site/img/ml_01_05.png">
-<meta property="og:updated_time" content="2015-12-06T16:11:45.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:20:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习(01)kNN算法">
 <meta name="twitter:description" content="k-近邻算法概述简单的说，k-近邻算法采用测量不同特征值之间的距离方法进行分类。
@@ -375,13 +375,13 @@ kNN的工作原理是：
       
 
       
-        <h2 id="k-近邻算法概述">k-近邻算法概述</h2><p>简单的说，k-近邻算法采用<strong>测量不同特征值之间的距离方法进行分类</strong>。</p>
-<h3 id="kNN的工作原理是：">kNN的工作原理是：</h3><blockquote>
+        <h2 id="k-近邻算法概述"><a href="#k-近邻算法概述" class="headerlink" title="k-近邻算法概述"></a>k-近邻算法概述</h2><p>简单的说，k-近邻算法采用<strong>测量不同特征值之间的距离方法进行分类</strong>。</p>
+<h3 id="kNN的工作原理是："><a href="#kNN的工作原理是：" class="headerlink" title="kNN的工作原理是："></a>kNN的工作原理是：</h3><blockquote>
 <p>在一个样本数据集中（又称作训练样本集），每个样本都存在有<strong>标签</strong>，即我们知道样本数据集中每个数据所属分类的对应关系。输入<strong>没有标签</strong>的新数据时，将新数据的每个特征与样本集中数据的对应特征进行比较，然后算法<strong>提取样本集中特征最相似数据</strong>（最近邻）的分类标签。一般来说，我们只选择样本数据集中<strong>前k个</strong>最相似的数据，这就是k-近邻算法中k的出处，通常<strong>k是不大于20</strong>的整数。最后，选择k个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
 </blockquote>
-<h3 id="k-近邻算法的优缺点">k-近邻算法的优缺点</h3><p>优点：精度高、对异常值不敏感、无数据输入假定。<br>缺点：计算复杂度高、空间复杂度高。<br>试用数据范围：数值型和标称型。</p>
-<h3 id="k-近邻算法的一般流程">k-近邻算法的一般流程</h3><p>[1] 收集数据：可以使用任何方法。<br>[2] 准备数据：距离计算需要的数值，最好是结构化的数据格式。<br>[3] 分析数据：可以使用任何方法。<br>[4] 训练算法：此步骤不适用于k-近邻算法。<br>[5] 测试算法：计算错误率。<br>[6] 使用算法：首先需要输入样本数据和结构化的输出结果，然后运行k-近邻算法判定输入数据分别属于哪个分类，最后应用对计算出的分类执行后续的处理。</p>
-<h2 id="举例：">举例：</h2><h3 id="使用k-近邻算法分类爱情片和动作片">使用k-近邻算法分类爱情片和动作片</h3><p>有人曾经统计过很多电影的打斗镜头和接吻镜头，下图显示了6部电影的打斗和接吻镜头数。假如有一部未看过的电影，如何确定它是爱情片还是动作片呢？</p>
+<h3 id="k-近邻算法的优缺点"><a href="#k-近邻算法的优缺点" class="headerlink" title="k-近邻算法的优缺点"></a>k-近邻算法的优缺点</h3><p>优点：精度高、对异常值不敏感、无数据输入假定。<br>缺点：计算复杂度高、空间复杂度高。<br>试用数据范围：数值型和标称型。</p>
+<h3 id="k-近邻算法的一般流程"><a href="#k-近邻算法的一般流程" class="headerlink" title="k-近邻算法的一般流程"></a>k-近邻算法的一般流程</h3><p>[1] 收集数据：可以使用任何方法。<br>[2] 准备数据：距离计算需要的数值，最好是结构化的数据格式。<br>[3] 分析数据：可以使用任何方法。<br>[4] 训练算法：此步骤不适用于k-近邻算法。<br>[5] 测试算法：计算错误率。<br>[6] 使用算法：首先需要输入样本数据和结构化的输出结果，然后运行k-近邻算法判定输入数据分别属于哪个分类，最后应用对计算出的分类执行后续的处理。</p>
+<h2 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h2><h3 id="使用k-近邻算法分类爱情片和动作片"><a href="#使用k-近邻算法分类爱情片和动作片" class="headerlink" title="使用k-近邻算法分类爱情片和动作片"></a>使用k-近邻算法分类爱情片和动作片</h3><p>有人曾经统计过很多电影的打斗镜头和接吻镜头，下图显示了6部电影的打斗和接吻镜头数。假如有一部未看过的电影，如何确定它是爱情片还是动作片呢？</p>
 <p><img src="/img/ml_01_01.png" alt="使用打斗和接吻镜头数分类电影"></p>
 <p>首先我们需要知道这个未知电影存在多少个打斗镜头和接吻镜头。上图对应的数据如下：</p>
 <p>每部电影的打斗镜头数、接吻镜头数以及电影评估类型：</p>
@@ -476,13 +476,13 @@ kNN的工作原理是：
 </tbody>
 </table>
 <p>现在我们得到了样本集中所有电影与未知电影的距离，按照距离递增排序，可以找到k个距离最近的电影。假定k=3，则三个最靠近的电影依次是<em>He’s Not Really into Dudes</em>、<em>Beautiful Woman</em>和<em>California Man</em>。k-近邻算法按照距离最近的三部电影的类型，决定未知电影的类型，而这三部电影全是爱情片，因此我们判定未知电影是爱情片。</p>
-<h2 id="代码实现kNN">代码实现kNN</h2><h3 id="创建样本数据集：">创建样本数据集：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> operator</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span><span class="params">()</span>:</span></div><div class="line">	group = array([<span class="number">1.0</span>,<span class="number">1.1</span>],[<span class="number">1.0</span>,<span class="number">1.0</span>],[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0.1</span>])</div><div class="line">	labels = [<span class="string">'A'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'B'</span>]</div><div class="line">	<span class="keyword">return</span> group,labels</div></pre></td></tr></table></figure>
+<h2 id="代码实现kNN"><a href="#代码实现kNN" class="headerlink" title="代码实现kNN"></a>代码实现kNN</h2><h3 id="创建样本数据集："><a href="#创建样本数据集：" class="headerlink" title="创建样本数据集："></a>创建样本数据集：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> operator</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span><span class="params">()</span>:</span></div><div class="line">	group = array([<span class="number">1.0</span>,<span class="number">1.1</span>],[<span class="number">1.0</span>,<span class="number">1.0</span>],[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0.1</span>])</div><div class="line">	labels = [<span class="string">'A'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'B'</span>]</div><div class="line">	<span class="keyword">return</span> group,labels</div></pre></td></tr></table></figure>
 <p>命令行执行后得到：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>group,labels = kNN.createDataSet()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>group</div><div class="line">array([[<span class="number">1.0</span>, <span class="number">1.1</span>],</div><div class="line">	[<span class="number">1.0</span>, <span class="number">1.0</span>],</div><div class="line">	[<span class="number">0.0</span>, <span class="number">0.0</span>],</div><div class="line">	[<span class="number">0.0</span>, <span class="number">0.1</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>labels</div><div class="line">[<span class="string">'A'</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'B'</span>]</div></pre></td></tr></table></figure>
 <p>向量label包含了每个数据点的标签信息，label包含的元素个数等于group矩阵行数。这里，我们将数据点（1.0，1.1）定义为类A，数据点(0,0.1)定义为类B。</p>
 <p>下图是四个点在坐标系中的表示：</p>
 <p><img src="/img/ml_01_02.png" alt="k-近邻算法：带有4个数据点的简单例子"></p>
-<h3 id="从文本文件中解析数据">从文本文件中解析数据</h3><p>将每组数据划分到某个类中，伪代码如下：</p>
+<h3 id="从文本文件中解析数据"><a href="#从文本文件中解析数据" class="headerlink" title="从文本文件中解析数据"></a>从文本文件中解析数据</h3><p>将每组数据划分到某个类中，伪代码如下：</p>
 <p><code>对未知类别属性的数据集中的每个点依次执行以下操作：</code></p>
 <ul>
 <li>(1) 计算已知类别数据集中的点与当前点之间的距离；</li>
@@ -499,7 +499,7 @@ kNN的工作原理是：
 <p>为了预测数据所在的分类，在Python提示符中输入下列命令：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>kNN.classify0([<span class="number">0</span>,<span class="number">0</span>], group, labels, <span class="number">3</span>)</div></pre></td></tr></table></figure>
 <p>输出的结果应该是B。</p>
-<h3 id="测试分类器">测试分类器</h3><p>分类器并不会得到百分之百的正确的结果，为了测试分类器的效果，我们可以使用已知晓答案的数据，当然答案不能告诉分类器，检验分类器给出的结果是否符合预期结果。</p>
+<h3 id="测试分类器"><a href="#测试分类器" class="headerlink" title="测试分类器"></a>测试分类器</h3><p>分类器并不会得到百分之百的正确的结果，为了测试分类器的效果，我们可以使用已知晓答案的数据，当然答案不能告诉分类器，检验分类器给出的结果是否符合预期结果。</p>
 <p>通过大量的测试数据，我们可以得到分类器的错误率–分类器给出错误结果的词数 除以 测试执行的总数。</p>
 <p>错误率是常用的评估方法，主要用于评估分类器在某个数据集上的执行效果。完美分类器的错误率为0，最差分类器的错误率是1.0，在这种情况下，分类器根本就无法找到一个正确答案。</p>
 
@@ -1091,9 +1091,33 @@ kNN的工作原理是：
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1105,14 +1129,12 @@ kNN的工作原理是：
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

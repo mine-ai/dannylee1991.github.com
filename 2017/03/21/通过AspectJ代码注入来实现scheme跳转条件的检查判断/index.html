@@ -398,7 +398,7 @@
 <video width="300px" autoplay="autoplay" loop="loop" id="video" controls preload="none"><br>  <source id="mp4" src="/img/17_03_21/005.mp4" type="video/mp4"><br>  <p>Your user agent does not support the HTML5 Video element.</p><br></video>
 
 <p>接下来介绍一下我是如何实现的。</p>
-<h2 id="如何实现">如何实现</h2><p>首先关于<strong>依赖注入</strong>以及<strong>AspectJ</strong>的相关使用，我参考了以下文章以及代码，具体使用方式我就不再赘述：</p>
+<h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><p>首先关于<strong>依赖注入</strong>以及<strong>AspectJ</strong>的相关使用，我参考了以下文章以及代码，具体使用方式我就不再赘述：</p>
 <ul>
 <li><a href="http://www.jianshu.com/p/0fa8073fd144" target="_blank" rel="external">【翻译】Android中的AOP编程</a>  这一篇对AOP概念进行了介绍，并且通过AspectJ仿照<a href="https://github.com/JakeWharton/hugo" target="_blank" rel="external">Hugo</a>实现了一个AOP的Demo。</li>
 <li>JakeWharton大神的<a href="https://github.com/JakeWharton/hugo" target="_blank" rel="external">hugo</a> 项目，通过AspectJ实现的日志工具。</li>
@@ -426,10 +426,10 @@
 <p>例如，在登录成功的地方，可以执行:</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reExecuteScheme(<span class="keyword">this</span>, Condition.LOGIN);</div></pre></td></tr></table></figure>
 <p>来达到登录成功时继续触发<strong>因未登录导致的scheme跳转失败的scheme跳转</strong>（好绕啊…）。</p>
-<h2 id="愉快的调用">愉快的调用</h2><p>接下来我们在需要加入scheme跳转判断的Activity的类上加入注解判断即可，例如我们在下面的Activity上加入<strong>登录</strong>以及<strong>词书下载</strong>的条件判断：</p>
+<h2 id="愉快的调用"><a href="#愉快的调用" class="headerlink" title="愉快的调用"></a>愉快的调用</h2><p>接下来我们在需要加入scheme跳转判断的Activity的类上加入注解判断即可，例如我们在下面的Activity上加入<strong>登录</strong>以及<strong>词书下载</strong>的条件判断：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@SchemeCheck</span>(conditions = &#123;Condition.LOGIN, Condition.DOWNLOAD_BOOK&#125;)</div><div class="line">public class TargetActivityC extends Activity &#123;</div><div class="line"></div><div class="line">    <span class="selector-tag">public</span> <span class="selector-tag">static</span> <span class="selector-tag">void</span> <span class="selector-tag">start</span>(Activity activity) &#123;</div><div class="line">        activity<span class="selector-class">.startActivity</span>(new Intent(activity, TargetActivityC.class));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</div><div class="line">        setContentView(R<span class="selector-class">.layout</span><span class="selector-class">.activity_c</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>是不是很简单呢？</p>
-<h2 id="注意！这里有坑">注意！这里有坑</h2><p>目前发现的一个坑就是我们的加入scheme跳转判断的子类Activity中必须有<code>onCreate</code>方法才可以正常执行，因为<code>AspectJ</code>只能判断当前子类中所触发的子类的方法。也就是说如果即使你对Activity的基类的<code>onCreate</code>进行了一层封装，完成了<code>onCreate</code>的所有工作，子类也需要复写一下<code>onCreate</code>。就像这样：</p>
+<h2 id="注意！这里有坑"><a href="#注意！这里有坑" class="headerlink" title="注意！这里有坑"></a>注意！这里有坑</h2><p>目前发现的一个坑就是我们的加入scheme跳转判断的子类Activity中必须有<code>onCreate</code>方法才可以正常执行，因为<code>AspectJ</code>只能判断当前子类中所触发的子类的方法。也就是说如果即使你对Activity的基类的<code>onCreate</code>进行了一层封装，完成了<code>onCreate</code>的所有工作，子类也需要复写一下<code>onCreate</code>。就像这样：</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>否则会crash。</p>
 
@@ -1023,7 +1023,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1035,7 +1035,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1043,6 +1043,8 @@
   
 
   
+  
+
 
   
 

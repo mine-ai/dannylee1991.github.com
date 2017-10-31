@@ -97,7 +97,7 @@ $$\left[    \b">
 $$\begin{cases}-x + 2y - z = 9\\x - 7y - 2z = -20\\2x + 2y + z = 2\end{cases}$$ 
 通过增广矩阵求解：
 $$\left[    \b">
-<meta property="og:updated_time" content="2015-12-05T05:48:49.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:21:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数05-求解三元线性方程组">
 <meta name="twitter:description" content="求解三元线性方程组二元线性方程组，相当于求解在x，y坐标系中，两条不平行的直线的焦点坐标。
@@ -378,7 +378,7 @@ $$\left[    \b">
       
 
       
-        <h2 id="求解三元线性方程组">求解三元线性方程组</h2><p>二元线性方程组，相当于求解在x，y坐标系中，两条不平行的直线的焦点坐标。</p>
+        <h2 id="求解三元线性方程组"><a href="#求解三元线性方程组" class="headerlink" title="求解三元线性方程组"></a>求解三元线性方程组</h2><p>二元线性方程组，相当于求解在x，y坐标系中，两条不平行的直线的焦点坐标。</p>
 <p>同理，求解三元线性方程组，相当于求解在x，y，z坐标系中，三个互不平行的平面的焦点坐标。</p>
 <p>例如：</p>
 <p>$$<br>\begin{cases}<br>-x + 2y - z = 9\\<br>x - 7y - 2z = -20\\<br>2x + 2y + z = 2<br>\end{cases}<br>$$ </p>
@@ -981,9 +981,33 @@ $$\left[    \b">
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -995,14 +1019,12 @@ $$\left[    \b">
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

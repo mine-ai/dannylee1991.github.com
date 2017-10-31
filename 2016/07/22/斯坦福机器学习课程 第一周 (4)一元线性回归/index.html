@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_07_22/028.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_22/029.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_22/030.png">
-<meta property="og:updated_time" content="2016-07-25T00:52:24.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:16:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第一周 (4)一元线性回归">
 <meta name="twitter:description" content="线性回归预测一个输入值的一个真值输出。我们讨论了线性回归在住房价格预测中的应用，提出了成本函数的概念，并介绍了学习的梯度下降法。
@@ -410,7 +410,7 @@
         <blockquote>
 <p>线性回归预测一个输入值的一个真值输出。我们讨论了线性回归在住房价格预测中的应用，提出了成本函数的概念，并介绍了学习的梯度下降法。</p>
 </blockquote>
-<h2 id="模型与成本函数(Model_and_Cost_Function)">模型与成本函数(Model and Cost Function)</h2><h3 id="模型表示">模型表示</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/db3jS/model-representation" target="_blank" rel="external">视频地址</a></p>
+<h2 id="模型与成本函数-Model-and-Cost-Function"><a href="#模型与成本函数-Model-and-Cost-Function" class="headerlink" title="模型与成本函数(Model and Cost Function)"></a>模型与成本函数(Model and Cost Function)</h2><h3 id="模型表示"><a href="#模型表示" class="headerlink" title="模型表示"></a>模型表示</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/db3jS/model-representation" target="_blank" rel="external">视频地址</a></p>
 <p>我们的第一个学习算法是<strong>线性回归算法</strong>，在这段视频中，你会看到这个算法的概况。更重要的是你将会了解监督学习过程完整的流程，让我们通过一个例子来开始。</p>
 <p>这个例子是预测住房价格的，我们要使用一个数据集，数据集包含俄勒冈州波特兰市的住房价格。</p>
 <p><img src="/img/16_07_22/001.png" alt=""></p>
@@ -431,7 +431,7 @@
 <p>当设计学习算法的时候，我们接下来需要去思考的是怎样得到这个假设$h$，对于这一点在接下来的几个视频中我将选择最初的使用规则，$h$代表hypothesis。我们将会这么写：</p>
 <p>$$<br>h_{θ}(x) = θ_0 + θ_1 * x<br>$$</p>
 <p>为了方便有时非书面形式也可以这么写：$h_{θ}(x)$，我就写成$h(x)$，这是缩写方式。但一般来说我会保留这个下标$θ$。所以这就是数据集和函数的作用：用来预测。有时候我们会有更复杂的函数，也许是非线性函数，但是由于线性方程是简单的形式，我们将先从线性方程的例子入手。当然最终我们将会建立更复杂的模型，以及更复杂的学习算法。好吧，让我们也给这模型起一个名字，这个模型被称为线性回归<strong>(linear regression)</strong>模型。另外，这实际上是关于单个变量的线性回归，这个变量就是x。根据x来预测所有的价格函数，同时 对于这种模型有另外一个名称，称作<strong>单变量线性回归</strong>，单变量是对一个变量的一种特别的表述方式，总而言之这就是线性回归，在接下来的视频中我们将开始讨论如何去实现这种模型。</p>
-<h3 id="代价函数">代价函数</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/rkTp3/cost-function" target="_blank" rel="external">视频地址</a></p>
+<h3 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/rkTp3/cost-function" target="_blank" rel="external">视频地址</a></p>
 <p>在这段视频中我们将定义<strong>代价函数</strong>的概念，这有助于我们弄清楚如何把最有可能的直线与我们的数据相拟合。在线性回归中我们有一个像这样的训练集，记住，$M$代表了训练样本的数量。所以，比如$M = 47$。而我们的假设函数，也就是用来进行预测的函数，是这样的线性函数形式。</p>
 <p><img src="/img/16_07_22/007.png" alt=""></p>
 <p>接下来我们会引入一些术语，这些$θ_{0}$和$θ_{1}$，这些$θ_{i}$我把它们称为<strong>模型参数</strong>。在这个视频中，我们要做的就是谈谈如何选择这两个参数值$θ_{0}$和$θ_{1}$。选择不同的参数$θ_{0}$和$θ_{1}$，我们会得到不同的假设，不同的假设函数，我知道你们中的有些人可能已经知道我在这张幻灯片上要讲的，但我们还是用这几个例子来复习回顾一下。如果$θ_{0}=1.5$，$θ_{1}=0$ 那么假设函数会看起来是这样:</p>
@@ -466,7 +466,7 @@
 <p>$$<br>J(θ_{0},θ_{1}) =<br>\frac{1}{2m}<br>\sum_{i=1}^{m}<br>(h_{θ}(x^{(i)}) - y^{(i)})^{2}<br>$$</p>
 <p>正如屏幕中所示，这里的这个公式我们想要做的就是关于$θ_{0}$和$θ_{1}$对函数$J(θ_{0}$,$θ_{1})$求最小值。这就是我的代价函数。代价函数也被称作<strong>平方误差函数</strong>，有时也被称为<strong>平方误差代价函数</strong>。事实上我们之所以要求出误差的平方和，是因为误差平方代价函数对于大多数问题，特别是回归问题，都是一个合理的选择。还有其他的代价函数也能很好地发挥作用，但是平方误差代价函数可能是解决回归问题最常用的手段了。</p>
 <p>在后续课程中，我们还会谈论其他的代价函数。但我们刚刚讲的选择是对于大多数线性回归问题非常合理的。好吧，所以这是代价函数，到目前为止我们已经介绍了代价函数的数学定义，也许这个函数$J(θ_{0}$,$θ_{1})$有点抽象，可能你仍然不知道它的内涵，在接下来的几个视频里我们要更进一步解释代价函数$J$的工作原理，并尝试更直观地解释它在计算什么，以及我们使用它的目的。</p>
-<h3 id="代价函数_实例1">代价函数 实例1</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/N09c6/cost-function-intuition-i" target="_blank" rel="external">视频地址</a></p>
+<h3 id="代价函数-实例1"><a href="#代价函数-实例1" class="headerlink" title="代价函数 实例1"></a>代价函数 实例1</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/N09c6/cost-function-intuition-i" target="_blank" rel="external">视频地址</a></p>
 <p>在上一个视频中我们给了代价函数一个数学上的定义，在这个视频里 让我们通过一些例子来获取一些直观的感受，看看代价函数到底是在干什么。</p>
 <p>回顾一下，这是我们上次所讲过的内容：我们想找一条直线来拟合我们的数据，所以我们用θ0，θ1等参数得到了这个假设，而且通过选择不同的参数，我们会得到不同的直线拟合。然后我们还有一个代价函数，这就是我们的优化目标。</p>
 <p><strong>假设(Hypothesis):</strong></p>
@@ -528,7 +528,7 @@
 <p>我们来回顾一下，任何一个$θ_{1}$的取值对应着一个不同的假设函数，或者说对应着左边一条不同的拟合直线。对于任意的$θ_{1}$你可以算出一个不同的$J(θ1)$的取值。举个例子，你知道的$θ_{1} = 1$时对应着穿过这些数据的那条直线，当$θ_{1} = 0.5$，对应着上面斜率为0.5的那条直线，然后$θ_{1} = 0$，对应着过原点的水平的线。所以对于任意一个$θ_{1}$的取值，我们会得到一个不同的$J(θ_{1})$，而且我们可以利用这些来描出上边的这条曲线。</p>
 <p><img src="/img/16_07_22/013.png" alt=""></p>
 <p>现在你还记得学习算法的优化目标，是我们想找到一个$θ_{1}$的值来将$J(θ_{1})$最小化，这是我们线性回归的目标函数。嗯，看这条曲线，让$J(θ_{1})$最小化的值 是$θ_{1} = 1$，然后你看，这个确实就对应着最佳的通过了数据点的拟合直线，这条直线就是由$θ_{1} = 1$的设定而得到的，然后，对于这个特定的训练样本，我们最后能够完美地拟合。这就是为什么最小化$J(θ_{1})$对应着寻找一个最佳拟合直线的目标。总结一下，在这个视频里我们看到了一些图形来理解代价函数，要做到这个，我们简化了算法，让这个函数只有一个参数$θ_{1}$，也就是说我们把$θ_{0}$设定为0，在下一个视频里我们将回到原来的问题的公式，然后看一些带有$θ_{0}$和$θ_{1}$的图形，也就是说不把$θ_{0}$设置为0了，希望这会让你更好地理解在原来的线性回归公式里代价函数$J$的意义。</p>
-<h3 id="代价函数_实例2">代价函数 实例2</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/nwpe2/cost-function-intuition-ii" target="_blank" rel="external">视频地址</a></p>
+<h3 id="代价函数-实例2"><a href="#代价函数-实例2" class="headerlink" title="代价函数 实例2"></a>代价函数 实例2</h3><p><a href="https://www.coursera.org/learn/machine-learning/lecture/nwpe2/cost-function-intuition-ii" target="_blank" rel="external">视频地址</a></p>
 <p>这节课中，我们将更深入地学习代价函数的作用。这段视频的内容假设你已经认识轮廓图，如果你对轮廓图不太熟悉的话，这段视频中的某些内容你可能会听不懂。但不要紧，如果你跳过这段视频的话，也没什么关系。不听这节课对后续课程理解影响不大。</p>
 <p>和之前一样，这是我们的几个重要公式：</p>
 <p><strong>假设(Hypothesis):</strong></p>
@@ -871,7 +871,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型与成本函数(Model_and_Cost_Function)"><span class="nav-number">1.</span> <span class="nav-text">模型与成本函数(Model and Cost Function)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表示"><span class="nav-number">1.1.</span> <span class="nav-text">模型表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数"><span class="nav-number">1.2.</span> <span class="nav-text">代价函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数_实例1"><span class="nav-number">1.3.</span> <span class="nav-text">代价函数 实例1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数_实例2"><span class="nav-number">1.4.</span> <span class="nav-text">代价函数 实例2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型与成本函数-Model-and-Cost-Function"><span class="nav-number">1.</span> <span class="nav-text">模型与成本函数(Model and Cost Function)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表示"><span class="nav-number">1.1.</span> <span class="nav-text">模型表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数"><span class="nav-number">1.2.</span> <span class="nav-text">代价函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数-实例1"><span class="nav-number">1.3.</span> <span class="nav-text">代价函数 实例1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数-实例2"><span class="nav-number">1.4.</span> <span class="nav-text">代价函数 实例2</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1204,9 +1204,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1218,14 +1242,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

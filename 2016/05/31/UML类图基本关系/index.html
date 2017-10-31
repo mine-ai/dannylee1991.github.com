@@ -412,32 +412,32 @@
       
 
       
-        <h2 id="关系汇总">关系汇总</h2><p>uml的类图是用来描述类与类之间的基本关系一种图。常见的有以下几种关系: </p>
-<h3 id="继承关系">继承关系</h3><ul>
+        <h2 id="关系汇总"><a href="#关系汇总" class="headerlink" title="关系汇总"></a>关系汇总</h2><p>uml的类图是用来描述类与类之间的基本关系一种图。常见的有以下几种关系: </p>
+<h3 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h3><ul>
 <li><strong>泛化(Generalization)</strong></li>
 <li><strong>实现(Realization)</strong></li>
 </ul>
-<h3 id="拥有关系">拥有关系</h3><ul>
+<h3 id="拥有关系"><a href="#拥有关系" class="headerlink" title="拥有关系"></a>拥有关系</h3><ul>
 <li><strong>关联(Association)</strong></li>
 <li><strong>聚合(Aggregation)</strong></li>
 <li><strong>组合(Composition)</strong></li>
 </ul>
-<h3 id="使用关系">使用关系</h3><ul>
+<h3 id="使用关系"><a href="#使用关系" class="headerlink" title="使用关系"></a>使用关系</h3><ul>
 <li><strong>依赖(Dependency)</strong></li>
 </ul>
 <hr>
-<h2 id="继承关系-1">继承关系</h2><h3 id="泛化(Generalization)">泛化(Generalization)</h3><p>是一种继承关系, 表示一般与特殊的关系, 它指定了子类如何特化父类的所有特征和行为。</p>
+<h2 id="继承关系-1"><a href="#继承关系-1" class="headerlink" title="继承关系"></a>继承关系</h2><h3 id="泛化-Generalization"><a href="#泛化-Generalization" class="headerlink" title="泛化(Generalization)"></a>泛化(Generalization)</h3><p>是一种继承关系, 表示一般与特殊的关系, 它指定了子类如何特化父类的所有特征和行为。</p>
 <p><img src="/img/16_05_31/01.png" alt="泛化"></p>
-<h3 id="实现（Realization）">实现（Realization）</h3><p>是一种类与接口的关系，表示类是接口所有特征和行为的实现。</p>
+<h3 id="实现（Realization）"><a href="#实现（Realization）" class="headerlink" title="实现（Realization）"></a>实现（Realization）</h3><p>是一种类与接口的关系，表示类是接口所有特征和行为的实现。</p>
 <p><img src="/img/16_05_31/02.png" alt="实现"></p>
-<h2 id="拥有关系-1">拥有关系</h2><h3 id="关联(Association)">关联(Association)</h3><p>是一种拥有的关系，它使一个类知道另一个类的属性和方法；具体代码体现是：成员变量。双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。</p>
+<h2 id="拥有关系-1"><a href="#拥有关系-1" class="headerlink" title="拥有关系"></a>拥有关系</h2><h3 id="关联-Association"><a href="#关联-Association" class="headerlink" title="关联(Association)"></a>关联(Association)</h3><p>是一种拥有的关系，它使一个类知道另一个类的属性和方法；具体代码体现是：成员变量。双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。</p>
 <p><img src="/img/16_05_31/03.png" alt="实现"></p>
-<h3 id="聚合(Aggregation)">聚合(Aggregation)</h3><p>是整体与部分的关系，且部分可以离开整体而单独存在。如车和轮胎是整体和部分的关系，轮胎离开车仍然可以存在。具体的代码体现也是成员变量，但突出强调整体和部分的关系。</p>
+<h3 id="聚合-Aggregation"><a href="#聚合-Aggregation" class="headerlink" title="聚合(Aggregation)"></a>聚合(Aggregation)</h3><p>是整体与部分的关系，且部分可以离开整体而单独存在。如车和轮胎是整体和部分的关系，轮胎离开车仍然可以存在。具体的代码体现也是成员变量，但突出强调整体和部分的关系。</p>
 <p><img src="/img/16_05_31/04.png" alt="实现"></p>
-<h3 id="组合(Composition)">组合(Composition)</h3><p>是整体与部分的关系，但部分不能离开整体而单独存在。如公司和部门是整体和部分的关系，没有公司就不存在部门。</p>
+<h3 id="组合-Composition"><a href="#组合-Composition" class="headerlink" title="组合(Composition)"></a>组合(Composition)</h3><p>是整体与部分的关系，但部分不能离开整体而单独存在。如公司和部门是整体和部分的关系，没有公司就不存在部门。</p>
 <p>组合关系是关联关系的一种，是比聚合关系还要强的关系，它要求普通的聚合关系中代表整体的对象负责代表部分的对象的生命周期。</p>
 <p><img src="/img/16_05_31/05.png" alt="组合"></p>
-<h2 id="使用关系-1">使用关系</h2><h3 id="依赖(Dependency)">依赖(Dependency)</h3><p>是一种使用的关系，即一个类的实现需要另一个类的协助。具体代码实现为：局部变量、方法的参数或者对静态方法的调用。</p>
+<h2 id="使用关系-1"><a href="#使用关系-1" class="headerlink" title="使用关系"></a>使用关系</h2><h3 id="依赖-Dependency"><a href="#依赖-Dependency" class="headerlink" title="依赖(Dependency)"></a>依赖(Dependency)</h3><p>是一种使用的关系，即一个类的实现需要另一个类的协助。具体代码实现为：局部变量、方法的参数或者对静态方法的调用。</p>
 <p><img src="/img/16_05_31/06.png" alt="组合"></p>
 
       
@@ -695,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关系汇总"><span class="nav-number">1.</span> <span class="nav-text">关系汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承关系"><span class="nav-number">1.1.</span> <span class="nav-text">继承关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拥有关系"><span class="nav-number">1.2.</span> <span class="nav-text">拥有关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用关系"><span class="nav-number">1.3.</span> <span class="nav-text">使用关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承关系-1"><span class="nav-number">2.</span> <span class="nav-text">继承关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛化(Generalization)"><span class="nav-number">2.1.</span> <span class="nav-text">泛化(Generalization)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现（Realization）"><span class="nav-number">2.2.</span> <span class="nav-text">实现（Realization）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拥有关系-1"><span class="nav-number">3.</span> <span class="nav-text">拥有关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关联(Association)"><span class="nav-number">3.1.</span> <span class="nav-text">关联(Association)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合(Aggregation)"><span class="nav-number">3.2.</span> <span class="nav-text">聚合(Aggregation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合(Composition)"><span class="nav-number">3.3.</span> <span class="nav-text">组合(Composition)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用关系-1"><span class="nav-number">4.</span> <span class="nav-text">使用关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖(Dependency)"><span class="nav-number">4.1.</span> <span class="nav-text">依赖(Dependency)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关系汇总"><span class="nav-number">1.</span> <span class="nav-text">关系汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承关系"><span class="nav-number">1.1.</span> <span class="nav-text">继承关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拥有关系"><span class="nav-number">1.2.</span> <span class="nav-text">拥有关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用关系"><span class="nav-number">1.3.</span> <span class="nav-text">使用关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承关系-1"><span class="nav-number">2.</span> <span class="nav-text">继承关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛化-Generalization"><span class="nav-number">2.1.</span> <span class="nav-text">泛化(Generalization)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现（Realization）"><span class="nav-number">2.2.</span> <span class="nav-text">实现（Realization）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拥有关系-1"><span class="nav-number">3.</span> <span class="nav-text">拥有关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关联-Association"><span class="nav-number">3.1.</span> <span class="nav-text">关联(Association)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合-Aggregation"><span class="nav-number">3.2.</span> <span class="nav-text">聚合(Aggregation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合-Composition"><span class="nav-number">3.3.</span> <span class="nav-text">组合(Composition)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用关系-1"><span class="nav-number">4.</span> <span class="nav-text">使用关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖-Dependency"><span class="nav-number">4.1.</span> <span class="nav-text">依赖(Dependency)</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1030,7 +1030,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1042,7 +1042,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1050,6 +1050,8 @@
   
 
   
+  
+
 
   
 

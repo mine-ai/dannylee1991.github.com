@@ -377,8 +377,8 @@ If for each object o1 of type S there is an object o2 of type T such that for al
       
 
       
-        <h2 id="里氏替换原则">里氏替换原则</h2><p>里氏替换原则 英文名称<strong>Liskov Subtitution Principle, LSP</strong></p>
-<h2 id="定义">定义</h2><p>传说中最正宗的定义：</p>
+        <h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p>里氏替换原则 英文名称<strong>Liskov Subtitution Principle, LSP</strong></p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>传说中最正宗的定义：</p>
 <blockquote>
 <p>If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.</p>
 <p>如果对每一个类型为S的对象o1,都有类型为T的对象o2,使得以T定义的所有程序P在所有的对象o1都代换成o2时，程序P的行为没有发生变化，那么类型S是类型T的子类型.</p>
@@ -392,7 +392,7 @@ If for each object o1 of type S there is an object o2 of type T such that for al
 <blockquote>
 <p>只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，使用者可能根本就不需要知道是父类还是子类。但是反过来就不行了，有子类出现的地方，父类未必就能适应。</p>
 </blockquote>
-<h2 id="举例">举例</h2><h3 id="子类必须完全实现父类的方法">子类必须完全实现父类的方法</h3><p>cs游戏中的枪支类图:<br><img src="/img/lishitihuan_1.png" alt="cs游戏枪支类图"></p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><h3 id="子类必须完全实现父类的方法"><a href="#子类必须完全实现父类的方法" class="headerlink" title="子类必须完全实现父类的方法"></a>子类必须完全实现父类的方法</h3><p>cs游戏中的枪支类图:<br><img src="/img/lishitihuan_1.png" alt="cs游戏枪支类图"></p>
 <p>代码清单：</p>
 <p>枪支的抽象类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractGun</span> </span>&#123;</div><div class="line">	<span class="comment">//枪用来干什么的？杀敌！</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">shoot</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -418,7 +418,7 @@ If for each object o1 of type S there is an object o2 of type T such that for al
 <blockquote>
 <p><strong>注意</strong> 如果子类不能完整地实现父类的方法，或者父类的某些方法在子类中已经发生“畸变”，则建议断开父子继承关系，采用依赖、聚集、组合等关系代替继承。</p>
 </blockquote>
-<h3 id="子类可以有自己的个性">子类可以有自己的个性</h3><p>子类当然可以有自己的方法和属性了，这里再次强调，是因为里氏替换原则可以正着用，但是不能反过来用。在子类出现的地方，父类未必就可以胜任。</p>
+<h3 id="子类可以有自己的个性"><a href="#子类可以有自己的个性" class="headerlink" title="子类可以有自己的个性"></a>子类可以有自己的个性</h3><p>子类当然可以有自己的方法和属性了，这里再次强调，是因为里氏替换原则可以正着用，但是不能反过来用。在子类出现的地方，父类未必就可以胜任。</p>
 <p>以刚才对枪支为例，步枪有几个比较“响亮”的型号，比如AK47、AUG狙击步枪等，把这两个型号的枪引入后的Rifle子类图如下：</p>
 <p><img src="/img/lishitihuan_4.png" alt="步枪扩展"></p>
 <p>代码清单：</p>
@@ -432,10 +432,10 @@ If for each object o1 of type S there is an object o2 of type T such that for al
 <p>那么我们能不能传递Rifle父类给sanMao呢？如下所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//产生三毛这个狙击手</span></div><div class="line">		Snipper sanMao = <span class="keyword">new</span> Snipper();</div><div class="line">		sanMao.setRifle((AUG)(<span class="keyword">new</span> Rifle()));</div><div class="line">		sanMao.killEnemy();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>显示是不行的，会在运行期抛出java.lang.ClassCastException异常，这也是大家常说的向下转型（downcast）是不安全的，从里氏替换原则来看，就是有子类出现的地方父类未必就可以出现。</p>
-<h3 id="覆盖或实现父类的方法时输入参数可以被放大">覆盖或实现父类的方法时输入参数可以被放大</h3><blockquote>
+<h3 id="覆盖或实现父类的方法时输入参数可以被放大"><a href="#覆盖或实现父类的方法时输入参数可以被放大" class="headerlink" title="覆盖或实现父类的方法时输入参数可以被放大"></a>覆盖或实现父类的方法时输入参数可以被放大</h3><blockquote>
 <p>即子类方法的参数应该大于父类方法的参数，即子类方法的参数应该至少与父类相同或者或者是其父类</p>
 </blockquote>
-<h3 id="复写或实现父类的方法时输出结果可以被缩小">复写或实现父类的方法时输出结果可以被缩小</h3><blockquote>
+<h3 id="复写或实现父类的方法时输出结果可以被缩小"><a href="#复写或实现父类的方法时输出结果可以被缩小" class="headerlink" title="复写或实现父类的方法时输出结果可以被缩小"></a>复写或实现父类的方法时输出结果可以被缩小</h3><blockquote>
 <p>即子类方法的返回值应该小于父类方法的返回值，即子类的返回值应该至多与父类的返回值相同或者是其子类</p>
 </blockquote>
 <p>以上两点 归根结底一句话：<strong>重载或实现 子类的方法输入范围&gt;=父类，返回范围&lt;=父类</strong>L</p>
@@ -1030,7 +1030,7 @@ If for each object o1 of type S there is an object o2 of type T such that for al
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1042,7 +1042,7 @@ If for each object o1 of type S there is an object o2 of type T such that for al
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1050,6 +1050,8 @@ If for each object o1 of type S there is an object o2 of type T such that for al
   
 
   
+  
+
 
   
 

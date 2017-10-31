@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_10_16/002.png">
 <meta property="og:image" content="http://studyai.site/img/16_10_16/003.png">
 <meta property="og:image" content="http://studyai.site/img/16_10_16/004.png">
-<meta property="og:updated_time" content="2016-10-19T14:57:08.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:17:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第五周 (4)神经网络实现自动驾驶">
 <meta name="twitter:description" content="使用神经网络实现自动驾驶视频地址
@@ -380,7 +380,7 @@
       
 
       
-        <h2 id="使用神经网络实现自动驾驶">使用神经网络实现自动驾驶</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/zYS8T/autonomous-driving" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="使用神经网络实现自动驾驶"><a href="#使用神经网络实现自动驾驶" class="headerlink" title="使用神经网络实现自动驾驶"></a>使用神经网络实现自动驾驶</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/zYS8T/autonomous-driving" target="_blank" rel="external">视频地址</a></p>
 <p>这一节将介绍一个具有历史意义的神经网络学习的例子，那就是使用神经网络来实现自动驾驶。也就是说汽车通过学习来自己驾驶。</p>
 <p>这是Dean Pomerleau那里得到的一段视频，Dean Pomerleau任职于美国东海岸的卡耐基梅隆大学，下面的视频中你会明白可视化技术到底是什么。</p>
 <p><img src="/img/16_10_16/001.png" alt=""></p>
@@ -985,9 +985,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -999,14 +1023,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

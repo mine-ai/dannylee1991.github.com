@@ -371,19 +371,19 @@
       
         <p><a href="https://developer.android.google.cn/training/testing/performance.html" target="_blank" rel="external">https://developer.android.google.cn/training/testing/performance.html</a></p>
 <p>用户界面（UI）性能测试确保您的应用程序不仅满足其功能要求，而且能确保用户与您的应用程序的交互平滑，运行在每秒一致的60帧（<a href="https://www.youtube.com/watch?v=CaMTIgxCSqU&amp;index=25&amp;list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">为什么要60fps？</a>），没有任何丢弃或延迟的帧，或者我们喜欢称之为jank。本文档介绍了可用于衡量UI性能的工具，并介绍了将UI性能测量结果集成到测试实践中的方法。</p>
-<h2 id="测量UI性能">测量UI性能</h2><p>为了提高性能，您首先需要能够测量系统的性能，然后诊断和识别可能从您的管道的各个部分到达的问题。</p>
+<h2 id="测量UI性能"><a href="#测量UI性能" class="headerlink" title="测量UI性能"></a>测量UI性能</h2><p>为了提高性能，您首先需要能够测量系统的性能，然后诊断和识别可能从您的管道的各个部分到达的问题。</p>
 <p><a href="https://source.android.com/devices/tech/debug/dumpsys.html" target="_blank" rel="external">dumpsys</a>是一个Android工具，可在设备上运行，并转储有关系统服务状态的有趣信息。将<em>gfxinfo</em>命令传递给dumpsys在logcat中提供了一个输出，其中包含与在记录阶段发生的动画帧有关的性能信息。</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; adb <span class="keyword">shell</span> dumpsys gfxinfo <span class="symbol">&lt;PACKAGE_NAME&gt;</span></div></pre></td></tr></table></figure>
 <p>该命令可以产生帧定时数据的多个不同变体。</p>
-<h2 id="聚合框架统计">聚合框架统计</h2><p>使用Android 6.0（API级别23），此命令会将框架数据的聚合分析打印到logcat，并在进程的整个生命周期中收集。例如：</p>
+<h2 id="聚合框架统计"><a href="#聚合框架统计" class="headerlink" title="聚合框架统计"></a>聚合框架统计</h2><p>使用Android 6.0（API级别23），此命令会将框架数据的聚合分析打印到logcat，并在进程的整个生命周期中收集。例如：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Stats <span class="string">since:</span> <span class="number">752958278148</span>ns</div><div class="line">Total frames <span class="string">rendered:</span> <span class="number">82189</span></div><div class="line">Janky <span class="string">frames:</span> <span class="number">35335</span> (<span class="number">42.99</span>%)</div><div class="line"><span class="number">90</span>th <span class="string">percentile:</span> <span class="number">34</span>ms</div><div class="line"><span class="number">95</span>th <span class="string">percentile:</span> <span class="number">42</span>ms</div><div class="line"><span class="number">99</span>th <span class="string">percentile:</span> <span class="number">69</span>ms</div><div class="line">Number Missed <span class="string">Vsync:</span> <span class="number">4706</span></div><div class="line">Number High input <span class="string">latency:</span> <span class="number">142</span></div><div class="line">Number Slow UI <span class="string">thread:</span> <span class="number">17270</span></div><div class="line">Number Slow bitmap <span class="string">uploads:</span> <span class="number">1542</span></div><div class="line">Number Slow <span class="string">draw:</span> <span class="number">23342</span></div></pre></td></tr></table></figure>
 <p>这些高级统计信息在高级别上传达了应用程序的呈现性能，以及其在许多帧中的稳定性。</p>
-<h2 id="精确帧定时信息">精确帧定时信息</h2><p>使用Android 6.0为gfxinfo新命令，这是<em>framestats</em>从最近的帧中提供的非常详细的帧定时信息，以便您可以跟踪和更准确地调试问题。</p>
+<h2 id="精确帧定时信息"><a href="#精确帧定时信息" class="headerlink" title="精确帧定时信息"></a>精确帧定时信息</h2><p>使用Android 6.0为gfxinfo新命令，这是<em>framestats</em>从最近的帧中提供的非常详细的帧定时信息，以便您可以跟踪和更准确地调试问题。</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;adb <span class="keyword">shell</span> dumpsys gfxinfo <span class="symbol">&lt;PACKAGE_NAME&gt;</span> framestats</div></pre></td></tr></table></figure>
 <p>此命令打印从应用程序产生的最后120帧的帧时序信息，纳秒级时间戳。下面是来自<code>adb dumpsysg fxinfo &lt;PACKAGE_NAME&gt; framestats</code>的原始输出：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>,<span class="number">27965466202353</span>,<span class="number">27965466202353</span>,<span class="number">27965449758000</span>,<span class="number">27965461202353</span>,<span class="number">27965467153286</span>,<span class="number">27965471442505</span>,<span class="number">27965471925682</span>,<span class="number">27965474025318</span>,<span class="number">27965474588547</span>,<span class="number">27965474860786</span>,<span class="number">27965475078599</span>,<span class="number">27965479796151</span>,<span class="number">27965480589068</span>,</div><div class="line"><span class="number">0</span>,<span class="number">27965482993342</span>,<span class="number">27965482993342</span>,<span class="number">27965465835000</span>,<span class="number">27965477993342</span>,<span class="number">27965483807401</span>,<span class="number">27965486875630</span>,<span class="number">27965487288443</span>,<span class="number">27965489520682</span>,<span class="number">27965490184380</span>,<span class="number">27965490568703</span>,<span class="number">27965491408078</span>,<span class="number">27965496119641</span>,<span class="number">27965496619641</span>,</div><div class="line"><span class="number">0</span>,<span class="number">27965499784331</span>,<span class="number">27965499784331</span>,<span class="number">27965481404000</span>,<span class="number">27965494784331</span>,<span class="number">27965500785318</span>,<span class="number">27965503736099</span>,<span class="number">27965504201151</span>,<span class="number">27965506776568</span>,<span class="number">27965507298443</span>,<span class="number">27965507515005</span>,<span class="number">27965508405474</span>,<span class="number">27965513495318</span>,<span class="number">27965514061984</span>,</div><div class="line"><span class="number">0</span>,<span class="number">27965516575320</span>,<span class="number">27965516575320</span>,<span class="number">27965497155000</span>,<span class="number">27965511575320</span>,<span class="number">27965517697349</span>,<span class="number">27965521276151</span>,<span class="number">27965521734797</span>,<span class="number">27965524350474</span>,<span class="number">27965524884536</span>,<span class="number">27965525160578</span>,<span class="number">27965526020891</span>,<span class="number">27965531371203</span>,<span class="number">27965532114484</span>,</div></pre></td></tr></table></figure>
 <p>此输出的每一行代表由应用程序生成的一帧。每行具有固定数量的列，描述在帧生产管道的每个阶段中花费的时间。下一节详细描述此格式，包括每列代表的内容。</p>
-<h3 id="Framestats数据格式">Framestats数据格式</h3><p>由于数据块以CSV格式输出，因此可以将其粘贴到您选择的电子表格工具中，或者使用脚本进行收集和解析。下表介绍了输出数据列的格式。所有时间戳都以纳秒为单位。</p>
+<h3 id="Framestats数据格式"><a href="#Framestats数据格式" class="headerlink" title="Framestats数据格式"></a>Framestats数据格式</h3><p>由于数据块以CSV格式输出，因此可以将其粘贴到您选择的电子表格工具中，或者使用脚本进行收集和解析。下表介绍了输出数据列的格式。所有时间戳都以纳秒为单位。</p>
 <ul>
 <li><p>FLAGS</p>
 <ul>
@@ -470,16 +470,16 @@
 </ul>
 <p>您可以以不同的方式使用此数据。一个简单但有用的可视化是显示不同延迟桶中的帧时间（FRAME_COMPLETED - INTENDED_VSYNC）的分布的直方图，如下图所示。这个图表一目了然地显示，大多数帧都非常好 - 远低于16ms的截止时间（以红色描绘），但是有几帧显示超过了截止时间。我们可以看看这个直方图随时间的变化，以查看正在创建的批发班次(wholesale shifts)或新离群值(new outliers)。您还可以根据数据中的许多时间戳，绘制输入延迟，布局花费的时间或其他类似的有趣指标。</p>
 <p><img src="/img/17_01_14/001.png" alt=""></p>
-<h3 id="简单帧定时转储">简单帧定时转储</h3><p>如果在开发人员选项中将<strong>Profile GPU rendering</strong>设置为<strong>In adb shell dumpsys gfxinfo</strong>，adb shell dumpsys gfxinfo命令打印最近120帧的定时信息，分成具有制表符分隔值的几个不同类别。该数据可用于指示绘图管线的哪些部分可能在高水平下执行较慢。</p>
+<h3 id="简单帧定时转储"><a href="#简单帧定时转储" class="headerlink" title="简单帧定时转储"></a>简单帧定时转储</h3><p>如果在开发人员选项中将<strong>Profile GPU rendering</strong>设置为<strong>In adb shell dumpsys gfxinfo</strong>，adb shell dumpsys gfxinfo命令打印最近120帧的定时信息，分成具有制表符分隔值的几个不同类别。该数据可用于指示绘图管线的哪些部分可能在高水平下执行较慢。</p>
 <p>与上面的<a href="#Framestats数据格式">framestats</a>类似，将它粘贴到您选择的电子表格工具，或者使用脚本收集和解析是非常简单的。下图显示了应用程序生成的许多帧花费时间的细目。</p>
 <p><img src="/img/17_01_14/002.png" alt=""></p>
 <p>运行gfxinfo的结果，复制输出，将其粘贴到电子表格应用程序中，并将数据绘制为堆叠条形图。</p>
 <p>每个垂直条表示一帧动画;它的高度表示计算该帧动画花费的毫秒数。条形的每个彩色段代表渲染管道的不同阶段，以便您可以看到应用程序的哪些部分可能会创建瓶颈。有关了解渲染管道以及如何优化渲染管道的更多信息，请参阅<a href="https://www.youtube.com/watch?v=we6poP0kw6E&amp;index=27&amp;list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">无效布局和性能</a>视频。</p>
-<h3 id="控制stat收集窗口">控制stat收集窗口</h3><p>framestats和简单的帧定时都在非常短的窗口上收集数据 - 大约两秒钟的渲染。为了精确地控制此时间窗口 - 例如，将数据约束到特定动画 - 您可以重置所有计数器，并聚合收集的统计信息。</p>
+<h3 id="控制stat收集窗口"><a href="#控制stat收集窗口" class="headerlink" title="控制stat收集窗口"></a>控制stat收集窗口</h3><p>framestats和简单的帧定时都在非常短的窗口上收集数据 - 大约两秒钟的渲染。为了精确地控制此时间窗口 - 例如，将数据约束到特定动画 - 您可以重置所有计数器，并聚合收集的统计信息。</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;adb <span class="keyword">shell</span> dumpsys gfxinfo <span class="symbol">&lt;PACKAGE_NAME&gt;</span> reset</div></pre></td></tr></table></figure>
 <p>这也可以与转储命令本身结合使用，以常规节奏收集和重置，连续捕获帧的少于两秒的窗口。</p>
-<h3 id="诊断性能回归">诊断性能回归</h3><p>识别回归是跟踪问题和维持应用程序高健康状况的良好第一步。然而，dumpsys只是识别问题的存在和相对严重性。您仍然需要诊断性能问题的特定原因，并找到适当的方法来解决它们。为此，强烈建议使用<a href="https://developer.android.google.cn/tools/help/systrace.html" target="_blank" rel="external">systrace</a>工具。</p>
-<h3 id="其他资源">其他资源</h3><p>有关Android的渲染管道工作原理的更多信息，您可以找到的常见问题以及如何解决这些问题，以下一些资源可能对您有所帮助：</p>
+<h3 id="诊断性能回归"><a href="#诊断性能回归" class="headerlink" title="诊断性能回归"></a>诊断性能回归</h3><p>识别回归是跟踪问题和维持应用程序高健康状况的良好第一步。然而，dumpsys只是识别问题的存在和相对严重性。您仍然需要诊断性能问题的特定原因，并找到适当的方法来解决它们。为此，强烈建议使用<a href="https://developer.android.google.cn/tools/help/systrace.html" target="_blank" rel="external">systrace</a>工具。</p>
+<h3 id="其他资源"><a href="#其他资源" class="headerlink" title="其他资源"></a>其他资源</h3><p>有关Android的渲染管道工作原理的更多信息，您可以找到的常见问题以及如何解决这些问题，以下一些资源可能对您有所帮助：</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=HXQhu6qfTVU" target="_blank" rel="external">Rendering Performance 101</a></li>
 <li><a href="https://www.youtube.com/watch?v=CaMTIgxCSqU" target="_blank" rel="external">Why 60fps?</a></li>
@@ -487,7 +487,7 @@
 <li><a href="https://www.youtube.com/watch?v=we6poP0kw6E" target="_blank" rel="external">Invalidations, Layouts, and Performance</a></li>
 <li><a href="https://developer.android.google.cn/studio/profile/systrace.html" target="_blank" rel="external">Analyzing UI Performance with Systrace</a></li>
 </ul>
-<h2 id="自动化UI性能测试">自动化UI性能测试</h2><p>UI性能测试的一种方法是简单地让一个人类测试者在目标应用程序上执行一组用户操作，或者直观地查找jank，或者使用工具驱动的方法花费大量的时间来查找它。但是这种手动方法充满了危险 - 人类感知帧速率变化的能力变化巨大，这也是耗时，乏味和容易出错的。</p>
+<h2 id="自动化UI性能测试"><a href="#自动化UI性能测试" class="headerlink" title="自动化UI性能测试"></a>自动化UI性能测试</h2><p>UI性能测试的一种方法是简单地让一个人类测试者在目标应用程序上执行一组用户操作，或者直观地查找jank，或者使用工具驱动的方法花费大量的时间来查找它。但是这种手动方法充满了危险 - 人类感知帧速率变化的能力变化巨大，这也是耗时，乏味和容易出错的。</p>
 <p>一种更有效的方法是记录和分析来自自动UI测试的关键性能指标。Android 6.0包含新的日志记录功能，使您可以轻松确定应用程序动画中jank的数量和严重程度，并可用于构建严格的流程以确定您当前的表现并跟踪未来的表现目标。</p>
 <p>要了解有关Android性能测试的更多信息，请参阅<a href="/2017/01/15/【Codelab】自动性能测试/">自动性能测试Codelab</a>。在本代码中，您将学习如何编写和执行自动化测试，并查看结果以了解如何提高应用的效果。</p>
 
@@ -1081,7 +1081,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1093,7 +1093,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1101,6 +1101,8 @@
   
 
   
+  
+
 
   
 

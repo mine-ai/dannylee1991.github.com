@@ -380,7 +380,7 @@
         <blockquote>
 <p>Android的测试是基于<a href="http://junit.org/" target="_blank" rel="external">JUnit</a>的，你可以以一个本地单元测试的模式在JVM上运行，也可以在Android设备上运行它们。这个页面提供了一个关于构建android测试的概念和工具的介绍。</p>
 </blockquote>
-<h2 id="测试类型">测试类型</h2><p>当使用Android Studio来写测试的时候，你的测试代码必须放置在两个不同的代码目录下。对于你项目中的每个模块，Android Studio包含两个代码集合，对应以下的测试类型：</p>
+<h2 id="测试类型"><a href="#测试类型" class="headerlink" title="测试类型"></a>测试类型</h2><p>当使用Android Studio来写测试的时候，你的测试代码必须放置在两个不同的代码目录下。对于你项目中的每个模块，Android Studio包含两个代码集合，对应以下的测试类型：</p>
 <ul>
 <li><strong>本地单元测试</strong></li>
 </ul>
@@ -432,8 +432,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="测试API">测试API</h2><p>接下来的通用API用于在Android上测试app。</p>
-<h3 id="JUnit">JUnit</h3><p>你应该写你自己的单元测试或者集成测试类，正如JUnit4测试类。框架提供了一个方便的方法来在测试中执行通用的设置，拆卸以及断言操作。</p>
+<h2 id="测试API"><a href="#测试API" class="headerlink" title="测试API"></a>测试API</h2><p>接下来的通用API用于在Android上测试app。</p>
+<h3 id="JUnit"><a href="#JUnit" class="headerlink" title="JUnit"></a>JUnit</h3><p>你应该写你自己的单元测试或者集成测试类，正如JUnit4测试类。框架提供了一个方便的方法来在测试中执行通用的设置，拆卸以及断言操作。</p>
 <p>一个基本的JUnit测试类是一个包含一个或多个测试模块的Java类。测试方法以<code>@Test</code>注解开头，包含练习和验证要测试的组件中的单个功能（即逻辑单元）的代码。</p>
 <p>以下代码段显示了一个JUnit集成测试的例子，它使用Espresso API对UI元素执行单击操作，然后检查是否显示预期的字符串。</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@RunWith</span>(AndroidJUnit4.class)</div><div class="line"><span class="variable">@LargeTest</span></div><div class="line">public class MainActivityInstrumentationTest &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Rule</span></div><div class="line">    public ActivityTestRule mActivityRule = new ActivityTestRule&lt;&gt;(</div><div class="line">            MainActivity.class);</div><div class="line"></div><div class="line">    <span class="variable">@Test</span></div><div class="line">    public void sayHello()&#123;</div><div class="line">        onView(withText("Say hello!"))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">        onView(withId(R<span class="selector-class">.id</span><span class="selector-class">.textView</span>))<span class="selector-class">.check</span>(matches(withText(<span class="string">"Hello, World!"</span>)));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -448,21 +448,21 @@
 </ul>
 <p>更多的注解，见文档<a href="http://junit.sourceforge.net/javadoc/org/junit/package-summary.html" target="_blank" rel="external">JUnit注解</a>和<a href="https://developer.android.google.cn/reference/android/support/annotation/package-summary.html" target="_blank" rel="external">Android注解</a>。</p>
 <p>使用JUnit <a href="https://developer.android.google.cn/reference/junit/framework/Assert.html" target="_blank" rel="external">Assert</a>类来验证对象状态的正确性。这个断言方法会比较你测试中期望的值与实际结果的值，当两者值不一致时，会抛出一个异常。<a href="https://developer.android.google.cn/training/testing/start/index.html#AssertionClasses" target="_blank" rel="external">断言类</a>中有更多关于这些方法的描述。</p>
-<h3 id="Android测试支持库">Android测试支持库</h3><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html" target="_blank" rel="external">Android测试支持库</a>提供一个允许你快速构建并执行关于你app的测试代码的API接口，包括JUnit4和UI功能测试。这个库包括以下基于工具的API，当你想要自动化测试时，这些API非常有用：</p>
+<h3 id="Android测试支持库"><a href="#Android测试支持库" class="headerlink" title="Android测试支持库"></a>Android测试支持库</h3><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html" target="_blank" rel="external">Android测试支持库</a>提供一个允许你快速构建并执行关于你app的测试代码的API接口，包括JUnit4和UI功能测试。这个库包括以下基于工具的API，当你想要自动化测试时，这些API非常有用：</p>
 <p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html#AndroidJUnitRunner" target="_blank" rel="external">AndroidJUnitRunner</a>:</p>
 <pre><code>一个适用于Android的JUnit4兼容测试运行器。
 </code></pre><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html#Espresso" target="_blank" rel="external">Espresso</a>:</p>
 <pre><code>一个UI测试框架；适合在应用程序内的功能UI测试。
 </code></pre><p><a href="https://developer.android.google.cn/topic/libraries/testing-support-library/index.html#UIAutomator" target="_blank" rel="external">UI Automator</a>:</p>
 <pre><code>适用于系统和已安装应用程序之间跨应用程序功能UI测试的UI测试框架。
-</code></pre><h3 id="断言类">断言类</h3><p>由于Android测试支持库继承自JUnit，因此你可以使用断言方法来展示测试结果。断言方法将测试返回的实际值与预期值进行比较，如果比较测试失败，则抛出AssertionException。使用断言比记录更方便，并提供更好的测试性能。</p>
+</code></pre><h3 id="断言类"><a href="#断言类" class="headerlink" title="断言类"></a>断言类</h3><p>由于Android测试支持库继承自JUnit，因此你可以使用断言方法来展示测试结果。断言方法将测试返回的实际值与预期值进行比较，如果比较测试失败，则抛出AssertionException。使用断言比记录更方便，并提供更好的测试性能。</p>
 <p>为了简化测试开发，你应该使用<a href="https://github.com/hamcrest" target="_blank" rel="external">Hamcrest library</a>,它可以使用Hamcrest匹配器的API创建更灵活的测试。</p>
-<h3 id="Monkey和monkeyrunner">Monkey和monkeyrunner</h3><p>Android SDK包含两个功能级别的测试工具:</p>
+<h3 id="Monkey和monkeyrunner"><a href="#Monkey和monkeyrunner" class="headerlink" title="Monkey和monkeyrunner"></a>Monkey和monkeyrunner</h3><p>Android SDK包含两个功能级别的测试工具:</p>
 <p>Monkey</p>
-<pre><code>这是一个命令行工具，用于向设备发送按键，触摸和手势的伪随机流。你使用Android Debug <span class="function"><span class="title">Bridge</span><span class="params">(adb)</span></span>工具运行它，并使用它来压力测试您的应用程序，报告所遇到的错误，或通过使用相同的随机数种子多次运行该工具来重复事件流。
+<pre><code>这是一个命令行工具，用于向设备发送按键，触摸和手势的伪随机流。你使用Android Debug Bridge(adb)工具运行它，并使用它来压力测试您的应用程序，报告所遇到的错误，或通过使用相同的随机数种子多次运行该工具来重复事件流。
 </code></pre><p>monkeyrunner</p>
-<pre><code>这个工具是<span class="keyword">python</span>写的测试程序的API和执行环境。API包括用于连接到设备，安装和卸载软件包，截屏，比较两个图像以及针对应用程序运行测试包的功能。使用API，你可以编写大量，强大和复杂的测试。您使用monkeyrunner命令行工具运行使用API的程序。
-</code></pre><h3 id="构建Android测试的指南">构建Android测试的指南</h3><p>以下文档提供了有关如何构建和运行各种测试类型的更多详细信息：</p>
+<pre><code>这个工具是python写的测试程序的API和执行环境。API包括用于连接到设备，安装和卸载软件包，截屏，比较两个图像以及针对应用程序运行测试包的功能。使用API，你可以编写大量，强大和复杂的测试。您使用monkeyrunner命令行工具运行使用API的程序。
+</code></pre><h3 id="构建Android测试的指南"><a href="#构建Android测试的指南" class="headerlink" title="构建Android测试的指南"></a>构建Android测试的指南</h3><p>以下文档提供了有关如何构建和运行各种测试类型的更多详细信息：</p>
 <p><a href="/2017/01/11/【Android文档翻译】构建本地单元测试/">构建本地单元测试</a></p>
 <pre><code>构建没有依赖或只有简单的依赖的单元测试，你可以mock，它运行在本地JVM上。
 </code></pre><p><a href="/2017/01/11/【Android文档翻译】构建仪表化单元测试/">构建仪表化单元测试</a></p>
@@ -1064,7 +1064,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1076,7 +1076,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1084,6 +1084,8 @@
   
 
   
+  
+
 
   
 

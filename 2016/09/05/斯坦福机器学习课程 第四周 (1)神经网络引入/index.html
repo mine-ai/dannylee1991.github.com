@@ -117,7 +117,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_09_04/025.png">
 <meta property="og:image" content="http://studyai.site/img/16_09_04/026.png">
 <meta property="og:image" content="http://studyai.site/img/16_09_04/027.png">
-<meta property="og:updated_time" content="2016-10-15T17:44:15.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:17:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第四周 (1)神经网络引入">
 <meta name="twitter:description" content="非线性假设视频地址
@@ -399,13 +399,13 @@
       
 
       
-        <h2 id="非线性假设">非线性假设</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/OAOhO/non-linear-hypotheses" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="非线性假设"><a href="#非线性假设" class="headerlink" title="非线性假设"></a>非线性假设</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/OAOhO/non-linear-hypotheses" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>接下来的课程中，我将为大家介绍一种叫做<strong>“神经网络”(Neural Network)</strong>的机器学习算法。我们首先来讨论神经网络的表层结构，在后来的课程中再来具体讨论学习算法。 </p>
 </blockquote>
 <p>神经网络算法实际上是一个相对古老的算法，并且沉寂了一段时间。不过到了现在，它又称为许多机器学习问题的首选技术。</p>
 <p>那么我们已经有了线性回归，和逻辑回归，为什么还需要学习<strong>神经网络</strong>这个算法呢？为了阐述研究神经网络的目的，我们首先来看几个机器学习问题作为例子。这几个例子都依赖于研究复杂的非线性分类器。</p>
-<h3 id="线性回归对于非线性假设的不可行性分析">线性回归对于非线性假设的不可行性分析</h3><p>考虑这个监督学习分类的问题：</p>
+<h3 id="线性回归对于非线性假设的不可行性分析"><a href="#线性回归对于非线性假设的不可行性分析" class="headerlink" title="线性回归对于非线性假设的不可行性分析"></a>线性回归对于非线性假设的不可行性分析</h3><p>考虑这个监督学习分类的问题：</p>
 <p><img src="/img/16_09_04/008.png" alt=""></p>
 <p>我们已经有了对应的训练集，如果利用逻辑回归算法来解决这个问题，我们首先要构造一个包含很多非线性项的逻辑回归函数：</p>
 <p>$$<br>g(\theta_{0} + \theta_{1}x_{1} + \theta_{2}x_{2} + \theta_{3}x_{1}x_{2} + \theta_{4}x_{1}^{2}x_{2} + \theta_{5}x_{1}^{3}x_{2} + \theta_{6}x_{1}x_{2}^{2} + …)<br>$$</p>
@@ -426,7 +426,7 @@
 <p>当然，你也可以只考虑上面这些二次项的子集，比如$x_{1}^{2},x_{2}^{2},x_{3}^{2}…x_{100}^{2}$，这样就能将二次项的数量大幅减少了，但是却忽略了太多的相关项，在处理问题的时候，不可能得到理想的结果。</p>
 </blockquote>
 <p>5000多个二次项已经很多了，如果我们还要引入三次项，那么我们的项的个数将以$O(n^{3})$的量级增长，当有100个特征的情况下，大约有170000个三次项组合。所以，当特征个数增大时，这些高阶多项式项数将以几何级数递增，特征空间也随之急剧膨胀。因此，当特征数量较多时，通过这种方式来构建分类器，并不是一个好办法。</p>
-<h3 id="图像识别中使用线性回归的不可行性举例">图像识别中使用线性回归的不可行性举例</h3><p>对于许多实际的机器学习问题，特征个数$n$是很大的，举个关于计算机视觉中的一个例子：</p>
+<h3 id="图像识别中使用线性回归的不可行性举例"><a href="#图像识别中使用线性回归的不可行性举例" class="headerlink" title="图像识别中使用线性回归的不可行性举例"></a>图像识别中使用线性回归的不可行性举例</h3><p>对于许多实际的机器学习问题，特征个数$n$是很大的，举个关于计算机视觉中的一个例子：</p>
 <p>假设你想要使用机器学习算法来训练一个分类器，使它检测一个图像来判断图像是否为一辆汽车，很多人可能会很好奇，这对计算机视觉来说有什么难的？当你们看到下面这幅图时，下面是一辆车，这是一目了然的事情，你肯定会觉得很奇怪，为什么学习算法竟可能会不知道图像是什么：</p>
 <p><img src="/img/16_09_04/011.png" alt=""></p>
 <p>为了解答这个问题，我们取出图像的一小部分，将其放大，结果表明，当人眼看到一辆汽车时，计算机实际上看到的却是这样一个数据矩阵：</p>
@@ -450,7 +450,7 @@
 <p>因此，如果我们非要通过包含所有的二次项来解决这个非线性问题，那么，这个式子的所有条件的个数大约是300万个：</p>
 <p><img src="/img/16_09_04/020.png" alt=""></p>
 <p>显然，这数字大的有些离谱了，计算成本太高了。</p>
-<h2 id="神经网络和大脑">神经网络和大脑</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/IPmzw/neurons-and-the-brain" target="_blank" rel="external">视频地址</a></p>
+<h2 id="神经网络和大脑"><a href="#神经网络和大脑" class="headerlink" title="神经网络和大脑"></a>神经网络和大脑</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/IPmzw/neurons-and-the-brain" target="_blank" rel="external">视频地址</a></p>
 <p>神经网络是一种很古老的算法，它最初产生的目的是制造能模拟大脑的机器，在这门课中，我将向你们介绍神经网络。因为它能很好的解决不同的机器学习问题而不只因为它们在逻辑上行得通。这节课中，主要介绍一些神经网络的背景知识，由此我们能知道可以用它们来做什么。</p>
 <p>神经网络产生的原因是人们想尝试设计出模仿大脑的算法。从某种意义上说，想要建立学习系统，那么为什么不去模仿我们所认识的，最神奇的学习机器–人类的大脑呢？</p>
 <p>神经网络逐渐兴起于二十世纪八九十年代应用得非常广泛，但由于各种原因，在90年代的后期应用减少了，但是最近，神经网络又东山再起了，其中一个原因是，神经网络是计算量有些偏大的算法。然而，大概是由于近些年计算机的运行速度变快，才足以真正运行起大规模的神经网络，正是由于这个原因，和其他一些我们后面会讨论到的技术因素，使得如今的神经网络对于许多应用来说是最先进的技术。</p>
@@ -1071,9 +1071,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1085,14 +1109,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

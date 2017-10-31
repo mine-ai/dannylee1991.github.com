@@ -94,7 +94,7 @@
 
 如图所示，向量$X$为，$\left[\begin{matrix} 2  \\ 1">
 <meta property="og:image" content="http://studyai.site/img/la_07_01.png">
-<meta property="og:updated_time" content="2016-03-02T16:21:07.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:21:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数07-直线的参数表示">
 <meta name="twitter:description" content="直线的参数表示学习线性代数之前，我们习惯了用$y=kx+b$这种格式来表示平面直角坐标系中的一条直线，这种表示虽然简洁，但并不具有一般性，比如如果想要表示n维平面内的一条直线，就不方便了。
@@ -374,7 +374,7 @@
       
 
       
-        <h2 id="直线的参数表示">直线的参数表示</h2><p>学习线性代数之前，我们习惯了用$y=kx+b$这种格式来表示平面直角坐标系中的一条直线，这种表示虽然简洁，但并不具有<em>一般性</em>，比如如果想要表示n维平面内的一条直线，就不方便了。</p>
+        <h2 id="直线的参数表示"><a href="#直线的参数表示" class="headerlink" title="直线的参数表示"></a>直线的参数表示</h2><p>学习线性代数之前，我们习惯了用$y=kx+b$这种格式来表示平面直角坐标系中的一条直线，这种表示虽然简洁，但并不具有<em>一般性</em>，比如如果想要表示n维平面内的一条直线，就不方便了。</p>
 <p>学习了线性代数之后，我们就可以掌握一种通用的表达方式了，这一节来讲解线性代数中，如何通过向量参数来表示n纬平面内的一个直线。</p>
 <p><img src="/img/la_07_01.png" alt=""></p>
 <p>如图所示，向量$X$为，$<br>\left[<br>\begin{matrix}<br> 2  \\<br> 1  \\<br>\end{matrix}<br>\right]<br>$向量$X$为$<br>\left[<br>\begin{matrix}<br> 1  \\<br> 2  \\<br>\end{matrix}<br>\right]<br>$，那么如果我们想要求与向量$X$平行，且过$(1，2)$点所在的直线，改如何求得呢？</p>
@@ -974,9 +974,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -988,14 +1012,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

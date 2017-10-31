@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://studyai.site/img/16_07_20/015.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_20/016.png">
 <meta property="og:image" content="http://studyai.site/img/16_07_20/017.png">
-<meta property="og:updated_time" content="2016-07-25T00:52:14.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:16:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第一周 (3)无监督学习">
 <meta name="twitter:description" content="无监督学习视频地址
@@ -393,7 +393,7 @@
       
 
       
-        <h2 id="无监督学习">无监督学习</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/olRZo/unsupervised-learning" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/olRZo/unsupervised-learning" target="_blank" rel="external">视频地址</a></p>
 <p>在这段视频中我们要讲第二种主要的机器学习问题，叫做无监督学习.</p>
 <p>在上一节视频中，我们已经讲过了监督学习。回想起上次的数据集，每个样本，都已经被标明为正样本或者负样本，即良性或恶性肿瘤。</p>
 <p><img src="/img/16_07_20/001.png" alt=""></p>
@@ -1076,9 +1076,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1090,14 +1114,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

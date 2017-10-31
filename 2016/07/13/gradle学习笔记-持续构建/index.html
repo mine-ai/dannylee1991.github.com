@@ -375,38 +375,38 @@
 <p>持续构建是一个正在发<strong>孵化中(<a href="https://docs.gradle.org/current/userguide/feature_lifecycle.html" target="_blank" rel="external">incubating</a>)</strong>的feature。这意味着它目前还是不完整的，并且没有达到gradle产品的标准。这同样也意味着这一章节的用户指南也是在不断完善中的。</p>
 </blockquote>
 <p>通常，你让gradle执行一个你指定task。gradle需要制定一系列实际需要执行的满足要求的task，并将它们全部执行，然后停止工作直到下一次请求出现。持续构建不同于gradle那种通过在检查到之前的构建已经过时时执行构建，来保持满足初始化构建的条件（直到指示停止）。例如：如果你将java代码编译为class文件，一个持续构建将在源码文件改变时自动初始化一次编译。持续构建在很多场景下都很有用。</p>
-<h2 id="1-我该如何开始和终止一个持续构建呢？">1.我该如何开始和终止一个持续构建呢？</h2><p>一个持续构建可以通过输入<code>--continuous</code>或<code>-t</code>开关来开启，通过对任务列表中的任务切换开关和参数，来定义要执行的任务。例如：<code>gradle build --continuous</code>。这和执行<code>gradle build</code>的效果是一样的，但当gradle执行完时，它会等待发生改变的文件输入。当有改变产生时，<code>gradle build</code>将会被再次自动的执行，再次执行构建。</p>
+<h2 id="1-我该如何开始和终止一个持续构建呢？"><a href="#1-我该如何开始和终止一个持续构建呢？" class="headerlink" title="1.我该如何开始和终止一个持续构建呢？"></a>1.我该如何开始和终止一个持续构建呢？</h2><p>一个持续构建可以通过输入<code>--continuous</code>或<code>-t</code>开关来开启，通过对任务列表中的任务切换开关和参数，来定义要执行的任务。例如：<code>gradle build --continuous</code>。这和执行<code>gradle build</code>的效果是一样的，但当gradle执行完时，它会等待发生改变的文件输入。当有改变产生时，<code>gradle build</code>将会被再次自动的执行，再次执行构建。</p>
 <p>如果gradle附加在了一个交互式输入源，例如终端，持续构建会在按下<strong>CTRL-D</strong>（在Microsoft Windows上，在按下<strong>CTRL-D</strong>之后还需要按下<strong>ENTER</strong>或者<strong>RETURN</strong>）时执行。如果gradle没有附加在交互式输入源(例如以一个脚本的形式运行)，构建进程一定需要被中断（使用<code>kill</code>命令或类似的其他方式）。如果构建是通过Tooling API执行的，构建可以通过Tooling API的取消机制来终止。</p>
-<h2 id="2-什么将会导致后续的构建？">2.什么将会导致后续的构建？</h2><p>这时，只有对task输入的更改会被注意到。gradle会在task开始时就对改变进行监控。没有其他的改变会初始化一次构建。例如：对于构建脚本和构建逻辑的修改不会初始化构建。同样的，对于修改配置文件在构建时读入的文件，没有执行，将不会初始化一次构建。为了纳入这种变化，持续构建必须手动重启。</p>
+<h2 id="2-什么将会导致后续的构建？"><a href="#2-什么将会导致后续的构建？" class="headerlink" title="2.什么将会导致后续的构建？"></a>2.什么将会导致后续的构建？</h2><p>这时，只有对task输入的更改会被注意到。gradle会在task开始时就对改变进行监控。没有其他的改变会初始化一次构建。例如：对于构建脚本和构建逻辑的修改不会初始化构建。同样的，对于修改配置文件在构建时读入的文件，没有执行，将不会初始化一次构建。为了纳入这种变化，持续构建必须手动重启。</p>
 <p>对于一个典型的使用java插件的构建，使用传统的文件系统布局。下面是<code>gradle build</code>的生词的task图。</p>
 <p><strong>Java plugin task graph</strong></p>
 <p><img src="/img/16_07_13/javaPluginTasks.png" alt=""></p>
 <p>下面对于图中用到的task使用相对路径作为输入：</p>
 <p><strong>compileJava</strong></p>
-<pre><code>src<span class="regexp">/main/</span>java
+<pre><code>src/main/java
 </code></pre><p><strong>processResources</strong></p>
-<pre><code>src<span class="regexp">/main/</span>resources
+<pre><code>src/main/resources
 </code></pre><p><strong>compileTestJava</strong></p>
-<pre><code>src/<span class="built_in">test</span>/java
+<pre><code>src/test/java
 </code></pre><p><strong>processTestResources</strong></p>
-<pre><code>src/<span class="built_in">test</span>/resources
+<pre><code>src/test/resources
 </code></pre><p>假设初始化构建执行成功（比如：构建task和它的依赖的编译都没有错误），对文件的更改，或者对文件的增删操作，上述的场景将会初始化一次构建。如果在<code>src/main/java</code>目录下的java代码发生了变动，构建将会启动，并且所有的task将开始执行。gradle的增量构建支持，确保只有被变动所影响的task会被执行。</p>
 <p>如果主项目中的java代码编译失败，那么子变动<code>src/test/java</code>目录将不会被执行构建。由于测试代码依赖于主代码，直到主代码发生了改变，才有可能修复编译产生的错误。在每次构建之后，只有task的输入文件会被检测变化。</p>
-<h2 id="3-限制和异常">3.限制和异常</h2><p>目前有几个关于持续构建的问题。这些问题有可能会在未来的gradle版本中进行修复。</p>
-<h3 id="3-1_构建循环">3.1 构建循环</h3><p>gradle会在task执行之前就去监测改变。如果一个task在执行过程中改变了它自己，gradle将会查出这个变动，并且触发一次新的构建。如果每次task的执行，输入都被改变，那么构建就会再一次被触发。这不仅仅在持续构建中会出问题。当在“normally”模式并不是持续构建模式下运行，task改变了他自身的输入时也不会被视为有“up-to-date”标签。</p>
+<h2 id="3-限制和异常"><a href="#3-限制和异常" class="headerlink" title="3.限制和异常"></a>3.限制和异常</h2><p>目前有几个关于持续构建的问题。这些问题有可能会在未来的gradle版本中进行修复。</p>
+<h3 id="3-1-构建循环"><a href="#3-1-构建循环" class="headerlink" title="3.1 构建循环"></a>3.1 构建循环</h3><p>gradle会在task执行之前就去监测改变。如果一个task在执行过程中改变了它自己，gradle将会查出这个变动，并且触发一次新的构建。如果每次task的执行，输入都被改变，那么构建就会再一次被触发。这不仅仅在持续构建中会出问题。当在“normally”模式并不是持续构建模式下运行，task改变了他自身的输入时也不会被视为有“up-to-date”标签。</p>
 <p>如果你的构建进入了一个这样的循环，你可以通过gradle的查看报告清单中的变动追踪task。当确认有文件在每次构建期间发生了改变，你应该找到那个出问题的task。在某些情况下，这种问题会很明显（例如：java文件通过<code>compileJava</code>来执行编译）。在其他的情况下，你可以通过使用<code>--info logging</code>来找到识别为<code>out-of-date</code>的文件所在的task。</p>
-<h3 id="3-2_需要Java7或更高版本">3.2 需要Java7或更高版本</h3><p>gradle使用jdk的<a href="http://docs.oracle.com/javase/7/docs/api/java/nio/file/WatchService.html" target="_blank" rel="external">WatchService</a>来在每次构建之间接收文件改变的通知。这个API是在Java7中引进的。由于这个原因，gradle的持续构建暂时不支持在Java6下的构建。</p>
-<h3 id="3-3_性能和稳定性">3.3 性能和稳定性</h3><p>Jdk文件监控设备在 Mac OS X（见<a href="https://bugs.openjdk.java.net/browse/JDK-8079620" target="_blank" rel="external">JDK-8079620</a>）上会依赖于一个无效的文件系统。这在大型项目中能感受到通知改变有显著的延迟。</p>
+<h3 id="3-2-需要Java7或更高版本"><a href="#3-2-需要Java7或更高版本" class="headerlink" title="3.2 需要Java7或更高版本"></a>3.2 需要Java7或更高版本</h3><p>gradle使用jdk的<a href="http://docs.oracle.com/javase/7/docs/api/java/nio/file/WatchService.html" target="_blank" rel="external">WatchService</a>来在每次构建之间接收文件改变的通知。这个API是在Java7中引进的。由于这个原因，gradle的持续构建暂时不支持在Java6下的构建。</p>
+<h3 id="3-3-性能和稳定性"><a href="#3-3-性能和稳定性" class="headerlink" title="3.3 性能和稳定性"></a>3.3 性能和稳定性</h3><p>Jdk文件监控设备在 Mac OS X（见<a href="https://bugs.openjdk.java.net/browse/JDK-8079620" target="_blank" rel="external">JDK-8079620</a>）上会依赖于一个无效的文件系统。这在大型项目中能感受到通知改变有显著的延迟。</p>
 <p>此外，监控机制可能在 Mac OS X （见<a href="https://bugs.openjdk.java.net/browse/JDK-8079620" target="_blank" rel="external">JDK-8079620</a>）下进行<strong>超负荷</strong>的加载时发生死锁。这表明，gradle不会通知文件改变。如果你怀疑这种情况发生了，退出持续构建，并且重新启动。</p>
 <p>在Linux下，OpenJDK的文件检测服务有时会丢失一些系统事件（见：<a href="https://bugs.openjdk.java.net/browse/JDK-8145981" target="_blank" rel="external">JDK-8145981</a>）。</p>
-<h3 id="3-4_符号链接的更改">3.4 符号链接的更改</h3><ul>
+<h3 id="3-4-符号链接的更改"><a href="#3-4-符号链接的更改" class="headerlink" title="3.4 符号链接的更改"></a>3.4 符号链接的更改</h3><ul>
 <li>创建或删除符号链接到文件将启动一次构建。</li>
 <li>修改一个符号链接的目标不会导致重建。</li>
 <li>创建或删除符号链接目录不会造成重建。</li>
 <li>在一个符号链接的目标目录中创建新文件将不会导致重建。</li>
 <li>删除目标目录将不会导致重建。</li>
 </ul>
-<h3 id="3-5_不考虑构建逻辑的更改">3.5 不考虑构建逻辑的更改</h3><p>当前的实现是在不会重新计算构建模型。这意味着对task配置的更改，或者其他对构建modle的改动，都是被忽略的。</p>
+<h3 id="3-5-不考虑构建逻辑的更改"><a href="#3-5-不考虑构建逻辑的更改" class="headerlink" title="3.5 不考虑构建逻辑的更改"></a>3.5 不考虑构建逻辑的更改</h3><p>当前的实现是在不会重新计算构建模型。这意味着对task配置的更改，或者其他对构建modle的改动，都是被忽略的。</p>
 
       
     </div>
@@ -663,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-我该如何开始和终止一个持续构建呢？"><span class="nav-number">1.</span> <span class="nav-text">1.我该如何开始和终止一个持续构建呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-什么将会导致后续的构建？"><span class="nav-number">2.</span> <span class="nav-text">2.什么将会导致后续的构建？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-限制和异常"><span class="nav-number">3.</span> <span class="nav-text">3.限制和异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_构建循环"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 构建循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2_需要Java7或更高版本"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 需要Java7或更高版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3_性能和稳定性"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 性能和稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4_符号链接的更改"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 符号链接的更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5_不考虑构建逻辑的更改"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 不考虑构建逻辑的更改</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-我该如何开始和终止一个持续构建呢？"><span class="nav-number">1.</span> <span class="nav-text">1.我该如何开始和终止一个持续构建呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-什么将会导致后续的构建？"><span class="nav-number">2.</span> <span class="nav-text">2.什么将会导致后续的构建？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-限制和异常"><span class="nav-number">3.</span> <span class="nav-text">3.限制和异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-构建循环"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 构建循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-需要Java7或更高版本"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 需要Java7或更高版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-性能和稳定性"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 性能和稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-符号链接的更改"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 符号链接的更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-不考虑构建逻辑的更改"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 不考虑构建逻辑的更改</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -998,7 +998,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1010,7 +1010,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1018,6 +1018,8 @@
   
 
   
+  
+
 
   
 

@@ -398,7 +398,7 @@ tf.train.Saver
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/Variable" target="_blank" rel="external">tf.Variable</a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver" target="_blank" rel="external">tf.train.Saver</a></li>
 </ul>
-<h2 id="创建">创建</h2><p>当您创建一个<a href="https://www.tensorflow.org/api_guides/python/state_ops" target="_blank" rel="external">Variable</a>时，您将<code>Tensor</code>作为其初始值传递给<code>Variable()</code>构造函数。TensorFlow提供了一个操作的集合，它们产生经常用于从<a href="https://www.tensorflow.org/api_guides/python/constant_op" target="_blank" rel="external">常量或随机初始化的</a>张量。</p>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>当您创建一个<a href="https://www.tensorflow.org/api_guides/python/state_ops" target="_blank" rel="external">Variable</a>时，您将<code>Tensor</code>作为其初始值传递给<code>Variable()</code>构造函数。TensorFlow提供了一个操作的集合，它们产生经常用于从<a href="https://www.tensorflow.org/api_guides/python/constant_op" target="_blank" rel="external">常量或随机初始化的</a>张量。</p>
 <p>请注意，所有这些操作都需要您指定张量的形状。该形状自动变为变量的形状。变量通常具有固定的形状，但是TensorFlow提供了重新变换变量的高级机制。</p>
 
       
@@ -993,7 +993,7 @@ tf.train.Saver
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1005,7 +1005,7 @@ tf.train.Saver
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1013,6 +1013,8 @@ tf.train.Saver
   
 
   
+  
+
 
   
 

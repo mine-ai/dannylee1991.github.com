@@ -130,7 +130,7 @@
 <meta property="og:image" content="http://studyai.site/img/17_02_09/021.png">
 <meta property="og:image" content="http://studyai.site/img/17_02_09/022.png">
 <meta property="og:image" content="http://studyai.site/img/17_02_09/023.png">
-<meta property="og:updated_time" content="2017-04-11T14:44:12.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:18:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第七周 (2)核函数">
 <meta name="twitter:description" content="核函数 I视频地址
@@ -416,7 +416,7 @@
       
 
       
-        <h2 id="核函数_I">核函数 I</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/YOMHn/kernels-i" target="_blank" rel="external">视频地址</a></p>
+        <h2 id="核函数-I"><a href="#核函数-I" class="headerlink" title="核函数 I"></a>核函数 I</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/YOMHn/kernels-i" target="_blank" rel="external">视频地址</a></p>
 <p>在本节，我将对支持向量机算法做一些改变，以构造复杂的非线性分类器。我们用<strong>“kernels(核函数)”</strong>来达到此目的。</p>
 <p>我们来看看<strong>核函数</strong>是什么，以及如何使用。</p>
 <p>如果你有一个像这个样的训练集：</p>
@@ -441,7 +441,7 @@
 <p>$$<br>…<br>$$</p>
 <p>以此类推，可以依次加入这些高阶项，但我们其实并不知道这些高阶项是不是我们真正需要的。我们之前谈到计算机视觉的时候，提到过在这里的输入是一个有很多像素的图像，我们看到如果用高阶项作为特征变量，运算量将是非常大的，因为有太多的高阶项需要被计算。</p>
 <p>因此，我们是否有不同的选择，或者是更好的选择来构造特征变量，以用来嵌入到假设函数中呢？</p>
-<h3 id="用核函数构造新特征">用核函数构造新特征</h3><p>事实上，这里有一个可以构造新特征$f_1$、$f_2$、$f_3$的方法。</p>
+<h3 id="用核函数构造新特征"><a href="#用核函数构造新特征" class="headerlink" title="用核函数构造新特征"></a>用核函数构造新特征</h3><p>事实上，这里有一个可以构造新特征$f_1$、$f_2$、$f_3$的方法。</p>
 <p>首先我们定义三个特征变量(但是对于实际问题而言，我们可以定义非常多的特征变量）：</p>
 <p><img src="/img/17_02_09/003.png" width="300" height="200" align="center"></p>
 <p>将这三个点标记为$l^{(1)}$、$l^{(2)}$、$l^{(3)}$，接下来我要做的是定义新的特征变量：</p>
@@ -460,7 +460,7 @@
 <p>这里的$similarite(x,l)$函数，就被称为<strong>核函数(Kernels)</strong>。在这里，我们的例子中所说的<strong>核函数</strong>，实际上是<strong>高斯核函数</strong>，在后面我们还会见到不同的<strong>核函数</strong>。</p>
 <p>核函数我们通常不写作$similarity(x,l^{(i)})$，而是写作：</p>
 <p>$$<br>k(x,l^{(i)})<br>$$</p>
-<h3 id="核函数可以做什么？">核函数可以做什么？</h3><p>我们来看看核函数到底可以做什么？</p>
+<h3 id="核函数可以做什么？"><a href="#核函数可以做什么？" class="headerlink" title="核函数可以做什么？"></a>核函数可以做什么？</h3><p>我们来看看核函数到底可以做什么？</p>
 <p>首先让我们来看看第一个标记：</p>
 <p>$$<br>\begin{align*}<br>f_1&amp;=similarity(x,l^{(1)})<br>=exp(-\frac{||x-l^{(1)}||^2}{2σ^2})<br>=exp(-\frac{\sum_{j=1}^{n}(x_j-l_j^{(1)})^2}{2σ^2})<br>\end{align*}<br>$$</p>
 <p>$l^{(1)}$是我之前在图中选取的几个点之中的一个，上面是$x$和$l^{(1)}$之间的核函数。</p>
@@ -475,8 +475,8 @@
 <p>$$<br>\begin{align*}<br>f_2&amp;=k(x,l^{(2)})<br>=exp(-\frac{||x-l^{(2)}||^2}{2σ^2})<br>\end{align*}<br>$$</p>
 <p>$$<br>\begin{align*}<br>f_3&amp;=k(x,l^{(3)})<br>=exp(-\frac{||x-l^{(3)}||^2}{2σ^2})<br>\end{align*}<br>$$</p>
 <p><strong>也就是说，给出一个训练样本$x$，我们就能基于我们之前给出的标记点$l^{(1)}$、$l^{(2)}$、$l^{(3)}$来计算出三个新的特征变量$f_1$、$f_2$、$f_3$。</strong></p>
-<h3 id="深入理解核函数">深入理解核函数</h3><p>接下来让我们通过画一些图来更好地理解<strong>核函数</strong>是什么样的。</p>
-<h4 id="$x$对$f$的值的影响">$x$对$f$的值的影响</h4><p>看下面这个例子，假设我们有两个特征$x_1$和$x_2$，假设我们第一个标记点是$l^{(1)}$：</p>
+<h3 id="深入理解核函数"><a href="#深入理解核函数" class="headerlink" title="深入理解核函数"></a>深入理解核函数</h3><p>接下来让我们通过画一些图来更好地理解<strong>核函数</strong>是什么样的。</p>
+<h4 id="x-对-f-的值的影响"><a href="#x-对-f-的值的影响" class="headerlink" title="$x$对$f$的值的影响"></a>$x$对$f$的值的影响</h4><p>看下面这个例子，假设我们有两个特征$x_1$和$x_2$，假设我们第一个标记点是$l^{(1)}$：</p>
 <p>$$<br>l^{(1)}=<br>\begin{bmatrix}<br>   3 \\<br>    5<br> \end{bmatrix}<br>$$</p>
 <p>假设:</p>
 <p>$$<br>σ^2=1<br>$$</p>
@@ -499,7 +499,7 @@
 </table>
 <p>其中左侧的图纵轴是$f_1$，水平方向的两个轴分别是$x_1$和$x_2$。右侧的图是左侧图的等高线图。</p>
 <p>你会发现，当$x=(3,5)$的时候，$f_1=1$，因为它在最大值的位置上。所以如果$x$往旁边移动，离这个点越远，那么从图中可以看到$f_1$的值就越接近0。</p>
-<h4 id="$σ^2$对$f$的值的影响">$σ^2$对$f$的值的影响</h4><p>在这里，要提到的另一点就是$σ^2$对结果的影响。$σ^2$是<strong>高斯核函数</strong>的参数，改变它会得到略微不同的结果。</p>
+<h4 id="σ-2-对-f-的值的影响"><a href="#σ-2-对-f-的值的影响" class="headerlink" title="$σ^2$对$f$的值的影响"></a>$σ^2$对$f$的值的影响</h4><p>在这里，要提到的另一点就是$σ^2$对结果的影响。$σ^2$是<strong>高斯核函数</strong>的参数，改变它会得到略微不同的结果。</p>
 <p>可以对比$σ^2=1$、$σ^2=0.5$、$σ^2=3$的情况：</p>
 <table>
 <thead>
@@ -524,7 +524,7 @@
 </table>
 <p>你会发现，函数的形状还是相似的，只是$σ^2=0.5$相较于$σ^2=1$凸起的宽度变窄了，等值线图也收缩了一些；$σ^2=3$相较于$σ^2=1$凸起的宽度变宽了，等值线也扩张了一些。</p>
 <p>所以，如果我们将$σ^2$设为0.5时，特征变量$f_1$下降到0的速度也会相应变快；如果我们将$σ^2$设为3时，特征变量$f_1$下降到0的速度也会相应变慢。</p>
-<h3 id="获取预测函数">获取预测函数</h3><p>讲完了特征变量的定义，我们来看看我们能得到什么样的预测函数。</p>
+<h3 id="获取预测函数"><a href="#获取预测函数" class="headerlink" title="获取预测函数"></a>获取预测函数</h3><p>讲完了特征变量的定义，我们来看看我们能得到什么样的预测函数。</p>
 <p>给定一个训练样本$x$，我们要计算出三个特征变量$f_1$ $f_2$ $f_3$</p>
 <p><img src="/img/17_02_09/010.png" alt=""></p>
 <p>并且如果$\theta_0 + \theta_1f_1 + \theta_2f_2 +  \theta_3f_3 \ge 0$，则预测函数的预测值为1，即$y=1$。</p>
@@ -556,11 +556,11 @@
 <p>因此这就是一个我们如何通过标记点，以及核函数，来训练出非常复杂的非线性判别边界的方法。</p>
 <p>这就是核函数这部分的概念，以及我们如何在支持向量机中使用它们。我们通过标记点和相似性函数来定义新的特征变量从而训练复杂的非线性分类器。</p>
 <p>目前还有一些问题我们并没有做出回答，其中一个是<strong>我们如何得到这些标记点</strong>；另一个是<strong>其他的相似度方程（核函数）是什么样的</strong>，如果有其他的话，我们能够用其他的相似度方程来代替我们所讲的这个高斯核函数吗？在下一个视频中我们会回答这些问题，然后把所有东西都整合到一起来看看支持向量机如何通过核函数的定义 有效地学习复杂非线性函数。</p>
-<h2 id="核函数_II">核函数 II</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/hxdcH/kernels-ii" target="_blank" rel="external">视频地址</a></p>
+<h2 id="核函数-II"><a href="#核函数-II" class="headerlink" title="核函数 II"></a>核函数 II</h2><p><a href="https://www.coursera.org/learn/machine-learning/lecture/hxdcH/kernels-ii" target="_blank" rel="external">视频地址</a></p>
 <blockquote>
 <p>在上一节视频里，我们讨论了<strong>核函数</strong>这个想法以及怎样利用它去实现支持向量机的一些新特性。在这一节视频中我将补充一些缺失的细节，并简单的介绍一下怎么在实际中使用应用这些想法。例如，<strong>怎么处理支持向量机中的偏差方差折中</strong>。</p>
 </blockquote>
-<h3 id="如何选取标记点(landmark)">如何选取标记点(landmark)</h3><p>在上一节课中，我谈到过选择标记点，例如$l^{(1)}$ $l^{(2)}$ $l^{(3)}$ 这些点使我们能够定义<strong>相似度函数</strong>，也称之为<strong>核函数</strong>。在这个例子里，我们的相似度函数为<strong>高斯核函数</strong>。</p>
+<h3 id="如何选取标记点-landmark"><a href="#如何选取标记点-landmark" class="headerlink" title="如何选取标记点(landmark)"></a>如何选取标记点(landmark)</h3><p>在上一节课中，我谈到过选择标记点，例如$l^{(1)}$ $l^{(2)}$ $l^{(3)}$ 这些点使我们能够定义<strong>相似度函数</strong>，也称之为<strong>核函数</strong>。在这个例子里，我们的相似度函数为<strong>高斯核函数</strong>。</p>
 <p><img src="/img/17_02_09/014.png" alt=""></p>
 <p>但是，我们从哪里得到这些标记点呢？我们从哪里得到$l^{(1)}$ $l^{(2)}$ $l^{(3)}$？ 而且在一些复杂的学习问题中，也许我们需要更多的标记点，而不是我们手选的这三个。</p>
 <p>因此，在实际应用时，怎么选取标记点，是机器学习中必须解决的问题。</p>
@@ -635,7 +635,7 @@
 <p>顺便说一下，你可能会想，为什么我们不将核函数这个想法应用到其他算法，比如逻辑回归上。事实证明，如果你愿意的话，确实可以将核函数这个想法用于定义特征向量，将标记点之类的技术用于逻辑回归算法。但是用于支持向量机的计算技巧不能较好的推广到其他算法，诸如逻辑回归上。所以，将核函数用于逻辑回归上时，会变得非常的慢。相比之下，这些计算技巧，比如这一步：$\theta^TM\theta$，这些细节的修改，以及支持向量机软件的实现细节，使得支持向量机可以和核函数相得益彰，而逻辑回归和核函数则会运行的十分缓慢，更何况它们还不能使用那些高级优化技巧，因为这些技巧是人们专门为使用核函数的支持向量机开发的。但是这些问题只有在你亲自实现最小化函数时才会遇到。</p>
 <p>我将在下一节视频中进一步讨论这些问题，但是你并不需要知道怎么去写一个软件，来最小化代价函数。你能找到很好的成熟的软件来做这些，就像我一直不建议自己写矩阵求逆函数，或者平方根函数的道理一样。这些软件包已经包含了那些数值优化技巧，所以你不必担心这些东西。</p>
 <hr>
-<h3 id="SVM参数：">SVM参数：</h3><h4 id="$C(=\frac{1}{\lambda})$">$C(=\frac{1}{\lambda})$</h4><p>但是另外一个值得说明的问题是，在你使用支持向量机时，怎么选择支持向量机中的参数？在本节视频的末尾，我想稍微说明一下，在使用支持向量机时的“偏差-方差折中”其中一个要选择的事情是，目标函数中的参数$C$。回忆一下，$C$的作用与$\frac{1}{\lambda}$相似。</p>
+<h3 id="SVM参数："><a href="#SVM参数：" class="headerlink" title="SVM参数："></a>SVM参数：</h3><h4 id="C-frac-1-lambda"><a href="#C-frac-1-lambda" class="headerlink" title="$C(=\frac{1}{\lambda})$"></a>$C(=\frac{1}{\lambda})$</h4><p>但是另外一个值得说明的问题是，在你使用支持向量机时，怎么选择支持向量机中的参数？在本节视频的末尾，我想稍微说明一下，在使用支持向量机时的“偏差-方差折中”其中一个要选择的事情是，目标函数中的参数$C$。回忆一下，$C$的作用与$\frac{1}{\lambda}$相似。</p>
 <p><img src="/img/17_02_09/020.png" alt=""></p>
 <p>$\lambda$是逻辑回归算法中的正则化参数，所以$C$对应着我们之前在逻辑回归问题中的$\lambda$，这意味着:</p>
 <ul>
@@ -643,7 +643,7 @@
 <li>较大的$\lambda$对应较小的$C$，这就意味着有可能得到一个高偏差但低方差的模型。</li>
 </ul>
 <p>所以使用较大的$C$值模型，为高方差，更倾向于过拟合；而使用较小的$C$值的模型，为高偏差，更倾向于欠拟合。</p>
-<h4 id="$σ^2$">$σ^2$</h4><p>另一个要处理的参数是<strong>高斯核函数</strong>中的$σ^2$。</p>
+<h4 id="σ-2"><a href="#σ-2" class="headerlink" title="$σ^2$"></a>$σ^2$</h4><p>另一个要处理的参数是<strong>高斯核函数</strong>中的$σ^2$。</p>
 <p>当高斯核函数中的$σ^2$偏大时，那么对应的相似度函数为：</p>
 <p>$$<br>exp(-\frac{||x-l^{(i)}||^2}{2σ^2})<br>$$</p>
 <p>在下面这个例子中，如果我们只有一个特征$x_1$，有一个标记点$l$：</p>
@@ -913,7 +913,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核函数_I"><span class="nav-number">1.</span> <span class="nav-text">核函数 I</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用核函数构造新特征"><span class="nav-number">1.1.</span> <span class="nav-text">用核函数构造新特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数可以做什么？"><span class="nav-number">1.2.</span> <span class="nav-text">核函数可以做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解核函数"><span class="nav-number">1.3.</span> <span class="nav-text">深入理解核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#$x$对$f$的值的影响"><span class="nav-number">1.3.1.</span> <span class="nav-text">$x$对$f$的值的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#$σ^2$对$f$的值的影响"><span class="nav-number">1.3.2.</span> <span class="nav-text">$σ^2$对$f$的值的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取预测函数"><span class="nav-number">1.4.</span> <span class="nav-text">获取预测函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核函数_II"><span class="nav-number">2.</span> <span class="nav-text">核函数 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选取标记点(landmark)"><span class="nav-number">2.1.</span> <span class="nav-text">如何选取标记点(landmark)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM参数："><span class="nav-number">2.2.</span> <span class="nav-text">SVM参数：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#$C(=\frac{1}{\lambda})$"><span class="nav-number">2.2.1.</span> <span class="nav-text">$C(=\frac{1}{\lambda})$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#$σ^2$"><span class="nav-number">2.2.2.</span> <span class="nav-text">$σ^2$</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核函数-I"><span class="nav-number">1.</span> <span class="nav-text">核函数 I</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用核函数构造新特征"><span class="nav-number">1.1.</span> <span class="nav-text">用核函数构造新特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数可以做什么？"><span class="nav-number">1.2.</span> <span class="nav-text">核函数可以做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解核函数"><span class="nav-number">1.3.</span> <span class="nav-text">深入理解核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#x-对-f-的值的影响"><span class="nav-number">1.3.1.</span> <span class="nav-text">$x$对$f$的值的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#σ-2-对-f-的值的影响"><span class="nav-number">1.3.2.</span> <span class="nav-text">$σ^2$对$f$的值的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取预测函数"><span class="nav-number">1.4.</span> <span class="nav-text">获取预测函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核函数-II"><span class="nav-number">2.</span> <span class="nav-text">核函数 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选取标记点-landmark"><span class="nav-number">2.1.</span> <span class="nav-text">如何选取标记点(landmark)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM参数："><span class="nav-number">2.2.</span> <span class="nav-text">SVM参数：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-frac-1-lambda"><span class="nav-number">2.2.1.</span> <span class="nav-text">$C(=\frac{1}{\lambda})$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#σ-2"><span class="nav-number">2.2.2.</span> <span class="nav-text">$σ^2$</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1246,9 +1246,33 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1260,14 +1284,12 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

@@ -97,7 +97,7 @@ $$A^{-1}=\dfrac{1}{|A|}\begin{bmatrix}   d &amp;amp; -b \\   -c &amp;amp; a  \en
 对于2x2矩阵的分析：
 $$  A=  \begin{bmatrix}   a &amp;amp; b \\   c &amp;amp; d  \end{bmatrix}  \tag{0}$$
 $$A^{-1}=\dfrac{1}{|A|}\begin{bmatrix}   d &amp;amp; -b \\   -c &amp;amp; a  \end{bma">
-<meta property="og:updated_time" content="2015-11-30T01:54:19.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:21:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数04-奇异矩阵">
 <meta name="twitter:description" content="奇异矩阵
@@ -378,7 +378,7 @@ $$A^{-1}=\dfrac{1}{|A|}\begin{bmatrix}   d &amp;amp; -b \\   -c &amp;amp; a  \en
       
 
       
-        <h2 id="奇异矩阵">奇异矩阵</h2><blockquote>
+        <h2 id="奇异矩阵"><a href="#奇异矩阵" class="headerlink" title="奇异矩阵"></a>奇异矩阵</h2><blockquote>
 <p>当一个矩阵<strong>没有逆矩阵</strong>的时候，则称这个矩阵称为奇异矩阵。</p>
 </blockquote>
 <p>对于2x2矩阵的分析：</p>
@@ -977,9 +977,33 @@ $$A^{-1}=\dfrac{1}{|A|}\begin{bmatrix}   d &amp;amp; -b \\   -c &amp;amp; a  \en
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -991,14 +1015,12 @@ $$A^{-1}=\dfrac{1}{|A|}\begin{bmatrix}   d &amp;amp; -b \\   -c &amp;amp; a  \en
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

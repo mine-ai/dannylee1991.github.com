@@ -372,7 +372,7 @@ volatile关键字类似synchronized关键字。不同之处是volatile用来修�
       
 
       
-        <h2 id="volatile">volatile</h2><p>volatile</p>
+        <h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p>volatile</p>
 <p>易变的，不稳定的</p>
 <p>volatile关键字类似synchronized关键字。不同之处是volatile用来修饰的是单个进行原子操作的变量，而synchronized修饰的是一个代码块。</p>
 <p>在java中，多线程访问主线程中的变量时，默认并不会直接操作主线程中的变量，而是从主线程中创建一个变量的拷贝，到对应的子线程中，在子线程操作的过程中去和主线程的变量进行同步，这也就意味着，子线程中操作的变量并不是最新的。</p>
@@ -975,7 +975,7 @@ volatile关键字类似synchronized关键字。不同之处是volatile用来修�
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -987,7 +987,7 @@ volatile关键字类似synchronized关键字。不同之处是volatile用来修�
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -995,6 +995,8 @@ volatile关键字类似synchronized关键字。不同之处是volatile用来修�
   
 
   
+  
+
 
   
 

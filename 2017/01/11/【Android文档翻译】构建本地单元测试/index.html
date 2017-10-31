@@ -368,16 +368,16 @@
       
         <p><a href="https://developer.android.google.cn/training/testing/unit-testing/local-unit-tests.html#build" target="_blank" rel="external">https://developer.android.google.cn/training/testing/unit-testing/local-unit-tests.html#build</a></p>
 <p>如果你的单元测试没有依赖或者只有Android上的简单依赖，你应该在本地开发机器上运行测试。这种测试方法是高效的，因为它可以帮助您避免每次运行测试时将目标应用程序和单元测试代码加载到物理设备或模拟器上的开销。因此，运行单元测试的执行时间大大减少。使用这种方法，你通常使用一个模拟框架，如<a href="https://github.com/mockito/mockito" target="_blank" rel="external">Mockito</a>，来实现任何依赖关系。</p>
-<h2 id="设置您的测试环境">设置您的测试环境</h2><p>在您的Android Studio项目中，必须将用于本地单元测试的源文件存储在<code>module-name/src/test/java/</code>。创建新项目时，此目录已存在。</p>
+<h2 id="设置您的测试环境"><a href="#设置您的测试环境" class="headerlink" title="设置您的测试环境"></a>设置您的测试环境</h2><p>在您的Android Studio项目中，必须将用于本地单元测试的源文件存储在<code>module-name/src/test/java/</code>。创建新项目时，此目录已存在。</p>
 <p>您还需要为项目配置测试依赖关系，以使用JUnit 4框架提供的标准API。如果您的测试需要与Android依赖关系交互，请引入<a href="https://github.com/mockito/mockito" target="_blank" rel="external">Mockito</a>库以简化本地单元测试。要了解有关在本地单元测试中使用模拟对象的更多信息，请参阅<a href="https://developer.android.google.cn/training/testing/unit-testing/local-unit-tests.html#mocking-dependencies" target="_blank" rel="external">模拟Android依赖项</a>。</p>
 <p>在应用程序的顶级<code>build.gradle</code>文件中，您需要将这些库指定为依赖关系：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// Required -- JUnit 4 framework</span></div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">    <span class="comment">// Optional -- Mockito framework</span></div><div class="line">    testCompile <span class="string">'org.mockito:mockito-core:1.10.19'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="创建本地单元测试类">创建本地单元测试类</h2><p>你的本地单元测试类应该写成一个JUnit 4测试类。 JUnit是Java最受欢迎和广泛使用的单元测试框架。这个框架的最新版本，JUnit 4，允许你以比它的前身版本更清洁和更灵活的方式编写测试。与以前的基于JUnit 3的Android单元测试的方法不同，使用JUnit 4，您不需要扩展junit.framework.TestCase类。您也不需要在测试方法名称前加上’test’关键字，或者使用<code>junit.framework</code>或<code>junit.extensions</code>包中的任何类。</p>
+<h2 id="创建本地单元测试类"><a href="#创建本地单元测试类" class="headerlink" title="创建本地单元测试类"></a>创建本地单元测试类</h2><p>你的本地单元测试类应该写成一个JUnit 4测试类。 JUnit是Java最受欢迎和广泛使用的单元测试框架。这个框架的最新版本，JUnit 4，允许你以比它的前身版本更清洁和更灵活的方式编写测试。与以前的基于JUnit 3的Android单元测试的方法不同，使用JUnit 4，您不需要扩展junit.framework.TestCase类。您也不需要在测试方法名称前加上’test’关键字，或者使用<code>junit.framework</code>或<code>junit.extensions</code>包中的任何类。</p>
 <p>要创建基本的JUnit 4测试类，请创建一个包含一个或多个测试方法的Java类。测试方法以<code>@Test</code>注解开始，包含练习和验证要测试的组件中的单个功能的代码。</p>
 <p>以下示例显示如何实现本地单元测试类。测试方法<code>emailValidator_CorrectEmailSimple_ReturnsTrue</code>验证被测应用程序中的<code>isValidEmail()</code>方法是否返回正确的结果。</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.Test;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> java.util.regex.Pattern;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.junit.Assert.assertFalse;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.junit.Assert.assertTrue;</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailValidatorTest</span> </span>&#123;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> emailValidator_CorrectEmailSimple_ReturnsTrue() &#123;</div><div class="line">        assertThat(EmailValidator.isValidEmail(<span class="string">"name@email.com"</span>), <span class="keyword">is</span>(<span class="literal">true</span>));</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>要测试应用程序中的组件是否返回预期结果，请使用<a href="http://junit.org/javadoc/latest/org/junit/Assert.html" target="_blank" rel="external">junit.Assert</a>方法执行验证检查（或断言），以便将受测试组件的状态与某些预期值进行比较。为了使测试更可读，可以使用<a href="https://github.com/hamcrest" target="_blank" rel="external">Hamcrest匹配器</a>（例如<code>is()</code>和<code>equalTo()</code>方法）将返回的结果与预期结果进行匹配。</p>
-<h2 id="模拟Android依赖">模拟Android依赖</h2><p>默认情况下，Gradle的Android插件针对android.jar库的修改版本执行您的本地单元测试，该版本不包含任何实际代码。相反，从单元测试中调用Android类的方法会抛出异常。这是为了确保你只测试你的代码，不依赖于Android平台的任何特定的行为（你没有明确的被模拟）。</p>
+<h2 id="模拟Android依赖"><a href="#模拟Android依赖" class="headerlink" title="模拟Android依赖"></a>模拟Android依赖</h2><p>默认情况下，Gradle的Android插件针对android.jar库的修改版本执行您的本地单元测试，该版本不包含任何实际代码。相反，从单元测试中调用Android类的方法会抛出异常。这是为了确保你只测试你的代码，不依赖于Android平台的任何特定的行为（你没有明确的被模拟）。</p>
 <p>您可以使用模拟框架在代码中存根外部依赖关系，以便轻松测试您的组件是否按照预期的方式与依赖关系交互。通过用模拟对象替换Android依赖项，您可以将单元测试与Android系统的其余部分隔离，同时验证这些依赖关系中的正确方法是否被调用。Java的Mockito mocking框架（1.9.5及更高版本）提供了与Android单元测试的兼容性。使用<a href="https://github.com/mockito/mockito" target="_blank" rel="external">Mockito</a>，您可以配置模拟对象以在调用时返回一些特定值。</p>
 <p>要使用此框架将mock对象添加到本地单元测试，请遵循以下编程模型：</p>
 <ul>
@@ -394,7 +394,7 @@
 <blockquote>
 <p><strong>警告</strong>:将<code>returnDefaultValues</code>属性设置为<code>true</code>应该小心。null/零返回值可以在测试中引入回归，这难以调试，并且可能允许失败的测试通过。只能使用它作为最后的手段。</p>
 </blockquote>
-<h2 id="运行本地单元测试">运行本地单元测试</h2><p>要运行本地单元测试，请按照下列步骤操作：</p>
+<h2 id="运行本地单元测试"><a href="#运行本地单元测试" class="headerlink" title="运行本地单元测试"></a>运行本地单元测试</h2><p>要运行本地单元测试，请按照下列步骤操作：</p>
 <ul>
 <li>1.通过单击工具栏中的<strong>Sync Project</strong>，确保您的项目与Gradle同步。</li>
 <li>2.使用以下方法之一运行测试：<ul>
@@ -996,7 +996,7 @@
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1008,7 +1008,7 @@
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1016,6 +1016,8 @@
   
 
   
+  
+
 
   
 

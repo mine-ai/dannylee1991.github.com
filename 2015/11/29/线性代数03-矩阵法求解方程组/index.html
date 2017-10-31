@@ -95,7 +95,7 @@ $$ \begin{bmatrix}   3 &amp;amp; 2 \\   -6 &amp;amp; 6  \end{bmatrix}  \  \begin
 $$-6x + 6y = 6$$
 通过矩阵来求解，可以转换成如下格式：
 $$ \begin{bmatrix}   3 &amp;amp; 2 \\   -6 &amp;amp; 6  \end{bmatrix}  \  \begin{bmatrix}   x \\   y  \end{bmatrix">
-<meta property="og:updated_time" content="2015-11-29T14:46:44.000Z">
+<meta property="og:updated_time" content="2017-10-31T11:21:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数03-矩阵法求解方程组">
 <meta name="twitter:description" content="矩阵是一种思考问题的方式，我们可以用它来解决我们遇到的一些问题：
@@ -376,7 +376,7 @@ $$ \begin{bmatrix}   3 &amp;amp; 2 \\   -6 &amp;amp; 6  \end{bmatrix}  \  \begin
 
       
         <p>矩阵是一种思考问题的方式，我们可以用它来解决我们遇到的一些问题：</p>
-<h2 id="求解二元一次方程组">求解二元一次方程组</h2><p>$$<br>3x + 2y = 7<br>$$</p>
+<h2 id="求解二元一次方程组"><a href="#求解二元一次方程组" class="headerlink" title="求解二元一次方程组"></a>求解二元一次方程组</h2><p>$$<br>3x + 2y = 7<br>$$</p>
 <p>$$<br>-6x + 6y = 6<br>$$</p>
 <p>通过矩阵来求解，可以转换成如下格式：</p>
 <p>$$<br> \begin{bmatrix}<br>   3 &amp; 2 \\<br>   -6 &amp; 6<br>  \end{bmatrix}<br>  \<br>  \begin{bmatrix}<br>   x \\<br>   y<br>  \end{bmatrix}<br>  {=}<br>  \begin{bmatrix}<br>   7 \\<br>   6<br>  \end{bmatrix}<br>$$</p>
@@ -978,9 +978,33 @@ $$ \begin{bmatrix}   3 &amp;amp; 2 \\   -6 &amp;amp; 6  \end{bmatrix}  \  \begin
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -992,14 +1016,12 @@ $$ \begin{bmatrix}   3 &amp;amp; 2 \\   -6 &amp;amp; 6  \end{bmatrix}  \  \begin
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   
 
-  
 
   
 

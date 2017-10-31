@@ -412,7 +412,7 @@ TensorFlow图的可视化。
 <p><img src="/img/17_03_07/007.gif" alt=""></p>
 <p><em>TensorFlow图的可视化。</em></p>
 <p>如有想查看你的图，你需要运行TensorBoard并将其指向你的作业的日志目录，单击顶部窗格上的图形选项卡，然后使用左上角的菜单选择适当的运行。有关如何运行TensorBoard并确保您记录所有必要信息的深入信息，请参阅<a href="/2017/03/07/【Tensorflow%20r1.0%20文档翻译】TensorBoard-可视化学习/">TensorBoard：可视化学习</a>。</p>
-<h2 id="名称作用域和节点">名称作用域和节点</h2><p>典型的TensorFlow图可以有成千上万的节点 - 这个展示量太大了，以至于即使使用标准图工具来布局也太大了。为了简化显示，我们通过变量名指定其对应的作用域，通过使用这些信息来定义图中节点图层的可视化。默认情况下，只显示此层次结构的顶部部分。下面是一个使用<a href="https://www.tensorflow.org/api_docs/python/tf/name_scope" target="_blank" rel="external"><code>tf.name_scope</code></a>在隐藏名称范围下定义三个操作的示例：</p>
+<h2 id="名称作用域和节点"><a href="#名称作用域和节点" class="headerlink" title="名称作用域和节点"></a>名称作用域和节点</h2><p>典型的TensorFlow图可以有成千上万的节点 - 这个展示量太大了，以至于即使使用标准图工具来布局也太大了。为了简化显示，我们通过变量名指定其对应的作用域，通过使用这些信息来定义图中节点图层的可视化。默认情况下，只显示此层次结构的顶部部分。下面是一个使用<a href="https://www.tensorflow.org/api_docs/python/tf/name_scope" target="_blank" rel="external"><code>tf.name_scope</code></a>在隐藏名称范围下定义三个操作的示例：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import tensorflow <span class="keyword">as</span> <span class="keyword">tf</span></div><div class="line"></div><div class="line">with <span class="keyword">tf</span>.name_scope(<span class="string">'hidden'</span>) <span class="keyword">as</span> scope:</div><div class="line">  <span class="keyword">a</span> = <span class="keyword">tf</span>.constant(<span class="number">5</span>, name=<span class="string">'alpha'</span>)</div><div class="line">  W = <span class="keyword">tf</span>.Variable(<span class="keyword">tf</span>.random_uniform([<span class="number">1</span>, <span class="number">2</span>], -<span class="number">1.0</span>, <span class="number">1.0</span>), name=<span class="string">'weights'</span>)</div><div class="line">  <span class="keyword">b</span> = <span class="keyword">tf</span>.Variable(<span class="keyword">tf</span>.zeros([<span class="number">1</span>]), name=<span class="string">'biases'</span>)</div></pre></td></tr></table></figure>
 <p>这将产生以下三个操作名称：</p>
 <ul>
@@ -516,7 +516,7 @@ TensorFlow图的可视化。
 </tr>
 </tbody>
 </table>
-<h2 id="交互">交互</h2><p>通过平移和缩放导航图。点击并拖动即可平移，并使用滚动手势进行缩放。双击一个节点，或单击其<code>+</code>按钮，可以展开一个表示一组操作的名称作用域。为了在缩放和平移时轻松跟踪当前视点，右下角有一个小地图。</p>
+<h2 id="交互"><a href="#交互" class="headerlink" title="交互"></a>交互</h2><p>通过平移和缩放导航图。点击并拖动即可平移，并使用滚动手势进行缩放。双击一个节点，或单击其<code>+</code>按钮，可以展开一个表示一组操作的名称作用域。为了在缩放和平移时轻松跟踪当前视点，右下角有一个小地图。</p>
 <p>要关闭打开的节点，请再次双击它，或单击它的 <code>-</code> 按钮。您也可以单击来选择某个节点。它将变成更暗的颜色，并且它的详细信息和它连接的节点将出现在可视化界面的右上角的信息卡中。</p>
 <table>
 <thead>
@@ -555,7 +555,7 @@ TensorFlow图的可视化。
 </tr>
 </tbody>
 </table>
-<h2 id="Tensor形状信息">Tensor形状信息</h2><p>当序列化<code>GraphDef</code>引入tensor形状时，图形可视化器标记具有tensor维度的边缘，并且边缘厚度反映总张量大小。在<code>GraphDef</code>中引入tensor形状，将序列化图形时的实际图形对象（如<code>sess.graph</code>中所示）传递给<code>SummaryWriter</code>。下图显示了带有张量形状信息的CIFAR-10模型：</p>
+<h2 id="Tensor形状信息"><a href="#Tensor形状信息" class="headerlink" title="Tensor形状信息"></a>Tensor形状信息</h2><p>当序列化<code>GraphDef</code>引入tensor形状时，图形可视化器标记具有tensor维度的边缘，并且边缘厚度反映总张量大小。在<code>GraphDef</code>中引入tensor形状，将序列化图形时的实际图形对象（如<code>sess.graph</code>中所示）传递给<code>SummaryWriter</code>。下图显示了带有张量形状信息的CIFAR-10模型：</p>
 <table>
 <thead>
 <tr>
@@ -568,7 +568,7 @@ TensorFlow图的可视化。
 </tr>
 </tbody>
 </table>
-<h2 id="运行时统计">运行时统计</h2><p>通常，收集运行的运行时元数据是有用的，例如节点的总内存使用，总计算时间和tensor形状。下面的代码示例是来自<a href="/2017/02/22/【Tensorflow%20r1.0%20文档翻译】机器学习的HelloWorld%20--%20MNIST手写数字识别/">简单MNIST教程</a>中的经过修改的训练和测试部分的代码片段，其中我们记录了摘要和运行时统计信息。有关如何记录摘要的详细信息，请参阅<a href="/2017/03/07/【Tensorflow%20r1.0%20文档翻译】TensorBoard-可视化学习/">摘要教程</a>。全部源代码在<a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/mnist_with_summaries.py" target="_blank" rel="external">这里</a>。</p>
+<h2 id="运行时统计"><a href="#运行时统计" class="headerlink" title="运行时统计"></a>运行时统计</h2><p>通常，收集运行的运行时元数据是有用的，例如节点的总内存使用，总计算时间和tensor形状。下面的代码示例是来自<a href="/2017/02/22/【Tensorflow%20r1.0%20文档翻译】机器学习的HelloWorld%20--%20MNIST手写数字识别/">简单MNIST教程</a>中的经过修改的训练和测试部分的代码片段，其中我们记录了摘要和运行时统计信息。有关如何记录摘要的详细信息，请参阅<a href="/2017/03/07/【Tensorflow%20r1.0%20文档翻译】TensorBoard-可视化学习/">摘要教程</a>。全部源代码在<a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/mnist_with_summaries.py" target="_blank" rel="external">这里</a>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Train the model, and also write summaries.</span></div><div class="line"><span class="comment"># Every 10th step, measure test-set accuracy, and write test summaries</span></div><div class="line"><span class="comment"># All other steps, run train_step on training data, &amp; add training summaries</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">feed_dict</span><span class="params">(train)</span>:</span></div><div class="line">  <span class="string">"""Make a TensorFlow feed_dict: maps data onto Tensor placeholders."""</span></div><div class="line">  <span class="keyword">if</span> train <span class="keyword">or</span> FLAGS.fake_data:</div><div class="line">    xs, ys = mnist.train.next_batch(<span class="number">100</span>, fake_data=FLAGS.fake_data)</div><div class="line">    k = FLAGS.dropout</div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    xs, ys = mnist.test.images, mnist.test.labels</div><div class="line">    k = <span class="number">1.0</span></div><div class="line">  <span class="keyword">return</span> &#123;x: xs, y_: ys, keep_prob: k&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(FLAGS.max_steps):</div><div class="line">  <span class="keyword">if</span> i % <span class="number">10</span> == <span class="number">0</span>:  <span class="comment"># Record summaries and test-set accuracy</span></div><div class="line">    summary, acc = sess.run([merged, accuracy], feed_dict=feed_dict(<span class="keyword">False</span>))</div><div class="line">    test_writer.add_summary(summary, i)</div><div class="line">    print(<span class="string">'Accuracy at step %s: %s'</span> % (i, acc))</div><div class="line">  <span class="keyword">else</span>:  <span class="comment"># Record train set summaries, and train</span></div><div class="line">    <span class="keyword">if</span> i % <span class="number">100</span> == <span class="number">99</span>:  <span class="comment"># Record execution stats</span></div><div class="line">      run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)</div><div class="line">      run_metadata = tf.RunMetadata()</div><div class="line">      summary, _ = sess.run([merged, train_step],</div><div class="line">                            feed_dict=feed_dict(<span class="keyword">True</span>),</div><div class="line">                            options=run_options,</div><div class="line">                            run_metadata=run_metadata)</div><div class="line">      train_writer.add_run_metadata(run_metadata, <span class="string">'step%d'</span> % i)</div><div class="line">      train_writer.add_summary(summary, i)</div><div class="line">      print(<span class="string">'Adding run metadata for'</span>, i)</div><div class="line">    <span class="keyword">else</span>:  <span class="comment"># Record a summary</span></div><div class="line">      summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(<span class="keyword">True</span>))</div><div class="line">      train_writer.add_summary(summary, i)</div></pre></td></tr></table></figure>
 <p>此代码将从步骤99开始每隔100步发出运行时统计信息。</p>
 <p>当您启动tensorboard并转到图表选项卡，您现在将看到“Session runs”下的选项对应于添加运行元数据的步骤。选择其中一个运行将显示该步骤的网络快照，淡出未使用的节点。在左侧的控件中，您可以按总内存或总计算时间对节点进行着色。此外，单击节点将显示确切的总内存，计算时间和张量输出大小。</p>
@@ -1181,7 +1181,7 @@ TensorFlow图的可视化。
     
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1193,7 +1193,7 @@ TensorFlow图的可视化。
   });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -1201,6 +1201,8 @@ TensorFlow图的可视化。
   
 
   
+  
+
 
   
 
