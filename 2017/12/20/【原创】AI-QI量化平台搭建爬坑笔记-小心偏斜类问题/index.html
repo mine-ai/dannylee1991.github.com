@@ -157,7 +157,7 @@
 <meta property="og:image" content="http://studyai.site/img/17_12_20/010.png">
 <meta property="og:image" content="http://studyai.site/img/17_12_20/011.png">
 <meta property="og:image" content="http://studyai.site/img/17_12_20/012.png">
-<meta property="og:updated_time" content="2017-12-20T08:30:33.000Z">
+<meta property="og:updated_time" content="2017-12-20T08:40:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题">
 <meta name="twitter:description" content="原创文章，转载请注明出处
@@ -536,7 +536,10 @@
 <p>看到这种结果，第一时间，我是怀疑自己代码有没有哪里写错，但经过排查，并没有发现有什么异常。</p>
 <p>后来，又尝试将数据分为4类，8类来训练，得到的结果依然是50%左右。</p>
 <p>WTF？</p>
-<h3 id="原来是偏斜类在搞鬼"><a href="#原来是偏斜类在搞鬼" class="headerlink" title="原来是偏斜类在搞鬼"></a>原来是偏斜类在搞鬼</h3><p>我将原始数据绘制成柱状图之后，发现了问题所在：</p>
+<h3 id="原来是偏斜类在搞鬼"><a href="#原来是偏斜类在搞鬼" class="headerlink" title="原来是偏斜类在搞鬼"></a>原来是偏斜类在搞鬼</h3><blockquote>
+<p><a href="http://t.cn/RSh83NE" target="_blank" rel="external">这里有篇关于偏斜类的文章</a>，值得一看。</p>
+</blockquote>
+<p>我将原始数据绘制成柱状图之后，发现了问题所在：</p>
 <p><img src="/img/17_12_20/011.png" alt=""></p>
 <p>数据在各个类别上<strong>并不是均匀分布的</strong>，大部分都聚集在了10（对应涨跌幅为0%）的位置上。而我训练出来的模型，带入一批测试数据后，预测结果也都是10。</p>
 <p>也就是说，我们的分类器，就算完全没有识别能力，输入任何值，输出的结果都是10这种类别，那么这个分类器就有50%的准确率！！！</p>
