@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,AI-QI," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="原创文章，转载请注明出处
+
+首先安利一波广告：
+最近利用业余时间搭建了一个智能量化投资平台，代码已经全部开源：https://github.com/DannyLee1991/ai_qi
+目前已经实现的功能有：
+
+数据的抓取（数据来源tushare}）
+
+
+
+数据入库，并在界面上可以执行sql操作
+
+
+
+数据可视化
+
+
+
+数据集创建
+
+数据集管理
+
+数据集创建
+
+数据集查看
+
+
+数据预处理
+
+//">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题">
+<meta property="og:url" content="http://studyai.site/2017/12/20/【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="原创文章，转载请注明出处
+
+首先安利一波广告：
+最近利用业余时间搭建了一个智能量化投资平台，代码已经全部开源：https://github.com/DannyLee1991/ai_qi
+目前已经实现的功能有：
+
+数据的抓取（数据来源tushare}）
+
+
+
+数据入库，并在界面上可以执行sql操作
+
+
+
+数据可视化
+
+
+
+数据集创建
+
+数据集管理
+
+数据集创建
+
+数据集查看
+
+
+数据预处理
+
+//">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/001.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/002.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/003.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/004.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/005.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/006.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/005.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/008.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/009.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/010.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/011.png">
+<meta property="og:image" content="http://studyai.site/img/17_12_20/012.png">
+<meta property="og:updated_time" content="2017-12-20T08:30:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题">
+<meta name="twitter:description" content="原创文章，转载请注明出处
+
+首先安利一波广告：
+最近利用业余时间搭建了一个智能量化投资平台，代码已经全部开源：https://github.com/DannyLee1991/ai_qi
+目前已经实现的功能有：
+
+数据的抓取（数据来源tushare}）
+
+
+
+数据入库，并在界面上可以执行sql操作
+
+
+
+数据可视化
+
+
+
+数据集创建
+
+数据集管理
+
+数据集创建
+
+数据集查看
+
+
+数据预处理
+
+//">
+<meta name="twitter:image" content="http://studyai.site/img/17_12_20/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2017/12/20/【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题/"/>
+
+
+
+
+
+  <title>【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题 | studyAI</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64d3554e2db8268ff4e020b47928563f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/12/20/【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T14:54:00+08:00">
+                2017-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/20/【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题/" class="leancloud_visitors" data-flag-title="【原创】AI-QI量化平台搭建爬坑笔记-小心偏斜类问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原创文章，转载请注明出处</p>
+</blockquote>
+<p>首先安利一波广告：</p>
+<p>最近利用业余时间搭建了一个智能量化投资平台，代码已经全部开源：<a href="https://github.com/DannyLee1991/ai_qi" target="_blank" rel="external">https://github.com/DannyLee1991/ai_qi</a></p>
+<p>目前已经实现的功能有：</p>
+<ul>
+<li>数据的抓取（数据来源<a href="tushare.org">tushare</a>}）</li>
+</ul>
+<p><img src="/img/17_12_20/001.png" alt=""></p>
+<ul>
+<li>数据入库，并在界面上可以执行sql操作</li>
+</ul>
+<p><img src="/img/17_12_20/002.png" alt=""></p>
+<ul>
+<li>数据可视化</li>
+</ul>
+<p><img src="/img/17_12_20/003.png" alt=""><br><img src="/img/17_12_20/004.png" alt=""></p>
+<ul>
+<li>数据集创建</li>
+</ul>
+<p>数据集管理</p>
+<p><img src="/img/17_12_20/005.png" alt=""></p>
+<p>数据集创建</p>
+<p><img src="/img/17_12_20/006.png" alt=""></p>
+<p>数据集查看</p>
+<p><img src="/img/17_12_20/005.png" alt=""></p>
+<ul>
+<li>数据预处理</li>
+</ul>
+<p>// 暂无界面</p>
+<p>正在开发中的功能：</p>
+<ul>
+<li>数据建模</li>
+<li>接入交易接口</li>
+<li>…</li>
+</ul>
+<p>各个已有的功能目前也只是做了部分实现，先把各个环节打通，然后在慢慢填充。最终的目标是利用机器学习算法来预测分析各种投资数据。</p>
+<p>欢迎各位大牛拍砖指导~</p>
+<hr>
+<p>好，以上不是本文的重点，本文重点是这两天在建立第一个模型过程中遇到的一个坑。</p>
+<hr>
+<h3 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h3><p>第一个模型，我准备使用日交易数据来预测次日的涨跌幅度，使用的数据来自日交易数据表：</p>
+<p><img src="/img/17_12_20/008.png" alt=""></p>
+<p>这是对应的原始数据集详情信息：</p>
+<p><img src="/img/17_12_20/009.png" alt=""></p>
+<p>其中  除了X的<strong>‘date’(时间)</strong>特征之外，其他的特征都是float类型的数据。暂时先剔除这一维度的数据，所以最后用来训练的X的shape是<code>(292583, 15)</code>。</p>
+<p>Y的shape不变，是<code>(292583, 1)</code>。</p>
+<p>Y的数据类型也是float。</p>
+<blockquote>
+<p>这里先解释一下<strong>Y</strong>的含义：Y对应的数据是涨跌幅，但和与之对应的X的数据并不是同一天的，这里<strong>日期间隔1</strong>的含义是Y取的是相对于X的数据的时间的下一日的数据，因为我们要预测的是次日涨跌幅。</p>
+</blockquote>
+<p>对于分类模型，我们的Y应该是类别标签，而不能是连续型数值，所以我们应该把当前的float类型的Y，转换成某种类别标签来表示。</p>
+<p>一种很容易理解的方式，就是float转int，简单粗暴：</p>
+<p>eg:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y = [<span class="number">1.1</span>, <span class="number">2.6</span>, <span class="number">3.5</span>, <span class="number">-1.8</span>, ...]</div></pre></td></tr></table></figure>
+<p>转换为int之后</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">-1</span>, ...]</div></pre></td></tr></table></figure>
+<p>但这里有一个小坑，负数的标签在带入到tensorflow中训练是会报错的，所以把标签数据+10，全部转为大于等于0的数据，处理之后的效果为：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y = [<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">9</span>, ...]</div></pre></td></tr></table></figure>
+<p>在经过上述的预处理之后，Y被处理成了21个类别（-10到10之间一共21个int值）的数据集。</p>
+<p>然后就是将数据打乱，按照6:2:2的比例将数据分割为<strong>训练集</strong>、<strong>验证集</strong>和<strong>测试集</strong>。</p>
+<hr>
+<h3 id="带入训练"><a href="#带入训练" class="headerlink" title="带入训练"></a>带入训练</h3><p>仿照tensorflow的<a href="https://www.tensorflow.org/get_started/estimator" target="_blank" rel="external">demo</a>，将数据带入一个DNN模型，进行训练。</p>
+<p>没有进行什么特殊的调参，最终准确率竟然达到了接近50%！</p>
+<p><img src="/img/17_12_20/010.png" alt=""></p>
+<p>要知道这是21个类别的分类问题，50%的准确率已经远远高于均匀分布情况下随机选择的准确率（大约是4.8%）了。</p>
+<p>于是我觉得21类数据，准确率就能达到这么高，那如果我将类别改为2类，准确率应该会大幅提升的。</p>
+<p>于是我重新将Y的数据改为了0和1两种类别，0代表跌1代表涨。</p>
+<p>但实际情况，并没有好很多，准确率大概达到52%左右。</p>
+<p>看到这种结果，第一时间，我是怀疑自己代码有没有哪里写错，但经过排查，并没有发现有什么异常。</p>
+<p>后来，又尝试将数据分为4类，8类来训练，得到的结果依然是50%左右。</p>
+<p>WTF？</p>
+<h3 id="原来是偏斜类在搞鬼"><a href="#原来是偏斜类在搞鬼" class="headerlink" title="原来是偏斜类在搞鬼"></a>原来是偏斜类在搞鬼</h3><p>我将原始数据绘制成柱状图之后，发现了问题所在：</p>
+<p><img src="/img/17_12_20/011.png" alt=""></p>
+<p>数据在各个类别上<strong>并不是均匀分布的</strong>，大部分都聚集在了10（对应涨跌幅为0%）的位置上。而我训练出来的模型，带入一批测试数据后，预测结果也都是10。</p>
+<p>也就是说，我们的分类器，就算完全没有识别能力，输入任何值，输出的结果都是10这种类别，那么这个分类器就有50%的准确率！！！</p>
+<p>这是一个很傻的结果，就好比一个完全不懂股票的人，你问他某只股票明天会不会涨，他只要回答：“明天不涨不跌”，那么他就有50%的概率猜对了。</p>
+<p>好吧，这并不是我们想要的效果，那么我们如何避免这种情况呢？</p>
+<h3 id="想办法让各个类别的数据呈现均匀分布"><a href="#想办法让各个类别的数据呈现均匀分布" class="headerlink" title="想办法让各个类别的数据呈现均匀分布"></a>想办法让各个类别的数据呈现均匀分布</h3><p>我想到的办法是在标签数据生成的过程中做些手脚。使得各个类别的数据呈现出均匀分布的情况。</p>
+<p>所以我写了一个函数，用来将数据处理成均匀分布的标签：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> math</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">uniform_distribution</span><span class="params">(Y, n, l_type=<span class="string">'b'</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    平均分布</div><div class="line"></div><div class="line">    将Y按照值的大小进行均匀分布的方式分割成n等分</div><div class="line">    并生成对应的类别标签</div><div class="line"></div><div class="line">    :param Y: 数据源  形状为(num,)</div><div class="line">    :param n: 将数据分割为n等分</div><div class="line">    :param l_type: 分割数据之后 标签的取值类别&#123;'b','s','n'&#125;</div><div class="line">                'b' : 类别标签为区间范围内的最大值</div><div class="line">                's' : 类别标签为区间范围内的最小值</div><div class="line">                'n' : 类别标签为区间范围内的平均值</div><div class="line"></div><div class="line">    :return:</div><div class="line"></div><div class="line">    eg：</div><div class="line">    Y = [1,1,2,3,4,4,5,6,7]</div><div class="line">    n = 5</div><div class="line">    l_type = 'b'</div><div class="line">    result = [1 1 3 3 4 4 6 6 7]</div><div class="line"></div><div class="line">    n = 3</div><div class="line">    l_type = 's'</div><div class="line">    result = [1 1 1 2 2 2 4 4 4]</div><div class="line"></div><div class="line">    n = 5</div><div class="line">    l_type = 'n'</div><div class="line">    result = [ 1.   1.   2.   2.   3.5  3.5  5.   5.   6.5]</div><div class="line"></div><div class="line">    '''</div><div class="line"></div><div class="line">    node_list = gen_nodelist(Y, n)</div><div class="line">    toY = []</div><div class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> Y:</div><div class="line">    	<span class="comment"># 这里虽然得到的是float类型的值，但tensorflow的类别标签 只能是int类型，所以将对应的索引作为标签值来使用</span></div><div class="line">        index, val = get_label(num, node_list, l_type)</div><div class="line">        toY.append(index)</div><div class="line"></div><div class="line">    print(<span class="string">"node list &gt;&gt;"</span>)</div><div class="line">    print(node_list)</div><div class="line">    <span class="keyword">return</span> np.array(toY)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_label</span><span class="params">(num, node_list, l_type)</span>:</span></div><div class="line">    <span class="comment"># 下限</span></div><div class="line">    lm = <span class="number">0</span></div><div class="line">    <span class="comment"># 上限</span></div><div class="line">    um = <span class="number">0</span></div><div class="line">    target = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="comment"># 节点区间是(lm,um]</span></div><div class="line">    <span class="keyword">for</span> index, node <span class="keyword">in</span> enumerate(node_list):</div><div class="line">        <span class="keyword">if</span> node &gt;= num:</div><div class="line">            <span class="keyword">if</span> index &gt; <span class="number">0</span>:</div><div class="line">                um = node</div><div class="line">                lm = node_list[index - <span class="number">1</span>]</div><div class="line">                target = index</div><div class="line">                <span class="keyword">break</span></div><div class="line"></div><div class="line">    label = <span class="string">''</span></div><div class="line">    <span class="keyword">if</span> l_type == <span class="string">'s'</span>:</div><div class="line">        label = lm</div><div class="line">    <span class="keyword">elif</span> l_type == <span class="string">'b'</span>:</div><div class="line">        label = um</div><div class="line">    <span class="keyword">elif</span> l_type == <span class="string">'n'</span>:</div><div class="line">        label = (lm + um) / <span class="number">2</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> target, label</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_nodelist</span><span class="params">(data, n)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    生成节点列表  节点是指示数据的分割点</div><div class="line">    :param data: 原始数据 需要被分割的数据</div><div class="line">    :param n: 分割的份数</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    sorted_list = sorted(data)</div><div class="line">    size = len(sorted_list)</div><div class="line">    node_list = []</div><div class="line">    block_size = math.ceil(size / n)</div><div class="line">    <span class="keyword">for</span> index, item <span class="keyword">in</span> enumerate(sorted_list):</div><div class="line">        <span class="keyword">if</span> (index + <span class="number">1</span>) % block_size == <span class="number">0</span>:</div><div class="line">            node_list.append(item)</div><div class="line">        <span class="keyword">elif</span> index == <span class="number">0</span>:</div><div class="line">            node_list.append(item)</div><div class="line">        <span class="keyword">elif</span> index == size - <span class="number">1</span>:</div><div class="line">            node_list.append(item)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> node_list</div></pre></td></tr></table></figure>
+<p>用这个函数重新预处理我们的Y，这里我们将Y分为10种类别，Y按照以下的标签值，重新赋值：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="number">-10.08</span>, <span class="number">-2.3900000000000001</span>, <span class="number">-1.4199999999999999</span>, <span class="number">-0.84999999999999998</span>, <span class="number">-0.40999999999999998</span>, <span class="number">0.0</span>, <span class="number">0.28999999999999998</span>, <span class="number">0.68999999999999995</span>, <span class="number">1.24</span>, <span class="number">2.25</span>, <span class="number">10.16</span>]</div></pre></td></tr></table></figure>
+<p>可以看到，这些标签值并不是线性的，这是因为我们的数据不是均匀分布的。</p>
+<p>按照这种标签处理之后，将数据绘制成柱状图后，如下：</p>
+<p><img src="/img/17_12_20/012.png" alt=""></p>
+<p>接下来带入训练就比较正常了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/AI-QI/" rel="tag"># AI-QI</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/30/10分钟上手Pandas/" rel="next" title="10分钟上手Pandas">
+                <i class="fa fa-chevron-left"></i> 10分钟上手Pandas
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="DannyLee1991" />
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DannyLee1991" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:747554505@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="tencent://message/?Menu=yes&uin=747554505" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集介绍"><span class="nav-number">1.</span> <span class="nav-text">数据集介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带入训练"><span class="nav-number">2.</span> <span class="nav-text">带入训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原来是偏斜类在搞鬼"><span class="nav-number">3.</span> <span class="nav-text">原来是偏斜类在搞鬼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#想办法让各个类别的数据呈现均匀分布"><span class="nav-number">4.</span> <span class="nav-text">想办法让各个类别的数据呈现均匀分布</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
