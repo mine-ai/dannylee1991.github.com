@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前提条件
+安装Docker1.13或更高版本。
+阅读Part1部分。
+让您的环境快速测试运行，以确保您全部设置完毕：
+
+1docker run hello-world
+介绍现在是开始以Docker方式构建应用程序的时候了。我们从这种应用程序的层次结构的容器的底部开始，进行详细介绍。在这个层次上面是一个服务，它定义了容器在生产中的行为方式，如Part3部分所述。最后，在顶层的堆栈部分定义了Part5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门Part2-容器">
+<meta property="og:url" content="http://studyai.site/2018/04/25/Docker入门Part2-容器/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="前提条件
+安装Docker1.13或更高版本。
+阅读Part1部分。
+让您的环境快速测试运行，以确保您全部设置完毕：
+
+1docker run hello-world
+介绍现在是开始以Docker方式构建应用程序的时候了。我们从这种应用程序的层次结构的容器的底部开始，进行详细介绍。在这个层次上面是一个服务，它定义了容器在生产中的行为方式，如Part3部分所述。最后，在顶层的堆栈部分定义了Part5">
+<meta property="og:image" content="http://studyai.site/img/18_04_25/004.png">
+<meta property="og:updated_time" content="2018-04-26T02:12:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入门Part2-容器">
+<meta name="twitter:description" content="前提条件
+安装Docker1.13或更高版本。
+阅读Part1部分。
+让您的环境快速测试运行，以确保您全部设置完毕：
+
+1docker run hello-world
+介绍现在是开始以Docker方式构建应用程序的时候了。我们从这种应用程序的层次结构的容器的底部开始，进行详细介绍。在这个层次上面是一个服务，它定义了容器在生产中的行为方式，如Part3部分所述。最后，在顶层的堆栈部分定义了Part5">
+<meta name="twitter:image" content="http://studyai.site/img/18_04_25/004.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2018/04/25/Docker入门Part2-容器/"/>
+
+
+
+
+
+  <title>Docker入门Part2-容器 | studyAI</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64d3554e2db8268ff4e020b47928563f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2018/04/25/Docker入门Part2-容器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker入门Part2-容器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T16:43:00+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/25/Docker入门Part2-容器/" class="leancloud_visitors" data-flag-title="Docker入门Part2-容器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<li><a href="https://docs.docker.com/engine/installation/" target="_blank" rel="external">安装Docker1.13或更高版本</a>。</li>
+<li>阅读Part1部分。</li>
+<li>让您的环境快速测试运行，以确保您全部设置完毕：</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">run</span> hello-world</div></pre></td></tr></table></figure>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>现在是开始以Docker方式构建应用程序的时候了。我们从这种应用程序的层次结构的容器的底部开始，进行详细介绍。在这个层次上面是一个服务，它定义了容器在生产中的行为方式，如Part3部分所述。最后，在顶层的堆栈部分定义了Part5部分中涵盖的所有服务的交互。</p>
+<ul>
+<li>Stack （堆栈）</li>
+<li>Services （服务）</li>
+<li><strong>Container</strong>（容器，你在这里）</li>
+</ul>
+<h2 id="您的新开发环境"><a href="#您的新开发环境" class="headerlink" title="您的新开发环境"></a>您的新开发环境</h2><p>之前，如果您要开始编写Python应用程序，您第一个要做的事情就是在您的机器上安装Python运行环境。但是，这会造成您的计算机上的环境需要完美适合您的应用程序按预期运行，并且还需要与您的生产环境相匹配。</p>
+<p>使用Docker，您可以将一个可移植的Python运行环境作为一个镜像获取，无需安装。然后，您的构建可以将基础Python镜像与应用程序代码一起包括在内，确保您的应用程序，依赖项和运行环境都在一起。</p>
+<p>这些可移植的镜像是由称为<code>Dockerfile</code>的东西定义的。</p>
+<h2 id="通过Dockerfile定义一个容器"><a href="#通过Dockerfile定义一个容器" class="headerlink" title="通过Dockerfile定义一个容器"></a>通过<code>Dockerfile</code>定义一个容器</h2><p><code>Dockerfile</code>定义了容器内的环境发生的事情。像访问网络接口以及磁盘驱动器等资源是在此环境内虚拟化的，这与系统的其余部分是隔离开的，因此您需要将端口映射到外部世界，并明确指定要将哪些文件“复制”到该环境中。但是，在完成这些之后，您可以预期，在此<code>Dockerfile</code>中定义的应用程序构建在运行时的行为完全相同。</p>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a><code>Dockerfile</code></h3><p>创建一个空目录。改变目录(<code>cd</code>)到这个新的目录下，创建一个叫做<code>Dockerfile</code>的文件，将下面的内容复制粘贴到这个文件中，并保存。注意记下<code>Dockerfile</code>中的注释部分。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Use an official Python runtime as a parent image</span></div><div class="line"><span class="comment"># 使用一个官方的Python运行时环境作为父镜像</span></div><div class="line"><span class="keyword">FROM</span> python:<span class="number">2.7</span>-slim</div><div class="line"></div><div class="line"><span class="comment"># Set the working directory to /app</span></div><div class="line"><span class="comment"># 设置工作目录到/app目录下</span></div><div class="line"><span class="keyword">WORKDIR</span> <span class="bash">/app</span></div><div class="line"></div><div class="line"><span class="comment"># Copy the current directory contents into the container at /app</span></div><div class="line"><span class="comment"># 复制当前目录内容到容器的/app目录下</span></div><div class="line"><span class="keyword">ADD</span> <span class="bash">. /app</span></div><div class="line"></div><div class="line"><span class="comment"># Install any needed packages specified in requirements.txt</span></div><div class="line"><span class="comment"># 安装所有requirements.txt中指定的需要的包</span></div><div class="line"><span class="keyword">RUN</span> <span class="bash">pip install --trusted-host pypi.python.org -r requirements.txt</span></div><div class="line"></div><div class="line"><span class="comment"># Make port 80 available to the world outside this container</span></div><div class="line"><span class="comment"># 使得该容器的80端口对外可用</span></div><div class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></div><div class="line"></div><div class="line"><span class="comment"># Define environment variable</span></div><div class="line"><span class="comment"># 定义环境变量</span></div><div class="line"><span class="keyword">ENV</span> NAME World</div><div class="line"></div><div class="line"><span class="comment"># Run app.py when the container launches</span></div><div class="line"><span class="comment"># 当容器加载时，运行app.py</span></div><div class="line"><span class="keyword">CMD</span> <span class="bash">[<span class="string">"python"</span>, <span class="string">"app.py"</span>]</span></div></pre></td></tr></table></figure>
+<p>这个<code>Dockerfile</code>提到了我们尚未创建的两个文件，名叫<code>app.py</code>和<code>requirements.txt</code>。接下来让我们来创建出来。</p>
+<h2 id="应用程序本身"><a href="#应用程序本身" class="headerlink" title="应用程序本身"></a>应用程序本身</h2><p>创建两个文件<code>requirements.txt</code>和<code>app.py</code>，并把他们放在和<code>Dockerfile</code>相同的目录下。这就完成了我们的应用程序，正如你看到的一样，非常简单。当上面的<code>Dockerfile</code>被内置到镜像中时，由于<code>Dockerfile</code>的<code>ADD</code>命令，<code>app.py</code>和<code>requirements.txt</code>存在，并且<code>app.py</code>的输出可以通过HTTP访问，这要归功于<code>EXPOSE</code>命令。</p>
+<h3 id="requirements-txt"><a href="#requirements-txt" class="headerlink" title="requirements.txt"></a><code>requirements.txt</code></h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Flask</span></div><div class="line">Redis</div></pre></td></tr></table></figure>
+<h3 id="app-py"><a href="#app-py" class="headerlink" title="app.py"></a><code>app.py</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> redis <span class="keyword">import</span> Redis, RedisError</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> socket</div><div class="line"></div><div class="line"><span class="comment"># Connect to Redis</span></div><div class="line">redis = Redis(host=<span class="string">"redis"</span>, db=<span class="number">0</span>, socket_connect_timeout=<span class="number">2</span>, socket_timeout=<span class="number">2</span>)</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"><span class="meta">@app.route("/")</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        visits = redis.incr(<span class="string">"counter"</span>)</div><div class="line">    <span class="keyword">except</span> RedisError:</div><div class="line">        visits = <span class="string">"&lt;i&gt;cannot connect to Redis, counter disabled&lt;/i&gt;"</span></div><div class="line"></div><div class="line">    html = <span class="string">"&lt;h3&gt;Hello &#123;name&#125;!&lt;/h3&gt;"</span> \</div><div class="line">           <span class="string">"&lt;b&gt;Hostname:&lt;/b&gt; &#123;hostname&#125;&lt;br/&gt;"</span> \</div><div class="line">           <span class="string">"&lt;b&gt;Visits:&lt;/b&gt; &#123;visits&#125;"</span></div><div class="line">    <span class="keyword">return</span> html.format(name=os.getenv(<span class="string">"NAME"</span>, <span class="string">"world"</span>), hostname=socket.gethostname(), visits=visits)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    app.run(host=<span class="string">'0.0.0.0'</span>, port=<span class="number">80</span>)</div></pre></td></tr></table></figure>
+<p>现在我们看到<code>pip install -r requirements.txt</code>命令安装了Python的Flask和Redis库，并且应用打印出了环境变量<code>NAME</code>，同时输出了方法<code>socket.gethostname()</code>输出的内容。最后，因为Redis没有运行（因为我们只安装了Python库，而不是Redis本身），所以这里应该会失败，并产生错误消息。</p>
+<blockquote>
+<p>注意：在容器内部访问主机的名称将检索容器ID，这与正在运行的可执行文件的进程ID相似。</p>
+</blockquote>
+<p>就是这样！你的系统上不需要Python或者任何<code>requirements.txt</code>文件，也不需要在你的系统上安装或运行此镜像。这看起来你并没有真正用Python和Flask建立一个运行环境，但事实上已经建立好了。</p>
+<h2 id="构建一个应用"><a href="#构建一个应用" class="headerlink" title="构建一个应用"></a>构建一个应用</h2><p>我们准备构建应用程序。确保您仍然处于新目录的顶层。以下是<code>ls</code>命令应该显示的内容：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">ls</span></div><div class="line">Dockerfile		<span class="keyword">app</span>.py			requirements.txt</div></pre></td></tr></table></figure>
+<p>现在运行build命令。这会创建一个Docker镜像，我们将使用<code>-t</code>标记它，这样可以给它指定一个友好的名称。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">docker</span> <span class="keyword">build </span>-t friendlyhello .</div></pre></td></tr></table></figure>
+<p>你构建的镜像在哪里？它在你的机器的本地Docker镜像注册表中：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ docker image ls</div><div class="line"></div><div class="line">REPOSITORY            <span class="keyword">TAG</span>                 <span class="title">IMAGE</span> ID</div><div class="line">friendlyhello         latest</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Linux用户的故障排除</p>
+<p><em>DNS设置</em></p>
+<p>代理服务器在启动并运行后可以阻止与您的网络应用程序的连接。如果您位于代理服务器的后面，请使用<code>ENV</code>命令为您的代理服务器指定主机和端口，将以下行添加到<code>Dockerfile</code>中：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Set proxy server, replace host:port with values for your servers</span></div><div class="line"><span class="keyword">ENV</span> http_proxy host:port</div><div class="line"><span class="keyword">ENV</span> https_proxy host:port</div></pre></td></tr></table></figure>
+<p><em>代理服务设置</em></p>
+<p>DNS错误配置可能会导致<code>pip</code>出现问题。您需要设置您自己的DNS服务器地址以使<code>pip</code>正常工作。您可能需要更改Docker守护程序的DNS设置。您可以按照以下方式来编辑（或者创建）带有<code>dns</code>信息的配置文件<code>/etc/docker/daemon.json</code>。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"dns"</span>: [<span class="string">"your_dns_address"</span>, <span class="string">"8.8.8.8"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上面的例子中，列表的第一个元素是你的DNS服务器的地址。第二项是Google的DNS，当第一项不可用时可以使用它。</p>
+<p>在继续之前，保存`daemon.json并重新启动docker服务。</p>
+<p><code>sudo service docker restart</code></p>
+<p>修复后，重试运行<code>build</code>命令。</p>
+</blockquote>
+<h2 id="运行app"><a href="#运行app" class="headerlink" title="运行app"></a>运行app</h2><p>运行应用程序，使用<code>-p</code>将机器的端口4000映射到容器的已发布端口<code>80</code>：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -<span class="selector-tag">p</span> <span class="number">4000</span>:<span class="number">80</span> friendlyhello</div></pre></td></tr></table></figure>
+<p>你可以在<code>http://0.0.0.0:80</code>看到一条消息，Python正在为你的应用程序提供服务。但是，该消息来自容器内部，它不知道您将该容器的端口<code>80</code>映射到<code>4000</code>，从而制作正确的URL<code>http://localhost:4000</code>。</p>
+<p>在网络浏览器中转到该URL以查看网页上显示的显示内容。</p>
+<p><img src="/img/18_04_25/004.png" alt=""></p>
+<blockquote>
+<p>注意：如果你正在在Windows7上使用Docker Toolbox，使用Docker Machine IP来替代<code>localhost</code>。例如：<a href="http://192.168.99.100:4000/。要查找IP地址，请使用该命令`docker-machine" target="_blank" rel="external">http://192.168.99.100:4000/。要查找IP地址，请使用该命令`docker-machine</a> ip`。</p>
+</blockquote>
+<p>您也可以在shell中使用<code>curl</code>命令来查看相同的内容。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl http:<span class="comment">//localhost:4000</span></div><div class="line"></div><div class="line"><span class="params">&lt;h3&gt;</span>Hello World!<span class="params">&lt;/h3&gt;</span><span class="params">&lt;b&gt;</span>Hostname:<span class="params">&lt;/b&gt;</span> <span class="number">8f</span>c990912a14<span class="params">&lt;br/&gt;</span><span class="params">&lt;b&gt;</span>Visits:<span class="params">&lt;/b&gt;</span> <span class="params">&lt;i&gt;</span>cannot connect to Redis, counter disabled<span class="params">&lt;/i&gt;</span></div></pre></td></tr></table></figure>
+<p>这个<code>4000:80</code>的端口重映射是为了演示<code>Dockerfile</code>中的<code>EXPOSE</code>与使用<code>docker run -p</code>发布的内容之间的区别。在后面的步骤中，我们只需将主机上的端口80映射到容器中的端口80并使用<code>http://localhost</code>。</p>
+<p>在终端中点击<code>CTRL + C</code>退出。</p>
+<blockquote>
+<p><strong>在Windows下，显式的停止容器</strong></p>
+<p>在Windows系统下，<code>CTRL+C</code>不会停止容器。到目前为止，首先键入<code>CTRL+C</code>以获取提示（或打开另一个shell），然后输入<code>docker container ls</code>来列出运行中的容器，其次是<code>docker container stop &lt;Container NAME or ID&gt;</code>来停止容器。否则，你会在下一步重新运行容器时得到一个来自守护进程的错误消息。</p>
+</blockquote>
+<p>现在让我们以分离模式在后台运行应用程序：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -<span class="selector-tag">p</span> <span class="number">4000</span>:<span class="number">80</span> friendlyhello</div></pre></td></tr></table></figure>
+<p>您可以获取应用的长容器ID，然后将其显示到终端。你的容器在后台运行。你也可以通过<code>docker container ls</code>来看到简短的容器ID（并且在运行命令时可以互换使用）。</p>
+<p>注意到<code>CONTAINER ID</code>与<code>http://localhost:4000</code>上的内容匹配。</p>
+<p>现在我们使用<code>docker container stop</code>来结束指定<code>CONTAINER ID</code><br>的进程，像这样：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker container <span class="built_in">stop</span> <span class="number">1</span>fa4ab2cf395</div></pre></td></tr></table></figure>
+<h2 id="分享你的image"><a href="#分享你的image" class="headerlink" title="分享你的image"></a>分享你的image</h2><p>为了演示我们刚才创建的可移植性，我们上传我们构建的镜像并在其他地方运行它。毕竟，当您想要将容器部署到生产环境时，您需要知道如何推送注册表。</p>
+<p>注册表是存储库的集合，而存储库是镜像的集合 - 有点像GitHub存储库，但不同的是这里代码已经创建。注册表上的帐户可以创建许多存储库。 <code>docker</code> CLI默认使用Docker的公共注册表。</p>
+<blockquote>
+<p>注意：我们在这里使用Docker的公共注册表仅仅是因为它是免费和预先配置的，但是有许多公共选项可供选择，您甚至可以使用<a href="https://docs.docker.com/datacenter/dtr/2.2/guides/" target="_blank" rel="external">Docker Trusted Registry</a>设置您自己的私有注册表。</p>
+</blockquote>
+<h3 id="登录你的Docker-ID"><a href="#登录你的Docker-ID" class="headerlink" title="登录你的Docker ID"></a>登录你的Docker ID</h3><p>如果你没有Docker账号，需要在<a href="cloud.docker.com">cloud.docker.com</a>上注册一个。记下你的用户名。</p>
+<p>登录到本地计算机上的Docker公共注册表。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>docker login</div></pre></td></tr></table></figure>
+<h3 id="给镜像打标签"><a href="#给镜像打标签" class="headerlink" title="给镜像打标签"></a>给镜像打标签</h3><p>将本地镜像与注册表中的存储库相关联的符号是<code>username/repository:tag</code>。该tag是可选的，但建议使用，因为它是注册管理机构用于为Docker镜像提供版本的机制。为该上下文提供存储库并标记有意义的名称，例如<code>get-started:part2</code>。这将镜像置于启动存储库中，并将其标记为<code>part2</code>。</p>
+<p>现在，给镜像整体的打上标签。带入你的用户名、仓库名、和标签名运行<code>docker tag image</code>以便将镜像上传到你想要的地址。命令的语法如下：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="keyword">tag</span> <span class="title">image</span> username/repository:<span class="keyword">tag</span></div></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="keyword">tag</span> <span class="title">friendlyhello</span> john/get-<span class="literal">started</span>:part2</div></pre></td></tr></table></figure>
+<p>运行<code>docker image ls</code>来查看你的新的带有标签信息的镜像：</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="string">docker </span><span class="string">image </span><span class="string">ls</span></div><div class="line"></div><div class="line"><span class="string">REPOSITORY </span>              <span class="string">TAG </span>                <span class="string">IMAGE </span><span class="string">ID </span>           <span class="string">CREATED </span>            <span class="string">SIZE</span></div><div class="line"><span class="string">friendlyhello </span>           <span class="string">latest </span>             <span class="string">d9e555c53008 </span>       3 <span class="string">minutes </span><span class="string">ago </span>      <span class="string">195MB</span></div><div class="line"><span class="string">john/</span><span class="built_in">get-started</span>         <span class="string">part2 </span>              <span class="string">d9e555c53008 </span>       3 <span class="string">minutes </span><span class="string">ago </span>      <span class="string">195MB</span></div><div class="line"><span class="string">python </span>                  2.<span class="string">7-slim </span>           <span class="string">1c7128a655f6 </span>       5 <span class="string">days </span><span class="string">ago </span>         <span class="string">183MB</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="发布镜像"><a href="#发布镜像" class="headerlink" title="发布镜像"></a>发布镜像</h3><p>上传带有标签信息的镜像到仓库中：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">docker</span> <span class="keyword">push </span>username/repository:tag</div></pre></td></tr></table></figure>
+<p>完成后，此上传的结果将公开发布。如果你登录到<a href="https://hub.docker.com/" target="_blank" rel="external">Docker Hub</a>，你会在那里看到带有pull命令的新的镜像文件。</p>
+<h3 id="从远程仓库中下拉并且运行镜像"><a href="#从远程仓库中下拉并且运行镜像" class="headerlink" title="从远程仓库中下拉并且运行镜像"></a>从远程仓库中下拉并且运行镜像</h3><p>截止到目前，你可以使用<code>docker run</code>命令来在任何机器上运行你的应用：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -p <span class="attribute">4000</span>:<span class="number">80</span> username/<span class="attribute">repository</span>:tag</div></pre></td></tr></table></figure>
+<p>如果镜像在本地机器上不可用，Docker会从远程仓库中下拉到本地。</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ <span class="string">docker </span><span class="string">run </span>-p <span class="string">4000:80 </span><span class="string">john/</span><span class="built_in">get-started:part2</span></div><div class="line"><span class="string">Unable </span><span class="string">to </span><span class="string">find </span><span class="string">image </span><span class="string">'john/get-started:part2'</span> <span class="string">locally</span></div><div class="line"><span class="string">part2:</span> <span class="string">Pulling </span><span class="string">from </span><span class="string">john/</span><span class="built_in">get-started</span></div><div class="line"><span class="string">10a267c67f42:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">f68a39a6a5e4:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">9beaffc0cf19:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">3c1fe835fb6b:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">4c9f1fa8fcb8:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">ee7d8f576a14:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">fbccdcced46e:</span> <span class="string">Already </span><span class="string">exists</span></div><div class="line"><span class="string">Digest:</span> <span class="string">sha256:0601c866aab2adcc6498200efd0f754037e909e5fd42069adeff72d1e2439068</span></div><div class="line"><span class="string">Status:</span> <span class="string">Downloaded </span><span class="string">newer </span><span class="string">image </span><span class="string">for </span><span class="string">john/</span><span class="built_in">get-started:part2</span></div><div class="line"> * <span class="string">Running </span><span class="string">on </span><span class="string">http:</span>//0.0.0.<span class="string">0:80/</span> (<span class="string">Press </span><span class="string">CTRL+</span>C <span class="string">to </span><span class="string">quit)</span></div></pre></td></tr></table></figure>
+<p>不管<code>docker run</code>在哪里运行，它都会将你的镜像以及Python和<code>requirements.txt</code>中所有的依赖关系一起提取出来，并运行您的代码。它们都在一个整洁的小包中一起旅行，并且Docker不需要您在主机上安装任何东西来运行它。</p>
+<h2 id="Part2结论"><a href="#Part2结论" class="headerlink" title="Part2结论"></a>Part2结论</h2><p>这里列出了这个页面的基本Docker命令，以及一些相关的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">docker build -t friendlyhello .  <span class="comment"># Create image using this directory's Dockerfile</span></div><div class="line">docker run -p 4000:80 friendlyhello  <span class="comment"># Run "friendlyname" mapping port 4000 to 80</span></div><div class="line">docker run <span class="_">-d</span> -p 4000:80 friendlyhello         <span class="comment"># Same thing, but in detached mode</span></div><div class="line">docker container ls                                <span class="comment"># List all running containers</span></div><div class="line">docker container ls <span class="_">-a</span>             <span class="comment"># List all containers, even those not running</span></div><div class="line">docker container stop &lt;<span class="built_in">hash</span>&gt;           <span class="comment"># Gracefully stop the specified container</span></div><div class="line">docker container <span class="built_in">kill</span> &lt;<span class="built_in">hash</span>&gt;         <span class="comment"># Force shutdown of the specified container</span></div><div class="line">docker container rm &lt;<span class="built_in">hash</span>&gt;        <span class="comment"># Remove specified container from this machine</span></div><div class="line">docker container rm $(docker container ls <span class="_">-a</span> -q)         <span class="comment"># Remove all containers</span></div><div class="line">docker image ls <span class="_">-a</span>                             <span class="comment"># List all images on this machine</span></div><div class="line">docker image rm &lt;image id&gt;            <span class="comment"># Remove specified image from this machine</span></div><div class="line">docker image rm $(docker image ls <span class="_">-a</span> -q)   <span class="comment"># Remove all images from this machine</span></div><div class="line">docker login             <span class="comment"># Log in this CLI session using your Docker credentials</span></div><div class="line">docker tag &lt;image&gt; username/repository:tag  <span class="comment"># Tag &lt;image&gt; for upload to registry</span></div><div class="line">docker push username/repository:tag            <span class="comment"># Upload tagged image to registry</span></div><div class="line">docker run username/repository:tag                   <span class="comment"># Run image from a registry</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/25/Docker入门Part1-定位和设置/" rel="next" title="Docker入门Part1-定位和设置">
+                <i class="fa fa-chevron-left"></i> Docker入门Part1-定位和设置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/26/Docker入门Part3-服务/" rel="prev" title="Docker入门Part3-服务">
+                Docker入门Part3-服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="DannyLee1991" />
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DannyLee1991" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:747554505@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="tencent://message/?Menu=yes&uin=747554505" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#您的新开发环境"><span class="nav-number">3.</span> <span class="nav-text">您的新开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过Dockerfile定义一个容器"><span class="nav-number">4.</span> <span class="nav-text">通过Dockerfile定义一个容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile"><span class="nav-number">4.1.</span> <span class="nav-text">Dockerfile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用程序本身"><span class="nav-number">5.</span> <span class="nav-text">应用程序本身</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#requirements-txt"><span class="nav-number">5.1.</span> <span class="nav-text">requirements.txt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-py"><span class="nav-number">5.2.</span> <span class="nav-text">app.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建一个应用"><span class="nav-number">6.</span> <span class="nav-text">构建一个应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行app"><span class="nav-number">7.</span> <span class="nav-text">运行app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分享你的image"><span class="nav-number">8.</span> <span class="nav-text">分享你的image</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录你的Docker-ID"><span class="nav-number">8.1.</span> <span class="nav-text">登录你的Docker ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给镜像打标签"><span class="nav-number">8.2.</span> <span class="nav-text">给镜像打标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布镜像"><span class="nav-number">8.3.</span> <span class="nav-text">发布镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从远程仓库中下拉并且运行镜像"><span class="nav-number">8.4.</span> <span class="nav-text">从远程仓库中下拉并且运行镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part2结论"><span class="nav-number">9.</span> <span class="nav-text">Part2结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

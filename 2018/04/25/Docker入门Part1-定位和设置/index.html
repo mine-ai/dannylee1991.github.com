@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="翻译自docker官方文档。
+
+欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：
+
+1.设置您的Docker环境（本节内容）
+2.构建一个镜像，并将其作为一个容器运行
+3.通过运行多个容器来缩放你的应用
+4.通过集群来分发你的应用
+5.通过添加后端数据库来堆叠服务
+6.发布你的应用到生产环境
+
+Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门Part1-定位和设置">
+<meta property="og:url" content="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="翻译自docker官方文档。
+
+欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：
+
+1.设置您的Docker环境（本节内容）
+2.构建一个镜像，并将其作为一个容器运行
+3.通过运行多个容器来缩放你的应用
+4.通过集群来分发你的应用
+5.通过添加后端数据库来堆叠服务
+6.发布你的应用到生产环境
+
+Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta property="og:image" content="http://studyai.site/img/18_04_25/001.png">
+<meta property="og:image" content="http://studyai.site/img/18_04_25/002.png">
+<meta property="og:image" content="http://studyai.site/img/18_04_25/003.png">
+<meta property="og:updated_time" content="2018-04-25T08:42:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入门Part1-定位和设置">
+<meta name="twitter:description" content="翻译自docker官方文档。
+
+欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：
+
+1.设置您的Docker环境（本节内容）
+2.构建一个镜像，并将其作为一个容器运行
+3.通过运行多个容器来缩放你的应用
+4.通过集群来分发你的应用
+5.通过添加后端数据库来堆叠服务
+6.发布你的应用到生产环境
+
+Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta name="twitter:image" content="http://studyai.site/img/18_04_25/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/"/>
+
+
+
+
+
+  <title>Docker入门Part1-定位和设置 | studyAI</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64d3554e2db8268ff4e020b47928563f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker入门Part1-定位和设置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T12:17:00+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/25/Docker入门Part1-定位和设置/" class="leancloud_visitors" data-flag-title="Docker入门Part1-定位和设置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>翻译自<a href="https://docs.docker.com/get-started/" target="_blank" rel="external">docker官方文档</a>。</p>
+</blockquote>
+<p>欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：</p>
+<ul>
+<li>1.设置您的Docker环境（本节内容）</li>
+<li>2.构建一个镜像，并将其作为一个容器运行</li>
+<li>3.通过运行多个容器来缩放你的应用</li>
+<li>4.通过集群来分发你的应用</li>
+<li>5.通过添加后端数据库来堆叠服务</li>
+<li>6.发布你的应用到生产环境</li>
+</ul>
+<h2 id="Docker的概念"><a href="#Docker的概念" class="headerlink" title="Docker的概念"></a>Docker的概念</h2><p>Docker是开发人员和系统管理员使用容器<strong>开发</strong>、<strong>部署</strong>和<strong>运行</strong>应用程序的平台。使用Linux容器来部署应用程序称为<em>集装箱化</em>(Containerization)。容器的概念并不新，但它们用于部署应用程序会很轻松。</p>
+<p>集装箱化越来越受欢迎，因为集装箱是：</p>
+<ul>
+<li>灵活：即使是最复杂的应用也可以被集装箱化。</li>
+<li>轻量级：容器利用并共享主机内核。</li>
+<li>通用：您可以即时部署更新和升级。</li>
+<li>轻便：你可以在本地构建，发布到云端，并且在任何地方运行。</li>
+<li>可扩展：您可以增加和自动分发容器副本。</li>
+<li>可堆叠：您可以及时的纵向堆叠服务。</li>
+</ul>
+<p><img src="/img/18_04_25/001.png" alt=""></p>
+<h3 id="镜像和容器"><a href="#镜像和容器" class="headerlink" title="镜像和容器"></a>镜像和容器</h3><p>一个容器通过运行一个镜像来启动。一个<strong>镜像</strong>是一个可执行的程序包，其中包含运行该程序所需的所有内容，包括代码，运行时，库，环境变量和配置文件。</p>
+<p><strong>容器</strong>是镜像的运行时实例 - 即执行时将镜像加载到内存中，这个内存中的部分就是容器（即具有状态或用户进程的镜像）。Linux环境下，你可以通过命令<code>docker ps</code>来查看你当前正在运行的容器。</p>
+<h3 id="容器和虚拟机"><a href="#容器和虚拟机" class="headerlink" title="容器和虚拟机"></a>容器和虚拟机</h3><p>一个<strong>容器</strong>在Linux的<em>本地</em>运行，并与其他容器共享主机的内核。它运行在一个独立的进程，不占用任何其他可执行文件的内存，从而达到轻量化。</p>
+<p>对比之下，<strong>虚拟机（VM）</strong>运行一个完整的“guest”操作系统，通过虚拟机管理程序虚拟访问主机资源。一般来说，虚拟机提供的环境比大多数应用程序需要的资源更多。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/18_04_25/002.png" alt=""></td>
+<td style="text-align:center"><img src="/img/18_04_25/003.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h2 id="准备你的Docker环境"><a href="#准备你的Docker环境" class="headerlink" title="准备你的Docker环境"></a>准备你的Docker环境</h2><p>在支持的平台上安装Docker社区版本(CE)或者企业版(EE)。</p>
+<blockquote>
+<p>对于完整的Kubernetes集成</p>
+<ul>
+<li><p>Docker for Mac上的Kubernetes在17.12 Edge（mac45）或17.12 Stable（mac46）及更高版本中可用。</p>
+</li>
+<li><p>Docker for Windows上的Kubernetes仅在18.02 Edge（win50）和更高边缘通道中可用。</p>
+</li>
+</ul>
+</blockquote>
+<p><a href="https://docs.docker.com/engine/installation/" target="_blank" rel="external">安装Docker</a></p>
+<h3 id="测试Docker版本号"><a href="#测试Docker版本号" class="headerlink" title="测试Docker版本号"></a>测试Docker版本号</h3><ul>
+<li>1.运行<code>docker --version</code>并确保您拥有支持的Docker版本：</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker --<span class="keyword">version</span></div><div class="line"></div><div class="line">Docker <span class="keyword">version</span> <span class="number">17.12</span>.<span class="number">0</span>-<span class="keyword">ce</span>, build c97c6d6</div></pre></td></tr></table></figure>
+<ul>
+<li>2.运行<code>docker info</code>或者(<code>docker version</code>没有<code>--</code>)来查看关于您的Docker安装的更多细节：</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">docker info</div><div class="line"></div><div class="line"><span class="attribute">Containers</span>: <span class="number">0</span></div><div class="line"> <span class="attribute">Running</span>: <span class="number">0</span></div><div class="line"> <span class="attribute">Paused</span>: <span class="number">0</span></div><div class="line"> <span class="attribute">Stopped</span>: <span class="number">0</span></div><div class="line"><span class="attribute">Images</span>: <span class="number">0</span></div><div class="line">Server <span class="attribute">Version</span>: <span class="number">17.12</span>.<span class="number">0</span>-ce</div><div class="line">Storage <span class="attribute">Driver</span>: overlay2</div><div class="line">...</div></pre></td></tr></table></figure>
+<blockquote>
+<p>为了避免权限错误（以及<code>sudo</code>的使用），将您的用户添加到<code>docker</code>组。<a href="https://docs.docker.com/engine/installation/linux/linux-postinstall/" target="_blank" rel="external">更多</a>。</p>
+</blockquote>
+<h3 id="测试Docker的安装"><a href="#测试Docker的安装" class="headerlink" title="测试Docker的安装"></a>测试Docker的安装</h3><ul>
+<li>1.通过运行简单的Docker镜像<a href="https://hub.docker.com/_/hello-world/" target="_blank" rel="external">hello-world</a>来测试您的安装是否工作正常：</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">docker run hello-world</div><div class="line"></div><div class="line">Unable <span class="keyword">to</span> <span class="keyword">find</span> image <span class="string">'hello-world:latest'</span> locally</div><div class="line">lates<span class="variable">t:</span> Pulling from library/hello-world</div><div class="line">ca4f61b1923c: Pull <span class="built_in">complete</span></div><div class="line">Diges<span class="variable">t:</span> <span class="built_in">sha256</span>:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7</div><div class="line">Statu<span class="variable">s:</span> Downloaded newer image <span class="keyword">for</span> hello-world:latest</div><div class="line"></div><div class="line">Hello from Docker!</div><div class="line">This message shows that your installation appears <span class="keyword">to</span> <span class="keyword">be</span> working correctly.</div><div class="line">...</div></pre></td></tr></table></figure>
+<ul>
+<li>2.列出下载到你机器上的<code>hello-world</code>镜像：</li>
+</ul>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="keyword">image</span> <span class="keyword">ls</span></div></pre></td></tr></table></figure>
+<ul>
+<li>3.列出显示其消息后退出的<code>hello-world</code>容器（由镜像生成）。如果它仍在运行，则不需要<code>--all</code>选项：</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker container ls --all</div><div class="line"></div><div class="line">CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS</div><div class="line"><span class="number">54</span>f4984ed6a8     hello-world     <span class="string">"/hello"</span>     <span class="number">20</span> seconds ago     Exited (<span class="number">0</span>) <span class="number">19</span> seconds ago</div></pre></td></tr></table></figure>
+<h2 id="本节回顾"><a href="#本节回顾" class="headerlink" title="本节回顾"></a>本节回顾</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">## <span class="keyword">List</span> Docker <span class="keyword">CLI</span> commands</div><div class="line">docker</div><div class="line">docker container --<span class="keyword">help</span></div><div class="line"></div><div class="line">## <span class="keyword">Display</span> Docker <span class="keyword">version</span> and info</div><div class="line">docker --<span class="keyword">version</span></div><div class="line">docker <span class="keyword">version</span></div><div class="line">docker info</div><div class="line"></div><div class="line">## Execute Docker image</div><div class="line">docker <span class="keyword">run</span> hello-world</div><div class="line"></div><div class="line">## <span class="keyword">List</span> Docker images</div><div class="line">docker image <span class="keyword">ls</span></div><div class="line"></div><div class="line">## <span class="keyword">List</span> Docker containers (running, all, all <span class="keyword">in</span> quiet mode)</div><div class="line">docker container <span class="keyword">ls</span></div><div class="line">docker container <span class="keyword">ls</span> --all</div><div class="line">docker container <span class="keyword">ls</span> -aq</div></pre></td></tr></table></figure>
+<h2 id="Part1结论"><a href="#Part1结论" class="headerlink" title="Part1结论"></a>Part1结论</h2><p>容器化使<a href="https://www.docker.com/use-cases/cicd" target="_blank" rel="external">CI/CD</a>无缝衔接。例如：</p>
+<ul>
+<li>应用程序没有系统依赖关系</li>
+<li>更新可以推送到分布式应用程序的任何部分</li>
+<li>资源密度可以被优化。</li>
+</ul>
+<p>使用Docker，扩展应用程序的过程就是启动新的可执行文件，而不是运行繁重的VM主机。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/09/【翻译】kaggle竞赛 房价预测/" rel="next" title="【翻译】kaggle竞赛 房价预测">
+                <i class="fa fa-chevron-left"></i> 【翻译】kaggle竞赛 房价预测
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/25/Docker入门Part2-容器/" rel="prev" title="Docker入门Part2-容器">
+                Docker入门Part2-容器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="DannyLee1991" />
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DannyLee1991" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:747554505@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="tencent://message/?Menu=yes&uin=747554505" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的概念"><span class="nav-number">1.</span> <span class="nav-text">Docker的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像和容器"><span class="nav-number">1.1.</span> <span class="nav-text">镜像和容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器和虚拟机"><span class="nav-number">1.2.</span> <span class="nav-text">容器和虚拟机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备你的Docker环境"><span class="nav-number">2.</span> <span class="nav-text">准备你的Docker环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试Docker版本号"><span class="nav-number">2.1.</span> <span class="nav-text">测试Docker版本号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试Docker的安装"><span class="nav-number">2.2.</span> <span class="nav-text">测试Docker的安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本节回顾"><span class="nav-number">3.</span> <span class="nav-text">本节回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part1结论"><span class="nav-number">4.</span> <span class="nav-text">Part1结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
