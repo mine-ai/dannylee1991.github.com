@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前提条件
+安装Docker 1.13或更高的版本。
+按照Part3部分，获取Docker Compos。
+按照Part4部分，获取Docker Machine。
+阅读Part1。
+学习Part2中的如何创建容器。
+确保您的镜像作为一个发布容器在运行。运行这条插入了username、repo和tag信息的命令:docker run -p 80:80 username/repo:tag，然后访问htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门Part6-发布你的app">
+<meta property="og:url" content="http://studyai.site/2018/05/03/Docker入门Part6-发布你的app/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="前提条件
+安装Docker 1.13或更高的版本。
+按照Part3部分，获取Docker Compos。
+按照Part4部分，获取Docker Machine。
+阅读Part1。
+学习Part2中的如何创建容器。
+确保您的镜像作为一个发布容器在运行。运行这条插入了username、repo和tag信息的命令:docker run -p 80:80 username/repo:tag，然后访问htt">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/004.png">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/005.png">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/006.png">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/007.png">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/008.png">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/009.png">
+<meta property="og:image" content="http://studyai.site/img/18_05_02/010.png">
+<meta property="og:updated_time" content="2018-05-04T03:12:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入门Part6-发布你的app">
+<meta name="twitter:description" content="前提条件
+安装Docker 1.13或更高的版本。
+按照Part3部分，获取Docker Compos。
+按照Part4部分，获取Docker Machine。
+阅读Part1。
+学习Part2中的如何创建容器。
+确保您的镜像作为一个发布容器在运行。运行这条插入了username、repo和tag信息的命令:docker run -p 80:80 username/repo:tag，然后访问htt">
+<meta name="twitter:image" content="http://studyai.site/img/18_05_02/004.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2018/05/03/Docker入门Part6-发布你的app/"/>
+
+
+
+
+
+  <title>Docker入门Part6-发布你的app | studyAI</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64d3554e2db8268ff4e020b47928563f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2018/05/03/Docker入门Part6-发布你的app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker入门Part6-发布你的app</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T14:46:00+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/03/Docker入门Part6-发布你的app/" class="leancloud_visitors" data-flag-title="Docker入门Part6-发布你的app">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<li>安装<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="external">Docker 1.13或更高的版本</a>。</li>
+<li>按照Part3部分，获取<a href="https://docs.docker.com/compose/overview/" target="_blank" rel="external">Docker Compos</a>。</li>
+<li>按照Part4部分，获取<a href="https://docs.docker.com/machine/overview/" target="_blank" rel="external">Docker Machine</a>。</li>
+<li>阅读Part1。</li>
+<li>学习Part2中的如何创建容器。</li>
+<li>确保您的镜像作为一个发布容器在运行。运行这条插入了<code>username</code>、<code>repo</code>和<code>tag</code>信息的命令:<code>docker run -p 80:80 username/repo:tag</code>，然后访问<code>http://localhost/</code>。</li>
+<li>获取到Part5中的最终版本的<code>compose.yml</code>文件。</li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>您一直在为整个教程编辑相同的Compose文件。那么，我们有一个好消息，这个Compose文件在生产环境中的效果与你的计算机上的效果是相同的。在这里，我们通过一些选项来运行Docker化的程序。</p>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="Docker社区版（云服务提供者）"><a href="#Docker社区版（云服务提供者）" class="headerlink" title="Docker社区版（云服务提供者）"></a>Docker社区版（云服务提供者）</h3><p>如果您可以在生产环境中使用Docker社区版，那么你可以使用Docker Cloud来帮助您管理应用程序，例如Amazon Web Services，DigitalOcean，和Microsoft Azure等常用的服务提供商。</p>
+<p>设置和部署：</p>
+<ul>
+<li>将Docker Cloud与您的首选提供商连接，授予Docker Cloud权限，以便为您自动配置以及为您”Docker化”VM。</li>
+<li>使用Docker Cloud创建您的计算资源并创建您的swarm。</li>
+<li>部署您的应用。</li>
+</ul>
+<blockquote>
+<p>注意：我们没有链接到Docker Cloud文档。请务必在完成每个步骤后回到此页面。</p>
+</blockquote>
+<h4 id="连接Docker-Cloud"><a href="#连接Docker-Cloud" class="headerlink" title="连接Docker Cloud"></a>连接Docker Cloud</h4><p>你可以在<a href="https://docs.docker.com/docker-cloud/infrastructure/" target="_blank" rel="external">标准模式</a>或<a href="https://docs.docker.com/docker-cloud/cloud-swarm/" target="_blank" rel="external">swarm模式</a>下运行Docker Cloud。</p>
+<p>如果你正在标准模式下运行Docker Cloud，请按照以下说明将您的服务提供商链接到Docker Cloud。</p>
+<ul>
+<li><a href="https://docs.docker.com/docker-cloud/cloud-swarm/link-aws-swarm/" target="_blank" rel="external">Amazon Web Services 设置说明</a>。</li>
+<li><a href="https://docs.docker.com/docker-cloud/infrastructure/link-do/" target="_blank" rel="external">DigitalOcean 设置说明</a>。</li>
+<li><a href="https://docs.docker.com/docker-cloud/infrastructure/link-azure/" target="_blank" rel="external">Microsoft Azure 设置说明</a>。</li>
+<li><a href="https://docs.docker.com/docker-cloud/infrastructure/link-packet/" target="_blank" rel="external">Packet 设置说明</a>。</li>
+<li><a href="https://docs.docker.com/docker-cloud/infrastructure/link-softlayer/" target="_blank" rel="external">SoftLayer 设置说明</a>。</li>
+<li><a href="https://docs.docker.com/docker-cloud/infrastructure/byoh/" target="_blank" rel="external">使用Docker Cloud 代理来访问自己的主机</a>。</li>
+</ul>
+<p>如果您在Swarm模式下运行（推荐用于Amazon Web Services或Microsoft Azure），那么请跳至下一节关于如何<a href="#创建你的swarm">创建swarm</a>的部分。</p>
+<h3 id="创建你的swarm"><a href="#创建你的swarm" class="headerlink" title="创建你的swarm"></a>创建你的swarm</h3><p>准备好创建一个swarm了吗？</p>
+<ul>
+<li>如果你在使用Amazon Web Services(AWS)，那么你可以<a href="https://docs.docker.com/docker-cloud/cloud-swarm/create-cloud-swarm-aws/" target="_blank" rel="external">在AWS上自动地创建一个swarm</a>。</li>
+<li>如果你在使用Microsoft Azure，那么你可以<a href="https://docs.docker.com/docker-cloud/cloud-swarm/create-cloud-swarm-azure/" target="_blank" rel="external">在Azure上自动地创建一个swarm</a>。</li>
+<li>否则，在Docker Cloud UI界面<a href="https://docs.docker.com/docker-cloud/getting-started/your_first_node/" target="_blank" rel="external">创建你的节点</a>，然后运行<code>docker swarm init</code>并执行在Part4部分所学的<code>docker swarm join</code>命令。最后，通过点击屏幕顶部的开关<a href="https://docs.docker.com/docker-cloud/cloud-swarm/using-swarm-mode/" target="_blank" rel="external">启用swarm模式</a>，并<a href="https://docs.docker.com/docker-cloud/cloud-swarm/register-swarms/" target="_blank" rel="external">注册你刚刚创建的swarm</a>。</li>
+</ul>
+<blockquote>
+<p>注意：如果您<a href="https://docs.docker.com/docker-cloud/infrastructure/byoh/" target="_blank" rel="external">使用Docker云代理来自带主机</a>，则此提供程序不支持swarm模式。您可以使用Docker Cloud<a href="https://docs.docker.com/docker-cloud/cloud-swarm/register-swarms/" target="_blank" rel="external">注册您自己的现有的swarm</a>。</p>
+</blockquote>
+<h3 id="在云服务平台上部署你的应用程序"><a href="#在云服务平台上部署你的应用程序" class="headerlink" title="在云服务平台上部署你的应用程序"></a>在云服务平台上部署你的应用程序</h3><ul>
+<li><p>1.<a href="https://docs.docker.com/docker-cloud/cloud-swarm/connect-to-swarm/" target="_blank" rel="external">通过Docker Cloud连接到你自己的swarm</a>。有几种不同的连接方式：</p>
+<ul>
+<li><p>从Swarm模式的Docker Cloud Web界面中，选择页面顶部的Swarms，单击要连接的swarm，然后将给定的命令复制粘贴到命令行终端中。</p>
+<p><img src="/img/18_05_02/004.png" alt=""></p>
+<p>或者。。。</p>
+</li>
+<li><p>在Docker for Mac或Docker for Windows上，您可以<a href="https://docs.docker.com/docker-cloud/cloud-swarm/connect-to-swarm/#use-docker-for-mac-or-windows-edge-to-connect-to-swarms" target="_blank" rel="external">通过桌面应用菜单直接连接到swarm</a>。</p>
+<p><img src="/img/18_05_02/005.png" alt=""></p>
+<p>无论哪种方式，都将打开一个终端，其上下文是本地计算机，但其Docker命令会路由到云服务提供商上运行的swarm。您可以直接访问本地文件系统和远程swarm，从而启用纯粹的<code>docker</code>命令。</p>
+</li>
+</ul>
+</li>
+<li><p>2.运行<code>docker stack deploy -c docker-compose.yml getstartedlab</code>在云托管swarm上部署应用程序。</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">docker stack deploy -c docker-compose<span class="selector-class">.yml</span> getstartedlab</div><div class="line">	</div><div class="line">Creating network getstartedlab_webnet</div><div class="line">Creating service getstartedlab_web</div><div class="line">Creating service getstartedlab_visualizer</div><div class="line">Creating service getstartedlab_redis</div></pre></td></tr></table></figure>
+<p>  您的应用现在运行在了云服务平台上了。</p>
+</li>
+</ul>
+<p><strong>运行一些swarm命令来验证部署：</strong></p>
+<p>你可以使用swarm命令行，就像你之前做的那样，浏览并管理你的swarm。这里有一些你比较熟悉的例子：</p>
+<ul>
+<li>使用<code>docker node ls</code>列出节点。</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[getstartedlab] ~ $ docker node ls</div><div class="line">ID                            HOSTNAME                                      STATUS              AVAILABILITY        MANAGER STATUS</div><div class="line"><span class="number">9442</span>yi1zie2l34lj01frj3lsn     ip<span class="number">-172</span><span class="number">-31</span><span class="number">-5</span><span class="number">-208.</span>us-west<span class="number">-1.</span>compute.internal    Ready               Active              </div><div class="line">jr02vg153pfx6jr0j66624e8a     ip<span class="number">-172</span><span class="number">-31</span><span class="number">-6</span><span class="number">-237.</span>us-west<span class="number">-1.</span>compute.internal    Ready               Active              </div><div class="line">thpgwmoz3qefdvfzp7d9wzfvi     ip<span class="number">-172</span><span class="number">-31</span><span class="number">-18</span><span class="number">-121.</span>us-west<span class="number">-1.</span>compute.internal   Ready               Active              </div><div class="line">n2bsny0r2b8fey6013kwnom3m *   ip<span class="number">-172</span><span class="number">-31</span><span class="number">-20</span><span class="number">-217.</span>us-west<span class="number">-1.</span>compute.internal   Ready               Active              Leader</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>docker service ls</code>列出服务。</li>
+</ul>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[getstartedlab] ~/sandbox/getstart $ docker service ls</div><div class="line">ID                  NAME                       MODE                REPLICAS            IMAGE                             PORTS</div><div class="line"><span class="function"><span class="title">x3jyx6uukog9</span>        dockercloud-server-proxy   global              1/1                 dockercloud/server-proxy          *:2376-&gt;</span><span class="number">2376</span>/tcp</div><div class="line"><span class="function"><span class="title">ioipby1vcxzm</span>        getstartedlab_redis        replicated          0/1                 redis:latest                      *:6379-&gt;</span><span class="number">6379</span>/tcp</div><div class="line"><span class="function"><span class="title">u5cxv7ppv5o0</span>        getstartedlab_visualizer   replicated          0/1                 dockersamples/visualizer:stable   *:8080-&gt;</span><span class="number">8080</span>/tcp</div><div class="line"><span class="function"><span class="title">vy7n2piyqrtr</span>        getstartedlab_web          replicated          5/5                 sam/getstarted:part6    *:80-&gt;</span><span class="number">80</span>/tcp</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>docker service ps &lt;service&gt;</code>查看service的任务列表。</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[getstartedlab] ~/sandbox/getstart $ docker service ps vy7n2piyqrtr</div><div class="line">ID                  NAME                  IMAGE                            NODE                                          DESIRED STATE       CURRENT STATE            ERROR               PORTS</div><div class="line">qrcd4a9lvjel        getstartedlab_web.<span class="number">1</span>   sam/getstarted:part6   ip-<span class="number">172</span>-<span class="number">31</span>-<span class="number">5</span>-<span class="number">208</span><span class="selector-class">.us-west-1</span><span class="selector-class">.compute</span><span class="selector-class">.internal</span>    Running             Running <span class="number">20</span> seconds ago                       </div><div class="line">sknya8t4m51u        getstartedlab_web.<span class="number">2</span>   sam/getstarted:part6   ip-<span class="number">172</span>-<span class="number">31</span>-<span class="number">6</span>-<span class="number">237</span><span class="selector-class">.us-west-1</span><span class="selector-class">.compute</span><span class="selector-class">.internal</span>    Running             Running <span class="number">17</span> seconds ago                       </div><div class="line">ia730lfnrslg        getstartedlab_web.<span class="number">3</span>   sam/getstarted:part6   ip-<span class="number">172</span>-<span class="number">31</span>-<span class="number">20</span>-<span class="number">217</span><span class="selector-class">.us-west-1</span><span class="selector-class">.compute</span><span class="selector-class">.internal</span>   Running             Running <span class="number">21</span> seconds ago                       </div><div class="line"><span class="number">1</span>edaa97h9u4k        getstartedlab_web.<span class="number">4</span>   sam/getstarted:part6   ip-<span class="number">172</span>-<span class="number">31</span>-<span class="number">18</span>-<span class="number">121</span><span class="selector-class">.us-west-1</span><span class="selector-class">.compute</span><span class="selector-class">.internal</span>   Running             Running <span class="number">21</span> seconds ago                       </div><div class="line">uh64ez6ahuew        getstartedlab_web.<span class="number">5</span>   sam/getstarted:part6   ip-<span class="number">172</span>-<span class="number">31</span>-<span class="number">18</span>-<span class="number">121</span><span class="selector-class">.us-west-1</span><span class="selector-class">.compute</span><span class="selector-class">.internal</span>   Running             Running <span class="number">22</span> seconds ago</div></pre></td></tr></table></figure>
+<p><strong>在云供应商机器上开放服务端口</strong></p>
+<p>此时，您的应用作为一个swarm部署在您的云提供商服务器上，正如刚刚运行的<code>docker</code>命令所证明的那样。但是，您仍然需要在云服务器上打开端口，以便：</p>
+<ul>
+<li>允许在工作节点上的<code>redis</code>服务和<code>web</code>服务之间进行通信</li>
+<li>允许入站流量通过worker节点上的<code>web</code>服务，以便可以在浏览器访问Hello World和Visualizer。</li>
+<li>允许运行<code>manager</code>的服务器上的入站SSH流量（这可能已在您的云提供商上设置）</li>
+</ul>
+<p>这些是您需要为每项服务公开的端口：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Service</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">协议</th>
+<th style="text-align:left">端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>web</code></td>
+<td style="text-align:left">HTTP</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">80</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>visualizer</code></td>
+<td style="text-align:left">HTTP</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">8080</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>redis</code></td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">6379</td>
+</tr>
+</tbody>
+</table>
+<p>具体的做法取决于云服务平台。</p>
+<p>我们以Amazon Web Services（AWS）为例。</p>
+<blockquote>
+<p><strong>redis如何持久化数据？</strong></p>
+<p>为了使<code>redis</code>服务正常工作，在运行<code>docker stack deploy</code>之前，需要<code>ssh</code>进入manager运行的云服务器，并在<code>/home/docker/</code>中创建<code>data/</code>目录。另一种选择是将<code>docker-stack.yml</code>中的数据路径更改为manager服务器上已存在的一个路径。此示例不包含此步骤，因此示例输出中的<code>redis</code>服务未启动。</p>
+</blockquote>
+<p><strong>示例：AWS</strong></p>
+<ul>
+<li>1.登录<a href="https://aws.amazon.com/" target="_blank" rel="external">AWS控制台</a>，转到EC2仪表板，然后单击进入<strong>Running Instances</strong>查看节点。</li>
+<li><p>2.在左侧的按钮，进入Network &amp; Security &gt; <strong>Security Groups</strong>。</p>
+<p>  请参阅<code>getstartedlab-Manager-&lt;xxx&gt;</code>, <code>getstartedlab-Nodes-&lt;xxx&gt;</code>, 和 <code>getstartedlab-SwarmWide-&lt;xxx&gt;</code>的与swarm相关的安全组。</p>
+</li>
+<li><p>3.为swarm选择“节点”安全组。组名是这样的：<code>getstartedlab-NodeVpcSG-9HV9SMHDZT8C</code>。</p>
+</li>
+<li>4.为<code>web</code>，<code>visualizer</code>和<code>redis</code>服务添加入站规则，为每个服务设置类型，协议和端口（如上表所示），然后单击保存以应用规则。</li>
+</ul>
+<p><img src="/img/18_05_02/006.png" alt=""></p>
+<blockquote>
+<p>提示：当你保存新的规则时，会为IPv4和IPv6地址自动创建HTTP和TCP端口。</p>
+</blockquote>
+<p><img src="/img/18_05_02/007.png" alt=""></p>
+<ul>
+<li>5.进入<strong>Running Instances</strong>列表，获取其中一个worker的公共DNS名称，并将其粘贴到浏览器地址栏中。</li>
+</ul>
+<p><img src="/img/18_05_02/008.png" alt=""></p>
+<p>就像本教程的前几部分一样，Hello World应用程序显示在端口<code>80</code>上，而Visualizer显示在端口<code>8080</code>上。</p>
+<p><img src="/img/18_05_02/009.png" alt=""></p>
+<p><img src="/img/18_05_02/010.png" alt=""></p>
+<h3 id="迭代和清理"><a href="#迭代和清理" class="headerlink" title="迭代和清理"></a>迭代和清理</h3><p>从这里你可以完成你在教程前面部分学到的所有知识。</p>
+<ul>
+<li>通过修改<code>docker-compose.yml</code>文件并使用命令<code>docker stack deploy</code>重新发布来扩展你的应用程序。</li>
+<li>通过编辑代码更改应用程序行为，然后重新构建并推送新镜像。（要做到这一点，请按照之前用于<a href="https://docs.docker.com/get-started/part2/#build-the-app" target="_blank" rel="external">构建应用程序</a>和<a href="https://docs.docker.com/get-started/part2/#publish-the-image" target="_blank" rel="external">发布镜像</a>的相同步骤）。</li>
+<li>您可以使用<code>docker stack rm</code>命令来拆卸堆栈。例如：</li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="keyword">stack</span> <span class="keyword">rm</span> getstartedlab</div></pre></td></tr></table></figure>
+<p>与在本地Docker机器虚拟机上运行swarm的场景不同，不管您是否关闭本地主机，您的swarm和部署在其上的任何应用程序都将继续在云服务器上运行。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/02/Docker入门Part5-堆栈/" rel="next" title="Docker入门Part5-堆栈">
+                <i class="fa fa-chevron-left"></i> Docker入门Part5-堆栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="DannyLee1991" />
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DannyLee1991" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:747554505@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="tencent://message/?Menu=yes&uin=747554505" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">3.</span> <span class="nav-text">发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker社区版（云服务提供者）"><span class="nav-number">3.1.</span> <span class="nav-text">Docker社区版（云服务提供者）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接Docker-Cloud"><span class="nav-number">3.1.1.</span> <span class="nav-text">连接Docker Cloud</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建你的swarm"><span class="nav-number">3.2.</span> <span class="nav-text">创建你的swarm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在云服务平台上部署你的应用程序"><span class="nav-number">3.3.</span> <span class="nav-text">在云服务平台上部署你的应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代和清理"><span class="nav-number">3.4.</span> <span class="nav-text">迭代和清理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
