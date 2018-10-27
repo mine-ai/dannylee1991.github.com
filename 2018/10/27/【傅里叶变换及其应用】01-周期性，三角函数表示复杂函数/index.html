@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="斯坦福大学公开课,傅里叶变换,数学," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="课程视频地址
+本质上，傅里叶级数可以看做是用数学的手段研究周期性现象的一门学科。
+我们在初中高中学过cos和sin这些三角函数，我们是否可以使用这些三角函数来建模非常广泛的周期性现象呢？这正是这节课需要解决的问题。
+如何使用简单的sin(t)，cos(t)来建模复杂的周期性现象？首先，我们这里说的复杂的周期性现象会普遍到什么程度呢？我们希望把这些方法应用在普遍的条件下，但是并不是所有的现象都是周期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数">
+<meta property="og:url" content="http://studyai.site/2018/10/27/【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="课程视频地址
+本质上，傅里叶级数可以看做是用数学的手段研究周期性现象的一门学科。
+我们在初中高中学过cos和sin这些三角函数，我们是否可以使用这些三角函数来建模非常广泛的周期性现象呢？这正是这节课需要解决的问题。
+如何使用简单的sin(t)，cos(t)来建模复杂的周期性现象？首先，我们这里说的复杂的周期性现象会普遍到什么程度呢？我们希望把这些方法应用在普遍的条件下，但是并不是所有的现象都是周期">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/001.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/002.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/003.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/004.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/005.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/006.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/007.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/008.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/009.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/010.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/011.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/012.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/013.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/014.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/015.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/016.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/017.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/018.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/019.png">
+<meta property="og:image" content="http://studyai.site/img/18_10_27/020.png">
+<meta property="og:updated_time" content="2018-10-27T16:21:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数">
+<meta name="twitter:description" content="课程视频地址
+本质上，傅里叶级数可以看做是用数学的手段研究周期性现象的一门学科。
+我们在初中高中学过cos和sin这些三角函数，我们是否可以使用这些三角函数来建模非常广泛的周期性现象呢？这正是这节课需要解决的问题。
+如何使用简单的sin(t)，cos(t)来建模复杂的周期性现象？首先，我们这里说的复杂的周期性现象会普遍到什么程度呢？我们希望把这些方法应用在普遍的条件下，但是并不是所有的现象都是周期">
+<meta name="twitter:image" content="http://studyai.site/img/18_10_27/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2018/10/27/【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数/"/>
+
+
+
+
+
+  <title>【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数 | studyAI</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64d3554e2db8268ff4e020b47928563f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2018/10/27/【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-27T17:03:58+08:00">
+                2018-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">公开课</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/27/【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数/" class="leancloud_visitors" data-flag-title="【傅里叶变换及其应用】01-周期性，三角函数表示复杂函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://open.163.com/movie/2008/2/C/G/M7Q4BLENR_M7QBP61CG.html" target="_blank" rel="external">课程视频地址</a></p>
+<p>本质上，傅里叶级数可以看做是<strong>用数学的手段研究周期性现象</strong>的一门学科。</p>
+<p>我们在初中高中学过cos和sin这些三角函数，我们是否可以使用这些三角函数来建模非常广泛的周期性现象呢？这正是这节课需要解决的问题。</p>
+<h3 id="如何使用简单的sin-t-，cos-t-来建模复杂的周期性现象？"><a href="#如何使用简单的sin-t-，cos-t-来建模复杂的周期性现象？" class="headerlink" title="如何使用简单的sin(t)，cos(t)来建模复杂的周期性现象？"></a>如何使用简单的sin(t)，cos(t)来建模复杂的周期性现象？</h3><p>首先，我们这里说的<strong>复杂的周期性现象</strong>会普遍到什么程度呢？我们希望把这些方法应用在普遍的条件下，但是并不是所有的现象都是周期性的（其实甚至在一些周期性的现象中，这个假定也未必行得通）。所以，<strong>并不是所有的现象都试用这个方法</strong>。</p>
+<p>其实现实生活中的现象，最终都会结束，我们只观察某一个特定时间段的现象。而数学函数，比如正余弦函数，都是无始无终的。那么如何用它们来描述那些会结束的现象呢？</p>
+<p>在面对实际的现象时，比如下面这种现象：</p>
+<p><img src="/img/18_10_27/001.png" width="500" hegiht="313" align="center"></p>
+<p>只存在于一个有限的时间段内，画出一个这样的信号。这并不是一个周期现象，但如果我们重复绘制这个图像，就可以强制使其成为周期性的函数了。</p>
+<p><img src="/img/18_10_27/002.png" alt=""></p>
+<p>或许我们只是对其中的一部分感兴趣，但对于数学分析，如果使其具有周期性，就对所有的都适用了。这个过程叫做<strong>信号的周期化（periodization of a signal）</strong>。它可以用于研究非周期性信号。</p>
+<h4 id="信号周期化"><a href="#信号周期化" class="headerlink" title="信号周期化"></a>信号周期化</h4><p>我们通常把周期函数的周期设定为1，这样更加方便。因此函数$f(t)$需要满足：</p>
+<ul>
+<li>对任何$t$均有$f(t+1)=f(t)$，</li>
+</ul>
+<p>因此我们的信号模型可以表示为：</p>
+<p>$$sin(2πt) \tag{1-1} $$    </p>
+<p>以及</p>
+<p>$$cos(2πt) \tag{1-2}$$</p>
+<p><strong><em>如果我们知道一个周期为1的周期性函数在任意一个单位为1的时间间隔内的形式，那么我们就可以知道整个函数了。</em></strong></p>
+<h4 id="生成复杂的周期函数"><a href="#生成复杂的周期函数" class="headerlink" title="生成复杂的周期函数"></a>生成复杂的周期函数</h4><p>那么我们如何用简单的sin和cos函数来表示各种复杂的周期现象呢？</p>
+<p>事实上，我们可以通过对$sin(2πt)$和$cos(2πt)$进行变换和相加的方式来得到相当普遍的周期为1的周期函数。</p>
+<h5 id="对正余弦函数进行变换"><a href="#对正余弦函数进行变换" class="headerlink" title="对正余弦函数进行变换"></a>对正余弦函数进行变换</h5><p>下图是$sin(2πt)$的函数图像，其周期为1，频率为1：</p>
+<p><img src="/img/18_10_27/003.png" width="500" hegiht="313" align="center"></p>
+<p>经过变换之后，$sin(4πt)$的函数图像如下，其周期为$1/2$，频率为2：</p>
+<p><img src="/img/18_10_27/004.png" width="500" hegiht="313" align="center"></p>
+<blockquote>
+<p>其实你也可以说他的周期是1。因为一秒之内它经历了两个完整的周期，你可以把这两个完整的周期看做一个周期，图形在整个坐标轴上一直在重复这个原始信号。</p>
+</blockquote>
+<p>再次变换之后，$sin(6πt)$的函数图像如下，其周期为$1/3$，频率为3：</p>
+<p><img src="/img/18_10_27/005.png" width="500" hegiht="313" align="center"></p>
+<blockquote>
+<p>同样，也可以把它看做周期是1。</p>
+</blockquote>
+<h5 id="对正余弦函数进行合并"><a href="#对正余弦函数进行合并" class="headerlink" title="对正余弦函数进行合并"></a>对正余弦函数进行合并</h5><p>现在把上面的三个函数合并：</p>
+<p>$$<br>y=sin(2πt) + sin(4πt) + sin(6πt)<br>$$</p>
+<p>其效果如下：</p>
+<p><img src="/img/18_10_27/006.png" width="300" hegiht="313" align="center"></p>
+<p>组合之后的函数周期为1，它由3个不同频率的周期函数组成，频率分布为1，2，3。但把它们组合起来之后，却只有一个周期：周期为1。</p>
+<p>我们不仅可以改变频率，也可以单独改变幅度，并且可以改变其中每一个的相位。</p>
+<h4 id="表示一个复杂的周期函数的几种方式"><a href="#表示一个复杂的周期函数的几种方式" class="headerlink" title="表示一个复杂的周期函数的几种方式"></a>表示一个复杂的周期函数的几种方式</h4><h5 id="最基本的形式"><a href="#最基本的形式" class="headerlink" title="最基本的形式"></a>最基本的形式</h5><p>一个复杂的周期为1的信号，可以通过变换一系列的正余弦函数的<strong>频率</strong>、<strong>幅度</strong>和<strong>相位</strong>，然后将它们<strong>加起来</strong>，来得到。</p>
+<p>$$<br>y=\sum_{k=1}^N A_ksin(2πkt+φ_k) \tag{1-3}<br>$$</p>
+<p>这是表示一个复杂周期的<strong>最一般</strong>的形式。</p>
+<h5 id="利用和角公式来表示"><a href="#利用和角公式来表示" class="headerlink" title="利用和角公式来表示"></a>利用和角公式来表示</h5><p>正余弦和角公式：</p>
+<p>$$<br>sin(2πkt+φ_k)=sin(2πkt) + cosφ_k + cos(2πkt) + sinφ_k<br>\tag{1-4}<br>$$ </p>
+<p>因此我们可以将上面的公式$(1-3)$展开成以下形式：</p>
+<p>$$<br>\begin{align*}<br>y&amp;=\sum_{k=1}^N A_k(sin(2πkt) + cosφ_k + cos(2πkt) + sinφ_k)\\<br>&amp;=\sum_k^N  (a_kcos(2πkt)+b_ksin(2πkt))<br>\tag{1-5}<br>\end{align*}<br>$$</p>
+<p>这里的$a_k$和$b_k$是由A计算出的。</p>
+<h5 id="加一个常数项的形式（直流分量形式）"><a href="#加一个常数项的形式（直流分量形式）" class="headerlink" title="加一个常数项的形式（直流分量形式）"></a>加一个常数项的形式（直流分量形式）</h5><p>$$<br>y = \frac{a_0}{2} + \sum_{k=1}^N  (a_kcos(2πkt)+b_ksin(2πkt))<br>\tag{1-6}<br>$$</p>
+<p>这里的$\frac{a_0}{2}$是一个常数项，电器工程师常称之为<strong>直流分量(dc component)</strong>。因为电器工程师在研究交流电或直流电的过程中，发现有一部分是不随着周期发生改变的，这一部分称之为<strong>直流分量</strong>。</p>
+<h5 id="复指数的表示形式"><a href="#复指数的表示形式" class="headerlink" title="复指数的表示形式"></a>复指数的表示形式</h5><p>上面几种都是比较常用的一些用于表示一个复杂信号的表示形式。但是迄今为止，最方便使用的还是用<strong>复指数</strong>的形式来表示：</p>
+<p>$$<br>e^{2πkt}=cos(2πkt) + i*sin(2πkt)<br>\tag{1-7}<br>$$</p>
+<p>在这里$i$的值为：</p>
+<p>$$<br>i=\sqrt{-1}<br>\tag{1-8}<br>$$</p>
+<p>根据著名的<strong>欧拉公式</strong>，我们可以用复指数的形式来表示正余弦函数，其中$cos$是实部，$sin$是虚部：</p>
+<p>$$<br>cos(2πkt)=\frac{e^{2πikt}+e^{-2πikt}}{2}<br>\\<br>sin(2πkt)=\frac{e^{2πikt}-e^{-2πikt}}{2i}<br>\tag{1-9}<br>$$</p>
+<p>你也可以将上面公式$(1-5)$的三角函数表示的和式的形式写成这种形式：</p>
+<p>$$<br>\sum_{k=-n}^n C_ke^{2πikt}<br>\tag{1-10}<br>$$</p>
+<p>在这里$C_k$是复数。</p>
+<blockquote>
+<p><strong>共轭</strong></p>
+<p>对于复数$a + bi$来说，其共轭为$a - bi$。<br>复数$C_k$的共轭表示为$\bar{C_k}$</p>
+<p>另外，如果一个复数等于其自身的共轭意味着什么呢？$C_0=\bar{C_0}$</p>
+<p>这意味着这个数本身是实数。</p>
+</blockquote>
+<p>如果你试着把余弦表示的方式全部转成了复指数的形式，你会发现$C_k$不仅仅是复数，它同时还满足<strong>对称性</strong>。并且由于它的对称性，所以$\sum_{k=-n}^n C_k $的总和为实数。</p>
+<p>即：$ C_{-k} $等于$C_k$的共轭：</p>
+<p>$$<br>C_-k=\bar{C_k}<br>\tag{1-11}<br>$$</p>
+<p>这是一条重要的性质。</p>
+<p>反过来，如果和式的系数满足对称性，那么总和就应该是实数。这是因为可以把所有项分成正项和负项两组，并且由于$(1-11)$的对称关系，复数和复数的共轭的和结果是实数，可以得出这个结论。</p>
+<h4 id="我们生成的复杂的周期函数，其普遍性有多强？"><a href="#我们生成的复杂的周期函数，其普遍性有多强？" class="headerlink" title="我们生成的复杂的周期函数，其普遍性有多强？"></a>我们生成的复杂的周期函数，其普遍性有多强？</h4><p>$f(t)$是周期为1的周期函数，我们可以把$f(t)$写成$(1-10)$那种形式吗？</p>
+<p>$$<br>f(t)=\sum_{k=-n}^n C_ke^{2πikt}<br>\tag{1-12}<br>$$</p>
+<p>换句话说，一个周期为1的复杂的周期函数，我们能用正余弦函数通过叠加变化以及组合来生成出来吗？</p>
+<h5 id="假设我们能做到"><a href="#假设我们能做到" class="headerlink" title="假设我们能做到"></a>假设我们能做到</h5><p>假设我们可以做到用$(1-12)$来表示所有复杂的周期为1的周期函数，那么对于未知系数$C_k$我们如何求得呢？</p>
+<p>以下是求$C_k$的过程：</p>
+<p>$$<br>\begin{align*}<br>f(t)&amp;=\sum_{k=-n}^n C_ke^{2πikt}\\<br>&amp;=…+C_km^{2πikt}+…<br>\end{align*}<br>$$</p>
+<p><img src="/img/18_10_27/007.png" alt=""></p>
+<p>两边同时乘以$e^{-2\pi imt}$：</p>
+<p><img src="/img/18_10_27/008.png" alt=""></p>
+<p><img src="/img/18_10_27/009.png" alt=""></p>
+<p>然后对两边同时求积分，积分区间是0到1，因为我们的频率是1：</p>
+<p><img src="/img/18_10_27/010.png" alt=""></p>
+<p>由于：</p>
+<p><img src="/img/18_10_27/011.png" alt=""></p>
+<p>所以：</p>
+<p><img src="/img/18_10_27/012.png" alt=""></p>
+<p><img src="/img/18_10_27/013.png" alt=""></p>
+<p>其中：</p>
+<p><img src="/img/18_10_27/014.png" alt=""></p>
+<p><img src="/img/18_10_27/015.png" alt=""></p>
+<p><img src="/img/18_10_27/016.png" alt=""></p>
+<p><img src="/img/18_10_27/017.png" alt=""></p>
+<p>这里的:</p>
+<p><img src="/img/18_10_27/018.png" alt=""></p>
+<p>是一个整数，就像$sin(2π)$乘以一个整数，这个整数是1，所以这里的结果是0。</p>
+<p><img src="/img/18_10_27/019.png" alt=""></p>
+<p>所以我们的$C_m$可以得到下面的结果：</p>
+<p><img src="/img/18_10_27/020.png" alt=""></p>
+<p>期初我们设定$f(t)$是已知的，所以我们就可以求得$C_m$了。</p>
+<hr>
+<p><strong>结论:</strong>给定周期为1的周期函数$f(t)$，如果能把$f(t)$写成和式的形式：$f(t)=\sum_{k=-n}^nC_ke^{2\pi ikt}$，那么溪水会按照这个公式给出，其中$C_k=\int_0^{1}e^{-2\pi ikt}f(t)dt$。</p>
+<p>下节课我们将介绍，我们得到的这些参数，将带来什么意义。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/斯坦福大学公开课/" rel="tag"># 斯坦福大学公开课</a>
+          
+            <a href="/tags/傅里叶变换/" rel="tag"># 傅里叶变换</a>
+          
+            <a href="/tags/数学/" rel="tag"># 数学</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/11/NumPy入门教程/" rel="next" title="NumPy入门教程">
+                <i class="fa fa-chevron-left"></i> NumPy入门教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="DannyLee1991" />
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">132</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DannyLee1991" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:747554505@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="tencent://message/?Menu=yes&uin=747554505" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用简单的sin-t-，cos-t-来建模复杂的周期性现象？"><span class="nav-number">1.</span> <span class="nav-text">如何使用简单的sin(t)，cos(t)来建模复杂的周期性现象？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#信号周期化"><span class="nav-number">1.1.</span> <span class="nav-text">信号周期化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成复杂的周期函数"><span class="nav-number">1.2.</span> <span class="nav-text">生成复杂的周期函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对正余弦函数进行变换"><span class="nav-number">1.2.1.</span> <span class="nav-text">对正余弦函数进行变换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对正余弦函数进行合并"><span class="nav-number">1.2.2.</span> <span class="nav-text">对正余弦函数进行合并</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表示一个复杂的周期函数的几种方式"><span class="nav-number">1.3.</span> <span class="nav-text">表示一个复杂的周期函数的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最基本的形式"><span class="nav-number">1.3.1.</span> <span class="nav-text">最基本的形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#利用和角公式来表示"><span class="nav-number">1.3.2.</span> <span class="nav-text">利用和角公式来表示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#加一个常数项的形式（直流分量形式）"><span class="nav-number">1.3.3.</span> <span class="nav-text">加一个常数项的形式（直流分量形式）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复指数的表示形式"><span class="nav-number">1.3.4.</span> <span class="nav-text">复指数的表示形式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我们生成的复杂的周期函数，其普遍性有多强？"><span class="nav-number">1.4.</span> <span class="nav-text">我们生成的复杂的周期函数，其普遍性有多强？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#假设我们能做到"><span class="nav-number">1.4.1.</span> <span class="nav-text">假设我们能做到</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
