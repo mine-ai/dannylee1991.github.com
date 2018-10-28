@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -68,65 +68,34 @@
 
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="Docker,">
 
 
 
 
 
-  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="翻译自docker官方文档。
-
-欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：
-
-1.设置您的Docker环境（本节内容）
-2.构建一个镜像，并将其作为一个容器运行
-3.通过运行多个容器来缩放你的应用
-4.通过集群来分发你的应用
-5.通过添加后端数据库来堆叠服务
-6.发布你的应用到生产环境
-
-Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta name="description" content="翻译自docker官方文档。  欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：  1.设置您的Docker环境（本节内容） 2.构建一个镜像，并将其作为一个容器运行 3.通过运行多个容器来缩放你的应用 4.通过集群来分发你的应用 5.通过添加后端数据库来堆叠服务 6.发布你的应用到生产环境  Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker入门Part1-定位和设置">
 <meta property="og:url" content="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/index.html">
 <meta property="og:site_name" content="studyAI">
-<meta property="og:description" content="翻译自docker官方文档。
-
-欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：
-
-1.设置您的Docker环境（本节内容）
-2.构建一个镜像，并将其作为一个容器运行
-3.通过运行多个容器来缩放你的应用
-4.通过集群来分发你的应用
-5.通过添加后端数据库来堆叠服务
-6.发布你的应用到生产环境
-
-Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta property="og:description" content="翻译自docker官方文档。  欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：  1.设置您的Docker环境（本节内容） 2.构建一个镜像，并将其作为一个容器运行 3.通过运行多个容器来缩放你的应用 4.通过集群来分发你的应用 5.通过添加后端数据库来堆叠服务 6.发布你的应用到生产环境  Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://studyai.site/img/18_04_25/001.png">
 <meta property="og:image" content="http://studyai.site/img/18_04_25/002.png">
 <meta property="og:image" content="http://studyai.site/img/18_04_25/003.png">
 <meta property="og:updated_time" content="2018-04-25T08:42:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker入门Part1-定位和设置">
-<meta name="twitter:description" content="翻译自docker官方文档。
-
-欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：
-
-1.设置您的Docker环境（本节内容）
-2.构建一个镜像，并将其作为一个容器运行
-3.通过运行多个容器来缩放你的应用
-4.通过集群来分发你的应用
-5.通过添加后端数据库来堆叠服务
-6.发布你的应用到生产环境
-
-Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
+<meta name="twitter:description" content="翻译自docker官方文档。  欢迎！我们很高兴您来学习Docker。 Docker入门教程将教你如何：  1.设置您的Docker环境（本节内容） 2.构建一个镜像，并将其作为一个容器运行 3.通过运行多个容器来缩放你的应用 4.通过集群来分发你的应用 5.通过添加后端数据库来堆叠服务 6.发布你的应用到生产环境  Docker的概念Docker是开发人员和系统管理员使用容器开发、部署和运行应">
 <meta name="twitter:image" content="http://studyai.site/img/18_04_25/001.png">
 
 
@@ -157,7 +126,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
 
 
 
-  <link rel="canonical" href="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/"/>
+  <link rel="canonical" href="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/">
 
 
 
@@ -185,7 +154,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -195,13 +164,13 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">studyAI</span>
         <span class="logo-line-after"><i></i></span>
@@ -231,7 +200,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -241,7 +210,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -251,7 +220,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -261,7 +230,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -295,20 +264,20 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://studyai.site/2018/04/25/Docker入门Part1-定位和设置/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DannyLee1991">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="studyAI">
     </span>
 
@@ -340,7 +309,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -351,7 +320,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Docker/" itemprop="url" rel="index">
                     <span itemprop="name">Docker</span>
                   </a>
@@ -362,7 +331,7 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Docker/工具/" itemprop="url" rel="index">
                     <span itemprop="name">工具</span>
                   </a>
@@ -514,14 +483,14 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -649,11 +618,9 @@ Docker的概念Docker是开发人员和系统管理员使用容器开发、部�
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="DannyLee1991" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DannyLee1991">
             
               <p class="site-author-name" itemprop="name">DannyLee1991</p>
               <p class="site-description motion-element" itemprop="description"></p>

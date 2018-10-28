@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -68,41 +68,31 @@
 
 
 
-  <meta name="keywords" content="gradle," />
+  <meta name="keywords" content="gradle,">
 
 
 
 
 
-  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="来自维基百科：
-
-A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.守护进程是一个作为计算机后台进程运行的，而不是直接可以与用户进行交互的程序。
-
-gradle运行在java虚拟机(JV">
+<meta name="description" content="来自维基百科：  A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.守护进程是一个作为计算机后台进程运行的，而不是直接可以与用户进行交互的程序。  gradle运行在java虚拟机(JV">
+<meta name="keywords" content="gradle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gradle学习笔记-Gradle 守护进程">
 <meta property="og:url" content="http://studyai.site/2016/07/10/gradle学习笔记-Gradle 守护进程/index.html">
 <meta property="og:site_name" content="studyAI">
-<meta property="og:description" content="来自维基百科：
-
-A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.守护进程是一个作为计算机后台进程运行的，而不是直接可以与用户进行交互的程序。
-
-gradle运行在java虚拟机(JV">
+<meta property="og:description" content="来自维基百科：  A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.守护进程是一个作为计算机后台进程运行的，而不是直接可以与用户进行交互的程序。  gradle运行在java虚拟机(JV">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-07-11T07:31:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gradle学习笔记-Gradle 守护进程">
-<meta name="twitter:description" content="来自维基百科：
-
-A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.守护进程是一个作为计算机后台进程运行的，而不是直接可以与用户进行交互的程序。
-
-gradle运行在java虚拟机(JV">
+<meta name="twitter:description" content="来自维基百科：  A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.守护进程是一个作为计算机后台进程运行的，而不是直接可以与用户进行交互的程序。  gradle运行在java虚拟机(JV">
 
 
 
@@ -132,7 +122,7 @@ gradle运行在java虚拟机(JV">
 
 
 
-  <link rel="canonical" href="http://studyai.site/2016/07/10/gradle学习笔记-Gradle 守护进程/"/>
+  <link rel="canonical" href="http://studyai.site/2016/07/10/gradle学习笔记-Gradle 守护进程/">
 
 
 
@@ -160,7 +150,7 @@ gradle运行在java虚拟机(JV">
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -170,13 +160,13 @@ gradle运行在java虚拟机(JV">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">studyAI</span>
         <span class="logo-line-after"><i></i></span>
@@ -206,7 +196,7 @@ gradle运行在java虚拟机(JV">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -216,7 +206,7 @@ gradle运行在java虚拟机(JV">
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -226,7 +216,7 @@ gradle运行在java虚拟机(JV">
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -236,7 +226,7 @@ gradle运行在java虚拟机(JV">
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -270,20 +260,20 @@ gradle运行在java虚拟机(JV">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/07/10/gradle学习笔记-Gradle 守护进程/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DannyLee1991">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="studyAI">
     </span>
 
@@ -315,7 +305,7 @@ gradle运行在java虚拟机(JV">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -326,7 +316,7 @@ gradle运行在java虚拟机(JV">
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/gradle/" itemprop="url" rel="index">
                     <span itemprop="name">gradle</span>
                   </a>
@@ -479,14 +469,14 @@ gradle运行在java虚拟机(JV">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -614,11 +604,9 @@ gradle运行在java虚拟机(JV">
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="DannyLee1991" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DannyLee1991">
             
               <p class="site-author-name" itemprop="name">DannyLee1991</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -715,7 +703,7 @@ gradle运行在java虚拟机(JV">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-开启守护进程"><span class="nav-number">1.</span> <span class="nav-text">1.开启守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-终止一个正在运行的守护进程"><span class="nav-number">2.</span> <span class="nav-text">2.终止一个正在运行的守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-FAQ"><span class="nav-number">3.</span> <span class="nav-text">3.FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1有什么方法能开启守护进程呢？"><span class="nav-number">3.1.</span> <span class="nav-text">3.1有什么方法能开启守护进程呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-我该如何关闭守护进程呢？"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 我该如何关闭守护进程呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-我该如何抑制“please-consider-using-the-Gradle-Daemon”这样的消息呢？"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 我该如何抑制“please consider using the Gradle Daemon”这样的消息呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-为什么有超过一个的守护进程在我的机器上？"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 为什么有超过一个的守护进程在我的机器上？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-守护进程到底会消耗多少内存？我怎样才能分配更多的内存给它？"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 守护进程到底会消耗多少内存？我怎样才能分配更多的内存给它？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-我该如何停止守护进程？"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 我该如何停止守护进程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-守护进程什么时候会出错呢？"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 守护进程什么时候会出错呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-什么情况下我不该使用守护进程"><span class="nav-number">4.</span> <span class="nav-text">4.什么情况下我不该使用守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Tools-amp-IDEs"><span class="nav-number">5.</span> <span class="nav-text">5.Tools & IDEs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-守护进程是如何提高gradle构建速度的？"><span class="nav-number">6.</span> <span class="nav-text">6.守护进程是如何提高gradle构建速度的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-未来更强大的功能"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 未来更强大的功能</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-开启守护进程"><span class="nav-number">1.</span> <span class="nav-text">1.开启守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-终止一个正在运行的守护进程"><span class="nav-number">2.</span> <span class="nav-text">2.终止一个正在运行的守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-FAQ"><span class="nav-number">3.</span> <span class="nav-text">3.FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1有什么方法能开启守护进程呢？"><span class="nav-number">3.1.</span> <span class="nav-text">3.1有什么方法能开启守护进程呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-我该如何关闭守护进程呢？"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 我该如何关闭守护进程呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-我该如何抑制“please-consider-using-the-Gradle-Daemon”这样的消息呢？"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 我该如何抑制“please consider using the Gradle Daemon”这样的消息呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-为什么有超过一个的守护进程在我的机器上？"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 为什么有超过一个的守护进程在我的机器上？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-守护进程到底会消耗多少内存？我怎样才能分配更多的内存给它？"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 守护进程到底会消耗多少内存？我怎样才能分配更多的内存给它？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-我该如何停止守护进程？"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 我该如何停止守护进程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-守护进程什么时候会出错呢？"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 守护进程什么时候会出错呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-什么情况下我不该使用守护进程"><span class="nav-number">4.</span> <span class="nav-text">4.什么情况下我不该使用守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Tools-amp-IDEs"><span class="nav-number">5.</span> <span class="nav-text">5.Tools &amp; IDEs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-守护进程是如何提高gradle构建速度的？"><span class="nav-number">6.</span> <span class="nav-text">6.守护进程是如何提高gradle构建速度的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-未来更强大的功能"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 未来更强大的功能</span></a></li></ol></li></ol></div>
             
 
           </div>

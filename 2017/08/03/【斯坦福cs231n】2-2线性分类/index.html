@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -68,31 +68,27 @@
 
 
 
-  <meta name="keywords" content="机器学习,斯坦福课程," />
+  <meta name="keywords" content="机器学习,斯坦福课程,">
 
 
 
 
 
-  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="线性分类在最后一节中，我们介绍了图像分类的问题，这是从一组固定的类别向一个图像分配单个标签的任务。更多的，我们描述了通过将图像与来自训练集的（注释）图像进行比较来标记图像的k-最近邻（kNN）分类器。我们看到，kNN有一些缺点：
-
-分类器必须记住所有的训练数据并将其存储，以便将来与测试数据进行比较。这在空间上是低效的，因为数据集的大小可能很容易达到千兆字节。
-分类器执行对单个测试样本进行预测的操作">
+<meta name="description" content="线性分类在最后一节中，我们介绍了图像分类的问题，这是从一组固定的类别向一个图像分配单个标签的任务。更多的，我们描述了通过将图像与来自训练集的（注释）图像进行比较来标记图像的k-最近邻（kNN）分类器。我们看到，kNN有一些缺点：  分类器必须记住所有的训练数据并将其存储，以便将来与测试数据进行比较。这在空间上是低效的，因为数据集的大小可能很容易达到千兆字节。 分类器执行对单个测试样本进行预测的操作">
+<meta name="keywords" content="机器学习,斯坦福课程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【斯坦福cs231n】2-2线性分类">
 <meta property="og:url" content="http://studyai.site/2017/08/03/【斯坦福cs231n】2-2线性分类/index.html">
 <meta property="og:site_name" content="studyAI">
-<meta property="og:description" content="线性分类在最后一节中，我们介绍了图像分类的问题，这是从一组固定的类别向一个图像分配单个标签的任务。更多的，我们描述了通过将图像与来自训练集的（注释）图像进行比较来标记图像的k-最近邻（kNN）分类器。我们看到，kNN有一些缺点：
-
-分类器必须记住所有的训练数据并将其存储，以便将来与测试数据进行比较。这在空间上是低效的，因为数据集的大小可能很容易达到千兆字节。
-分类器执行对单个测试样本进行预测的操作">
+<meta property="og:description" content="线性分类在最后一节中，我们介绍了图像分类的问题，这是从一组固定的类别向一个图像分配单个标签的任务。更多的，我们描述了通过将图像与来自训练集的（注释）图像进行比较来标记图像的k-最近邻（kNN）分类器。我们看到，kNN有一些缺点：  分类器必须记住所有的训练数据并将其存储，以便将来与测试数据进行比较。这在空间上是低效的，因为数据集的大小可能很容易达到千兆字节。 分类器执行对单个测试样本进行预测的操作">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://studyai.site/img/17_08_03/001.jpg">
 <meta property="og:image" content="http://studyai.site/img/17_08_03/002.jpeg">
 <meta property="og:image" content="http://studyai.site/img/17_08_03/003.jpg">
@@ -102,10 +98,7 @@
 <meta property="og:updated_time" content="2017-08-11T11:40:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【斯坦福cs231n】2-2线性分类">
-<meta name="twitter:description" content="线性分类在最后一节中，我们介绍了图像分类的问题，这是从一组固定的类别向一个图像分配单个标签的任务。更多的，我们描述了通过将图像与来自训练集的（注释）图像进行比较来标记图像的k-最近邻（kNN）分类器。我们看到，kNN有一些缺点：
-
-分类器必须记住所有的训练数据并将其存储，以便将来与测试数据进行比较。这在空间上是低效的，因为数据集的大小可能很容易达到千兆字节。
-分类器执行对单个测试样本进行预测的操作">
+<meta name="twitter:description" content="线性分类在最后一节中，我们介绍了图像分类的问题，这是从一组固定的类别向一个图像分配单个标签的任务。更多的，我们描述了通过将图像与来自训练集的（注释）图像进行比较来标记图像的k-最近邻（kNN）分类器。我们看到，kNN有一些缺点：  分类器必须记住所有的训练数据并将其存储，以便将来与测试数据进行比较。这在空间上是低效的，因为数据集的大小可能很容易达到千兆字节。 分类器执行对单个测试样本进行预测的操作">
 <meta name="twitter:image" content="http://studyai.site/img/17_08_03/001.jpg">
 
 
@@ -136,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://studyai.site/2017/08/03/【斯坦福cs231n】2-2线性分类/"/>
+  <link rel="canonical" href="http://studyai.site/2017/08/03/【斯坦福cs231n】2-2线性分类/">
 
 
 
@@ -164,7 +157,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -174,13 +167,13 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">studyAI</span>
         <span class="logo-line-after"><i></i></span>
@@ -210,7 +203,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -220,7 +213,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -230,7 +223,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -240,7 +233,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -274,20 +267,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/08/03/【斯坦福cs231n】2-2线性分类/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DannyLee1991">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="studyAI">
     </span>
 
@@ -319,7 +312,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -330,7 +323,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/机器学习/" itemprop="url" rel="index">
                     <span itemprop="name">机器学习</span>
                   </a>
@@ -341,7 +334,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/机器学习/cs231n/" itemprop="url" rel="index">
                     <span itemprop="name">cs231n</span>
                   </a>
@@ -519,14 +512,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -656,11 +649,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="DannyLee1991" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DannyLee1991">
             
               <p class="site-author-name" itemprop="name">DannyLee1991</p>
               <p class="site-description motion-element" itemprop="description"></p>

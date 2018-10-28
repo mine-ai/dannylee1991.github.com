@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -68,35 +68,27 @@
 
 
 
-  <meta name="keywords" content="机器学习,斯坦福课程," />
+  <meta name="keywords" content="机器学习,斯坦福课程,">
 
 
 
 
 
-  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="在这个模块中，我们将介绍主成分分析（PCA），并显示它可以用于数据压缩，加快学习算法，以及可视化的复杂数据集。
-
-动机动机I：数据压缩视频地址
-
-本节我将开始介绍第二种无监督学习问题，它叫降维(dimensionality reduction)。
-我们希望使用降维的一个主要原因是数据压缩。我们会在后几节中看到，数据压缩不仅通过压缩数据使得数据占用更少的计算机内存和硬盘空间，它还能给算法提速。">
+<meta name="description" content="在这个模块中，我们将介绍主成分分析（PCA），并显示它可以用于数据压缩，加快学习算法，以及可视化的复杂数据集。  动机动机I：数据压缩视频地址  本节我将开始介绍第二种无监督学习问题，它叫降维(dimensionality reduction)。 我们希望使用降维的一个主要原因是数据压缩。我们会在后几节中看到，数据压缩不仅通过压缩数据使得数据占用更少的计算机内存和硬盘空间，它还能给算法提速。">
+<meta name="keywords" content="机器学习,斯坦福课程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="斯坦福机器学习课程 第八周 (2)降维">
 <meta property="og:url" content="http://studyai.site/2017/05/12/斯坦福机器学习课程 第八周 (2)降维/index.html">
 <meta property="og:site_name" content="studyAI">
-<meta property="og:description" content="在这个模块中，我们将介绍主成分分析（PCA），并显示它可以用于数据压缩，加快学习算法，以及可视化的复杂数据集。
-
-动机动机I：数据压缩视频地址
-
-本节我将开始介绍第二种无监督学习问题，它叫降维(dimensionality reduction)。
-我们希望使用降维的一个主要原因是数据压缩。我们会在后几节中看到，数据压缩不仅通过压缩数据使得数据占用更少的计算机内存和硬盘空间，它还能给算法提速。">
+<meta property="og:description" content="在这个模块中，我们将介绍主成分分析（PCA），并显示它可以用于数据压缩，加快学习算法，以及可视化的复杂数据集。  动机动机I：数据压缩视频地址  本节我将开始介绍第二种无监督学习问题，它叫降维(dimensionality reduction)。 我们希望使用降维的一个主要原因是数据压缩。我们会在后几节中看到，数据压缩不仅通过压缩数据使得数据占用更少的计算机内存和硬盘空间，它还能给算法提速。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://studyai.site/img/17_05_12/001.png">
 <meta property="og:image" content="http://studyai.site/img/17_05_12/002.png">
 <meta property="og:image" content="http://studyai.site/img/17_05_12/003.png">
@@ -131,12 +123,7 @@
 <meta property="og:updated_time" content="2017-10-31T11:20:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第八周 (2)降维">
-<meta name="twitter:description" content="在这个模块中，我们将介绍主成分分析（PCA），并显示它可以用于数据压缩，加快学习算法，以及可视化的复杂数据集。
-
-动机动机I：数据压缩视频地址
-
-本节我将开始介绍第二种无监督学习问题，它叫降维(dimensionality reduction)。
-我们希望使用降维的一个主要原因是数据压缩。我们会在后几节中看到，数据压缩不仅通过压缩数据使得数据占用更少的计算机内存和硬盘空间，它还能给算法提速。">
+<meta name="twitter:description" content="在这个模块中，我们将介绍主成分分析（PCA），并显示它可以用于数据压缩，加快学习算法，以及可视化的复杂数据集。  动机动机I：数据压缩视频地址  本节我将开始介绍第二种无监督学习问题，它叫降维(dimensionality reduction)。 我们希望使用降维的一个主要原因是数据压缩。我们会在后几节中看到，数据压缩不仅通过压缩数据使得数据占用更少的计算机内存和硬盘空间，它还能给算法提速。">
 <meta name="twitter:image" content="http://studyai.site/img/17_05_12/001.png">
 
 
@@ -167,7 +154,7 @@
 
 
 
-  <link rel="canonical" href="http://studyai.site/2017/05/12/斯坦福机器学习课程 第八周 (2)降维/"/>
+  <link rel="canonical" href="http://studyai.site/2017/05/12/斯坦福机器学习课程 第八周 (2)降维/">
 
 
 
@@ -195,7 +182,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -205,13 +192,13 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">studyAI</span>
         <span class="logo-line-after"><i></i></span>
@@ -241,7 +228,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -251,7 +238,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -261,7 +248,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -271,7 +258,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -305,20 +292,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://studyai.site/2017/05/12/斯坦福机器学习课程 第八周 (2)降维/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DannyLee1991">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="studyAI">
     </span>
 
@@ -350,7 +337,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -361,7 +348,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/机器学习/" itemprop="url" rel="index">
                     <span itemprop="name">机器学习</span>
                   </a>
@@ -806,14 +793,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -943,11 +930,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="DannyLee1991" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DannyLee1991">
             
               <p class="site-author-name" itemprop="name">DannyLee1991</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -1044,7 +1029,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动机"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机I：数据压缩"><span class="nav-number">1.1.</span> <span class="nav-text">动机I：数据压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.1.1.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降维含义"><span class="nav-number">1.1.2.</span> <span class="nav-text">降维含义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二维降到一维"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">二维降到一维</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三维降到二维"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">三维降到二维</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动机II：可视化数据"><span class="nav-number">1.2.</span> <span class="nav-text">动机II：可视化数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PCA"><span class="nav-number">2.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主成分分析（PCA）相关概念"><span class="nav-number">2.1.</span> <span class="nav-text">主成分分析（PCA）相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的执行过程2D-gt-1D"><span class="nav-number">2.1.1.</span> <span class="nav-text">PCA的执行过程2D -> 1D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的执行过程3D-gt-2D"><span class="nav-number">2.1.2.</span> <span class="nav-text">PCA的执行过程3D -> 2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA和线性回归的关系"><span class="nav-number">2.1.3.</span> <span class="nav-text">PCA和线性回归的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不同点-之一"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">不同点 之一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同点-之二"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">不同点 之二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA算法-实现过程"><span class="nav-number">2.2.</span> <span class="nav-text">PCA算法 实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.2.1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理第一步：均值归一化-mean-normalization"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">数据预处理第一步：均值归一化(mean normalization)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理第二步：特征缩放-feature-scaling"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">数据预处理第二步：特征缩放(feature scaling)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA算法"><span class="nav-number">2.2.2.</span> <span class="nav-text">PCA算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.2.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用PCA"><span class="nav-number">3.</span> <span class="nav-text">应用PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对压缩数据的还原"><span class="nav-number">3.1.</span> <span class="nav-text">对压缩数据的还原</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择主成分的数量k"><span class="nav-number">3.2.</span> <span class="nav-text">选择主成分的数量k</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法原理：最小化平均平方映射误差"><span class="nav-number">3.2.1.</span> <span class="nav-text">算法原理：最小化平均平方映射误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现"><span class="nav-number">3.2.2.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始的算法"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">原始的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一种更快的算法"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">一种更快的算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用PCA的建议"><span class="nav-number">3.3.</span> <span class="nav-text">应用PCA的建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA应用场景总结"><span class="nav-number">3.3.1.</span> <span class="nav-text">PCA应用场景总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过PCA来提高学习算法的速度"><span class="nav-number">3.3.2.</span> <span class="nav-text">通过PCA来提高学习算法的速度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#降维步骤"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">降维步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的错误使用"><span class="nav-number">3.3.3.</span> <span class="nav-text">PCA的错误使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个建议"><span class="nav-number">3.3.4.</span> <span class="nav-text">两个建议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#真的需要PCA吗？"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">真的需要PCA吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要一开始就带入PCA"><span class="nav-number">3.3.4.2.</span> <span class="nav-text">不要一开始就带入PCA</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动机"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机I：数据压缩"><span class="nav-number">1.1.</span> <span class="nav-text">动机I：数据压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.1.1.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降维含义"><span class="nav-number">1.1.2.</span> <span class="nav-text">降维含义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二维降到一维"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">二维降到一维</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三维降到二维"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">三维降到二维</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动机II：可视化数据"><span class="nav-number">1.2.</span> <span class="nav-text">动机II：可视化数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PCA"><span class="nav-number">2.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主成分分析（PCA）相关概念"><span class="nav-number">2.1.</span> <span class="nav-text">主成分分析（PCA）相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的执行过程2D-gt-1D"><span class="nav-number">2.1.1.</span> <span class="nav-text">PCA的执行过程2D -&gt; 1D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的执行过程3D-gt-2D"><span class="nav-number">2.1.2.</span> <span class="nav-text">PCA的执行过程3D -&gt; 2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA和线性回归的关系"><span class="nav-number">2.1.3.</span> <span class="nav-text">PCA和线性回归的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不同点-之一"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">不同点 之一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同点-之二"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">不同点 之二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA算法-实现过程"><span class="nav-number">2.2.</span> <span class="nav-text">PCA算法 实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.2.1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理第一步：均值归一化-mean-normalization"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">数据预处理第一步：均值归一化(mean normalization)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理第二步：特征缩放-feature-scaling"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">数据预处理第二步：特征缩放(feature scaling)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA算法"><span class="nav-number">2.2.2.</span> <span class="nav-text">PCA算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.2.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用PCA"><span class="nav-number">3.</span> <span class="nav-text">应用PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对压缩数据的还原"><span class="nav-number">3.1.</span> <span class="nav-text">对压缩数据的还原</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择主成分的数量k"><span class="nav-number">3.2.</span> <span class="nav-text">选择主成分的数量k</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法原理：最小化平均平方映射误差"><span class="nav-number">3.2.1.</span> <span class="nav-text">算法原理：最小化平均平方映射误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现"><span class="nav-number">3.2.2.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始的算法"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">原始的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一种更快的算法"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">一种更快的算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用PCA的建议"><span class="nav-number">3.3.</span> <span class="nav-text">应用PCA的建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA应用场景总结"><span class="nav-number">3.3.1.</span> <span class="nav-text">PCA应用场景总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过PCA来提高学习算法的速度"><span class="nav-number">3.3.2.</span> <span class="nav-text">通过PCA来提高学习算法的速度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#降维步骤"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">降维步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的错误使用"><span class="nav-number">3.3.3.</span> <span class="nav-text">PCA的错误使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个建议"><span class="nav-number">3.3.4.</span> <span class="nav-text">两个建议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#真的需要PCA吗？"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">真的需要PCA吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要一开始就带入PCA"><span class="nav-number">3.3.4.2.</span> <span class="nav-text">不要一开始就带入PCA</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

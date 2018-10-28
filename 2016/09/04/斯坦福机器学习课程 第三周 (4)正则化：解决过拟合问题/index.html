@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -68,37 +68,27 @@
 
 
 
-  <meta name="keywords" content="机器学习,斯坦福课程," />
+  <meta name="keywords" content="机器学习,斯坦福课程,">
 
 
 
 
 
-  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml" />
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="机器学习模型需要拥有很好地泛化能力来适应训练集中没有出现过的新样本。
-在这个节中，我们将介绍正则化方面的知识，这有助于预防过拟合的问题的产生。
-
-解决过拟合问题视频地址
-
-到现在为止，你已经见识了几种不同的学习算法。包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过度拟合(over-fitting)的问题，可能会导致它们效果很差。
-在这一节中">
+<meta name="description" content="机器学习模型需要拥有很好地泛化能力来适应训练集中没有出现过的新样本。 在这个节中，我们将介绍正则化方面的知识，这有助于预防过拟合的问题的产生。  解决过拟合问题视频地址  到现在为止，你已经见识了几种不同的学习算法。包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过度拟合(over-fitting)的问题，可能会导致它们效果很差。 在这一节中">
+<meta name="keywords" content="机器学习,斯坦福课程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="斯坦福机器学习课程 第三周 (4)正则化：解决过拟合问题">
 <meta property="og:url" content="http://studyai.site/2016/09/04/斯坦福机器学习课程 第三周 (4)正则化：解决过拟合问题/index.html">
 <meta property="og:site_name" content="studyAI">
-<meta property="og:description" content="机器学习模型需要拥有很好地泛化能力来适应训练集中没有出现过的新样本。
-在这个节中，我们将介绍正则化方面的知识，这有助于预防过拟合的问题的产生。
-
-解决过拟合问题视频地址
-
-到现在为止，你已经见识了几种不同的学习算法。包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过度拟合(over-fitting)的问题，可能会导致它们效果很差。
-在这一节中">
+<meta property="og:description" content="机器学习模型需要拥有很好地泛化能力来适应训练集中没有出现过的新样本。 在这个节中，我们将介绍正则化方面的知识，这有助于预防过拟合的问题的产生。  解决过拟合问题视频地址  到现在为止，你已经见识了几种不同的学习算法。包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过度拟合(over-fitting)的问题，可能会导致它们效果很差。 在这一节中">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://studyai.site/img/16_09_04/028.png">
 <meta property="og:image" content="http://studyai.site/img/16_09_04/029.png">
 <meta property="og:image" content="http://studyai.site/img/16_09_04/030.png">
@@ -136,13 +126,7 @@
 <meta property="og:updated_time" content="2017-10-31T11:23:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯坦福机器学习课程 第三周 (4)正则化：解决过拟合问题">
-<meta name="twitter:description" content="机器学习模型需要拥有很好地泛化能力来适应训练集中没有出现过的新样本。
-在这个节中，我们将介绍正则化方面的知识，这有助于预防过拟合的问题的产生。
-
-解决过拟合问题视频地址
-
-到现在为止，你已经见识了几种不同的学习算法。包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过度拟合(over-fitting)的问题，可能会导致它们效果很差。
-在这一节中">
+<meta name="twitter:description" content="机器学习模型需要拥有很好地泛化能力来适应训练集中没有出现过的新样本。 在这个节中，我们将介绍正则化方面的知识，这有助于预防过拟合的问题的产生。  解决过拟合问题视频地址  到现在为止，你已经见识了几种不同的学习算法。包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过度拟合(over-fitting)的问题，可能会导致它们效果很差。 在这一节中">
 <meta name="twitter:image" content="http://studyai.site/img/16_09_04/028.png">
 
 
@@ -173,7 +157,7 @@
 
 
 
-  <link rel="canonical" href="http://studyai.site/2016/09/04/斯坦福机器学习课程 第三周 (4)正则化：解决过拟合问题/"/>
+  <link rel="canonical" href="http://studyai.site/2016/09/04/斯坦福机器学习课程 第三周 (4)正则化：解决过拟合问题/">
 
 
 
@@ -201,7 +185,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -211,13 +195,13 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">studyAI</span>
         <span class="logo-line-after"><i></i></span>
@@ -247,7 +231,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -257,7 +241,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -267,7 +251,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -277,7 +261,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -311,20 +295,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://studyai.site/2016/09/04/斯坦福机器学习课程 第三周 (4)正则化：解决过拟合问题/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DannyLee1991">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="studyAI">
     </span>
 
@@ -356,7 +340,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -367,7 +351,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/机器学习/" itemprop="url" rel="index">
                     <span itemprop="name">机器学习</span>
                   </a>
@@ -640,14 +624,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付"/>
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝"/>
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -777,11 +761,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="DannyLee1991" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DannyLee1991">
             
               <p class="site-author-name" itemprop="name">DannyLee1991</p>
               <p class="site-description motion-element" itemprop="description"></p>
