@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,数学,">
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="studyAI" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="隐马尔可夫模型解决时序性的预测问题，我们通常会用到HMM模型（隐马尔科夫模型），但在开始介绍HMM模型之前，我们有必要先了解它的前置知识：  马尔科夫链 马尔科夫模型  马尔科夫链现有状态只和上一个状态有关，而未来状态只与现有状态有关:  满足这样的一种结构，我们就称之为马尔科夫链。 如果一个系统，在做不同状态之间转换的时候，当前状态只受到过的一个状态的影响，和其他状态都没有关系；换句话说，这个系">
+<meta name="keywords" content="机器学习,数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="隐马尔科夫模型">
+<meta property="og:url" content="http://studyai.site/2018/11/11/隐马尔科夫模型/index.html">
+<meta property="og:site_name" content="studyAI">
+<meta property="og:description" content="隐马尔可夫模型解决时序性的预测问题，我们通常会用到HMM模型（隐马尔科夫模型），但在开始介绍HMM模型之前，我们有必要先了解它的前置知识：  马尔科夫链 马尔科夫模型  马尔科夫链现有状态只和上一个状态有关，而未来状态只与现有状态有关:  满足这样的一种结构，我们就称之为马尔科夫链。 如果一个系统，在做不同状态之间转换的时候，当前状态只受到过的一个状态的影响，和其他状态都没有关系；换句话说，这个系">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://studyai.site/img/18_11_11/001.png">
+<meta property="og:image" content="http://studyai.site/img/18_11_11/002.png">
+<meta property="og:image" content="http://studyai.site/img/18_11_11/003.png">
+<meta property="og:image" content="http://studyai.site/img/18_11_11/004.png">
+<meta property="og:image" content="http://studyai.site/img/18_11_11/005.png">
+<meta property="og:image" content="http://studyai.site/img/18_11_11/006.png">
+<meta property="og:updated_time" content="2018-11-11T17:08:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="隐马尔科夫模型">
+<meta name="twitter:description" content="隐马尔可夫模型解决时序性的预测问题，我们通常会用到HMM模型（隐马尔科夫模型），但在开始介绍HMM模型之前，我们有必要先了解它的前置知识：  马尔科夫链 马尔科夫模型  马尔科夫链现有状态只和上一个状态有关，而未来状态只与现有状态有关:  满足这样的一种结构，我们就称之为马尔科夫链。 如果一个系统，在做不同状态之间转换的时候，当前状态只受到过的一个状态的影响，和其他状态都没有关系；换句话说，这个系">
+<meta name="twitter:image" content="http://studyai.site/img/18_11_11/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://studyai.site/2018/11/11/隐马尔科夫模型/">
+
+
+
+
+
+  <title>隐马尔科夫模型 | studyAI</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64d3554e2db8268ff4e020b47928563f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">studyAI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://studyai.site/2018/11/11/隐马尔科夫模型/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyLee1991">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="studyAI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">隐马尔科夫模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T19:20:58+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/11/隐马尔科夫模型/" class="leancloud_visitors" data-flag-title="隐马尔科夫模型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="隐马尔可夫模型"><a href="#隐马尔可夫模型" class="headerlink" title="隐马尔可夫模型"></a>隐马尔可夫模型</h2><p>解决时序性的预测问题，我们通常会用到HMM模型（隐马尔科夫模型），但在开始介绍HMM模型之前，我们有必要先了解它的前置知识：</p>
+<ul>
+<li>马尔科夫链</li>
+<li>马尔科夫模型</li>
+</ul>
+<h3 id="马尔科夫链"><a href="#马尔科夫链" class="headerlink" title="马尔科夫链"></a>马尔科夫链</h3><p>现有状态只和上一个状态有关，而未来状态只与现有状态有关:</p>
+<p><img src="/img/18_11_11/001.png" width="400" hegiht="213" align="center"></p>
+<p>满足这样的一种结构，我们就称之为<strong>马尔科夫链</strong>。</p>
+<p>如果一个系统，在做不同状态之间转换的时候，当前状态只受到过的一个状态的影响，和其他状态都没有关系；换句话说，这个系统内的未来的一个状态只受到当前状态的影响，和其他状态都无关，满足这样性质的一个系统，我们就称之为是一个具有<strong>马尔科夫性</strong>的系统。</p>
+<p>一个马尔科夫链，需要具备以下参数：</p>
+<ul>
+<li>初始分布</li>
+<li>转移概率和转移概率矩阵</li>
+</ul>
+<h4 id="初始分布"><a href="#初始分布" class="headerlink" title="初始分布"></a>初始分布</h4><p>其中，初始分布如下：</p>
+<p>$$<br>\pi_j(0) = P\{ξ_0=j\}<br>$$</p>
+<p>这个公式的含义是在一个系统内，各个状态初始时的概率分布情况。其中$\pi$是概率分布的意思。举例说明：</p>
+<p>例如：假设一个系统内只有1、2、3这三种状态，其中状态1出现的概率为0.2，状态2出现的概率是0.3，状态3出现的概率是0.5。这三个概率即初始概率分布。</p>
+<h4 id="转移概率和转移概率矩阵"><a href="#转移概率和转移概率矩阵" class="headerlink" title="转移概率和转移概率矩阵"></a>转移概率和转移概率矩阵</h4><p>继续上面的例子。当我们处于状态1时，下一个状态可能是状态2，可能是状态3，也可能是状态1。如果状态1变为状态2的概率是0.2，状态1变为状态3的概率是0.3，状态1变为状态1的概率是0.5：</p>
+<p><img src="/img/18_11_11/002.png" width="400" hegiht="213" align="center"></p>
+<p>这里的概率就是<strong>转移概率</strong>。</p>
+<p>对于某一个状态来说，具有的转移概率一共有3个，那么对于3种状态来说一共有3x3=9个转移概率。我们可以用一个3x3的矩阵来表示。这个矩阵就被称为<strong>转移概率矩阵</strong>。</p>
+<hr>
+<p>一个具体的例子，<strong>愚蠢的顾客</strong>：</p>
+<ul>
+<li>某同类物品A、B、C的宣传力度不同，愚蠢的顾客在广告宣传的效应下，第一次尝试选择购买A、B、C的概率为0.2，0.4，0.4。经零售商统计，顾客的购买倾向为下表，尝试求某顾客第四次来购买各物品的概率：</li>
+</ul>
+<p><img src="/img/18_11_11/003.png" alt=""></p>
+<p>在这个例子中，第一次购买A、B、C的概率0.2，0.4，0.4就是<strong>初始分布</strong>，上面的那个表就是<strong>状态转移矩阵</strong>。</p>
+<h3 id="可观测的马尔科夫模型"><a href="#可观测的马尔科夫模型" class="headerlink" title="可观测的马尔科夫模型"></a>可观测的马尔科夫模型</h3><p>上面的描述都是关于<strong>马尔科夫链</strong>的，那么什么是<strong>马尔科夫模型</strong>呢？</p>
+<ul>
+<li><p>对于一个问题而言，我们有初始分布$\pi$，转移概率矩阵A，在给定的任意一个时刻t，我们都有一个状态$q_t$，随着时间的变化，一个状态转移到另一个状态，我们便能得到一个观测序列，<strong>即为状态序列</strong>$O=[q_1,q_2,q_3,q_4,…,q_m]$。而且整个问题中一共有n个观测状态。</p>
+</li>
+<li><p>出现这样的序列的概率为：</p>
+</li>
+</ul>
+<p>$$<br>P(O|A,\pi)=P(q_1)\prod_{t=2}^mP(q_t|q_{t-1})<br>$$</p>
+<p>所以一个可观测的马尔科夫模型由一个三元组描述：$(A,\pi,n)$一般情况下简写为$(A,\pi)$。（因为观测状态的数量n可以从状态概率分布$\pi$得出）</p>
+<p>这里的$A$就是转移概率矩阵，$\pi$就是状态初始分布，$n$就是观测状态的数量。</p>
+<p>举个例子：</p>
+<ul>
+<li>有一个抽屉，抽屉里放有三种颜色的球，颜色分别为红蓝绿。某人随机的将球一个一个从抽屉中取出，球的颜色依次构成序列(C1,C2,C3,…)。如果红、蓝、绿三个状态的初始分布为$\pi=(0.5,0.2,0.3)$，转移概率矩阵:</li>
+</ul>
+<p>$$<br>A=\begin{pmatrix}<br>0.4 &amp; 0.3 &amp; 0.3 \\<br>0.2 &amp; 0.6 &amp; 0.2 \\<br>0.1 &amp; 0.1 &amp; 0.8<br>\end{pmatrix}<br>$$</p>
+<ul>
+<li>那么出现颜色序列为：红，红，绿，绿 的概率是多少？</li>
+</ul>
+<p><strong>解答：</strong></p>
+<p>初始概率分布$\pi=(0.5,0.2,0.3)$，可以看出，初始为红色的概率为0.5。</p>
+<p>从状态转移矩阵可以看出，各个颜色变化的概率分布：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">红</th>
+<th style="text-align:center">蓝</th>
+<th style="text-align:center">绿</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>红</strong></td>
+<td style="text-align:center">0.4</td>
+<td style="text-align:center">0.3</td>
+<td style="text-align:center">0.3</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>蓝</strong></td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">0.6</td>
+<td style="text-align:center">0.2</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>绿</strong></td>
+<td style="text-align:center">0.1</td>
+<td style="text-align:center">0.1</td>
+<td style="text-align:center">0.8</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出，红色转移到红色的概率为0.4，红色转移到绿色的概率是0.3，绿色转移到绿色的概率是0.8。所以最终出现序列红，红，绿，绿 的概率为：</p>
+<p>$$<br>P = 0.5 \times 0.4 \times 0.3 \times 0.8 = 0.048<br>$$</p>
+<p>所以上面的那个公式就是将所求的序列O之中的各个状态的转移概率连乘起来得到的最终概率：</p>
+<p>$$<br>P(O|A,\pi)=P(q_1)\prod_{t=2}^mP(q_t|q_{t-1})<br>$$</p>
+<p><strong>问题来了</strong></p>
+<p>那么我们能不能在只知道观测序列的情况下，得知初始分布和转移概率矩阵呢？</p>
+<p><strong>解答：</strong></p>
+<p>如果我们穷举了所有的观测序列，那么：</p>
+<p>$$<br>\pi_i=\frac{以状态i开始的序列的数目}{序列总数}<br>$$</p>
+<p>$$<br>p_{ij}=\frac{从状态i转移到状态j的序列的数目}{从状态i开始的序列的总数}<br>$$</p>
+<p>具体实例，比如我们从抽屉中抽小球，四次的观测序列如下：</p>
+<ul>
+<li>[红，红，红]</li>
+<li>[红，红，蓝]</li>
+<li>[红，蓝，红]</li>
+<li>[蓝，红，红]</li>
+</ul>
+<p>可以得出初始分布为：</p>
+<p>$$<br>\pi={0.75, 0.25}<br>$$</p>
+<p>转移概率为：</p>
+<p>$$<br>p_{红蓝} = 1/3  \\<br>p_{红红} = 2/3  \\<br>p_{蓝蓝} = 0        \\<br>p_{蓝红} = 1<br>$$</p>
+<h3 id="隐马尔科夫模型（Hidden-Markov-Model）"><a href="#隐马尔科夫模型（Hidden-Markov-Model）" class="headerlink" title="隐马尔科夫模型（Hidden Markov Model）"></a>隐马尔科夫模型（Hidden Markov Model）</h3><p>介绍完了上面的可观测的马尔科夫模型，接下来介绍<strong>隐马尔科夫模型</strong>。</p>
+<p>隐马尔科夫模型的基本想法是：系统的状态S无法观测，但我们可以观测到某个其他和状态关联的事物，这个事物出现是伴随系统状态而出现的。</p>
+<p>为什么会有无法观测的情况呢？举个例子：观测天空是否在下雨这个现象可以通过观测苔藓的生长情况来判断。比如下雨天，苔藓生长比较茂盛。所以我们可以通过观察苔藓来判断下雨的概率是否大。</p>
+<p><img src="/img/18_11_11/004.png" alt=""></p>
+<p>一个<strong>隐马尔科夫模型</strong>一般包含以下参数组成：</p>
+<ul>
+<li>观测集合：$R=\{R_1,R_2,R_3,R_4,…,R_m\}$<ul>
+<li>代表我们能观测到的状态有哪些，比如抓小球的例子中就是红蓝绿三种颜色。</li>
+</ul>
+</li>
+<li>观测序列：$O=[o_1,o_2,o_3,o_4,…,o_l]$<ul>
+<li>代表我们能观测到的具体的观测序列</li>
+</ul>
+</li>
+<li>状态集合：$S=\{S_1,S_2,S_3,S_4,…,S_n\}$<ul>
+<li>代表状态的集合，比如上面的下雨天的例子中，状态就是晴天、雨天</li>
+</ul>
+</li>
+<li>状态序列：$Q=[q_1,q_2,q_3,q_4,…,q_l]$<ul>
+<li>就是出现某些状态的序列</li>
+</ul>
+</li>
+<li>观测概率：$P\{o_i=R_k|q_t=S_j\}=b_j(i)$，记$B=[b_j(i)]$<ul>
+<li>观测概率是隐马尔科夫模型特有的，在$t$时刻的时候，出现状态$q$，观测到状态$o_i$为指定状态$R_k$的概率。</li>
+</ul>
+</li>
+</ul>
+<p>所以，隐马尔可夫模型由一个五元组来描述$(A,B,\pi,R,S)$，一般情况下，可以简化为$(A,B,\pi)$。其中$A$是状态转移矩阵，$B$是观测概率，$\pi$是初始分布。</p>
+<p><strong>注意</strong></p>
+<ul>
+<li>不同的状态序列可以产生相同的观测序列（以不同的概率产生）</li>
+<li>状态转移是随机的，系统在一个状态中产生的观测也是随机的</li>
+<li>可观测马尔科夫模型是隐马尔科夫模型的特例：当$m=n$，如果$i=j,b_j(i)=1$否则$b_j(i)=0$。<ul>
+<li>即在马尔科夫模型下，状态序列和观测序列是一样的。</li>
+</ul>
+</li>
+</ul>
+<h4 id="三个基本问题"><a href="#三个基本问题" class="headerlink" title="三个基本问题"></a>三个基本问题</h4><p>隐马尔可夫模型一般可以用来解决三个基本问题：</p>
+<ul>
+<li>（1）<strong>估计</strong>：已知模型$(A,B,\pi)$，求观测序列出现的概率<ul>
+<li>解决方法：前后向算法</li>
+</ul>
+</li>
+<li>（2）<strong>预测</strong>：已知模型$(A,B,\pi)$和一个观测序列，求对应的不可观测的状态序列<ul>
+<li>解决方法：Viterbi算法</li>
+</ul>
+</li>
+<li>（3）<strong>学习</strong>：已知一组观测序列，求模型$(A,B,\pi)$<ul>
+<li>解决方法：Baum-Welch算法</li>
+</ul>
+</li>
+</ul>
+<p>下面用一个具体的例子来了解一下这三个基本问题是如何处理的。</p>
+<p><strong>股市预测</strong></p>
+<ul>
+<li>如果股市只有三种状态：牛市、熊市、普通</li>
+<li>而且股票只有三种趋势：涨、跌、不变</li>
+<li>如何利用隐马尔可夫模型进行股市预测？</li>
+</ul>
+<p><img src="/img/18_11_11/005.png" width="400" hegiht="213" align="center"></p>
+<p>那么如果在股市预测问题中，应用隐马尔科夫模型，来解决上面的那三个对应的基本问题，分别如下：</p>
+<ul>
+<li>（1）已知模型，求观测到连续一周出现涨势的概率</li>
+<li>（2）已知模型，观察到一周的变化情况为：涨、不变、涨、不变、跌，问股市的状态变化情况？</li>
+<li>（3）观察到股市一周的变化情况为：涨、不变、涨、不变、跌，求下周一开盘时的涨跌情况？</li>
+</ul>
+<p>隐马尔科夫模型的代码如下<code>hmm.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HMM</span>:</span></span><br><span class="line">    <span class="string">"""Class to implement an HMM.</span></span><br><span class="line"><span class="string">    Defined by:</span></span><br><span class="line"><span class="string">        1. Hidden state transition probability matrix T</span></span><br><span class="line"><span class="string">        2. Observable emission probability matrix E</span></span><br><span class="line"><span class="string">        3. Prior probability matrix 'priors'</span></span><br><span class="line"><span class="string">        4. Vocabulary of possible hidden states M ('states')</span></span><br><span class="line"><span class="string">        5. Vocabulary of possible observable emissions V ('emissions')</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, states, emissions)</span>:</span></span><br><span class="line">        self._states = states</span><br><span class="line">        self._emissions = emissions</span><br><span class="line">        self._T = dict()</span><br><span class="line">        self._E = dict()</span><br><span class="line">        self._priors = dict()</span><br><span class="line">        <span class="comment">#print "Don't forget to set: T, E, and priors..."</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_T</span><span class="params">(self, new_T)</span>:</span></span><br><span class="line">        tf = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> new_T:</span><br><span class="line">            <span class="keyword">if</span> sorted(new_T[key].keys()) != sorted(self._states):</span><br><span class="line">                tf = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> sorted(new_T.keys()) != sorted(self._states):</span><br><span class="line">            tf = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> tf: self._T = new_T</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"""Unmatched key -- check dictionary!</span></span><br><span class="line"><span class="string">            T =&gt; T[to state][given state]</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_E</span><span class="params">(self, new_E)</span>:</span></span><br><span class="line">        tf = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> new_E:</span><br><span class="line">            <span class="keyword">if</span> sorted(new_E[key].keys()) != sorted(self._states):</span><br><span class="line">                tf = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> sorted(new_E.keys()) != sorted(self._emissions):</span><br><span class="line">            tf = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> tf: self._E = new_E</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"""Unmatched key -- check dictionary!</span></span><br><span class="line"><span class="string">            E =&gt; E[emission][given state]</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_priors</span><span class="params">(self, new_priors)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> sorted(new_priors.keys()) == sorted(self._states):</span><br><span class="line">            self._priors = new_priors</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"""Unmatched key -- check dictionary!</span></span><br><span class="line"><span class="string">            priors =&gt; priors[state]</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># **************************************************</span></span><br><span class="line"><span class="comment"># Functions that take an observation sequence and an HMM</span></span><br><span class="line"><span class="comment"># **************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(O, hmm)</span>:</span></span><br><span class="line">    <span class="string">"""Return trellis representing p(theta_t | O_1^t).</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># initialize local variables</span></span><br><span class="line">    n = len(O)</span><br><span class="line">    f = &#123;state: list() <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states&#125;</span><br><span class="line">    <span class="keyword">for</span> o <span class="keyword">in</span> O:</span><br><span class="line">        <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">            f[state].append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct forward trellis</span></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        f[state][<span class="number">0</span>] = hmm._priors[state] * hmm._E[O[<span class="number">0</span>]][state]</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> hmm._states:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> hmm._states:</span><br><span class="line">                f[j][t] += f[i][t<span class="number">-1</span>] * hmm._T[j][i] * hmm._E[O[t]][j]</span><br><span class="line">    <span class="keyword">return</span> f</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backward</span><span class="params">(O, hmm)</span>:</span></span><br><span class="line">    <span class="string">"""Return trellis representing p(O_t+1^N | theta_t == i).</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># initialize local variables</span></span><br><span class="line">    n = len(O)</span><br><span class="line">    b = &#123;state: list() <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states&#125;</span><br><span class="line">    <span class="keyword">for</span> o <span class="keyword">in</span> O:</span><br><span class="line">        <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">            b[state].append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct backward trellis</span></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        b[state][n<span class="number">-1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(n<span class="number">-2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> hmm._states:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> hmm._states:</span><br><span class="line">                b[i][t] += b[j][t+<span class="number">1</span>] * hmm._T[j][i] * hmm._E[O[t+<span class="number">1</span>]][j]</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">posterior</span><span class="params">(O, hmm)</span>:</span></span><br><span class="line">    <span class="string">"""Return trellis representing p(theta_t | O).</span></span><br><span class="line"><span class="string">    Posterior probabilities would be used to find the maximum likelihood</span></span><br><span class="line"><span class="string">        of a state at a given time step based on the observation sequence</span></span><br><span class="line"><span class="string">        O.  The value returned by the forward algorithm is the O_prob</span></span><br><span class="line"><span class="string">        value returned here.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># get n</span></span><br><span class="line">    n = len(O)</span><br><span class="line">    <span class="comment"># initialize forward, backward, and posterior trellises</span></span><br><span class="line">    f = forward(O, hmm)</span><br><span class="line">    b = backward(O, hmm)</span><br><span class="line">    p = &#123;state: list() <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states&#125;</span><br><span class="line">    <span class="keyword">for</span> o <span class="keyword">in</span> O:</span><br><span class="line">        <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">            p[state].append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># total probability of sequence O</span></span><br><span class="line">    O_prob = math.fsum([f[state][n<span class="number">-1</span>] <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># build posterior trellis</span></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> range(n):</span><br><span class="line">            p[state][t] = (f[state][t] * b[state][t]) / O_prob</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_algrithm</span><span class="params">(O, hmm)</span>:</span></span><br><span class="line">    f = forward(O, hmm)</span><br><span class="line">    prop = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> stat <span class="keyword">in</span> hmm._T:</span><br><span class="line">        prop += f[stat][len(O)<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">viterbi_path</span><span class="params">(O, hmm)</span>:</span></span><br><span class="line">    <span class="string">"""Return most likely hidden state path given observation sequence O.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    n = len(O)</span><br><span class="line">    u = &#123;state: list() <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states&#125;</span><br><span class="line">    v = &#123;state: list() <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states&#125;</span><br><span class="line">    bt = list()</span><br><span class="line">    <span class="keyword">for</span> o <span class="keyword">in</span> O:</span><br><span class="line">        <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> (u, v):</span><br><span class="line">                u[state].append(<span class="number">0</span>)</span><br><span class="line">                v[state].append(str())</span><br><span class="line">        bt.append(str())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        u[state][<span class="number">0</span>] = hmm._priors[state] * hmm._E[O[<span class="number">0</span>]][state]</span><br><span class="line">        <span class="comment"># v[state][0] not of interest</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> hmm._states:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> hmm._states:</span><br><span class="line">                p = u[i][t<span class="number">-1</span>] * hmm._T[j][i] * hmm._E[O[t]][j]</span><br><span class="line">                <span class="keyword">if</span> p &gt; u[j][t]:</span><br><span class="line">                    u[j][t] = p</span><br><span class="line">                    v[j][t] = i</span><br><span class="line">    p = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        <span class="keyword">if</span> u[state][n<span class="number">-1</span>] &gt; p:</span><br><span class="line">            p = u[state][n<span class="number">-1</span>]</span><br><span class="line">            bt[n<span class="number">-1</span>] = state</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(n<span class="number">-2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        bt[t] = v[bt[t+<span class="number">1</span>]][t+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> bt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">baum_welch</span><span class="params">(O, hmm)</span>:</span></span><br><span class="line">    <span class="string">"""Return new hmm from one iteration of re-estimation."""</span></span><br><span class="line">    n = len(O)</span><br><span class="line">    f = forward(O, hmm)</span><br><span class="line">    b = backward(O, hmm)</span><br><span class="line">    p = posterior(O, hmm)</span><br><span class="line">    E_prime = dict()</span><br><span class="line">    <span class="keyword">for</span> emission <span class="keyword">in</span> hmm._emissions: E_prime[emission] = dict()</span><br><span class="line">    T_prime = dict()</span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states: T_prime[state] = dict()</span><br><span class="line">    priors_prime = dict()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct E_prime</span></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        den = math.fsum([p[state][t] <span class="keyword">for</span> t <span class="keyword">in</span> range(n)])</span><br><span class="line">        <span class="keyword">for</span> emission <span class="keyword">in</span> hmm._emissions:</span><br><span class="line">            v = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> range(n):</span><br><span class="line">                <span class="keyword">if</span> O[t] == emission: v += p[state][t]</span><br><span class="line">            E_prime[emission][state] = v / den</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct T_prime</span></span><br><span class="line">    p_O = math.fsum([f[s][n<span class="number">-1</span>] <span class="keyword">for</span> s <span class="keyword">in</span> hmm._states])</span><br><span class="line">    <span class="keyword">for</span> given <span class="keyword">in</span> hmm._states:</span><br><span class="line">        den = math.fsum([p[given][t] <span class="keyword">for</span> t <span class="keyword">in</span> range(n)])</span><br><span class="line">        <span class="keyword">for</span> to <span class="keyword">in</span> hmm._states:</span><br><span class="line">            v = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                v += ( f[given][t<span class="number">-1</span>] *</span><br><span class="line">                       b[to][t] *</span><br><span class="line">                       hmm._T[to][given] *</span><br><span class="line">                       hmm._E[O[t]][to]</span><br><span class="line">                      ) / p_O</span><br><span class="line">            T_prime[to][given] = v / den</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct priors_prime</span></span><br><span class="line">    <span class="keyword">for</span> state <span class="keyword">in</span> hmm._states:</span><br><span class="line">        priors_prime[state] = p[state][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    new_hmm = HMM(hmm._states, hmm._emissions)</span><br><span class="line">    new_hmm.set_E(E_prime)</span><br><span class="line">    new_hmm.set_T(T_prime)</span><br><span class="line">    new_hmm.set_priors(priors_prime)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> new_hmm</span><br></pre></td></tr></table></figure>
+<p>下面我们来用这个模型解决这三个问题。</p>
+<h5 id="估计问题：已知模型，求观测到连续一周出现涨势的概率"><a href="#估计问题：已知模型，求观测到连续一周出现涨势的概率" class="headerlink" title="估计问题：已知模型，求观测到连续一周出现涨势的概率"></a>估计问题：已知模型，求观测到连续一周出现涨势的概率</h5><p>已知模型如下图所示：</p>
+<p><img src="/img/18_11_11/006.png" width="660" hegiht="413" align="center"></p>
+<p>某股民根据经验判断当前为牛市、熊市、普通的概率分别是0.4、0.3、0.3。</p>
+<p>这个问题中，我们的观测状态集合为：牛市、熊市、普通</p>
+<p>我们的发射状态集合为：涨、跌、不变</p>
+<p>初始分布$\pi$为：$(0.4, 0.3, 0.3)$</p>
+<p>转移概率矩阵A：$<br>A=\begin{pmatrix}<br>0.6 &amp; 0.2 &amp; 0.2 \\<br>0.5 &amp; 0.3 &amp; 0.2 \\<br>0.4 &amp; 0.1 &amp; 0.5<br>\end{pmatrix}<br>$</p>
+<p>观测概率矩阵B：$<br>A=\begin{pmatrix}<br>0.7 &amp; 0.1 &amp; 0.2 \\<br>0.1 &amp; 0.6 &amp; 0.3 \\<br>0.3 &amp; 0.3 &amp; 0.4<br>\end{pmatrix}<br>$</p>
+<p>求连续一周出现涨势的概率，我们应该使用<strong>前后向算法</strong><code>forward_algrithm()</code>。改算法接收一个hmm模型。我们在初始化hmm模型的时候，需要设置观测状态<code>states</code>、发射状态<code>emissions</code>，转移概率矩阵<code>set_T()</code>，发射概率矩阵<code>set_E()</code>，以及初始分布<code>set_priors()</code>。</p>
+<p>我们初始化好这些参数：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">def initTestModel():</span><br><span class="line">    model = hmm.HMM([<span class="string">'bull'</span>, <span class="string">'bear'</span>, <span class="string">'normal'</span>], [<span class="string">'up'</span>, <span class="string">'down'</span>, <span class="string">'unchange'</span>])</span><br><span class="line">    transition_matrix = &#123;</span><br><span class="line">        <span class="string">'bull'</span>: &#123;</span><br><span class="line">            <span class="string">'bull'</span>: <span class="number">0</span>.<span class="number">6</span>,</span><br><span class="line">            <span class="string">'bear'</span>: <span class="number">0</span>.<span class="number">2</span>,</span><br><span class="line">            <span class="string">'normal'</span>: <span class="number">0</span>.<span class="number">2</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'bear'</span>: &#123;</span><br><span class="line">            <span class="string">'bull'</span>: <span class="number">0</span>.<span class="number">5</span>,</span><br><span class="line">            <span class="string">'bear'</span>: <span class="number">0</span>.<span class="number">3</span>,</span><br><span class="line">            <span class="string">'normal'</span>: <span class="number">0</span>.<span class="number">2</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'normal'</span>: &#123;</span><br><span class="line">            <span class="string">'bull'</span>: <span class="number">0</span>.<span class="number">4</span>,</span><br><span class="line">            <span class="string">'bear'</span>: <span class="number">0</span>.<span class="number">1</span>,</span><br><span class="line">            <span class="string">'normal'</span>: <span class="number">0</span>.<span class="number">5</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    emission_matrix = &#123;</span><br><span class="line">        <span class="string">'up'</span>: &#123;</span><br><span class="line">            <span class="string">'bull'</span>: <span class="number">0</span>.<span class="number">7</span>,</span><br><span class="line">            <span class="string">'bear'</span>: <span class="number">0</span>.<span class="number">1</span>,</span><br><span class="line">            <span class="string">'normal'</span>: <span class="number">0</span>.<span class="number">3</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'down'</span>: &#123;</span><br><span class="line">            <span class="string">'bull'</span>: <span class="number">0</span>.<span class="number">1</span>,</span><br><span class="line">            <span class="string">'bear'</span>: <span class="number">0</span>.<span class="number">6</span>,</span><br><span class="line">            <span class="string">'normal'</span>: <span class="number">0</span>.<span class="number">3</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'unchange'</span>: &#123;</span><br><span class="line">            <span class="string">'bull'</span>: <span class="number">0</span>.<span class="number">2</span>,</span><br><span class="line">            <span class="string">'bear'</span>: <span class="number">0</span>.<span class="number">3</span>,</span><br><span class="line">            <span class="string">'normal'</span>: <span class="number">0</span>.<span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    p = &#123;<span class="string">'bull'</span>:<span class="number">0</span>.<span class="number">4</span>, <span class="string">'bear'</span>:<span class="number">0</span>.<span class="number">3</span>, <span class="string">'normal'</span>:<span class="number">0</span>.<span class="number">3</span>&#125;</span><br><span class="line"> </span><br><span class="line">    model.set_T(transition_matrix)</span><br><span class="line">    model.set_E(emission_matrix)</span><br><span class="line">    model.set_priors(p)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<p>初始化模型完成之后，调用<code>forward_algrithm()</code>即可得出指定观测序列的预测结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evaluate</span><span class="params">()</span>:</span></span><br><span class="line">    model = initTestModel()</span><br><span class="line">    prop = model.forward_algrithm([<span class="string">'up'</span>, <span class="string">'up'</span>, <span class="string">'up'</span>, <span class="string">'up'</span>, <span class="string">'up'</span>], model)</span><br><span class="line">    <span class="keyword">print</span> prop</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.0232968298</span></span><br></pre></td></tr></table></figure>
+<p>下面的代码可以查看所有组合可能出现的概率：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> generate_weekly_list():</span><br><span class="line">    status = [<span class="string">'up'</span>,<span class="string">'down'</span>,<span class="string">'unchange'</span>]</span><br><span class="line"> </span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    weekly_list = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> statu1 <span class="keyword">in</span> <span class="string">status:</span></span><br><span class="line">        <span class="keyword">for</span> statu2 <span class="keyword">in</span> <span class="string">status:</span></span><br><span class="line">            <span class="keyword">for</span> statu3 <span class="keyword">in</span> <span class="string">status:</span></span><br><span class="line">                <span class="keyword">for</span> statu4 <span class="keyword">in</span> <span class="string">status:</span></span><br><span class="line">                    <span class="keyword">for</span> statu5 <span class="keyword">in</span> <span class="string">status:</span></span><br><span class="line">                        key = statu1 + <span class="string">','</span> + statu2 + <span class="string">','</span> + statu3 + <span class="string">','</span> + statu4 + <span class="string">','</span> + statu5</span><br><span class="line">                        value = [statu1, statu2, statu3, statu4, statu5]</span><br><span class="line">                        weekly_list[key] = value</span><br><span class="line">    <span class="keyword">return</span> weekly_list</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> evaluate():</span><br><span class="line">    model = initTestModel()</span><br><span class="line"> </span><br><span class="line">    all_list = generate_weekly_list()</span><br><span class="line">    prop_list = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> <span class="string">all_list:</span></span><br><span class="line">        prop = hmm.forward_algrithm(all_list[key], model)</span><br><span class="line">        prop_list[key] = prop</span><br><span class="line"> </span><br><span class="line">    sort_list = sorted(prop_list.items(), lambda x, <span class="string">y:</span> cmp(x[<span class="number">1</span>], y[<span class="number">1</span>]), reverse=True)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (key, value) <span class="keyword">in</span> <span class="string">sort_list:</span></span><br><span class="line">        print (<span class="string">'%.6f:'</span> % value) + key</span><br></pre></td></tr></table></figure>
+<h5 id="预测问题：已知模型-股市变化，求股市状态"><a href="#预测问题：已知模型-股市变化，求股市状态" class="headerlink" title="预测问题：已知模型+股市变化，求股市状态"></a>预测问题：已知模型+股市变化，求股市状态</h5><p>已知模型，观察到一周的变化情况为：涨、不变、涨、不变、跌，问股市的状态变化情况？</p>
+<p>还是同样的模型：</p>
+<p>观测状态集合为：牛市、熊市、普通</p>
+<p>我们的发射状态集合为：涨、跌、不变</p>
+<p>初始分布$\pi$为：$(0.4, 0.3, 0.3)$</p>
+<p>转移概率矩阵A：$<br>A=\begin{pmatrix}<br>0.6 &amp; 0.2 &amp; 0.2 \\<br>0.5 &amp; 0.3 &amp; 0.2 \\<br>0.4 &amp; 0.1 &amp; 0.5<br>\end{pmatrix}<br>$</p>
+<p>观测概率矩阵B：$<br>A=\begin{pmatrix}<br>0.7 &amp; 0.1 &amp; 0.2 \\<br>0.1 &amp; 0.6 &amp; 0.3 \\<br>0.3 &amp; 0.3 &amp; 0.4<br>\end{pmatrix}<br>$</p>
+<p>代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">()</span>:</span></span><br><span class="line">    model = initTestModel()</span><br><span class="line">    <span class="keyword">print</span> hmm.viterbi_path([<span class="string">'up'</span>, <span class="string">'unchange'</span>, <span class="string">'up'</span>, <span class="string">'unchange'</span>, <span class="string">'down'</span>], model)</span><br></pre></td></tr></table></figure>
+<p>结果是:</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">'bull</span>', <span class="symbol">'bull</span>', <span class="symbol">'bull</span>', <span class="symbol">'bull</span>', <span class="symbol">'bear</span>']</span><br></pre></td></tr></table></figure>
+<p>我们同样可以写出所有的组合的预测结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">()</span>:</span></span><br><span class="line">    model = initTestModel()</span><br><span class="line">    weekly_list = generate_weekly_list()</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> weekly_list:</span><br><span class="line">        <span class="keyword">print</span> key + <span class="string">':'</span></span><br><span class="line">        <span class="keyword">print</span> hmm.viterbi_path(weekly_list[key], model)</span><br></pre></td></tr></table></figure>
+<h5 id="学习问题：已知一堆观测序列，求模型"><a href="#学习问题：已知一堆观测序列，求模型" class="headerlink" title="学习问题：已知一堆观测序列，求模型"></a>学习问题：已知一堆观测序列，求模型</h5><p>某股民连续三周观测到股市的变动情况为：</p>
+<ul>
+<li>涨，不变，涨，跌，涨</li>
+<li>跌，涨，跌，涨，不变</li>
+<li>不变，不变，跌，涨，涨</li>
+</ul>
+<p>问，下周的变化情况？</p>
+<p>这个问题的思路为：</p>
+<p>根据观测序列 -&gt; 求出模型 -&gt; 得到$A,B,\pi$ -&gt; 预测当前状态 -&gt; 利用转移矩阵预测下一个状态。</p>
+<p>代码实现如下：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def learn():</span><br><span class="line">    <span class="keyword">model</span> = initTestModel()</span><br><span class="line"> </span><br><span class="line">    o_list1 = [<span class="string">'up'</span>, <span class="string">'unchange'</span>, <span class="string">'up'</span>, <span class="string">'down'</span>, <span class="string">'up'</span>]</span><br><span class="line">    o_list2 = [<span class="string">'down'</span>, <span class="string">'up'</span>, <span class="string">'down'</span>, <span class="string">'up'</span>, <span class="string">'unchange'</span>]</span><br><span class="line">    o_list3 = [<span class="string">'unchange'</span>, <span class="string">'unchange'</span>, <span class="string">'down'</span>, <span class="string">'up'</span>, <span class="string">'up'</span>]</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">model</span> = hmm.baum_welch(o_list1, <span class="keyword">model</span>)</span><br><span class="line">    <span class="keyword">model</span> = hmm.baum_welch(o_list2, <span class="keyword">model</span>)</span><br><span class="line">    <span class="keyword">model</span> = hmm.baum_welch(o_list3, <span class="keyword">model</span>)</span><br><span class="line"> </span><br><span class="line">    print hmm.viterbi_path(o_list3, <span class="keyword">model</span>)</span><br></pre></td></tr></table></figure>
+<p>得出结果为：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">'normal</span>', <span class="symbol">'bull</span>', <span class="symbol">'bear</span>', <span class="symbol">'bull</span>', <span class="symbol">'bull</span>']</span><br></pre></td></tr></table></figure>
+<p>你也可以将转移概率矩阵打印出来：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">print</span> model._T</span><br></pre></td></tr></table></figure>
+<hr>
+<p>以上就是HMM模型的全部内容。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/img/common/weixin.jpeg" alt="DannyLee1991 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/img/common/alipay.jpeg" alt="DannyLee1991 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/数学/" rel="tag"># 数学</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/【傅里叶变换及其应用】02-将一般周期函数表示为简单周期/" rel="next" title="【傅里叶变换及其应用讲义】第一章 傅里叶级数">
+                <i class="fa fa-chevron-left"></i> 【傅里叶变换及其应用讲义】第一章 傅里叶级数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DannyLee1991">
+            
+              <p class="site-author-name" itemprop="name">DannyLee1991</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">134</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DannyLee1991" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:747554505@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="tencent://message/?Menu=yes&uin=747554505" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐马尔可夫模型"><span class="nav-number">1.</span> <span class="nav-text">隐马尔可夫模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#马尔科夫链"><span class="nav-number">1.1.</span> <span class="nav-text">马尔科夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始分布"><span class="nav-number">1.1.1.</span> <span class="nav-text">初始分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转移概率和转移概率矩阵"><span class="nav-number">1.1.2.</span> <span class="nav-text">转移概率和转移概率矩阵</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可观测的马尔科夫模型"><span class="nav-number">1.2.</span> <span class="nav-text">可观测的马尔科夫模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐马尔科夫模型（Hidden-Markov-Model）"><span class="nav-number">1.3.</span> <span class="nav-text">隐马尔科夫模型（Hidden Markov Model）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个基本问题"><span class="nav-number">1.3.1.</span> <span class="nav-text">三个基本问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#估计问题：已知模型，求观测到连续一周出现涨势的概率"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">估计问题：已知模型，求观测到连续一周出现涨势的概率</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#预测问题：已知模型-股市变化，求股市状态"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">预测问题：已知模型+股市变化，求股市状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#学习问题：已知一堆观测序列，求模型"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">学习问题：已知一堆观测序列，求模型</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DannyLee1991</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147750"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("IWEvQRPkbA9LAxFxX7cAc8NU-gzGzoHsz", "MwlyXFF4VkWlbJ0lBGzlTmTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
